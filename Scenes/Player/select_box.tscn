@@ -1,0 +1,366 @@
+[gd_scene format=3 uid="uid://c6bn0o60aqgi8"]
+
+[ext_resource type="Texture2D" uid="uid://56qigvgc1xq3" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/selectbox_bl.png" id="1_57ewq"]
+[ext_resource type="Texture2D" uid="uid://o5th5r77drgk" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/selectbox_br.png" id="2_g1trr"]
+[ext_resource type="Texture2D" uid="uid://cw3l5c08xni4l" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/selectbox_tr.png" id="3_jwh51"]
+[ext_resource type="Texture2D" uid="uid://5ool1mqb4hlv" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/selectbox_tl.png" id="4_0ir7c"]
+[ext_resource type="Script" uid="uid://twedtsdtbeha" path="res://Scripts/Player/select_box.gd" id="5_sb0x1"]
+
+[sub_resource type="Animation" id="anim_bl_r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="anim_bl_p"]
+resource_name = "placing"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, 8), Vector2(-8, 8), Vector2(-4, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(4, 4, 4, 1), Color(6, 6, 6, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.5), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="anim_bl_s"]
+resource_name = "selecting"
+length = 0.4
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-8, 8), Vector2(-9, 9), Vector2(-10, 10), Vector2(-9, 9), Vector2(-8, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="lib_bl"]
+_data = {
+&"RESET": SubResource("anim_bl_r"),
+&"placing": SubResource("anim_bl_p"),
+&"selecting": SubResource("anim_bl_s")
+}
+
+[sub_resource type="Animation" id="anim_br_r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="anim_br_p"]
+resource_name = "placing"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(8, 8), Vector2(8, 8), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(4, 4, 4, 1), Color(6, 6, 6, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.5), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="anim_br_s"]
+resource_name = "selecting"
+length = 0.4
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(8, 8), Vector2(9, 9), Vector2(10, 10), Vector2(9, 9), Vector2(8, 8)]
+}
+
+[sub_resource type="AnimationLibrary" id="lib_br"]
+_data = {
+&"RESET": SubResource("anim_br_r"),
+&"placing": SubResource("anim_br_p"),
+&"selecting": SubResource("anim_br_s")
+}
+
+[sub_resource type="Animation" id="anim_tr_r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="anim_tr_p"]
+resource_name = "placing"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(8, -8), Vector2(8, -8), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(4, 4, 4, 1), Color(6, 6, 6, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.5), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="anim_tr_s"]
+resource_name = "selecting"
+length = 0.4
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(8, -8), Vector2(9, -9), Vector2(10, -10), Vector2(9, -9), Vector2(8, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="lib_tr"]
+_data = {
+&"RESET": SubResource("anim_tr_r"),
+&"placing": SubResource("anim_tr_p"),
+&"selecting": SubResource("anim_tr_s")
+}
+
+[sub_resource type="Animation" id="anim_tl_r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="anim_tl_p"]
+resource_name = "placing"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, -8), Vector2(-8, -8), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(4, 4, 4, 1), Color(6, 6, 6, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.5), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="anim_tl_s"]
+resource_name = "selecting"
+length = 0.4
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-8, -8), Vector2(-9, -9), Vector2(-10, -10), Vector2(-9, -9), Vector2(-8, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="lib_tl"]
+_data = {
+&"RESET": SubResource("anim_tl_r"),
+&"placing": SubResource("anim_tl_p"),
+&"selecting": SubResource("anim_tl_s")
+}
+
+[node name="SelectBox" type="Node2D" unique_id=1510798765]
+script = ExtResource("5_sb0x1")
+
+[node name="BottomLeft" type="Sprite2D" parent="." unique_id=477042246]
+position = Vector2(-8, 8)
+texture = ExtResource("1_57ewq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomLeft" unique_id=1270409167]
+libraries/ = SubResource("lib_bl")
+
+[node name="BottomRight" type="Sprite2D" parent="." unique_id=1730876369]
+position = Vector2(8, 8)
+texture = ExtResource("2_g1trr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight" unique_id=211897889]
+libraries/ = SubResource("lib_br")
+
+[node name="TopRight" type="Sprite2D" parent="." unique_id=188380554]
+position = Vector2(8, -8)
+texture = ExtResource("3_jwh51")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TopRight" unique_id=755705688]
+libraries/ = SubResource("lib_tr")
+
+[node name="TopLeft" type="Sprite2D" parent="." unique_id=1070806154]
+position = Vector2(-8, -8)
+texture = ExtResource("4_0ir7c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TopLeft" unique_id=2112834825]
+libraries/ = SubResource("lib_tl")
