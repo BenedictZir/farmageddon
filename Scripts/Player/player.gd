@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var health_component: Node2D = $Components/HealthComponent
 @onready var player_visual: Node2D = $PlayerVisual
 @onready var select_box: Node2D = $SelectBox
+@onready var hud: CanvasLayer = $HUD
 
 var direction := Vector2.ZERO
 var is_carrying := false  # true when holding an item in the item slot
@@ -42,10 +43,16 @@ func _physics_process(delta: float) -> void:
 			_sprint_locked_out = true
 			is_running = false
 	else:
-		energy = min(energy + delta * 10.0, max_energy)
+		energy = min(energy + delta * 20.0, max_energy)
 	
 	movement_component.move(self, direction, is_running)
 	player_visual.update_movement_anim(direction, is_carrying, is_running)
+	
+	# Update HUD bars
+	hud.update_bars(
+		health_component.current_health / health_component.max_health,
+		energy / max_energy
+	)
 	
 	# Update select box visibility
 	if is_carrying:
