@@ -344,6 +344,7 @@ texture = ExtResource("1_57ewq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BottomLeft" unique_id=1270409167]
 libraries/ = SubResource("lib_bl")
+autoplay = &"selecting"
 
 [node name="BottomRight" type="Sprite2D" parent="." unique_id=1730876369]
 position = Vector2(8, 8)
@@ -351,6 +352,7 @@ texture = ExtResource("2_g1trr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight" unique_id=211897889]
 libraries/ = SubResource("lib_br")
+autoplay = &"selecting"
 
 [node name="TopRight" type="Sprite2D" parent="." unique_id=188380554]
 position = Vector2(8, -8)
@@ -358,6 +360,7 @@ texture = ExtResource("3_jwh51")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TopRight" unique_id=755705688]
 libraries/ = SubResource("lib_tr")
+autoplay = &"selecting"
 
 [node name="TopLeft" type="Sprite2D" parent="." unique_id=1070806154]
 position = Vector2(-8, -8)
@@ -365,3 +368,4 @@ texture = ExtResource("4_0ir7c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TopLeft" unique_id=2112834825]
 libraries/ = SubResource("lib_tl")
+autoplay = &"selecting"

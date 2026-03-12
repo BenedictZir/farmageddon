@@ -705,7 +705,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"roll",
-"speed": 20.0
+"speed": 33.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1423,7 +1423,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"roll",
-"speed": 20.0
+"speed": 33.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -2141,7 +2141,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"roll",
-"speed": 20.0
+"speed": 33.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -2269,7 +2269,6 @@ frame_progress = 1.0
 y_sort_enabled = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1910900308]
-visible = false
 script = ExtResource("scr_hud")
 
 [node name="Hud" type="Sprite2D" parent="HUD" unique_id=1800543559]

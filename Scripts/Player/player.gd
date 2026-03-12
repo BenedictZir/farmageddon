@@ -12,14 +12,15 @@ var is_carrying := false
 var is_running := false
 var is_knocked := false
 var is_rolling := false
+var _roll_velocity := Vector2.ZERO
 
 @export var max_energy := 100.0
 var energy := 100.0
 var _sprint_locked_out := false
 
-@export var roll_energy_cost := 30.0
+@export var roll_energy_cost := 20.0
 @export var roll_distance := 32.0   # pixels (2 tiles)
-@export var roll_duration := 0.5
+@export var roll_duration := 0.3
 
 
 func _ready() -> void:
@@ -82,8 +83,13 @@ func _update_energy(delta: float) -> void:
 
 
 func _handle_movement() -> void:
-	# Locked states (attack, roll, hurt, etc.) → no movement input
-	if is_rolling or player_visual.is_locked():
+	if is_rolling:
+		velocity = _roll_velocity
+		move_and_slide()
+		return
+
+	if player_visual.is_locked():
+		velocity = Vector2.ZERO
 		return
 
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -111,11 +117,14 @@ func _do_roll() -> void:
 
 	player_visual.play_roll()
 
-	var roll_dir := Vector2.LEFT if player_visual.base.flip_h else Vector2.RIGHT
-	var tween := create_tween()
-	tween.tween_property(self, "global_position",
-		global_position + roll_dir * roll_distance, roll_duration)\
-		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	var roll_dir := direction.normalized() if direction != Vector2.ZERO \
+		else (Vector2.LEFT if player_visual.base.flip_h else Vector2.RIGHT)
+	_roll_velocity = roll_dir * (roll_distance / roll_duration)
+	get_tree().create_timer(roll_duration).timeout.connect(_end_roll_dash)
+
+
+func _end_roll_dash() -> void:
+	_roll_velocity = Vector2.ZERO
 
 
 func _do_interact() -> void:
@@ -170,6 +179,7 @@ func _on_anim_state_finished(state) -> void:
 
 	if state == player_visual.AnimState.ROLL:
 		is_rolling = false
+		_roll_velocity = Vector2.ZERO
 		velocity = Vector2.ZERO
 		set_collision_layer_value(2, true)
 
