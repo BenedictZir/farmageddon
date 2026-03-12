@@ -1,68 +1,72 @@
-[gd_scene load_steps=2 format=3 uid="uid://shop_scene_001"]
+[gd_scene format=3 uid="uid://dlpj3vchq0is"]
 
-[ext_resource type="PackedScene" uid="uid://shop_item_001" path="res://Scenes/UI/shop_item.tscn" id="scn_shop_item"]
+[ext_resource type="PackedScene" uid="uid://e85sj6jbk2t1" path="res://Scenes/UI/shop_item.tscn" id="scn_shop_item"]
 
-[node name="ShopUI" type="Control"]
+[node name="ShopUI" type="Control" unique_id=1413438752]
+custom_minimum_size = Vector2(640, 360)
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 360.0
 grow_horizontal = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=267355780]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 100.0
+offset_left = 56.0
+offset_top = 393.0
+offset_right = 56.0
+offset_bottom = 433.0
 grow_horizontal = 2
-alignment = 1
 theme_override_constants/separation = 16
+alignment = 1
 
-[node name="ShopItem1" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+[node name="ShopItem1" parent="HBoxContainer" unique_id=726902931 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Wheat"
-price = 10
 
-[node name="ShopItem2" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+[node name="ShopItem2" parent="HBoxContainer" unique_id=2002373778 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Carrot"
 price = 15
 
-[node name="ShopItem3" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+[node name="ShopItem3" parent="HBoxContainer" unique_id=462347908 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Cabbage"
 price = 25
 
-[node name="ShopItem4" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+[node name="ShopItem4" parent="HBoxContainer" unique_id=808732040 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Potato"
 price = 30
 
-[node name="ShopItem5" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+[node name="ShopItem5" parent="HBoxContainer" unique_id=58949467 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Chicken"
 price = 100
 
-[node name="ShopItem6" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+[node name="ShopItem6" parent="HBoxContainer" unique_id=1377985927 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Cow"
 price = 200
 
-[node name="ShopItem7" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+[node name="ShopItem7" parent="HBoxContainer" unique_id=1286885475 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Fertilizer"
 price = 50
 
-[node name="ShopItem8" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+[node name="ShopItem8" parent="HBoxContainer" unique_id=800627408 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Farmer"
 price = 300
 
-[node name="ShopItem9" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+[node name="ShopItem9" parent="HBoxContainer" unique_id=785228811 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Warrior"
 price = 400
 
-[node name="ShopItem10" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+[node name="ShopItem10" parent="HBoxContainer" unique_id=847154558 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Goal"
 price = 1000

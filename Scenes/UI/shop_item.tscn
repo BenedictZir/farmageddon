@@ -1,42 +1,265 @@
-[gd_scene load_steps=2 format=3 uid="uid://shop_item_001"]
+[gd_scene format=3 uid="uid://e85sj6jbk2t1"]
 
-[ext_resource type="Script" path="res://Scripts/UI/shop_item.gd" id="scr_shop_item"]
+[ext_resource type="Texture2D" uid="uid://b0psvjnygrmhd" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_bc.png" id="2_vyaep"]
+[ext_resource type="Texture2D" uid="uid://dx6dd56mjxbo" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_bl.png" id="3_wd4fe"]
+[ext_resource type="Texture2D" uid="uid://daldsly154bl2" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_br.png" id="4_dfjyp"]
+[ext_resource type="Texture2D" uid="uid://njep1a7p7ygu" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_c.png" id="5_lnmw1"]
+[ext_resource type="Texture2D" uid="uid://w0k3lkjgujun" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_lc.png" id="6_nuoko"]
+[ext_resource type="Texture2D" uid="uid://che3y68rpraqm" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_rc.png" id="7_a4siq"]
+[ext_resource type="Texture2D" uid="uid://bkml5ryhwehcq" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_tc.png" id="8_tyqg3"]
+[ext_resource type="Texture2D" uid="uid://d0o04itramhi5" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_tl.png" id="9_uf637"]
+[ext_resource type="Texture2D" uid="uid://017njn2wjfgu" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_tr.png" id="10_bjpw8"]
+[ext_resource type="Texture2D" uid="uid://b0ce2efau8ksx" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_tr.png" id="17_wjp2m"]
+[ext_resource type="Texture2D" uid="uid://ct15n3ovgbpmb" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_tl.png" id="18_2lsei"]
+[ext_resource type="Texture2D" uid="uid://bmtcpt1rq18pj" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_tc.png" id="19_7mw3m"]
+[ext_resource type="Texture2D" uid="uid://c31nitvmxs7rm" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_rc.png" id="20_irqxa"]
+[ext_resource type="Texture2D" uid="uid://cj8ibqp30cpxs" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_lc.png" id="21_15hnh"]
+[ext_resource type="Texture2D" uid="uid://ggyyg1i3l13v" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_c.png" id="22_lhrlf"]
+[ext_resource type="Texture2D" uid="uid://dev8bsea0whjg" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_br.png" id="23_cg54g"]
+[ext_resource type="Texture2D" uid="uid://dataiuoa1fhy3" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_bl.png" id="24_emr5s"]
+[ext_resource type="Texture2D" uid="uid://b33ch0f2uigrj" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_bc.png" id="25_8l3tc"]
+[ext_resource type="Script" uid="uid://dnkt30dv0ac3f" path="res://Scripts/UI/shop_item.gd" id="scr_shop_item"]
 
-[node name="ShopItem" type="Button"]
-custom_minimum_size = Vector2(80, 100)
-offset_right = 80.0
-offset_bottom = 100.0
+[node name="ShopItem" type="TextureButton" unique_id=1091925831]
+custom_minimum_size = Vector2(40, 40)
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 script = ExtResource("scr_shop_item")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="NameLabel" type="Label" parent="." unique_id=864066308]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 18.0
 text = "Item Name"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="IconRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="IconRect" type="TextureRect" parent="." unique_id=829126252]
 custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
+layout_mode = 0
+offset_left = 4.0
+offset_top = 34.0
+offset_right = 76.0
+offset_bottom = 66.0
 expand_mode = 1
 stretch_mode = 5
 
-[node name="PriceLabel" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="PriceLabel" type="Label" parent="." unique_id=233584716]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 96.0
+offset_right = 97.0
+offset_bottom = 110.0
 text = "10g"
 horizontal_alignment = 1
+
+[node name="LightBox" type="Node2D" parent="." unique_id=377558505]
+position = Vector2(60, 60)
+scale = Vector2(2, 2)
+
+[node name="LtBox9SliceTr" type="Sprite2D" parent="LightBox" unique_id=767683844]
+position = Vector2(6, -5.5)
+texture = ExtResource("17_wjp2m")
+
+[node name="LtBox9SliceTl" type="Sprite2D" parent="LightBox" unique_id=206053208]
+position = Vector2(-6, -5.5)
+texture = ExtResource("18_2lsei")
+
+[node name="LtBox9SliceTc" type="Sprite2D" parent="LightBox" unique_id=1141187231]
+position = Vector2(-3, -5.5)
+texture = ExtResource("19_7mw3m")
+
+[node name="LtBox9SliceTc2" type="Sprite2D" parent="LightBox" unique_id=1507396525]
+position = Vector2(0, -5.5)
+texture = ExtResource("19_7mw3m")
+
+[node name="LtBox9SliceTc4" type="Sprite2D" parent="LightBox" unique_id=1200968186]
+position = Vector2(3, -5.5)
+texture = ExtResource("19_7mw3m")
+
+[node name="LtBox9SliceRc" type="Sprite2D" parent="LightBox" unique_id=1321491833]
+position = Vector2(6, -2.5)
+texture = ExtResource("20_irqxa")
+
+[node name="LtBox9SliceRc2" type="Sprite2D" parent="LightBox" unique_id=712100252]
+position = Vector2(6, 0.5)
+texture = ExtResource("20_irqxa")
+
+[node name="LtBox9SliceRc3" type="Sprite2D" parent="LightBox" unique_id=1618789121]
+position = Vector2(6, 3.5)
+texture = ExtResource("20_irqxa")
+
+[node name="LtBox9SliceLc" type="Sprite2D" parent="LightBox" unique_id=1440528587]
+position = Vector2(-6, 3.5)
+texture = ExtResource("21_15hnh")
+
+[node name="LtBox9SliceLc2" type="Sprite2D" parent="LightBox" unique_id=722878942]
+position = Vector2(-6, 0.5)
+texture = ExtResource("21_15hnh")
+
+[node name="LtBox9SliceLc3" type="Sprite2D" parent="LightBox" unique_id=771395992]
+position = Vector2(-6, -2.5)
+texture = ExtResource("21_15hnh")
+
+[node name="LtBox9SliceC" type="Sprite2D" parent="LightBox" unique_id=209160653]
+position = Vector2(0, -2.5)
+texture = ExtResource("22_lhrlf")
+
+[node name="LtBox9SliceC3" type="Sprite2D" parent="LightBox" unique_id=264811366]
+position = Vector2(3, -2.5)
+texture = ExtResource("22_lhrlf")
+
+[node name="LtBox9SliceC2" type="Sprite2D" parent="LightBox" unique_id=663222911]
+position = Vector2(-3, -2.5)
+texture = ExtResource("22_lhrlf")
+
+[node name="LtBox9SliceC4" type="Sprite2D" parent="LightBox" unique_id=1717734071]
+position = Vector2(0, 0.5)
+texture = ExtResource("22_lhrlf")
+
+[node name="LtBox9SliceC5" type="Sprite2D" parent="LightBox" unique_id=1567704910]
+position = Vector2(3, 0.5)
+texture = ExtResource("22_lhrlf")
+
+[node name="LtBox9SliceC6" type="Sprite2D" parent="LightBox" unique_id=2099659436]
+position = Vector2(-3, 0.5)
+texture = ExtResource("22_lhrlf")
+
+[node name="LtBox9SliceC7" type="Sprite2D" parent="LightBox" unique_id=1030416028]
+position = Vector2(0, 3.5)
+texture = ExtResource("22_lhrlf")
+
+[node name="LtBox9SliceC8" type="Sprite2D" parent="LightBox" unique_id=2027661480]
+position = Vector2(3, 3.5)
+texture = ExtResource("22_lhrlf")
+
+[node name="LtBox9SliceC9" type="Sprite2D" parent="LightBox" unique_id=313310187]
+position = Vector2(-3, 3.5)
+texture = ExtResource("22_lhrlf")
+
+[node name="LtBox9SliceBr" type="Sprite2D" parent="LightBox" unique_id=1797233765]
+position = Vector2(6, 6.5)
+texture = ExtResource("23_cg54g")
+
+[node name="LtBox9SliceBl" type="Sprite2D" parent="LightBox" unique_id=2096467713]
+position = Vector2(-6, 6.5)
+texture = ExtResource("24_emr5s")
+
+[node name="LtBox9SliceBc" type="Sprite2D" parent="LightBox" unique_id=211817614]
+position = Vector2(3, 6.5)
+texture = ExtResource("25_8l3tc")
+
+[node name="LtBox9SliceBc2" type="Sprite2D" parent="LightBox" unique_id=1903319725]
+position = Vector2(0, 6.5)
+texture = ExtResource("25_8l3tc")
+
+[node name="LtBox9SliceBc3" type="Sprite2D" parent="LightBox" unique_id=1166241597]
+position = Vector2(-3, 6.5)
+texture = ExtResource("25_8l3tc")
+
+[node name="BrownBox" type="Node2D" parent="." unique_id=1216076017]
+position = Vector2(60, 60)
+scale = Vector2(2, 2)
+
+[node name="DtBox9SliceBc" type="Sprite2D" parent="BrownBox" unique_id=1391855491]
+position = Vector2(-3, 6.5)
+texture = ExtResource("2_vyaep")
+
+[node name="DtBox9SliceBc19" type="Sprite2D" parent="BrownBox" unique_id=1632940386]
+position = Vector2(0, 6.5)
+texture = ExtResource("2_vyaep")
+
+[node name="DtBox9SliceBc20" type="Sprite2D" parent="BrownBox" unique_id=828494290]
+position = Vector2(3, 6.5)
+texture = ExtResource("2_vyaep")
+
+[node name="DtBox9SliceBc2" type="Sprite2D" parent="BrownBox" unique_id=396822835]
+position = Vector2(-6, 6.5)
+texture = ExtResource("3_wd4fe")
+
+[node name="DtBox9SliceBc3" type="Sprite2D" parent="BrownBox" unique_id=989063257]
+position = Vector2(6, 6.5)
+texture = ExtResource("4_dfjyp")
+
+[node name="DtBox9SliceBc4" type="Sprite2D" parent="BrownBox" unique_id=688995969]
+position = Vector2(-3, -2.5)
+texture = ExtResource("5_lnmw1")
+
+[node name="DtBox9SliceBc11" type="Sprite2D" parent="BrownBox" unique_id=271417124]
+position = Vector2(-3, 0.5)
+texture = ExtResource("5_lnmw1")
+
+[node name="DtBox9SliceBc12" type="Sprite2D" parent="BrownBox" unique_id=1220416665]
+position = Vector2(-3, 3.5)
+texture = ExtResource("5_lnmw1")
+
+[node name="DtBox9SliceBc13" type="Sprite2D" parent="BrownBox" unique_id=339226219]
+position = Vector2(0, 0.5)
+texture = ExtResource("5_lnmw1")
+
+[node name="DtBox9SliceBc14" type="Sprite2D" parent="BrownBox" unique_id=169052804]
+position = Vector2(0, 3.5)
+texture = ExtResource("5_lnmw1")
+
+[node name="DtBox9SliceBc15" type="Sprite2D" parent="BrownBox" unique_id=32444001]
+position = Vector2(3, 0.5)
+texture = ExtResource("5_lnmw1")
+
+[node name="DtBox9SliceBc16" type="Sprite2D" parent="BrownBox" unique_id=1878184298]
+position = Vector2(3, 3.5)
+texture = ExtResource("5_lnmw1")
+
+[node name="DtBox9SliceBc10" type="Sprite2D" parent="BrownBox" unique_id=949842524]
+position = Vector2(0, -2.5)
+texture = ExtResource("5_lnmw1")
+
+[node name="DtBox9SliceBc17" type="Sprite2D" parent="BrownBox" unique_id=1398629838]
+position = Vector2(3, -2.5)
+texture = ExtResource("5_lnmw1")
+
+[node name="DtBox9SliceBc5" type="Sprite2D" parent="BrownBox" unique_id=641760966]
+position = Vector2(-6, 0.5)
+texture = ExtResource("6_nuoko")
+
+[node name="DtBox9SliceBc24" type="Sprite2D" parent="BrownBox" unique_id=1099444660]
+position = Vector2(-6, -2.5)
+texture = ExtResource("6_nuoko")
+
+[node name="DtBox9SliceBc18" type="Sprite2D" parent="BrownBox" unique_id=802106528]
+position = Vector2(-6, 3.5)
+texture = ExtResource("6_nuoko")
+
+[node name="DtBox9SliceBc6" type="Sprite2D" parent="BrownBox" unique_id=356403233]
+position = Vector2(6, 3.5)
+texture = ExtResource("7_a4siq")
+
+[node name="DtBox9SliceBc21" type="Sprite2D" parent="BrownBox" unique_id=1896201719]
+position = Vector2(6, 0.5)
+texture = ExtResource("7_a4siq")
+
+[node name="DtBox9SliceBc25" type="Sprite2D" parent="BrownBox" unique_id=298530096]
+position = Vector2(6, -2.5)
+texture = ExtResource("7_a4siq")
+
+[node name="DtBox9SliceBc7" type="Sprite2D" parent="BrownBox" unique_id=609210024]
+position = Vector2(-3, -5.5)
+texture = ExtResource("8_tyqg3")
+
+[node name="DtBox9SliceBc22" type="Sprite2D" parent="BrownBox" unique_id=1012531339]
+position = Vector2(0, -5.5)
+texture = ExtResource("8_tyqg3")
+
+[node name="DtBox9SliceBc23" type="Sprite2D" parent="BrownBox" unique_id=580739426]
+position = Vector2(3, -5.5)
+texture = ExtResource("8_tyqg3")
+
+[node name="DtBox9SliceBc8" type="Sprite2D" parent="BrownBox" unique_id=881157973]
+position = Vector2(-6, -5.5)
+texture = ExtResource("9_uf637")
+
+[node name="DtBox9SliceBc9" type="Sprite2D" parent="BrownBox" unique_id=922316321]
+position = Vector2(6, -5.5)
+texture = ExtResource("10_bjpw8")

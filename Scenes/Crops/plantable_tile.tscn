@@ -8,10 +8,15 @@ size = Vector2(16, 16)
 [node name="PlantableTile" type="Area2D" unique_id=1809472782]
 z_index = -1
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1062258611]
+[node name="Tile" type="Sprite2D" parent="." unique_id=1062258611]
 texture = ExtResource("1_rbyng")
 region_enabled = true
 region_rect = Rect2(48, 16, 16, 16)
+
+[node name="Hole" type="Sprite2D" parent="." unique_id=825219533]
+texture = ExtResource("1_rbyng")
+region_enabled = true
+region_rect = Rect2(800, 192, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1746853189]
 shape = SubResource("RectangleShape2D_rbyng")

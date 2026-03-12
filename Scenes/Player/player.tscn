@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bhhnurqifld4k" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/hud.png" id="36_mwii3"]
 [ext_resource type="Texture2D" uid="uid://b72k0xir82vae" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/expression_working.png" id="37_2aanf"]
 [ext_resource type="PackedScene" uid="uid://c6bn0o60aqgi8" path="res://Scenes/Player/select_box.tscn" id="scn_selectbox"]
+[ext_resource type="Script" uid="uid://biqt6s1fohv56" path="res://Scripts/Components/attack_component.gd" id="scr_attack_hitbox"]
 [ext_resource type="Script" uid="uid://4iw2c8bqnaea" path="res://Scripts/Components/health_component.gd" id="scr_health"]
 [ext_resource type="Script" uid="uid://17dbl53f5w0c" path="res://Scripts/Player/player_hud.gd" id="scr_hud"]
 [ext_resource type="Script" uid="uid://cc4enjncjqjyt" path="res://Scripts/Components/movement_component.gd" id="scr_movement"]
@@ -40,6 +41,9 @@
 
 [sub_resource type="RectangleShape2D" id="col_rect"]
 size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="attack_shape"]
+size = Vector2(20, 16)
 
 [sub_resource type="AtlasTexture" id="at_base_attack_0"]
 atlas = ExtResource("tex_base_attack")
@@ -1996,6 +2000,17 @@ run_speed = 80.0
 y_sort_enabled = true
 script = ExtResource("scr_health")
 
+[node name="AttackComponent" type="Area2D" parent="Components" unique_id=1211925053]
+collision_layer = 2
+collision_mask = 4
+monitoring = false
+monitorable = false
+script = ExtResource("scr_attack_hitbox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/AttackComponent" unique_id=2063992744]
+shape = SubResource("attack_shape")
+disabled = true
+
 [node name="PlayerVisual" type="Node2D" parent="." unique_id=1170814840]
 y_sort_enabled = true
 script = ExtResource("scr_visual")
@@ -2021,20 +2036,21 @@ frame_progress = 0.79641855
 y_sort_enabled = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1910900308]
+visible = false
 script = ExtResource("scr_hud")
 
 [node name="Hud" type="Sprite2D" parent="HUD" unique_id=1800543559]
-position = Vector2(210, 96)
-scale = Vector2(12, 12)
+position = Vector2(74, 36)
+scale = Vector2(4, 4)
 texture = ExtResource("36_mwii3")
 
 [node name="PlayerHP" type="TextureProgressBar" parent="HUD" unique_id=1870496069]
 modulate = Color(0.89411765, 0.23137255, 0.26666668, 1)
-offset_left = 168.0
-offset_top = 48.0
-offset_right = 184.0
-offset_bottom = 50.0
-scale = Vector2(12, 12)
+offset_left = 60.0
+offset_top = 20.0
+offset_right = 76.0
+offset_bottom = 22.0
+scale = Vector2(4, 4)
 texture_progress = ExtResource("34_2jnj1")
 
 [node name="HealthIcon" type="Sprite2D" parent="HUD/PlayerHP" unique_id=735970345]
@@ -2044,11 +2060,11 @@ texture = ExtResource("36_2aanf")
 
 [node name="PlayerEnergy" type="TextureProgressBar" parent="HUD" unique_id=1321543717]
 self_modulate = Color(0, 0.6, 0.85882354, 1)
-offset_left = 168.0
-offset_top = 120.00001
-offset_right = 184.0
-offset_bottom = 122.00001
-scale = Vector2(12, 12)
+offset_left = 60.0
+offset_top = 44.0
+offset_right = 76.0
+offset_bottom = 46.0
+scale = Vector2(4, 4)
 step = 0.1
 texture_progress = ExtResource("34_2jnj1")
 
@@ -2058,8 +2074,8 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("37_2aanf")
 
 [node name="PlayerIcon" type="Sprite2D" parent="HUD" unique_id=952850822]
-position = Vector2(94, 106)
-scale = Vector2(9, 9)
+position = Vector2(37, 40)
+scale = Vector2(3, 3)
 texture = SubResource("AtlasTexture_enij7")
 
 [node name="PlayerIconHair" type="Sprite2D" parent="HUD/PlayerIcon" unique_id=1967888746]

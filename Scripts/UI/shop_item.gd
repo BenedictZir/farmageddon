@@ -9,36 +9,25 @@ class_name ShopItem
 @export var price: int = 10
 @export var icon: Texture2D
 
-@onready var icon_rect: TextureRect = $MarginContainer/VBoxContainer/IconRect
-@onready var name_label: Label = $MarginContainer/VBoxContainer/NameLabel
-@onready var price_label: Label = $MarginContainer/VBoxContainer/PriceLabel
+
+@onready var name_label: Label = $NameLabel
+@onready var icon_rect: TextureRect = $IconRect
+@onready var price_label: Label = $PriceLabel
 
 
 func _ready() -> void:
+	super()  # MUST call — AnimatedButton sets _base_scale, _hover_scale, and connects signals
 	name_label.text = item_name
 	price_label.text = str(price) + "g"
 	if icon:
 		icon_rect.texture = icon
 	
-	# Connect signals
-	mouse_entered.connect(_on_mouse_entered)
-	mouse_exited.connect(_on_mouse_exited)
-	pressed.connect(_on_pressed)
-	
+	# NOTE: mouse_entered/exited/pressed already connected by AnimatedButton._ready()
 	CurrencyManager.gold_changed.connect(_on_gold_changed)
 	_update_affordability()
 
 
-func _on_mouse_entered() -> void:
-	CursorManager.set_pointer()
-
-
-func _on_mouse_exited() -> void:
-	CursorManager.set_default()
-
-
 func _on_pressed() -> void:
-	# Click cursor is handled automatically by CursorManager on MOUSE_BUTTON_LEFT press
 	pass
 
 
