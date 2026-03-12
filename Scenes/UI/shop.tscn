@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://shop_scene_001"]
+
+[ext_resource type="PackedScene" uid="uid://shop_item_001" path="res://Scenes/UI/shop_item.tscn" id="scn_shop_item"]
+
+[node name="ShopUI" type="Control"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="ShopItem1" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+layout_mode = 2
+item_name = "Wheat"
+price = 10
+
+[node name="ShopItem2" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+layout_mode = 2
+item_name = "Carrot"
+price = 15
+
+[node name="ShopItem3" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+layout_mode = 2
+item_name = "Cabbage"
+price = 25
+
+[node name="ShopItem4" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+layout_mode = 2
+item_name = "Potato"
+price = 30
+
+[node name="ShopItem5" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+layout_mode = 2
+item_name = "Chicken"
+price = 100
+
+[node name="ShopItem6" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+layout_mode = 2
+item_name = "Cow"
+price = 200
+
+[node name="ShopItem7" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+layout_mode = 2
+item_name = "Fertilizer"
+price = 50
+
+[node name="ShopItem8" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+layout_mode = 2
+item_name = "Farmer"
+price = 300
+
+[node name="ShopItem9" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+layout_mode = 2
+item_name = "Warrior"
+price = 400
+
+[node name="ShopItem10" parent="HBoxContainer" instance=ExtResource("scn_shop_item")]
+layout_mode = 2
+item_name = "Goal"
+price = 1000

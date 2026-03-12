@@ -335,6 +335,7 @@ _data = {
 }
 
 [node name="SelectBox" type="Node2D" unique_id=1510798765]
+z_index = 5
 script = ExtResource("5_sb0x1")
 
 [node name="BottomLeft" type="Sprite2D" parent="." unique_id=477042246]

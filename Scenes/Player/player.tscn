@@ -1975,40 +1975,50 @@ atlas = ExtResource("tex_base_idle")
 region = Rect2(44, 24, 9, 10)
 
 [node name="Player" type="CharacterBody2D" unique_id=949497324]
+y_sort_enabled = true
 script = ExtResource("scr_player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=649593810]
+y_sort_enabled = true
 position = Vector2(0, -1)
 shape = SubResource("col_rect")
 
 [node name="Components" type="Node2D" parent="." unique_id=2029514981]
+y_sort_enabled = true
 
 [node name="MovementComponent" type="Node2D" parent="Components" unique_id=1919252566]
+y_sort_enabled = true
 script = ExtResource("scr_movement")
 movement_speed = 50.0
 run_speed = 80.0
 
 [node name="HealthComponent" type="Node2D" parent="Components" unique_id=1512771122]
+y_sort_enabled = true
 script = ExtResource("scr_health")
 
 [node name="PlayerVisual" type="Node2D" parent="." unique_id=1170814840]
+y_sort_enabled = true
 script = ExtResource("scr_visual")
 
 [node name="Base" type="AnimatedSprite2D" parent="PlayerVisual" unique_id=1511467369]
+y_sort_enabled = true
 sprite_frames = SubResource("sf_base")
 animation = &"idle"
 frame_progress = 0.32123712
 
 [node name="Hair" type="AnimatedSprite2D" parent="PlayerVisual" unique_id=807112833]
+y_sort_enabled = true
 sprite_frames = SubResource("sf_bowlhair")
 animation = &"idle"
 
 [node name="Tool" type="AnimatedSprite2D" parent="PlayerVisual" unique_id=869108250]
+y_sort_enabled = true
 sprite_frames = SubResource("sf_tools")
 animation = &"idle"
 frame_progress = 0.79641855
 
 [node name="SelectBox" parent="." unique_id=1510798765 instance=ExtResource("scn_selectbox")]
+y_sort_enabled = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1910900308]
 script = ExtResource("scr_hud")

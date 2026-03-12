@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bgbl2uoj186m7"]
+
+[ext_resource type="Texture2D" uid="uid://buflypjynqaia" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Tileset/spr_tileset_sunnysideworld_16px.png" id="1_rbyng"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbyng"]
+size = Vector2(16, 16)
+
+[node name="PlantableTile" type="Area2D" unique_id=1809472782]
+z_index = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1062258611]
+texture = ExtResource("1_rbyng")
+region_enabled = true
+region_rect = Rect2(48, 16, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1746853189]
+shape = SubResource("RectangleShape2D_rbyng")
