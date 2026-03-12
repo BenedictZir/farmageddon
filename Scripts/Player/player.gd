@@ -8,16 +8,18 @@ extends CharacterBody2D
 @onready var attack_component: Area2D = $Components/AttackComponent
 
 var direction := Vector2.ZERO
-var is_carrying := false  # true when holding an item in the item slot
+var is_carrying := false
 var is_running := false
-var is_knocked := false   # true during death/knock state
+var is_knocked := false
+var is_rolling := false
 
-var _facing_direction := Vector2.DOWN  # last non-zero direction
-
-# Energy for running
 @export var max_energy := 100.0
 var energy := 100.0
-var _sprint_locked_out := false  # true when energy hit 0, reset on shift release
+var _sprint_locked_out := false
+
+@export var roll_energy_cost := 30.0
+@export var roll_distance := 32.0   # pixels (2 tiles)
+@export var roll_duration := 0.5
 
 
 func _ready() -> void:
@@ -28,13 +30,12 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if is_knocked:
+	if is_knocked or player_visual.is_locked():
 		return
-	if player_visual.is_locked():
-		return
-	
 	if event.is_action_pressed("attack"):
 		_do_attack()
+	elif event.is_action_pressed("roll"):
+		_do_roll()
 	elif event.is_action_pressed("interact"):
 		_do_interact()
 	elif event.is_action_pressed("drop"):
@@ -44,67 +45,83 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if is_knocked:
 		return
-	
-	_handle_movement(delta)
-	
-	# Update HUD bars
+
+	_update_energy(delta)
+	_handle_movement()
+
 	hud.update_bars(
 		health_component.current_health / health_component.max_health,
 		energy / max_energy
 	)
-	
-	# Update select box visibility
 	if is_carrying:
 		select_box.show_selecting()
 
 
-func _handle_movement(delta: float) -> void:
-	if player_visual.is_locked():
-		velocity = Vector2.ZERO
-		return
-		
-	direction = Input.get_vector(
-		"move_left",
-		"move_right",
-		"move_up",
-		"move_down"
-	)
-	
-	# Track facing direction
-	if direction != Vector2.ZERO:
-		_facing_direction = direction.normalized()
-	
-	# Sprint lockout: once energy hits 0, must release shift before sprinting again
+
+func _update_energy(delta: float) -> void:
 	var shift_held := Input.is_action_pressed("run")
 	if not shift_held:
 		_sprint_locked_out = false
-	
-	is_running = shift_held and not _sprint_locked_out and energy > 0 and direction != Vector2.ZERO
-	
+
+	is_running = (
+		shift_held
+		and not _sprint_locked_out
+		and not player_visual.is_locked()
+		and energy > 0
+		and direction != Vector2.ZERO
+	)
+
 	if is_running:
-		energy = max(0, energy - delta * 20.0)
-		if energy <= 0:
+		energy = max(0.0, energy - delta * 20.0)
+		if energy <= 0.0:
 			_sprint_locked_out = true
 			is_running = false
-	else:
+	elif not is_rolling:
 		energy = min(energy + delta * 20.0, max_energy)
-	
+
+
+
+func _handle_movement() -> void:
+	# Locked states (attack, roll, hurt, etc.) → no movement input
+	if is_rolling or player_visual.is_locked():
+		return
+
+	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	if direction != Vector2.ZERO:
+		pass  # facing tracked by player_visual.update_movement_anim
+
 	movement_component.move(self, direction, is_running)
 	player_visual.update_movement_anim(direction, is_carrying, is_running)
+
 
 
 func _do_attack() -> void:
 	velocity = Vector2.ZERO
 	player_visual.play_attack()
-	var is_facing_left: bool = player_visual.base.flip_h
-	attack_component.activate(is_facing_left)
+	attack_component.activate(player_visual.base.flip_h)
+
+
+func _do_roll() -> void:
+	if energy < roll_energy_cost:
+		return
+	energy -= roll_energy_cost
+	is_rolling = true
+
+	set_collision_layer_value(2, false)
+
+	player_visual.play_roll()
+
+	var roll_dir := Vector2.LEFT if player_visual.base.flip_h else Vector2.RIGHT
+	var tween := create_tween()
+	tween.tween_property(self, "global_position",
+		global_position + roll_dir * roll_distance, roll_duration)\
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
 
 func _do_interact() -> void:
 	if is_carrying:
 		place_item()
 	else:
-		# TODO: check for nearby interactables (harvest crop, etc.)
 		player_visual.play_doing()
 
 
@@ -112,7 +129,7 @@ func _do_drop() -> void:
 	if is_carrying:
 		is_carrying = false
 		select_box.hide()
-		# TODO: drop the held item (destroy it or place on ground)
+
 
 
 func pick_up_item(item_size := Vector2i(1, 1)) -> void:
@@ -127,6 +144,7 @@ func place_item() -> void:
 	is_carrying = false
 	select_box.play_placing()
 	player_visual.play_doing()
+
 
 
 func _on_damaged(_amount: float) -> void:
@@ -147,13 +165,15 @@ func _on_revived() -> void:
 
 
 func _on_anim_state_finished(state) -> void:
-	# Deactivate attack hitbox when attack animation finishes
 	if state == player_visual.AnimState.ATTACK:
 		attack_component.deactivate()
-	
-	# After death animation, wait then revive (knock mechanic)
+
+	if state == player_visual.AnimState.ROLL:
+		is_rolling = false
+		velocity = Vector2.ZERO
+		set_collision_layer_value(2, true)
+
 	if state == player_visual.AnimState.DEATH:
-		var timer := get_tree().create_timer(2.0)
-		timer.timeout.connect(func():
+		get_tree().create_timer(2.0).timeout.connect(func():
 			health_component.revive()
 		)

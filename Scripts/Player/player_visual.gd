@@ -10,6 +10,7 @@ enum AnimState {
 	DEATH,
 	HURT,
 	ATTACK,
+	ROLL,
 }
 
 const ANIM_NAMES := {
@@ -22,6 +23,7 @@ const ANIM_NAMES := {
 	AnimState.DEATH: "death",
 	AnimState.HURT: "hurt",
 	AnimState.ATTACK: "attack",
+	AnimState.ROLL: "roll",
 }
 
 @onready var base: AnimatedSprite2D = $Base
@@ -96,6 +98,9 @@ func play_hurt() -> void:
 func play_attack() -> void:
 	play_state(AnimState.ATTACK)
 
+func play_roll() -> void:
+	play_state(AnimState.ROLL)
+
 
 func update_movement_anim(direction: Vector2, is_carrying: bool, is_running: bool) -> void:
 	if _locked:
@@ -140,7 +145,7 @@ func _update_flip() -> void:
 
 
 func _is_oneshot_state(state: AnimState) -> bool:
-	return state in [AnimState.DOING, AnimState.DIG, AnimState.HURT, AnimState.DEATH, AnimState.ATTACK]
+	return state in [AnimState.DOING, AnimState.DIG, AnimState.HURT, AnimState.DEATH, AnimState.ATTACK, AnimState.ROLL]
 
 
 func _on_base_animation_finished() -> void:

@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://c88gxqpaxrhc0" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/DOING/base_doing_strip8.png" id="tex_base_doing"]
 [ext_resource type="Texture2D" uid="uid://ch1rq07icq17l" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/HURT/base_hurt_strip8.png" id="tex_base_hurt"]
 [ext_resource type="Texture2D" uid="uid://bub1wmx7p4jyj" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/IDLE/base_idle_strip9.png" id="tex_base_idle"]
+[ext_resource type="Texture2D" uid="uid://cglttqse1ilay" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/ROLL/base_roll_strip10.png" id="tex_base_roll"]
 [ext_resource type="Texture2D" uid="uid://b473npnja5q3" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/RUN/base_run_strip8.png" id="tex_base_run"]
 [ext_resource type="Texture2D" uid="uid://bjnw4jcjt82tx" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/WALKING/base_walk_strip8.png" id="tex_base_walk"]
 [ext_resource type="Texture2D" uid="uid://co1rjthyjtnsq" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/ATTACK/bowlhair_attack_strip10.png" id="tex_bowlhair_attack"]
@@ -27,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://bj17cd1gu6vsu" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/DOING/bowlhair_doing_strip8.png" id="tex_bowlhair_doing"]
 [ext_resource type="Texture2D" uid="uid://jl20wj8jg6n2" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/HURT/bowlhair_hurt_strip8.png" id="tex_bowlhair_hurt"]
 [ext_resource type="Texture2D" uid="uid://chewdql0jojmk" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/IDLE/bowlhair_idle_strip9.png" id="tex_bowlhair_idle"]
+[ext_resource type="Texture2D" uid="uid://bcd5riuha774a" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/ROLL/bowlhair_roll_strip10.png" id="tex_bowlhair_roll"]
 [ext_resource type="Texture2D" uid="uid://ckjp10pqibcpu" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/RUN/bowlhair_run_strip8.png" id="tex_bowlhair_run"]
 [ext_resource type="Texture2D" uid="uid://b7fy7qoik8c4b" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/WALKING/bowlhair_walk_strip8.png" id="tex_bowlhair_walk"]
 [ext_resource type="Texture2D" uid="uid://dl56k110xegx0" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/ATTACK/tools_attack_strip10.png" id="tex_tools_attack"]
@@ -36,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://dwmwa152nuii7" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/DOING/tools_doing_strip8.png" id="tex_tools_doing"]
 [ext_resource type="Texture2D" uid="uid://b18vbson8g42g" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/HURT/tools_hurt_strip8.png" id="tex_tools_hurt"]
 [ext_resource type="Texture2D" uid="uid://bmwtjhd3uws0o" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/IDLE/tools_idle_strip9.png" id="tex_tools_idle"]
+[ext_resource type="Texture2D" uid="uid://ormheoryrtre" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/ROLL/tools_roll_strip10.png" id="tex_tools_roll"]
 [ext_resource type="Texture2D" uid="uid://c7ubghoin0xit" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/RUN/tools_run_strip8.png" id="tex_tools_run"]
 [ext_resource type="Texture2D" uid="uid://c02e67somt7ck" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/WALKING/tools_walk_strip8.png" id="tex_tools_walk"]
 
@@ -320,6 +323,46 @@ region = Rect2(672, 0, 96, 64)
 [sub_resource type="AtlasTexture" id="at_base_idle_8"]
 atlas = ExtResource("tex_base_idle")
 region = Rect2(768, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei2r2"]
+atlas = ExtResource("tex_base_roll")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6uq4"]
+atlas = ExtResource("tex_base_roll")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5u0x"]
+atlas = ExtResource("tex_base_roll")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po18e"]
+atlas = ExtResource("tex_base_roll")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v37cr"]
+atlas = ExtResource("tex_base_roll")
+region = Rect2(384, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8d028"]
+atlas = ExtResource("tex_base_roll")
+region = Rect2(480, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0liok"]
+atlas = ExtResource("tex_base_roll")
+region = Rect2(576, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyc8k"]
+atlas = ExtResource("tex_base_roll")
+region = Rect2(672, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qflxp"]
+atlas = ExtResource("tex_base_roll")
+region = Rect2(768, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pk7v"]
+atlas = ExtResource("tex_base_roll")
+region = Rect2(864, 0, 96, 64)
 
 [sub_resource type="AtlasTexture" id="at_base_run_0"]
 atlas = ExtResource("tex_base_run")
@@ -628,6 +671,41 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ei2r2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6uq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5u0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_po18e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v37cr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8d028")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0liok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyc8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qflxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pk7v")
+}],
+"loop": false,
+"name": &"roll",
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -964,6 +1042,46 @@ region = Rect2(672, 0, 96, 64)
 atlas = ExtResource("tex_bowlhair_idle")
 region = Rect2(768, 0, 96, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rblve"]
+atlas = ExtResource("tex_bowlhair_roll")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn4qh"]
+atlas = ExtResource("tex_bowlhair_roll")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5omc3"]
+atlas = ExtResource("tex_bowlhair_roll")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcwjh"]
+atlas = ExtResource("tex_bowlhair_roll")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejxfg"]
+atlas = ExtResource("tex_bowlhair_roll")
+region = Rect2(384, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huyyu"]
+atlas = ExtResource("tex_bowlhair_roll")
+region = Rect2(480, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5eiq"]
+atlas = ExtResource("tex_bowlhair_roll")
+region = Rect2(576, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g0gh"]
+atlas = ExtResource("tex_bowlhair_roll")
+region = Rect2(672, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a2xn"]
+atlas = ExtResource("tex_bowlhair_roll")
+region = Rect2(768, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grehw"]
+atlas = ExtResource("tex_bowlhair_roll")
+region = Rect2(864, 0, 96, 64)
+
 [sub_resource type="AtlasTexture" id="at_bowlhair_run_0"]
 atlas = ExtResource("tex_bowlhair_run")
 region = Rect2(0, 0, 96, 64)
@@ -1271,6 +1389,41 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rblve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn4qh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5omc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcwjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejxfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huyyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5eiq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g0gh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a2xn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grehw")
+}],
+"loop": false,
+"name": &"roll",
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1607,6 +1760,46 @@ region = Rect2(672, 0, 96, 64)
 atlas = ExtResource("tex_tools_idle")
 region = Rect2(768, 0, 96, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vn8q6"]
+atlas = ExtResource("tex_tools_roll")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vj0r"]
+atlas = ExtResource("tex_tools_roll")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7g5o"]
+atlas = ExtResource("tex_tools_roll")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckdd2"]
+atlas = ExtResource("tex_tools_roll")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37mva"]
+atlas = ExtResource("tex_tools_roll")
+region = Rect2(384, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwcno"]
+atlas = ExtResource("tex_tools_roll")
+region = Rect2(480, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8s58"]
+atlas = ExtResource("tex_tools_roll")
+region = Rect2(576, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4a23"]
+atlas = ExtResource("tex_tools_roll")
+region = Rect2(672, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlqkp"]
+atlas = ExtResource("tex_tools_roll")
+region = Rect2(768, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbwwl"]
+atlas = ExtResource("tex_tools_roll")
+region = Rect2(864, 0, 96, 64)
+
 [sub_resource type="AtlasTexture" id="at_tools_run_0"]
 atlas = ExtResource("tex_tools_run")
 region = Rect2(0, 0, 96, 64)
@@ -1917,6 +2110,41 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_vn8q6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vj0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7g5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckdd2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37mva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwcno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8s58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4a23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlqkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbwwl")
+}],
+"loop": false,
+"name": &"roll",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("at_tools_run_0")
 }, {
 "duration": 1.0,
@@ -1980,6 +2208,7 @@ region = Rect2(44, 24, 9, 10)
 
 [node name="Player" type="CharacterBody2D" unique_id=949497324]
 y_sort_enabled = true
+collision_layer = 2
 script = ExtResource("scr_player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=649593810]
@@ -2001,7 +2230,7 @@ y_sort_enabled = true
 script = ExtResource("scr_health")
 
 [node name="AttackComponent" type="Area2D" parent="Components" unique_id=1211925053]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 4
 monitoring = false
 monitorable = false
@@ -2018,19 +2247,23 @@ script = ExtResource("scr_visual")
 [node name="Base" type="AnimatedSprite2D" parent="PlayerVisual" unique_id=1511467369]
 y_sort_enabled = true
 sprite_frames = SubResource("sf_base")
-animation = &"idle"
-frame_progress = 0.32123712
+animation = &"roll"
+frame = 9
+frame_progress = 1.0
 
 [node name="Hair" type="AnimatedSprite2D" parent="PlayerVisual" unique_id=807112833]
 y_sort_enabled = true
 sprite_frames = SubResource("sf_bowlhair")
-animation = &"idle"
+animation = &"roll"
+frame = 9
+frame_progress = 1.0
 
 [node name="Tool" type="AnimatedSprite2D" parent="PlayerVisual" unique_id=869108250]
 y_sort_enabled = true
 sprite_frames = SubResource("sf_tools")
-animation = &"idle"
-frame_progress = 0.79641855
+animation = &"roll"
+frame = 9
+frame_progress = 1.0
 
 [node name="SelectBox" parent="." unique_id=1510798765 instance=ExtResource("scn_selectbox")]
 y_sort_enabled = true

@@ -7,6 +7,8 @@ size = Vector2(16, 16)
 
 [node name="PlantableTile" type="Area2D" unique_id=1809472782]
 z_index = -1
+collision_layer = 8
+collision_mask = 0
 
 [node name="Tile" type="Sprite2D" parent="." unique_id=1062258611]
 texture = ExtResource("1_rbyng")
