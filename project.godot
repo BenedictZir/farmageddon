@@ -16,8 +16,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-CursorManager="*res://Scripts/Managers/cursor_manager.gd"
-CurrencyManager="*res://Scripts/Managers/currency_manager.gd"
+CursorManager="*uid://i5qqqu54qnue"
+CurrencyManager="*uid://d37ehmdtlj6vc"
+AudioGlobal="*uid://durhrt4ebmvf1"
 
 [display]
 

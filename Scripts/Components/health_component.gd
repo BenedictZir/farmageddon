@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name HealthComponent
 @export var max_health := 100.0
 var current_health := 100.0
 
@@ -27,6 +27,7 @@ func revive() -> void:
 
 func die() -> void:
 	died.emit()
+	get_parent().get_parent().queue_free()
 
 func is_alive() -> bool:
 	return current_health > 0

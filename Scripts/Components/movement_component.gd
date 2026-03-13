@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name MovementComponent
 @export var movement_speed := 100.0
 @export var run_speed := 170.0
 
