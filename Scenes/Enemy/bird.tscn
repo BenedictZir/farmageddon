@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://cdvf752qny4tn"]
+
+[ext_resource type="Script" uid="uid://b1paejs6qyqsg" path="res://Scripts/Enemy/bird.gd" id="1_38h2u"]
+[ext_resource type="Texture2D" uid="uid://cg38fe3dbbilb" path="res://Assets/Pixel Art Bird 16x16/BirdSprite.png" id="1_te4f0"]
+[ext_resource type="Script" uid="uid://4iw2c8bqnaea" path="res://Scripts/Components/health_component.gd" id="3_qe26p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38h2u"]
+atlas = ExtResource("1_te4f0")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qe26p"]
+atlas = ExtResource("1_te4f0")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5brux"]
+atlas = ExtResource("1_te4f0")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01wt2"]
+atlas = ExtResource("1_te4f0")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmy5m"]
+atlas = ExtResource("1_te4f0")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6j2c"]
+atlas = ExtResource("1_te4f0")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofsy5"]
+atlas = ExtResource("1_te4f0")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y3r1"]
+atlas = ExtResource("1_te4f0")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w130g"]
+atlas = ExtResource("1_te4f0")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6jc7"]
+atlas = ExtResource("1_te4f0")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nqld"]
+atlas = ExtResource("1_te4f0")
+region = Rect2(112, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u12kb"]
+atlas = ExtResource("1_te4f0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r14ho"]
+atlas = ExtResource("1_te4f0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c0jod"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38h2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qe26p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5brux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qe26p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5brux")
+}],
+"loop": true,
+"name": &"eat",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01wt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmy5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6j2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofsy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2y3r1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w130g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6jc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nqld")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u12kb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r14ho")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_te4f0"]
+size = Vector2(16, 16)
+
+[node name="Bird" type="CharacterBody2D" unique_id=1289886827]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_38h2u")
+
+[node name="BirdVisual" type="AnimatedSprite2D" parent="." unique_id=1450046814]
+sprite_frames = SubResource("SpriteFrames_c0jod")
+animation = &"eat"
+autoplay = "eat"
+frame_progress = 0.95522904
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1258468144]
+shape = SubResource("RectangleShape2D_te4f0")
+
+[node name="Components" type="Node2D" parent="." unique_id=120685001]
+
+[node name="HealthComponent" type="Node2D" parent="Components" unique_id=2013500798]
+script = ExtResource("3_qe26p")
+max_health = 1.0
+metadata/_custom_type_script = "uid://4iw2c8bqnaea"

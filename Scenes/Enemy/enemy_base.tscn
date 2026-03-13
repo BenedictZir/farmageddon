@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dk60tj3da8qop"]
+
+[ext_resource type="Script" uid="uid://8ewep56ia21d" path="res://Scripts/Enemy/enemy_base.gd" id="1_1rt0e"]
+[ext_resource type="Script" uid="uid://4iw2c8bqnaea" path="res://Scripts/Components/health_component.gd" id="2_g4flc"]
+[ext_resource type="Script" uid="uid://biqt6s1fohv56" path="res://Scripts/Components/attack_component.gd" id="3_phgs2"]
+[ext_resource type="Script" uid="uid://cc4enjncjqjyt" path="res://Scripts/Components/movement_component.gd" id="4_phgs2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ah813"]
+resource_local_to_scene = true
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4flc"]
+resource_local_to_scene = true
+size = Vector2(16, 16)
+
+[node name="EnemyBase" type="CharacterBody2D" unique_id=7649292]
+collision_layer = 4
+script = ExtResource("1_1rt0e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=534802735]
+shape = SubResource("RectangleShape2D_ah813")
+
+[node name="Components" type="Node2D" parent="." unique_id=1856128264]
+
+[node name="HealthComponent" type="Node2D" parent="Components" unique_id=1089499295]
+script = ExtResource("2_g4flc")
+metadata/_custom_type_script = "uid://4iw2c8bqnaea"
+
+[node name="AttackComponent" type="Area2D" parent="Components" unique_id=1460850251]
+script = ExtResource("3_phgs2")
+metadata/_custom_type_script = "uid://biqt6s1fohv56"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/AttackComponent" unique_id=154781645]
+shape = SubResource("RectangleShape2D_g4flc")
+
+[node name="MovementComponent" type="Node2D" parent="Components" unique_id=677584519]
+script = ExtResource("4_phgs2")
+metadata/_custom_type_script = "uid://cc4enjncjqjyt"
+
+[node name="EnemyVisual" type="AnimatedSprite2D" parent="." unique_id=543429950]

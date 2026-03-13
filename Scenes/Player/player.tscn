@@ -2254,9 +2254,8 @@ frame_progress = 1.0
 [node name="Hair" type="AnimatedSprite2D" parent="PlayerVisual" unique_id=807112833]
 y_sort_enabled = true
 sprite_frames = SubResource("sf_bowlhair")
-animation = &"roll"
-frame = 9
-frame_progress = 1.0
+animation = &"idle"
+frame_progress = 0.59723324
 
 [node name="Tool" type="AnimatedSprite2D" parent="PlayerVisual" unique_id=869108250]
 y_sort_enabled = true
@@ -2306,7 +2305,7 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("37_2aanf")
 
 [node name="PlayerIcon" type="Sprite2D" parent="HUD" unique_id=952850822]
-position = Vector2(37, 40)
+position = Vector2(35, 40)
 scale = Vector2(3, 3)
 texture = SubResource("AtlasTexture_enij7")
 
