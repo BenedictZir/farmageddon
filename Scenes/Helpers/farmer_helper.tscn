@@ -1985,13 +1985,15 @@ script = ExtResource("scr_vis")
 
 [node name="Base" type="AnimatedSprite2D" parent="HelperVisual" unique_id=916080617]
 sprite_frames = SubResource("sf_base")
-animation = &"idle"
+animation = &"dig"
+frame = 12
+frame_progress = 1.0
 
 [node name="Hair" type="AnimatedSprite2D" parent="HelperVisual" unique_id=459312861]
 sprite_frames = SubResource("sf_longhair")
 animation = &"idle"
 
 [node name="Tool" type="AnimatedSprite2D" parent="HelperVisual" unique_id=682687280]
-visible = false
 sprite_frames = SubResource("sf_tools")
-animation = &"idle"
+animation = &"dig"
+frame = 2

@@ -1,72 +1,1377 @@
 [gd_scene format=3 uid="uid://dlpj3vchq0is"]
 
+[ext_resource type="Texture2D" uid="uid://ggyyg1i3l13v" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_c.png" id="2_57cgt"]
+[ext_resource type="Texture2D" uid="uid://w0k3lkjgujun" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_lc.png" id="2_eedsn"]
+[ext_resource type="Texture2D" uid="uid://daldsly154bl2" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_br.png" id="4_jw70x"]
+[ext_resource type="Texture2D" uid="uid://che3y68rpraqm" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_rc.png" id="5_ji15u"]
+[ext_resource type="Texture2D" uid="uid://b33ch0f2uigrj" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_bc.png" id="6_buvk0"]
+[ext_resource type="Texture2D" uid="uid://dataiuoa1fhy3" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_bl.png" id="7_8pb36"]
+[ext_resource type="Texture2D" uid="uid://dev8bsea0whjg" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_br.png" id="8_tw4d4"]
+[ext_resource type="Texture2D" uid="uid://b0psvjnygrmhd" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_bc.png" id="8_w2r4i"]
+[ext_resource type="Texture2D" uid="uid://dx6dd56mjxbo" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_bl.png" id="9_5oyw6"]
+[ext_resource type="Texture2D" uid="uid://cj8ibqp30cpxs" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_lc.png" id="10_vnhp2"]
+[ext_resource type="Texture2D" uid="uid://c31nitvmxs7rm" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_rc.png" id="11_yse77"]
 [ext_resource type="PackedScene" uid="uid://e85sj6jbk2t1" path="res://Scenes/UI/shop_item.tscn" id="scn_shop_item"]
+[ext_resource type="Script" uid="uid://dqkowipwc422o" path="res://Scripts/UI/shop_ui.gd" id="scr_shop_ui"]
 
 [node name="ShopUI" type="Control" unique_id=1413438752]
-custom_minimum_size = Vector2(640, 360)
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 360.0
+offset_left = 157.0
+offset_right = 22.0
+offset_bottom = 71.0
 grow_horizontal = 2
+script = ExtResource("scr_shop_ui")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=267355780]
-layout_mode = 1
+[node name="Bar" type="Node2D" parent="." unique_id=1575674673]
+
+[node name="BarBackground" type="Node2D" parent="Bar" unique_id=1373130610]
+scale = Vector2(4, 4)
+
+[node name="DtBox9SliceBr" type="Sprite2D" parent="Bar/BarBackground" unique_id=444989919]
+position = Vector2(115.5, 16.5)
+texture = ExtResource("4_jw70x")
+
+[node name="DtBox9SliceC" type="Sprite2D" parent="Bar/BarBackground" unique_id=2032806750]
+position = Vector2(4.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC2" type="Sprite2D" parent="Bar/BarBackground" unique_id=1943190930]
+position = Vector2(7.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC3" type="Sprite2D" parent="Bar/BarBackground" unique_id=864095868]
+position = Vector2(10.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC4" type="Sprite2D" parent="Bar/BarBackground" unique_id=1501231770]
+position = Vector2(13.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC5" type="Sprite2D" parent="Bar/BarBackground" unique_id=878436317]
+position = Vector2(16.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC6" type="Sprite2D" parent="Bar/BarBackground" unique_id=833859970]
+position = Vector2(19.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC7" type="Sprite2D" parent="Bar/BarBackground" unique_id=1442984471]
+position = Vector2(22.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC8" type="Sprite2D" parent="Bar/BarBackground" unique_id=2095974530]
+position = Vector2(25.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC9" type="Sprite2D" parent="Bar/BarBackground" unique_id=256975990]
+position = Vector2(4.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC10" type="Sprite2D" parent="Bar/BarBackground" unique_id=1235868559]
+position = Vector2(7.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC11" type="Sprite2D" parent="Bar/BarBackground" unique_id=892937347]
+position = Vector2(10.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC12" type="Sprite2D" parent="Bar/BarBackground" unique_id=1699219457]
+position = Vector2(13.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC13" type="Sprite2D" parent="Bar/BarBackground" unique_id=1054264643]
+position = Vector2(16.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC14" type="Sprite2D" parent="Bar/BarBackground" unique_id=812835970]
+position = Vector2(19.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC15" type="Sprite2D" parent="Bar/BarBackground" unique_id=1177410767]
+position = Vector2(22.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC16" type="Sprite2D" parent="Bar/BarBackground" unique_id=981148194]
+position = Vector2(25.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC17" type="Sprite2D" parent="Bar/BarBackground" unique_id=653333416]
+position = Vector2(4.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC18" type="Sprite2D" parent="Bar/BarBackground" unique_id=1269922024]
+position = Vector2(7.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC19" type="Sprite2D" parent="Bar/BarBackground" unique_id=1941857619]
+position = Vector2(10.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC20" type="Sprite2D" parent="Bar/BarBackground" unique_id=1612938610]
+position = Vector2(13.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC21" type="Sprite2D" parent="Bar/BarBackground" unique_id=3878611]
+position = Vector2(16.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC22" type="Sprite2D" parent="Bar/BarBackground" unique_id=758526070]
+position = Vector2(19.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC23" type="Sprite2D" parent="Bar/BarBackground" unique_id=1130760558]
+position = Vector2(22.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC24" type="Sprite2D" parent="Bar/BarBackground" unique_id=1704150744]
+position = Vector2(25.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC25" type="Sprite2D" parent="Bar/BarBackground" unique_id=774093858]
+position = Vector2(4.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC26" type="Sprite2D" parent="Bar/BarBackground" unique_id=1612291501]
+position = Vector2(7.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC27" type="Sprite2D" parent="Bar/BarBackground" unique_id=1791644485]
+position = Vector2(10.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC28" type="Sprite2D" parent="Bar/BarBackground" unique_id=1329687498]
+position = Vector2(13.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC29" type="Sprite2D" parent="Bar/BarBackground" unique_id=2080170702]
+position = Vector2(16.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC30" type="Sprite2D" parent="Bar/BarBackground" unique_id=1466589984]
+position = Vector2(19.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC31" type="Sprite2D" parent="Bar/BarBackground" unique_id=1996999028]
+position = Vector2(22.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC32" type="Sprite2D" parent="Bar/BarBackground" unique_id=415856116]
+position = Vector2(25.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC33" type="Sprite2D" parent="Bar/BarBackground" unique_id=2025987844]
+position = Vector2(4.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC34" type="Sprite2D" parent="Bar/BarBackground" unique_id=588651752]
+position = Vector2(7.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC35" type="Sprite2D" parent="Bar/BarBackground" unique_id=1764679525]
+position = Vector2(10.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC36" type="Sprite2D" parent="Bar/BarBackground" unique_id=320195890]
+position = Vector2(13.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC37" type="Sprite2D" parent="Bar/BarBackground" unique_id=1087592381]
+position = Vector2(16.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC38" type="Sprite2D" parent="Bar/BarBackground" unique_id=49948459]
+position = Vector2(19.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC39" type="Sprite2D" parent="Bar/BarBackground" unique_id=2004212612]
+position = Vector2(22.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC40" type="Sprite2D" parent="Bar/BarBackground" unique_id=1696506110]
+position = Vector2(25.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceRc" type="Sprite2D" parent="Bar/BarBackground" unique_id=39427099]
+position = Vector2(115.5, 13.5)
+texture = ExtResource("5_ji15u")
+
+[node name="DtBox9SliceRc2" type="Sprite2D" parent="Bar/BarBackground" unique_id=1917046605]
+position = Vector2(115.5, 10.5)
+texture = ExtResource("5_ji15u")
+
+[node name="DtBox9SliceRc3" type="Sprite2D" parent="Bar/BarBackground" unique_id=546210583]
+position = Vector2(115.5, 7.5)
+texture = ExtResource("5_ji15u")
+
+[node name="DtBox9SliceRc4" type="Sprite2D" parent="Bar/BarBackground" unique_id=1788865602]
+position = Vector2(115.5, 4.5)
+texture = ExtResource("5_ji15u")
+
+[node name="DtBox9SliceRc5" type="Sprite2D" parent="Bar/BarBackground" unique_id=1022746447]
+position = Vector2(115.5, 1.5)
+texture = ExtResource("5_ji15u")
+
+[node name="DtBox9SliceLc" type="Sprite2D" parent="Bar/BarBackground" unique_id=1541044715]
+position = Vector2(1.5, 1.5)
+texture = ExtResource("2_eedsn")
+
+[node name="DtBox9SliceLc2" type="Sprite2D" parent="Bar/BarBackground" unique_id=2088833695]
+position = Vector2(1.5, 4.5)
+texture = ExtResource("2_eedsn")
+
+[node name="DtBox9SliceLc3" type="Sprite2D" parent="Bar/BarBackground" unique_id=525577681]
+position = Vector2(1.5, 7.5)
+texture = ExtResource("2_eedsn")
+
+[node name="DtBox9SliceLc4" type="Sprite2D" parent="Bar/BarBackground" unique_id=1648587241]
+position = Vector2(1.5, 10.5)
+texture = ExtResource("2_eedsn")
+
+[node name="DtBox9SliceLc5" type="Sprite2D" parent="Bar/BarBackground" unique_id=431846027]
+position = Vector2(1.5, 13.5)
+texture = ExtResource("2_eedsn")
+
+[node name="DtBox9SliceBc" type="Sprite2D" parent="Bar/BarBackground" unique_id=1017209134]
+position = Vector2(4.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc2" type="Sprite2D" parent="Bar/BarBackground" unique_id=142624061]
+position = Vector2(7.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc3" type="Sprite2D" parent="Bar/BarBackground" unique_id=178272919]
+position = Vector2(10.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc4" type="Sprite2D" parent="Bar/BarBackground" unique_id=1601659384]
+position = Vector2(13.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc5" type="Sprite2D" parent="Bar/BarBackground" unique_id=232413009]
+position = Vector2(16.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc6" type="Sprite2D" parent="Bar/BarBackground" unique_id=1260275227]
+position = Vector2(19.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc7" type="Sprite2D" parent="Bar/BarBackground" unique_id=670279850]
+position = Vector2(22.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc9" type="Sprite2D" parent="Bar/BarBackground" unique_id=1374678117]
+position = Vector2(25.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc10" type="Sprite2D" parent="Bar/BarBackground" unique_id=769693488]
+position = Vector2(28.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc11" type="Sprite2D" parent="Bar/BarBackground" unique_id=1578779292]
+position = Vector2(31.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc12" type="Sprite2D" parent="Bar/BarBackground" unique_id=572794531]
+position = Vector2(34.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc13" type="Sprite2D" parent="Bar/BarBackground" unique_id=2138408786]
+position = Vector2(37.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc14" type="Sprite2D" parent="Bar/BarBackground" unique_id=1233734573]
+position = Vector2(40.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc15" type="Sprite2D" parent="Bar/BarBackground" unique_id=81464145]
+position = Vector2(43.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc16" type="Sprite2D" parent="Bar/BarBackground" unique_id=1011478227]
+position = Vector2(46.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc17" type="Sprite2D" parent="Bar/BarBackground" unique_id=1856877236]
+position = Vector2(49.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc19" type="Sprite2D" parent="Bar/BarBackground" unique_id=1045118551]
+position = Vector2(52.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc20" type="Sprite2D" parent="Bar/BarBackground" unique_id=63062204]
+position = Vector2(55.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc21" type="Sprite2D" parent="Bar/BarBackground" unique_id=2030395232]
+position = Vector2(58.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc22" type="Sprite2D" parent="Bar/BarBackground" unique_id=490804741]
+position = Vector2(61.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc23" type="Sprite2D" parent="Bar/BarBackground" unique_id=1994975206]
+position = Vector2(64.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc24" type="Sprite2D" parent="Bar/BarBackground" unique_id=2144806123]
+position = Vector2(67.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc25" type="Sprite2D" parent="Bar/BarBackground" unique_id=623526435]
+position = Vector2(70.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc26" type="Sprite2D" parent="Bar/BarBackground" unique_id=571377830]
+position = Vector2(73.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc18" type="Sprite2D" parent="Bar/BarBackground" unique_id=587581061]
+position = Vector2(76.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc27" type="Sprite2D" parent="Bar/BarBackground" unique_id=1760300764]
+position = Vector2(79.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc28" type="Sprite2D" parent="Bar/BarBackground" unique_id=394820056]
+position = Vector2(82.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc29" type="Sprite2D" parent="Bar/BarBackground" unique_id=94608841]
+position = Vector2(85.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc30" type="Sprite2D" parent="Bar/BarBackground" unique_id=1729482846]
+position = Vector2(88.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc31" type="Sprite2D" parent="Bar/BarBackground" unique_id=1691528850]
+position = Vector2(91.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc32" type="Sprite2D" parent="Bar/BarBackground" unique_id=1344662822]
+position = Vector2(94.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc33" type="Sprite2D" parent="Bar/BarBackground" unique_id=910397865]
+position = Vector2(97.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc34" type="Sprite2D" parent="Bar/BarBackground" unique_id=1535511586]
+position = Vector2(100.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc35" type="Sprite2D" parent="Bar/BarBackground" unique_id=1990655659]
+position = Vector2(109.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc36" type="Sprite2D" parent="Bar/BarBackground" unique_id=563042908]
+position = Vector2(112.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBl" type="Sprite2D" parent="Bar/BarBackground" unique_id=113286090]
+position = Vector2(1.5, 16.5)
+texture = ExtResource("9_5oyw6")
+
+[node name="DtBox9SliceC41" type="Sprite2D" parent="Bar/BarBackground" unique_id=638565618]
+position = Vector2(28.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC42" type="Sprite2D" parent="Bar/BarBackground" unique_id=1111432228]
+position = Vector2(31.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC43" type="Sprite2D" parent="Bar/BarBackground" unique_id=850985252]
+position = Vector2(34.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC44" type="Sprite2D" parent="Bar/BarBackground" unique_id=2079624183]
+position = Vector2(37.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC45" type="Sprite2D" parent="Bar/BarBackground" unique_id=1163862165]
+position = Vector2(40.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC46" type="Sprite2D" parent="Bar/BarBackground" unique_id=1071282611]
+position = Vector2(43.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC47" type="Sprite2D" parent="Bar/BarBackground" unique_id=1855906810]
+position = Vector2(46.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC48" type="Sprite2D" parent="Bar/BarBackground" unique_id=974908242]
+position = Vector2(49.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC49" type="Sprite2D" parent="Bar/BarBackground" unique_id=1707282371]
+position = Vector2(28.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC50" type="Sprite2D" parent="Bar/BarBackground" unique_id=1744455109]
+position = Vector2(31.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC51" type="Sprite2D" parent="Bar/BarBackground" unique_id=1707458067]
+position = Vector2(34.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC52" type="Sprite2D" parent="Bar/BarBackground" unique_id=1803165476]
+position = Vector2(37.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC53" type="Sprite2D" parent="Bar/BarBackground" unique_id=7126001]
+position = Vector2(40.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC54" type="Sprite2D" parent="Bar/BarBackground" unique_id=800175579]
+position = Vector2(43.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC55" type="Sprite2D" parent="Bar/BarBackground" unique_id=642662067]
+position = Vector2(46.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC56" type="Sprite2D" parent="Bar/BarBackground" unique_id=581571867]
+position = Vector2(49.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC57" type="Sprite2D" parent="Bar/BarBackground" unique_id=791148484]
+position = Vector2(28.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC58" type="Sprite2D" parent="Bar/BarBackground" unique_id=1202970586]
+position = Vector2(31.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC59" type="Sprite2D" parent="Bar/BarBackground" unique_id=950410482]
+position = Vector2(34.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC60" type="Sprite2D" parent="Bar/BarBackground" unique_id=450441782]
+position = Vector2(37.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC61" type="Sprite2D" parent="Bar/BarBackground" unique_id=1593383060]
+position = Vector2(40.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC62" type="Sprite2D" parent="Bar/BarBackground" unique_id=1618496753]
+position = Vector2(43.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC63" type="Sprite2D" parent="Bar/BarBackground" unique_id=141289584]
+position = Vector2(46.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC64" type="Sprite2D" parent="Bar/BarBackground" unique_id=1865053880]
+position = Vector2(49.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC65" type="Sprite2D" parent="Bar/BarBackground" unique_id=1093710560]
+position = Vector2(28.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC66" type="Sprite2D" parent="Bar/BarBackground" unique_id=1940281385]
+position = Vector2(31.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC67" type="Sprite2D" parent="Bar/BarBackground" unique_id=249389860]
+position = Vector2(34.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC68" type="Sprite2D" parent="Bar/BarBackground" unique_id=508713352]
+position = Vector2(37.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC69" type="Sprite2D" parent="Bar/BarBackground" unique_id=1379997381]
+position = Vector2(40.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC70" type="Sprite2D" parent="Bar/BarBackground" unique_id=1633951437]
+position = Vector2(43.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC71" type="Sprite2D" parent="Bar/BarBackground" unique_id=1947107871]
+position = Vector2(46.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC72" type="Sprite2D" parent="Bar/BarBackground" unique_id=335119525]
+position = Vector2(49.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC73" type="Sprite2D" parent="Bar/BarBackground" unique_id=429093951]
+position = Vector2(28.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC74" type="Sprite2D" parent="Bar/BarBackground" unique_id=477570624]
+position = Vector2(31.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC75" type="Sprite2D" parent="Bar/BarBackground" unique_id=1982145564]
+position = Vector2(34.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC76" type="Sprite2D" parent="Bar/BarBackground" unique_id=2078659310]
+position = Vector2(37.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC77" type="Sprite2D" parent="Bar/BarBackground" unique_id=1045062274]
+position = Vector2(40.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC78" type="Sprite2D" parent="Bar/BarBackground" unique_id=1599796813]
+position = Vector2(43.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC79" type="Sprite2D" parent="Bar/BarBackground" unique_id=1859370781]
+position = Vector2(46.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC80" type="Sprite2D" parent="Bar/BarBackground" unique_id=1592501932]
+position = Vector2(49.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC81" type="Sprite2D" parent="Bar/BarBackground" unique_id=1735054301]
+position = Vector2(52.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC82" type="Sprite2D" parent="Bar/BarBackground" unique_id=605484737]
+position = Vector2(55.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC83" type="Sprite2D" parent="Bar/BarBackground" unique_id=51668134]
+position = Vector2(58.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC84" type="Sprite2D" parent="Bar/BarBackground" unique_id=1646195676]
+position = Vector2(61.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC85" type="Sprite2D" parent="Bar/BarBackground" unique_id=775362372]
+position = Vector2(64.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC86" type="Sprite2D" parent="Bar/BarBackground" unique_id=1589569857]
+position = Vector2(67.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC87" type="Sprite2D" parent="Bar/BarBackground" unique_id=1591722937]
+position = Vector2(70.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC88" type="Sprite2D" parent="Bar/BarBackground" unique_id=2013120428]
+position = Vector2(73.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC89" type="Sprite2D" parent="Bar/BarBackground" unique_id=1591726996]
+position = Vector2(52.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC90" type="Sprite2D" parent="Bar/BarBackground" unique_id=1037653159]
+position = Vector2(55.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC91" type="Sprite2D" parent="Bar/BarBackground" unique_id=1471393120]
+position = Vector2(58.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC92" type="Sprite2D" parent="Bar/BarBackground" unique_id=728655078]
+position = Vector2(61.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC93" type="Sprite2D" parent="Bar/BarBackground" unique_id=1697363289]
+position = Vector2(64.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC94" type="Sprite2D" parent="Bar/BarBackground" unique_id=1964059684]
+position = Vector2(67.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC95" type="Sprite2D" parent="Bar/BarBackground" unique_id=1264499356]
+position = Vector2(70.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC96" type="Sprite2D" parent="Bar/BarBackground" unique_id=149613833]
+position = Vector2(73.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC97" type="Sprite2D" parent="Bar/BarBackground" unique_id=262333454]
+position = Vector2(52.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC98" type="Sprite2D" parent="Bar/BarBackground" unique_id=529798608]
+position = Vector2(55.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC99" type="Sprite2D" parent="Bar/BarBackground" unique_id=2145503831]
+position = Vector2(58.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC100" type="Sprite2D" parent="Bar/BarBackground" unique_id=549507133]
+position = Vector2(61.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC101" type="Sprite2D" parent="Bar/BarBackground" unique_id=1997624424]
+position = Vector2(64.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC102" type="Sprite2D" parent="Bar/BarBackground" unique_id=1516533005]
+position = Vector2(67.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC103" type="Sprite2D" parent="Bar/BarBackground" unique_id=1208782541]
+position = Vector2(70.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC104" type="Sprite2D" parent="Bar/BarBackground" unique_id=805509915]
+position = Vector2(73.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC105" type="Sprite2D" parent="Bar/BarBackground" unique_id=437611544]
+position = Vector2(52.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC106" type="Sprite2D" parent="Bar/BarBackground" unique_id=1539916700]
+position = Vector2(55.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC107" type="Sprite2D" parent="Bar/BarBackground" unique_id=674631240]
+position = Vector2(58.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC108" type="Sprite2D" parent="Bar/BarBackground" unique_id=2066374305]
+position = Vector2(61.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC109" type="Sprite2D" parent="Bar/BarBackground" unique_id=1738356204]
+position = Vector2(64.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC110" type="Sprite2D" parent="Bar/BarBackground" unique_id=19214528]
+position = Vector2(67.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC111" type="Sprite2D" parent="Bar/BarBackground" unique_id=273512030]
+position = Vector2(70.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC112" type="Sprite2D" parent="Bar/BarBackground" unique_id=2135402671]
+position = Vector2(73.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC113" type="Sprite2D" parent="Bar/BarBackground" unique_id=1467415333]
+position = Vector2(52.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC114" type="Sprite2D" parent="Bar/BarBackground" unique_id=253688657]
+position = Vector2(55.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC115" type="Sprite2D" parent="Bar/BarBackground" unique_id=1223679853]
+position = Vector2(58.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC116" type="Sprite2D" parent="Bar/BarBackground" unique_id=1493365224]
+position = Vector2(61.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC117" type="Sprite2D" parent="Bar/BarBackground" unique_id=40340124]
+position = Vector2(64.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC118" type="Sprite2D" parent="Bar/BarBackground" unique_id=2099864826]
+position = Vector2(67.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC119" type="Sprite2D" parent="Bar/BarBackground" unique_id=178694977]
+position = Vector2(70.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC120" type="Sprite2D" parent="Bar/BarBackground" unique_id=1565809462]
+position = Vector2(73.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC121" type="Sprite2D" parent="Bar/BarBackground" unique_id=1755882106]
+position = Vector2(76.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC122" type="Sprite2D" parent="Bar/BarBackground" unique_id=217188948]
+position = Vector2(79.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC123" type="Sprite2D" parent="Bar/BarBackground" unique_id=2020536765]
+position = Vector2(82.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC124" type="Sprite2D" parent="Bar/BarBackground" unique_id=443979309]
+position = Vector2(85.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC125" type="Sprite2D" parent="Bar/BarBackground" unique_id=690077278]
+position = Vector2(88.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC126" type="Sprite2D" parent="Bar/BarBackground" unique_id=1785706915]
+position = Vector2(91.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC127" type="Sprite2D" parent="Bar/BarBackground" unique_id=129737104]
+position = Vector2(94.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC128" type="Sprite2D" parent="Bar/BarBackground" unique_id=2135070191]
+position = Vector2(97.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC129" type="Sprite2D" parent="Bar/BarBackground" unique_id=797823989]
+position = Vector2(76.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC130" type="Sprite2D" parent="Bar/BarBackground" unique_id=960558835]
+position = Vector2(79.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC131" type="Sprite2D" parent="Bar/BarBackground" unique_id=3738163]
+position = Vector2(82.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC132" type="Sprite2D" parent="Bar/BarBackground" unique_id=424575135]
+position = Vector2(85.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC133" type="Sprite2D" parent="Bar/BarBackground" unique_id=1634598995]
+position = Vector2(88.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC134" type="Sprite2D" parent="Bar/BarBackground" unique_id=58625199]
+position = Vector2(91.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC135" type="Sprite2D" parent="Bar/BarBackground" unique_id=648127507]
+position = Vector2(94.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC136" type="Sprite2D" parent="Bar/BarBackground" unique_id=1128302491]
+position = Vector2(97.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC137" type="Sprite2D" parent="Bar/BarBackground" unique_id=1036747616]
+position = Vector2(76.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC138" type="Sprite2D" parent="Bar/BarBackground" unique_id=699308274]
+position = Vector2(79.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC139" type="Sprite2D" parent="Bar/BarBackground" unique_id=1399311833]
+position = Vector2(82.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC140" type="Sprite2D" parent="Bar/BarBackground" unique_id=39286382]
+position = Vector2(85.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC141" type="Sprite2D" parent="Bar/BarBackground" unique_id=418039141]
+position = Vector2(88.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC142" type="Sprite2D" parent="Bar/BarBackground" unique_id=747130329]
+position = Vector2(91.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC143" type="Sprite2D" parent="Bar/BarBackground" unique_id=1196317124]
+position = Vector2(94.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC144" type="Sprite2D" parent="Bar/BarBackground" unique_id=1944484093]
+position = Vector2(97.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC145" type="Sprite2D" parent="Bar/BarBackground" unique_id=532156677]
+position = Vector2(76.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC146" type="Sprite2D" parent="Bar/BarBackground" unique_id=1438345149]
+position = Vector2(79.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC147" type="Sprite2D" parent="Bar/BarBackground" unique_id=1350239493]
+position = Vector2(82.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC148" type="Sprite2D" parent="Bar/BarBackground" unique_id=2129860154]
+position = Vector2(85.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC149" type="Sprite2D" parent="Bar/BarBackground" unique_id=1374483915]
+position = Vector2(88.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC150" type="Sprite2D" parent="Bar/BarBackground" unique_id=175526439]
+position = Vector2(91.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC151" type="Sprite2D" parent="Bar/BarBackground" unique_id=396073517]
+position = Vector2(94.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC152" type="Sprite2D" parent="Bar/BarBackground" unique_id=652966760]
+position = Vector2(97.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC153" type="Sprite2D" parent="Bar/BarBackground" unique_id=2099203400]
+position = Vector2(76.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC154" type="Sprite2D" parent="Bar/BarBackground" unique_id=1711267881]
+position = Vector2(79.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC155" type="Sprite2D" parent="Bar/BarBackground" unique_id=1573162586]
+position = Vector2(82.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC156" type="Sprite2D" parent="Bar/BarBackground" unique_id=2054220885]
+position = Vector2(85.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC157" type="Sprite2D" parent="Bar/BarBackground" unique_id=480465767]
+position = Vector2(88.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC158" type="Sprite2D" parent="Bar/BarBackground" unique_id=1339820646]
+position = Vector2(91.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC159" type="Sprite2D" parent="Bar/BarBackground" unique_id=456510690]
+position = Vector2(94.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC160" type="Sprite2D" parent="Bar/BarBackground" unique_id=1175054972]
+position = Vector2(97.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC161" type="Sprite2D" parent="Bar/BarBackground" unique_id=990648664]
+position = Vector2(100.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC162" type="Sprite2D" parent="Bar/BarBackground" unique_id=1061312110]
+position = Vector2(109.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC163" type="Sprite2D" parent="Bar/BarBackground" unique_id=1054944744]
+position = Vector2(112.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC164" type="Sprite2D" parent="Bar/BarBackground" unique_id=451961362]
+position = Vector2(100.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC165" type="Sprite2D" parent="Bar/BarBackground" unique_id=1934117568]
+position = Vector2(109.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC166" type="Sprite2D" parent="Bar/BarBackground" unique_id=424485490]
+position = Vector2(112.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC167" type="Sprite2D" parent="Bar/BarBackground" unique_id=2057860644]
+position = Vector2(100.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC168" type="Sprite2D" parent="Bar/BarBackground" unique_id=1532027532]
+position = Vector2(109.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC169" type="Sprite2D" parent="Bar/BarBackground" unique_id=1894128981]
+position = Vector2(112.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC170" type="Sprite2D" parent="Bar/BarBackground" unique_id=1509692967]
+position = Vector2(100.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC171" type="Sprite2D" parent="Bar/BarBackground" unique_id=1803641224]
+position = Vector2(109.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC172" type="Sprite2D" parent="Bar/BarBackground" unique_id=2014554518]
+position = Vector2(112.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC173" type="Sprite2D" parent="Bar/BarBackground" unique_id=1554649230]
+position = Vector2(100.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC174" type="Sprite2D" parent="Bar/BarBackground" unique_id=833536091]
+position = Vector2(109.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC175" type="Sprite2D" parent="Bar/BarBackground" unique_id=1552825437]
+position = Vector2(112.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="LtBox9SliceBc" type="Sprite2D" parent="Bar/BarBackground" unique_id=962182485]
+position = Vector2(6.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc2" type="Sprite2D" parent="Bar/BarBackground" unique_id=281456394]
+position = Vector2(9.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc3" type="Sprite2D" parent="Bar/BarBackground" unique_id=118929785]
+position = Vector2(12.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc4" type="Sprite2D" parent="Bar/BarBackground" unique_id=259541336]
+position = Vector2(15.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc5" type="Sprite2D" parent="Bar/BarBackground" unique_id=511018504]
+position = Vector2(18.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc6" type="Sprite2D" parent="Bar/BarBackground" unique_id=1645448493]
+position = Vector2(21.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc7" type="Sprite2D" parent="Bar/BarBackground" unique_id=711492974]
+position = Vector2(24.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc8" type="Sprite2D" parent="Bar/BarBackground" unique_id=881737250]
+position = Vector2(27.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc9" type="Sprite2D" parent="Bar/BarBackground" unique_id=161710678]
+position = Vector2(30.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc10" type="Sprite2D" parent="Bar/BarBackground" unique_id=1529037123]
+position = Vector2(33.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc12" type="Sprite2D" parent="Bar/BarBackground" unique_id=1168042498]
+position = Vector2(36.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc13" type="Sprite2D" parent="Bar/BarBackground" unique_id=508348262]
+position = Vector2(39.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc15" type="Sprite2D" parent="Bar/BarBackground" unique_id=704535883]
+position = Vector2(42.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc16" type="Sprite2D" parent="Bar/BarBackground" unique_id=1569074327]
+position = Vector2(45.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc17" type="Sprite2D" parent="Bar/BarBackground" unique_id=385463152]
+position = Vector2(48.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc18" type="Sprite2D" parent="Bar/BarBackground" unique_id=1134184032]
+position = Vector2(51.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc19" type="Sprite2D" parent="Bar/BarBackground" unique_id=1489185772]
+position = Vector2(54.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc20" type="Sprite2D" parent="Bar/BarBackground" unique_id=988700703]
+position = Vector2(57.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc21" type="Sprite2D" parent="Bar/BarBackground" unique_id=178908865]
+position = Vector2(60.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc22" type="Sprite2D" parent="Bar/BarBackground" unique_id=228291020]
+position = Vector2(63.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc23" type="Sprite2D" parent="Bar/BarBackground" unique_id=1116739145]
+position = Vector2(66.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc24" type="Sprite2D" parent="Bar/BarBackground" unique_id=1945494129]
+position = Vector2(69.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc25" type="Sprite2D" parent="Bar/BarBackground" unique_id=610927699]
+position = Vector2(72.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc26" type="Sprite2D" parent="Bar/BarBackground" unique_id=1111312439]
+position = Vector2(75.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc27" type="Sprite2D" parent="Bar/BarBackground" unique_id=888353460]
+position = Vector2(78.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc28" type="Sprite2D" parent="Bar/BarBackground" unique_id=861664188]
+position = Vector2(81.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc29" type="Sprite2D" parent="Bar/BarBackground" unique_id=1994615847]
+position = Vector2(84.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc30" type="Sprite2D" parent="Bar/BarBackground" unique_id=733206015]
+position = Vector2(87.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc31" type="Sprite2D" parent="Bar/BarBackground" unique_id=1153589528]
+position = Vector2(90.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc32" type="Sprite2D" parent="Bar/BarBackground" unique_id=991479796]
+position = Vector2(93.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc33" type="Sprite2D" parent="Bar/BarBackground" unique_id=1890863575]
+position = Vector2(96.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc34" type="Sprite2D" parent="Bar/BarBackground" unique_id=1954344500]
+position = Vector2(99.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="DtBox9SliceBc37" type="Sprite2D" parent="Bar/BarBackground" unique_id=1900437285]
+position = Vector2(103.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceBc38" type="Sprite2D" parent="Bar/BarBackground" unique_id=727226094]
+position = Vector2(106.5, 16.5)
+texture = ExtResource("8_w2r4i")
+
+[node name="DtBox9SliceC176" type="Sprite2D" parent="Bar/BarBackground" unique_id=693426256]
+position = Vector2(103.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC177" type="Sprite2D" parent="Bar/BarBackground" unique_id=1890519766]
+position = Vector2(103.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC178" type="Sprite2D" parent="Bar/BarBackground" unique_id=988171660]
+position = Vector2(103.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC179" type="Sprite2D" parent="Bar/BarBackground" unique_id=1913771118]
+position = Vector2(103.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC180" type="Sprite2D" parent="Bar/BarBackground" unique_id=87240531]
+position = Vector2(103.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC181" type="Sprite2D" parent="Bar/BarBackground" unique_id=691306460]
+position = Vector2(106.5, 13.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC182" type="Sprite2D" parent="Bar/BarBackground" unique_id=1644250371]
+position = Vector2(106.5, 10.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC183" type="Sprite2D" parent="Bar/BarBackground" unique_id=291635637]
+position = Vector2(106.5, 7.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC184" type="Sprite2D" parent="Bar/BarBackground" unique_id=97061655]
+position = Vector2(106.5, 4.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC185" type="Sprite2D" parent="Bar/BarBackground" unique_id=2138061377]
+position = Vector2(106.5, 1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="LtBox9SliceBc37" type="Sprite2D" parent="Bar/BarBackground" unique_id=1593645200]
+position = Vector2(105.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc38" type="Sprite2D" parent="Bar/BarBackground" unique_id=962666264]
+position = Vector2(102.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc35" type="Sprite2D" parent="Bar/BarBackground" unique_id=55487287]
+position = Vector2(108.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBc36" type="Sprite2D" parent="Bar/BarBackground" unique_id=1211616608]
+position = Vector2(111.5, 14.5)
+texture = ExtResource("6_buvk0")
+
+[node name="LtBox9SliceBl" type="Sprite2D" parent="Bar/BarBackground" unique_id=961923561]
+position = Vector2(3.5, 14.5)
+texture = ExtResource("7_8pb36")
+
+[node name="LtBox9SliceBr" type="Sprite2D" parent="Bar/BarBackground" unique_id=1931143562]
+position = Vector2(113.5, 14.5)
+texture = ExtResource("8_tw4d4")
+
+[node name="LtBox9SliceLc" type="Sprite2D" parent="Bar/BarBackground" unique_id=1370593997]
+position = Vector2(3.5, 11.5)
+texture = ExtResource("10_vnhp2")
+
+[node name="LtBox9SliceLc2" type="Sprite2D" parent="Bar/BarBackground" unique_id=1203294314]
+position = Vector2(3.5, 8.5)
+texture = ExtResource("10_vnhp2")
+
+[node name="LtBox9SliceLc3" type="Sprite2D" parent="Bar/BarBackground" unique_id=1763079743]
+position = Vector2(3.5, 5.5)
+texture = ExtResource("10_vnhp2")
+
+[node name="LtBox9SliceLc4" type="Sprite2D" parent="Bar/BarBackground" unique_id=1892425146]
+position = Vector2(3.5, 2.5)
+texture = ExtResource("10_vnhp2")
+
+[node name="LtBox9SliceRc" type="Sprite2D" parent="Bar/BarBackground" unique_id=80267938]
+position = Vector2(113.5, 11.5)
+texture = ExtResource("11_yse77")
+
+[node name="LtBox9SliceRc2" type="Sprite2D" parent="Bar/BarBackground" unique_id=204086029]
+position = Vector2(113.5, 8.5)
+texture = ExtResource("11_yse77")
+
+[node name="LtBox9SliceRc3" type="Sprite2D" parent="Bar/BarBackground" unique_id=818606098]
+position = Vector2(113.5, 5.5)
+texture = ExtResource("11_yse77")
+
+[node name="LtBox9SliceRc4" type="Sprite2D" parent="Bar/BarBackground" unique_id=1612002744]
+position = Vector2(113.5, 2.5)
+texture = ExtResource("11_yse77")
+
+[node name="DtBox9SliceC186" type="Sprite2D" parent="Bar/BarBackground" unique_id=472149379]
+position = Vector2(4.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC187" type="Sprite2D" parent="Bar/BarBackground" unique_id=849342069]
+position = Vector2(7.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC188" type="Sprite2D" parent="Bar/BarBackground" unique_id=2069797719]
+position = Vector2(10.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC189" type="Sprite2D" parent="Bar/BarBackground" unique_id=479737086]
+position = Vector2(13.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC190" type="Sprite2D" parent="Bar/BarBackground" unique_id=1392084225]
+position = Vector2(16.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC191" type="Sprite2D" parent="Bar/BarBackground" unique_id=604507459]
+position = Vector2(19.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC192" type="Sprite2D" parent="Bar/BarBackground" unique_id=1971294674]
+position = Vector2(22.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC193" type="Sprite2D" parent="Bar/BarBackground" unique_id=1480248398]
+position = Vector2(25.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceRc6" type="Sprite2D" parent="Bar/BarBackground" unique_id=1630856097]
+position = Vector2(115.5, -1.5)
+texture = ExtResource("5_ji15u")
+
+[node name="DtBox9SliceLc6" type="Sprite2D" parent="Bar/BarBackground" unique_id=386870237]
+position = Vector2(1.5, -1.5)
+texture = ExtResource("2_eedsn")
+
+[node name="DtBox9SliceC194" type="Sprite2D" parent="Bar/BarBackground" unique_id=929008055]
+position = Vector2(28.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC195" type="Sprite2D" parent="Bar/BarBackground" unique_id=1482483401]
+position = Vector2(31.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC196" type="Sprite2D" parent="Bar/BarBackground" unique_id=1952317197]
+position = Vector2(34.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC197" type="Sprite2D" parent="Bar/BarBackground" unique_id=605383783]
+position = Vector2(37.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC198" type="Sprite2D" parent="Bar/BarBackground" unique_id=1699541204]
+position = Vector2(40.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC199" type="Sprite2D" parent="Bar/BarBackground" unique_id=135266045]
+position = Vector2(43.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC200" type="Sprite2D" parent="Bar/BarBackground" unique_id=200793716]
+position = Vector2(46.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC201" type="Sprite2D" parent="Bar/BarBackground" unique_id=1732849063]
+position = Vector2(49.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC202" type="Sprite2D" parent="Bar/BarBackground" unique_id=635951633]
+position = Vector2(52.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC203" type="Sprite2D" parent="Bar/BarBackground" unique_id=1586340690]
+position = Vector2(55.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC204" type="Sprite2D" parent="Bar/BarBackground" unique_id=337501120]
+position = Vector2(58.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC205" type="Sprite2D" parent="Bar/BarBackground" unique_id=1892026483]
+position = Vector2(61.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC206" type="Sprite2D" parent="Bar/BarBackground" unique_id=891970957]
+position = Vector2(64.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC207" type="Sprite2D" parent="Bar/BarBackground" unique_id=1560703896]
+position = Vector2(67.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC208" type="Sprite2D" parent="Bar/BarBackground" unique_id=1537044594]
+position = Vector2(70.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC209" type="Sprite2D" parent="Bar/BarBackground" unique_id=604317126]
+position = Vector2(73.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC210" type="Sprite2D" parent="Bar/BarBackground" unique_id=296750825]
+position = Vector2(76.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC211" type="Sprite2D" parent="Bar/BarBackground" unique_id=255480278]
+position = Vector2(79.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC212" type="Sprite2D" parent="Bar/BarBackground" unique_id=408284318]
+position = Vector2(82.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC213" type="Sprite2D" parent="Bar/BarBackground" unique_id=2025614956]
+position = Vector2(85.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC214" type="Sprite2D" parent="Bar/BarBackground" unique_id=1239864862]
+position = Vector2(88.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC215" type="Sprite2D" parent="Bar/BarBackground" unique_id=1512045875]
+position = Vector2(91.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC216" type="Sprite2D" parent="Bar/BarBackground" unique_id=353843823]
+position = Vector2(94.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC217" type="Sprite2D" parent="Bar/BarBackground" unique_id=2135860436]
+position = Vector2(97.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC218" type="Sprite2D" parent="Bar/BarBackground" unique_id=479421625]
+position = Vector2(100.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC219" type="Sprite2D" parent="Bar/BarBackground" unique_id=1227921771]
+position = Vector2(109.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC220" type="Sprite2D" parent="Bar/BarBackground" unique_id=1249926445]
+position = Vector2(112.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC221" type="Sprite2D" parent="Bar/BarBackground" unique_id=1196215827]
+position = Vector2(103.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="DtBox9SliceC222" type="Sprite2D" parent="Bar/BarBackground" unique_id=2007808199]
+position = Vector2(106.5, -1.5)
+texture = ExtResource("2_57cgt")
+
+[node name="LtBox9SliceLc6" type="Sprite2D" parent="Bar/BarBackground" unique_id=1593024242]
+position = Vector2(3.5, -0.5)
+texture = ExtResource("10_vnhp2")
+
+[node name="LtBox9SliceRc7" type="Sprite2D" parent="Bar/BarBackground" unique_id=1146967612]
+position = Vector2(113.5, -0.25)
+texture = ExtResource("11_yse77")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Bar" unique_id=267355780]
+visible = false
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 56.0
-offset_top = 393.0
-offset_right = 56.0
-offset_bottom = 433.0
+offset_left = -23.0
+offset_top = -32.0
+offset_right = 413.0
+offset_bottom = 8.0
 grow_horizontal = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 4
 alignment = 1
 
-[node name="ShopItem1" parent="HBoxContainer" unique_id=726902931 instance=ExtResource("scn_shop_item")]
+[node name="ShopItem1" parent="Bar/HBoxContainer" unique_id=726902931 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Wheat"
 
-[node name="ShopItem2" parent="HBoxContainer" unique_id=2002373778 instance=ExtResource("scn_shop_item")]
+[node name="ShopItem2" parent="Bar/HBoxContainer" unique_id=2002373778 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Carrot"
 price = 15
 
-[node name="ShopItem3" parent="HBoxContainer" unique_id=462347908 instance=ExtResource("scn_shop_item")]
+[node name="ShopItem3" parent="Bar/HBoxContainer" unique_id=462347908 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Cabbage"
 price = 25
 
-[node name="ShopItem4" parent="HBoxContainer" unique_id=808732040 instance=ExtResource("scn_shop_item")]
+[node name="ShopItem4" parent="Bar/HBoxContainer" unique_id=808732040 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Potato"
 price = 30
 
-[node name="ShopItem5" parent="HBoxContainer" unique_id=58949467 instance=ExtResource("scn_shop_item")]
+[node name="ShopItem5" parent="Bar/HBoxContainer" unique_id=58949467 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Chicken"
 price = 100
 
-[node name="ShopItem6" parent="HBoxContainer" unique_id=1377985927 instance=ExtResource("scn_shop_item")]
+[node name="ShopItem6" parent="Bar/HBoxContainer" unique_id=1377985927 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Cow"
 price = 200
 
-[node name="ShopItem7" parent="HBoxContainer" unique_id=1286885475 instance=ExtResource("scn_shop_item")]
+[node name="ShopItem7" parent="Bar/HBoxContainer" unique_id=1286885475 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Fertilizer"
 price = 50
 
-[node name="ShopItem8" parent="HBoxContainer" unique_id=800627408 instance=ExtResource("scn_shop_item")]
+[node name="ShopItem8" parent="Bar/HBoxContainer" unique_id=800627408 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Farmer"
 price = 300
 
-[node name="ShopItem9" parent="HBoxContainer" unique_id=785228811 instance=ExtResource("scn_shop_item")]
+[node name="ShopItem9" parent="Bar/HBoxContainer" unique_id=785228811 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Warrior"
 price = 400
 
-[node name="ShopItem10" parent="HBoxContainer" unique_id=847154558 instance=ExtResource("scn_shop_item")]
+[node name="ShopItem10" parent="Bar/HBoxContainer" unique_id=847154558 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Goal"
 price = 1000
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1027574005]

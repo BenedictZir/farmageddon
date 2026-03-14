@@ -6,11 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://cv1y0sprcgl8v" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Goblin/PNG/spr_doing_strip8.png" id="2_jbfko"]
 [ext_resource type="Texture2D" uid="uid://bewf3q1c16b60" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Goblin/PNG/spr_carry_strip8.png" id="2_qdfho"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2k3hl"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqawq"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fy1ix"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2k3hl"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
@@ -271,12 +271,12 @@ animations = [{
 [node name="Goblin" unique_id=7649292 instance=ExtResource("1_ht57u")]
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=534802735]
-shape = SubResource("RectangleShape2D_2k3hl")
+shape = SubResource("RectangleShape2D_dqawq")
 
 [node name="CollisionShape2D" parent="Components/AttackComponent" parent_id_path=PackedInt32Array(1460850251) index="0" unique_id=154781645]
-shape = SubResource("RectangleShape2D_fy1ix")
+shape = SubResource("RectangleShape2D_2k3hl")
 
 [node name="EnemyVisual" parent="." index="2" unique_id=543429950]
 sprite_frames = SubResource("SpriteFrames_ht57u")
 animation = &"carry"
-frame_progress = 0.25446025
+frame_progress = 0.530663

@@ -33,6 +33,11 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if is_knocked or player_visual.is_locked():
 		return
+
+	# Mouse actions — only if not clicking on UI
+	if event is InputEventMouseButton and _is_mouse_over_ui():
+		return
+
 	if event.is_action_pressed("attack"):
 		_do_attack()
 	elif event.is_action_pressed("roll"):
@@ -187,3 +192,9 @@ func _on_anim_state_finished(state) -> void:
 		get_tree().create_timer(2.0).timeout.connect(func():
 			health_component.revive()
 		)
+
+
+func _is_mouse_over_ui() -> bool:
+	# Returns true if the mouse is hovering over any GUI Control
+	var viewport := get_viewport()
+	return viewport.gui_get_hovered_control() != null
