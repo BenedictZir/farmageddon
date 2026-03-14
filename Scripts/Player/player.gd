@@ -14,8 +14,12 @@ var is_knocked := false
 var is_rolling := false
 var _roll_velocity := Vector2.ZERO
 
-var _held_item: Resource = null    # CropData, or any placeable resource
-var _target_tile: Node2D = null    # tile we're about to place on
+## What the player is holding. Can be CropData (seed or harvested).
+var _held_item: Resource = null
+var _target_tile: Node2D = null
+
+## Whether the held item is a harvested product (not a seed from shop)
+var _is_holding_harvest := false
 
 @export var max_energy := 100.0
 var energy := 100.0
@@ -103,6 +107,8 @@ func _handle_movement() -> void:
 	player_visual.update_movement_anim(direction, is_carrying, is_running)
 
 
+# ── Actions ──────────────────────────────────────────────
+
 func _do_attack() -> void:
 	velocity = Vector2.ZERO
 	player_visual.play_attack()
@@ -114,11 +120,8 @@ func _do_roll() -> void:
 		return
 	energy -= roll_energy_cost
 	is_rolling = true
-
 	set_collision_layer_value(2, false)
-
 	player_visual.play_roll()
-
 	var roll_dir := direction.normalized() if direction != Vector2.ZERO \
 		else (Vector2.LEFT if player_visual.base.flip_h else Vector2.RIGHT)
 	_roll_velocity = roll_dir * (roll_distance / roll_duration)
@@ -131,15 +134,20 @@ func _end_roll_dash() -> void:
 
 func _do_interact() -> void:
 	if is_carrying and _held_item:
-		_try_place_item()
+		if _is_holding_harvest:
+			_try_use_harvest()
+		else:
+			_try_place_item()
 	else:
-		player_visual.play_doing()
+		_try_harvest()
 
 
 func _do_drop() -> void:
 	if is_carrying:
 		_clear_held_item()
 
+
+# ── Placing (seed → tile) ────────────────────────────────
 
 func _try_place_item() -> void:
 	var tile = select_box.current_target
@@ -154,16 +162,77 @@ func _try_place_item() -> void:
 		select_box.play_error()
 
 
+# ── Harvesting (tile → carry) ────────────────────────────
+
+func _try_harvest() -> void:
+	var tile = select_box.current_target
+	if not tile:
+		player_visual.play_doing()
+		return
+	if tile.has_method("is_harvestable") and tile.is_harvestable():
+		_target_tile = tile
+		velocity = Vector2.ZERO
+		player_visual.play_dig()
+	else:
+		player_visual.play_doing()
+
+
+func _finish_harvest() -> void:
+	if not _target_tile or not _target_tile.has_method("harvest_crop"):
+		return
+	var crop_data: CropData = _target_tile.harvest_crop()
+	if not crop_data:
+		return
+	_target_tile = null
+	# Enter carry state with harvested product
+	_held_item = crop_data
+	_is_holding_harvest = true
+	is_carrying = true
+	select_box.set_size(Vector2i(1, 1))
+	player_visual.set_carry_no_tool(true)
+	player_visual.show_held_item(crop_data.icon)
+
+
+# ── Using harvest (sell / feed animal) ───────────────────
+
+func _try_use_harvest() -> void:
+	var tile = select_box.current_target
+
+	# Future: check if tile is a farm animal → feed
+	# if tile and tile.has_method("can_feed"):
+	#     _feed_animal(tile)
+	#     return
+
+	# No valid target → sell the item
+	if _held_item is CropData:
+		_sell_held_item()
+
+
+func _sell_held_item() -> void:
+	var crop := _held_item as CropData
+	CurrencyManager.add_gold(crop.sell_price)
+	select_box.play_placing()
+	_clear_held_item()
+
+
+# ── Item Management ──────────────────────────────────────
+
 func hold_item(item: Resource, item_size := Vector2i(1, 1)) -> void:
 	_held_item = item
+	_is_holding_harvest = false
 	is_carrying = true
 	select_box.set_size(item_size)
+	player_visual.set_carry_no_tool(false)
+	player_visual.hide_held_item()
 
 
 func _clear_held_item() -> void:
 	is_carrying = false
 	_held_item = null
 	_target_tile = null
+	_is_holding_harvest = false
+	player_visual.set_carry_no_tool(false)
+	player_visual.hide_held_item()
 
 
 func pick_up_item(item_size := Vector2i(1, 1)) -> void:
@@ -178,6 +247,8 @@ func place_item() -> void:
 	player_visual.play_doing()
 	_clear_held_item()
 
+
+# ── Callbacks ────────────────────────────────────────────
 
 func _on_damaged(_amount: float) -> void:
 	if is_knocked:
@@ -206,13 +277,18 @@ func _on_anim_state_finished(state) -> void:
 		velocity = Vector2.ZERO
 		set_collision_layer_value(2, true)
 
-	# After dig animation → place item on tile
 	if state == player_visual.AnimState.DIG:
-		if _target_tile and _held_item:
-			if _held_item is CropData:
-				_target_tile.plant_crop(_held_item)
-			select_box.play_placing()
-			_clear_held_item()
+		if _target_tile:
+			if _held_item and not _is_holding_harvest:
+				# Was placing a seed → plant it
+				if _held_item is CropData:
+					_target_tile.plant_crop(_held_item)
+				select_box.play_placing()
+				_clear_held_item()
+			elif not is_carrying and _target_tile.has_method("is_harvestable") \
+				and _target_tile.is_harvestable():
+				# Was harvesting → pick up the crop
+				_finish_harvest()
 
 	if state == player_visual.AnimState.DEATH:
 		get_tree().create_timer(2.0).timeout.connect(func():

@@ -57,25 +57,52 @@ func _physics_process(_delta: float) -> void:
 	if _is_placing or _is_error:
 		return
 
-	# Only scan when player is carrying
-	if not player.get("is_carrying"):
-		if visible:
-			hide_box()
-			current_target = null
-		return
+	var is_carrying: bool = player.get("is_carrying")
+	var is_holding_harvest: bool = player.get("_is_holding_harvest")
 
-	# Find best interactable nearby (ALL interactables, not just available)
+	# Find best interactable nearby
 	var best := _find_best_target(player)
-	if best:
-		current_target = best
-		var target_world := best.global_position
-		global_position = target_world
-		if not visible:
-			play_selecting()
+
+	if is_carrying:
+		if is_holding_harvest:
+			# Holding harvest: only interact with feedable targets (farm animal)
+			# For now, no feedable targets exist → always snap to player (sell)
+			# Future: check if best is feedable  →  snap to it
+			current_target = null
+			global_position = player.global_position
+			if not visible:
+				play_selecting()
+		elif best:
+			# Holding seed: check if tile can accept the item
+			var held_item = player.get("_held_item")
+			if held_item and best.has_method("accepts_type") \
+				and held_item.get("placeable_type") != null \
+				and best.accepts_type(held_item.placeable_type):
+				current_target = best
+				global_position = best.global_position
+				if not visible:
+					play_selecting()
+			else:
+				# Tile exists but can't accept this item → hide
+				current_target = null
+				if visible:
+					hide_box()
+		else:
+			# No tile nearby
+			current_target = null
+			if visible:
+				hide_box()
 	else:
-		current_target = null
-		if visible:
-			hide_box()
+		# Not carrying — only show on harvestable crops
+		if best and best.has_method("is_harvestable") and best.is_harvestable():
+			current_target = best
+			global_position = best.global_position
+			if not visible:
+				play_selecting()
+		else:
+			current_target = null
+			if visible:
+				hide_box()
 
 
 func _find_best_target(player: Node2D) -> Node2D:
@@ -127,6 +154,7 @@ func set_size(new_size: Vector2i) -> void:
 	item_size = new_size
 	_rebuild_animations()
 	_play_all("RESET")
+	visible = false
 
 
 func play_selecting() -> void:

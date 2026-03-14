@@ -13,6 +13,9 @@ enum AnimState {
 	ROLL,
 }
 
+## Whether the current carry uses the no-tool variant
+var _carry_no_tool := false
+
 const ANIM_NAMES := {
 	AnimState.IDLE: "idle",
 	AnimState.WALK: "walk",
@@ -29,20 +32,21 @@ const ANIM_NAMES := {
 @onready var base: AnimatedSprite2D = $Base
 @onready var hair: AnimatedSprite2D = $Hair
 @onready var tool_sprite: AnimatedSprite2D = $Tool
+@onready var held_item_sprite: Sprite2D = $HeldItemSprite
 
 var _sprites: Array[AnimatedSprite2D]
 var _current_state := AnimState.IDLE
-var _facing_direction := Vector2.DOWN  # last non-zero direction
-var _locked := false  # true during non-interruptible anims (doing, dig, hurt, death)
+var _facing_direction := Vector2.DOWN
+var _locked := false
 
 signal animation_state_finished(state: AnimState)
 
 
 func _ready() -> void:
 	_sprites = [base, hair, tool_sprite]
-	# Connect frame finished for one-shot animations
 	base.animation_finished.connect(_on_base_animation_finished)
 	play_state(AnimState.IDLE)
+	hide_held_item()
 
 
 func get_current_state() -> AnimState:
@@ -59,15 +63,46 @@ func update_direction(direction: Vector2) -> void:
 		_update_flip()
 
 
+func set_carry_no_tool(enabled: bool) -> void:
+	_carry_no_tool = enabled
+
+
+func show_held_item(icon: Texture2D) -> void:
+	held_item_sprite.texture = icon
+	held_item_sprite.visible = true
+
+
+func hide_held_item() -> void:
+	held_item_sprite.visible = false
+	held_item_sprite.texture = null
+
+
 func play_state(new_state: AnimState) -> void:
 	if _locked and new_state != AnimState.DEATH:
-		return  # Only death can interrupt a locked animation
+		return
 	
 	_current_state = new_state
 	_locked = _is_oneshot_state(new_state)
 	
 	var anim_name: String = ANIM_NAMES[new_state]
-	_play_on_all(anim_name)
+	
+	# For carry state: use carry_no_tool on tool sprite if flagged
+	if new_state == AnimState.CARRY and _carry_no_tool:
+		# Play carry on base/hair, carry_no_tool on tool
+		for sprite in _sprites:
+			if sprite == tool_sprite:
+				if sprite.sprite_frames and sprite.sprite_frames.has_animation("carry_no_tool"):
+					sprite.play("carry_no_tool")
+				else:
+					sprite.stop()
+			else:
+				if sprite.sprite_frames and sprite.sprite_frames.has_animation(anim_name):
+					sprite.play(anim_name)
+				else:
+					sprite.stop()
+	else:
+		_play_on_all(anim_name)
+	
 	_update_flip()
 
 
@@ -149,8 +184,9 @@ func _update_flip() -> void:
 		var flip := _facing_direction.x < 0
 		for sprite in _sprites:
 			sprite.flip_h = flip
-
-
+		# Flip held item sprite too
+		if held_item_sprite:
+			held_item_sprite.flip_h = flip
 
 
 func _is_oneshot_state(state: AnimState) -> bool:
