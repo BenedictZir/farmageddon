@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://biqt6s1fohv56" path="res://Scripts/Components/attack_component.gd" id="scr_attack_hitbox"]
 [ext_resource type="Script" uid="uid://4iw2c8bqnaea" path="res://Scripts/Components/health_component.gd" id="scr_health"]
 [ext_resource type="Script" uid="uid://17dbl53f5w0c" path="res://Scripts/Player/player_hud.gd" id="scr_hud"]
+[ext_resource type="Script" path="res://Scripts/Player/player_inventory.gd" id="scr_inventory"]
 [ext_resource type="Script" uid="uid://cc4enjncjqjyt" path="res://Scripts/Components/movement_component.gd" id="scr_movement"]
 [ext_resource type="Script" uid="uid://b3l1tuwvfv8qj" path="res://Scripts/Player/player.gd" id="scr_player"]
 [ext_resource type="Script" uid="uid://c0a67cudkm4cw" path="res://Scripts/Player/player_visual.gd" id="scr_visual"]
@@ -2302,6 +2303,9 @@ script = ExtResource("scr_attack_hitbox")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components/AttackComponent" unique_id=2063992744]
 shape = SubResource("attack_shape")
 disabled = true
+
+[node name="Inventory" type="Node" parent="Components"]
+script = ExtResource("scr_inventory")
 
 [node name="PlayerVisual" type="Node2D" parent="." unique_id=1170814840]
 y_sort_enabled = true
