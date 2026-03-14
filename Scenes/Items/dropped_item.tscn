@@ -1,9 +1,25 @@
 [gd_scene format=3 uid="uid://cen6im0vk5etl"]
 
+[ext_resource type="Shader" uid="uid://ogg2oay2xkbc" path="res://Shaders/outline.gdshader" id="2_qg7x7"]
+[ext_resource type="Texture2D" uid="uid://cav12hpt30cr6" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/carrot_05.png" id="3_allw1"]
 [ext_resource type="Script" uid="uid://d7cjjm3kvhm4" path="res://Scripts/Placeables/dropped_item.gd" id="scr_dropped"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3w7xp"]
 size = Vector2(16, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_allw1"]
+resource_local_to_scene = true
+shader = ExtResource("2_qg7x7")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/do_abs = false
+shader_parameter/do_quantize = false
+shader_parameter/quantize_to = 1.0
+shader_parameter/sine_amplitude = Vector2(0, 1)
+shader_parameter/sine_speed = Vector2(0, 1)
 
 [node name="DroppedItem" type="Area2D" unique_id=489467237]
 collision_layer = 8
@@ -14,3 +30,5 @@ script = ExtResource("scr_dropped")
 shape = SubResource("RectangleShape2D_3w7xp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=575898322]
+material = SubResource("ShaderMaterial_allw1")
+texture = ExtResource("3_allw1")

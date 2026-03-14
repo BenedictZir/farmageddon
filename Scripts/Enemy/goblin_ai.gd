@@ -88,12 +88,12 @@ func is_tile_stealable(tile: Node2D) -> bool:
 
 func get_nearest_edge() -> Vector2:
 	var pos := global_position
-	# For a map centered at (0,0) with 640x360 boundaries:
+	var extents := GameManager.map_extents
 	var edges := [
-		Vector2(pos.x, -105),
-		Vector2(pos.x, 105),
-		Vector2(-170, pos.y),
-		Vector2(170, pos.y),
+		Vector2(pos.x, -extents.y),
+		Vector2(pos.x, extents.y),
+		Vector2(-extents.x, pos.y),
+		Vector2(extents.x, pos.y),
 	]
 	var nearest = edges[0]
 	var nearest_dist := pos.distance_to(edges[0])

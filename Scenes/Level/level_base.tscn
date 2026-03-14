@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://g34vps1bunb0" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Plants/spr_deco_tree_01_strip4.png" id="5_dlak8"]
 [ext_resource type="Shader" uid="uid://w3mckfty164d" path="res://Shaders/sawit.gdshader" id="5_sj5t6"]
 [ext_resource type="PackedScene" uid="uid://cmgajr2sc2bvt" path="res://Scenes/Enemy/goblin.tscn" id="8_6fsfs"]
+[ext_resource type="Script" uid="uid://dofyuwdsoybf2" path="res://Scripts/Level/level_base.gd" id="scr_lvl_b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ty4vd"]
 texture = ExtResource("2_i1iga")
@@ -1779,6 +1780,7 @@ shader_parameter/offset = 0.0
 
 [node name="LevelBase" type="Node2D" unique_id=395313815]
 y_sort_enabled = true
+script = ExtResource("scr_lvl_b")
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=1670514207]
 z_index = -1
@@ -1928,3 +1930,11 @@ offset_right = 15.0
 
 [node name="Goblin" parent="." unique_id=7649292 instance=ExtResource("8_6fsfs")]
 position = Vector2(1047, -23)
+player_detect_range = null
+steal_detect_range = null
+attack_range = null
+attack_stop_range = null
+steal_duration = null
+run_speed = null
+walk_speed = null
+roam_change_interval = null

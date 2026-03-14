@@ -21,6 +21,7 @@ CursorManager="*uid://i5qqqu54qnue"
 CurrencyManager="*uid://d37ehmdtlj6vc"
 AudioGlobal="*uid://durhrt4ebmvf1"
 PlayerRef="*res://Scripts/Autoloads/player_ref.gd"
+GameManager="*res://Scenes/Autoloads/game_manager.tscn"
 
 [display]
 

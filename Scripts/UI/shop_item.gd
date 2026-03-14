@@ -8,6 +8,7 @@ class_name ShopItem
 @export var price: int = 10
 @export var icon: Texture2D
 @export var item_data: Resource  # CropData, or any placeable data
+@export var is_goal := false
 
 @onready var name_label: Label = $NameLabel
 @onready var icon_rect: TextureRect = $IconRect
@@ -35,6 +36,8 @@ func _on_pressed() -> void:
 	if not CurrencyManager.spend_gold(price):
 		return
 	player.hold_item(item_data)
+	if is_goal:
+		GameManager.win()
 
 
 func _on_gold_changed(_new_gold: int) -> void:
