@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bgbl2uoj186m7"]
 
 [ext_resource type="Texture2D" uid="uid://buflypjynqaia" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Tileset/spr_tileset_sunnysideworld_16px.png" id="1_rbyng"]
+[ext_resource type="Script" uid="uid://bfcnbh3pm8uen" path="res://Scripts/Placeables/plantable_tile.gd" id="scr_ptile"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbyng"]
 size = Vector2(16, 16)
@@ -9,6 +10,7 @@ size = Vector2(16, 16)
 z_index = -1
 collision_layer = 8
 collision_mask = 0
+script = ExtResource("scr_ptile")
 
 [node name="Tile" type="Sprite2D" parent="." unique_id=1062258611]
 texture = ExtResource("1_rbyng")

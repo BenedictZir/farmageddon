@@ -52,3 +52,6 @@ func _animate_scale(target_scale: Vector2) -> void:
 	
 	_tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	_tween.tween_property(self, "scale", target_scale, animation_duration)
+	
+func shrink_to_normal() -> void:
+	_animate_scale(Vector2.ONE)

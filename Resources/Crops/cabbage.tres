@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CropData" format=3 uid="uid://5vvc63tcn3mu"]
+
+[ext_resource type="Script" uid="uid://bb1016x4g4rpn" path="res://Scripts/Data/crop_data.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dvyius44mxve7" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cabbage_01.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c7h83nlx02mkv" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cabbage_02.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dfk5rrvxmpmhe" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cabbage_03.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://85co77q4bi70" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cabbage_04.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://onl73fuyovlh" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cabbage_05.png" id="6"]
+
+[resource]
+script = ExtResource("1")
+crop_name = "Cabbage"
+price = 25
+sell_price = 55
+grow_time = 35.0
+phase_textures = Array[Texture2D]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5")])
+icon = ExtResource("6")

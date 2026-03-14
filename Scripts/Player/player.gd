@@ -14,16 +14,21 @@ var is_knocked := false
 var is_rolling := false
 var _roll_velocity := Vector2.ZERO
 
+var _held_item: Resource = null    # CropData, or any placeable resource
+var _target_tile: Node2D = null    # tile we're about to place on
+
 @export var max_energy := 100.0
 var energy := 100.0
 var _sprint_locked_out := false
 
 @export var roll_energy_cost := 20.0
-@export var roll_distance := 32.0   # pixels (2 tiles)
+@export var roll_distance := 32.0
 @export var roll_duration := 0.3
 
 
 func _ready() -> void:
+	PlayerRef.register(self)
+	tree_exiting.connect(func(): PlayerRef.unregister(self))
 	health_component.damaged.connect(_on_damaged)
 	health_component.died.connect(_on_died)
 	health_component.revived.connect(_on_revived)
@@ -34,7 +39,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if is_knocked or player_visual.is_locked():
 		return
 
-	# Mouse actions — only if not clicking on UI
 	if event is InputEventMouseButton and _is_mouse_over_ui():
 		return
 
@@ -59,9 +63,6 @@ func _physics_process(delta: float) -> void:
 		health_component.current_health / health_component.max_health,
 		energy / max_energy
 	)
-	if is_carrying:
-		select_box.show_selecting()
-
 
 
 func _update_energy(delta: float) -> void:
@@ -86,7 +87,6 @@ func _update_energy(delta: float) -> void:
 		energy = min(energy + delta * 20.0, max_energy)
 
 
-
 func _handle_movement() -> void:
 	if is_rolling:
 		velocity = _roll_velocity
@@ -98,12 +98,9 @@ func _handle_movement() -> void:
 		return
 
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	if direction != Vector2.ZERO:
-		pass  # facing tracked by player_visual.update_movement_anim
 
 	movement_component.move(self, direction, is_running)
 	player_visual.update_movement_anim(direction, is_carrying, is_running)
-
 
 
 func _do_attack() -> void:
@@ -133,32 +130,53 @@ func _end_roll_dash() -> void:
 
 
 func _do_interact() -> void:
-	if is_carrying:
-		place_item()
+	if is_carrying and _held_item:
+		_try_place_item()
 	else:
 		player_visual.play_doing()
 
 
 func _do_drop() -> void:
 	if is_carrying:
-		is_carrying = false
-		select_box.hide()
+		_clear_held_item()
 
+
+func _try_place_item() -> void:
+	var tile = select_box.current_target
+	if not tile:
+		return
+	if tile.has_method("accepts_type") and _held_item.get("placeable_type") != null \
+		and tile.accepts_type(_held_item.placeable_type):
+		_target_tile = tile
+		velocity = Vector2.ZERO
+		player_visual.play_dig()
+	else:
+		select_box.play_error()
+
+
+func hold_item(item: Resource, item_size := Vector2i(1, 1)) -> void:
+	_held_item = item
+	is_carrying = true
+	select_box.set_size(item_size)
+
+
+func _clear_held_item() -> void:
+	is_carrying = false
+	_held_item = null
+	_target_tile = null
 
 
 func pick_up_item(item_size := Vector2i(1, 1)) -> void:
 	is_carrying = true
 	select_box.set_size(item_size)
-	select_box.show_selecting()
 
 
 func place_item() -> void:
 	if not is_carrying:
 		return
-	is_carrying = false
 	select_box.play_placing()
 	player_visual.play_doing()
-
+	_clear_held_item()
 
 
 func _on_damaged(_amount: float) -> void:
@@ -188,6 +206,14 @@ func _on_anim_state_finished(state) -> void:
 		velocity = Vector2.ZERO
 		set_collision_layer_value(2, true)
 
+	# After dig animation → place item on tile
+	if state == player_visual.AnimState.DIG:
+		if _target_tile and _held_item:
+			if _held_item is CropData:
+				_target_tile.plant_crop(_held_item)
+			select_box.play_placing()
+			_clear_held_item()
+
 	if state == player_visual.AnimState.DEATH:
 		get_tree().create_timer(2.0).timeout.connect(func():
 			health_component.revive()
@@ -195,6 +221,5 @@ func _on_anim_state_finished(state) -> void:
 
 
 func _is_mouse_over_ui() -> bool:
-	# Returns true if the mouse is hovering over any GUI Control
 	var viewport := get_viewport()
 	return viewport.gui_get_hovered_control() != null

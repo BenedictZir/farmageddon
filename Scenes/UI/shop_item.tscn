@@ -24,21 +24,23 @@
 custom_minimum_size = Vector2(40, 40)
 offset_right = 40.0
 offset_bottom = 40.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
 script = ExtResource("scr_shop_item")
 
 [node name="NameLabel" type="Label" parent="." unique_id=864066308]
-visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 4.0
-offset_right = 96.0
-offset_bottom = 18.0
-text = "Item Name"
+offset_left = -13.0
+offset_top = -3.0
+offset_right = 59.0
+offset_bottom = 11.0
+theme_override_colors/font_outline_color = Color(0.09411765, 0.078431375, 0.14509805, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 9
+text = "Fertilizer"
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="IconRect" type="TextureRect" parent="." unique_id=829126252]
+visible = false
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
 offset_left = 4.0
@@ -49,17 +51,20 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="PriceLabel" type="Label" parent="." unique_id=233584716]
-visible = false
 layout_mode = 0
-offset_left = 25.0
-offset_top = 96.0
-offset_right = 97.0
-offset_bottom = 110.0
-text = "10g"
+offset_left = -15.0
+offset_top = 35.0
+offset_right = 57.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(1, 1, 0.14509805, 1)
+theme_override_colors/font_outline_color = Color(0.09411765, 0.078431375, 0.14509805, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 9
+text = "10 G"
 horizontal_alignment = 1
 
 [node name="LightBox" type="Node2D" parent="." unique_id=377558505]
-position = Vector2(60, 60)
+position = Vector2(20, 20)
 scale = Vector2(2, 2)
 
 [node name="LtBox9SliceTr" type="Sprite2D" parent="LightBox" unique_id=767683844]
@@ -163,7 +168,7 @@ position = Vector2(-3, 6.5)
 texture = ExtResource("25_8l3tc")
 
 [node name="BrownBox" type="Node2D" parent="." unique_id=1216076017]
-position = Vector2(60, 60)
+position = Vector2(20, 20)
 scale = Vector2(2, 2)
 
 [node name="DtBox9SliceBc" type="Sprite2D" parent="BrownBox" unique_id=1391855491]

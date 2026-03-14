@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dovflfem0i0ky"]
 
+[ext_resource type="Texture2D" uid="uid://bbbitjyosvfou" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/CARRY/notools_carry_strip8.png" id="28_j6uq4"]
 [ext_resource type="Texture2D" uid="uid://d08awmfihc4p1" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/white_progress.png" id="34_2jnj1"]
 [ext_resource type="Texture2D" uid="uid://cvx1mb8cmapil" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/expression_love.png" id="36_2aanf"]
 [ext_resource type="Texture2D" uid="uid://bhhnurqifld4k" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/hud.png" id="36_mwii3"]
@@ -1556,6 +1557,38 @@ region = Rect2(576, 0, 96, 64)
 atlas = ExtResource("tex_tools_carry")
 region = Rect2(672, 0, 96, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbngi"]
+atlas = ExtResource("28_j6uq4")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_geihd"]
+atlas = ExtResource("28_j6uq4")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs43p"]
+atlas = ExtResource("28_j6uq4")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oshob"]
+atlas = ExtResource("28_j6uq4")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4h47k"]
+atlas = ExtResource("28_j6uq4")
+region = Rect2(384, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcfd4"]
+atlas = ExtResource("28_j6uq4")
+region = Rect2(480, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4of5"]
+atlas = ExtResource("28_j6uq4")
+region = Rect2(576, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l7e3"]
+atlas = ExtResource("28_j6uq4")
+region = Rect2(672, 0, 96, 64)
+
 [sub_resource type="AtlasTexture" id="at_tools_death_0"]
 atlas = ExtResource("tex_tools_death")
 region = Rect2(0, 0, 96, 64)
@@ -1932,6 +1965,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_dbngi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_geihd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs43p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oshob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4h47k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcfd4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4of5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8l7e3")
+}],
+"loop": true,
+"name": &"carry_no_tool",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("at_tools_death_0")
 }, {
 "duration": 1.0,
@@ -2247,9 +2309,8 @@ script = ExtResource("scr_visual")
 [node name="Base" type="AnimatedSprite2D" parent="PlayerVisual" unique_id=1511467369]
 y_sort_enabled = true
 sprite_frames = SubResource("sf_base")
-animation = &"roll"
-frame = 9
-frame_progress = 1.0
+animation = &"idle"
+frame_progress = 0.69683135
 
 [node name="Hair" type="AnimatedSprite2D" parent="PlayerVisual" unique_id=807112833]
 y_sort_enabled = true
@@ -2260,9 +2321,8 @@ frame_progress = 0.59723324
 [node name="Tool" type="AnimatedSprite2D" parent="PlayerVisual" unique_id=869108250]
 y_sort_enabled = true
 sprite_frames = SubResource("sf_tools")
-animation = &"roll"
-frame = 9
-frame_progress = 1.0
+animation = &"idle"
+frame_progress = 0.6319752
 
 [node name="SelectBox" parent="." unique_id=1510798765 instance=ExtResource("scn_selectbox")]
 y_sort_enabled = true

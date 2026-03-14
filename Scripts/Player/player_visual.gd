@@ -112,6 +112,11 @@ func update_movement_anim(direction: Vector2, is_carrying: bool, is_running: boo
 		if is_carrying:
 			if _current_state != AnimState.CARRY:
 				play_state(AnimState.CARRY)
+			# Standing still while carrying → freeze at frame 0
+			for sprite in _sprites:
+				if sprite.is_playing():
+					sprite.stop()
+					sprite.frame = 0
 		else:
 			if _current_state != AnimState.IDLE:
 				play_state(AnimState.IDLE)
@@ -122,6 +127,10 @@ func update_movement_anim(direction: Vector2, is_carrying: bool, is_running: boo
 		elif is_carrying:
 			if _current_state != AnimState.CARRY:
 				play_state(AnimState.CARRY)
+			# Make sure animation is playing while moving
+			for sprite in _sprites:
+				if not sprite.is_playing():
+					sprite.play()
 		else:
 			if _current_state != AnimState.WALK:
 				play_state(AnimState.WALK)
@@ -156,6 +165,10 @@ func _on_base_animation_finished() -> void:
 	_locked = false
 	animation_state_finished.emit(finished_state)
 	
-	# Auto-return to idle after one-shot anims (except death)
+	# Auto-return after one-shot anims (except death)
 	if finished_state != AnimState.DEATH:
-		play_state(AnimState.IDLE)
+		var player := get_parent()
+		if player and player.get("is_carrying"):
+			play_state(AnimState.CARRY)
+		else:
+			play_state(AnimState.IDLE)

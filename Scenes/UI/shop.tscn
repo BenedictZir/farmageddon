@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://dx6dd56mjxbo" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_bl.png" id="9_5oyw6"]
 [ext_resource type="Texture2D" uid="uid://cj8ibqp30cpxs" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_lc.png" id="10_vnhp2"]
 [ext_resource type="Texture2D" uid="uid://c31nitvmxs7rm" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_rc.png" id="11_yse77"]
+[ext_resource type="Resource" uid="uid://w2i7mdafmltr" path="res://Resources/Crops/carrot.tres" id="14_m1un4"]
+[ext_resource type="Resource" uid="uid://5vvc63tcn3mu" path="res://Resources/Crops/cabbage.tres" id="15_een5p"]
 [ext_resource type="PackedScene" uid="uid://e85sj6jbk2t1" path="res://Scenes/UI/shop_item.tscn" id="scn_shop_item"]
 [ext_resource type="Script" uid="uid://dqkowipwc422o" path="res://Scripts/UI/shop_ui.gd" id="scr_shop_ui"]
 
@@ -1314,64 +1316,81 @@ position = Vector2(113.5, -0.25)
 texture = ExtResource("11_yse77")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Bar" unique_id=267355780]
-visible = false
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -23.0
-offset_top = -32.0
-offset_right = 413.0
-offset_bottom = 8.0
+offset_left = 16.0
+offset_top = 9.0
+offset_right = 452.0
+offset_bottom = 49.0
 grow_horizontal = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="ShopItem1" parent="Bar/HBoxContainer" unique_id=726902931 instance=ExtResource("scn_shop_item")]
+[node name="Crops" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=403802816]
 layout_mode = 2
-item_name = "Wheat"
 
-[node name="ShopItem2" parent="Bar/HBoxContainer" unique_id=2002373778 instance=ExtResource("scn_shop_item")]
+[node name="Carrot" parent="Bar/HBoxContainer/Crops" unique_id=2002373778 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_name = "Carrot"
 price = 15
+item_data = ExtResource("14_m1un4")
 
-[node name="ShopItem3" parent="Bar/HBoxContainer" unique_id=462347908 instance=ExtResource("scn_shop_item")]
+[node name="Cabbage" parent="Bar/HBoxContainer/Crops" unique_id=462347908 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
+item_id = 2
 item_name = "Cabbage"
 price = 25
+item_data = ExtResource("15_een5p")
 
-[node name="ShopItem4" parent="Bar/HBoxContainer" unique_id=808732040 instance=ExtResource("scn_shop_item")]
+[node name="Crop3" parent="Bar/HBoxContainer/Crops" unique_id=808732040 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
+item_id = 3
 item_name = "Potato"
 price = 30
 
-[node name="ShopItem5" parent="Bar/HBoxContainer" unique_id=58949467 instance=ExtResource("scn_shop_item")]
+[node name="Fertilizer" parent="Bar/HBoxContainer/Crops" unique_id=847154558 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
+item_id = 4
+item_name = "Fertilizer"
+price = 1000
+
+[node name="Animals" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=114398264]
+layout_mode = 2
+
+[node name="Chicken" parent="Bar/HBoxContainer/Animals" unique_id=58949467 instance=ExtResource("scn_shop_item")]
+layout_mode = 2
+item_id = 5
 item_name = "Chicken"
 price = 100
 
-[node name="ShopItem6" parent="Bar/HBoxContainer" unique_id=1377985927 instance=ExtResource("scn_shop_item")]
+[node name="Cow" parent="Bar/HBoxContainer/Animals" unique_id=1377985927 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
+item_id = 6
 item_name = "Cow"
 price = 200
 
-[node name="ShopItem7" parent="Bar/HBoxContainer" unique_id=1286885475 instance=ExtResource("scn_shop_item")]
+[node name="Helper" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=1101036095]
 layout_mode = 2
-item_name = "Fertilizer"
+
+[node name="FarmerHelper" parent="Bar/HBoxContainer/Helper" unique_id=1286885475 instance=ExtResource("scn_shop_item")]
+layout_mode = 2
+item_id = 7
+item_name = "Farmer"
 price = 50
 
-[node name="ShopItem8" parent="Bar/HBoxContainer" unique_id=800627408 instance=ExtResource("scn_shop_item")]
+[node name="WarriorHelper" parent="Bar/HBoxContainer/Helper" unique_id=800627408 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
-item_name = "Farmer"
+item_id = 8
+item_name = "Warrior"
 price = 300
 
-[node name="ShopItem9" parent="Bar/HBoxContainer" unique_id=785228811 instance=ExtResource("scn_shop_item")]
+[node name="Goal2" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=1957344051]
 layout_mode = 2
-item_name = "Warrior"
-price = 400
 
-[node name="ShopItem10" parent="Bar/HBoxContainer" unique_id=847154558 instance=ExtResource("scn_shop_item")]
+[node name="Goal" parent="Bar/HBoxContainer/Goal2" unique_id=785228811 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
+item_id = 9
 item_name = "Goal"
-price = 1000
+price = 400
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1027574005]
