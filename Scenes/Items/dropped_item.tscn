@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cen6im0vk5etl"]
+
+[ext_resource type="Script" uid="uid://d7cjjm3kvhm4" path="res://Scripts/Placeables/dropped_item.gd" id="scr_dropped"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3w7xp"]
+size = Vector2(16, 16)
+
+[node name="DroppedItem" type="Area2D" unique_id=489467237]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("scr_dropped")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=660510246]
+shape = SubResource("RectangleShape2D_3w7xp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=575898322]

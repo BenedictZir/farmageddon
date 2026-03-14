@@ -10,6 +10,7 @@ var player: CharacterBody2D
 
 var is_carrying := false
 var _held_item: Resource = null
+var _held_growth_phase := 0
 var _target_tile: Node2D = null
 var _is_holding_harvest := false
 
@@ -39,6 +40,7 @@ func drop() -> void:
 
 func hold_item(item: Resource, item_size := Vector2i(1, 1)) -> void:
 	_held_item = item
+	_held_growth_phase = 0
 	_is_holding_harvest = false
 	is_carrying = true
 	select_box.set_size(item_size)
@@ -72,15 +74,13 @@ func _try_place_item() -> void:
 # ── Harvesting (tile → carry) ────────────────────────────
 
 func _try_harvest() -> void:
-	var tile = select_box.current_target
-	if not tile:
+	var target = select_box.current_target
+	if not target:
 		player_visual.play_doing()
 		return
-	if tile.has_method("is_harvestable") and tile.is_harvestable():
-		_target_tile = tile
+	if target.has_method("is_harvestable") and target.is_harvestable():
+		_target_tile = target
 		player.velocity = Vector2.ZERO
-		player_visual.play_dig()
-	else:
 		player_visual.play_doing()
 
 
@@ -114,28 +114,61 @@ func _sell_held_item() -> void:
 	_clear()
 
 
-# ── DIG animation callback ──────────────────────────────
+# ── INTERACT animation callback (DIG/DOING) ─────────────
 
-func on_dig_finished() -> void:
+func on_interact_anim_finished() -> void:
 	if not _target_tile:
 		return
 	if _held_item and not _is_holding_harvest:
-		# Was placing a seed
+		# Was placing a seed (or replanting dropped crop)
 		if _held_item is CropData:
-			_target_tile.plant_crop(_held_item)
+			if _held_growth_phase > 0 and _target_tile.has_method("plant_crop_at_phase"):
+				_target_tile.plant_crop_at_phase(_held_item, _held_growth_phase)
+			else:
+				_target_tile.plant_crop(_held_item)
 		select_box.play_placing()
 		_clear()
-	elif not is_carrying and _target_tile.has_method("is_harvestable") \
-		and _target_tile.is_harvestable():
-		# Was harvesting
-		finish_harvest()
+	elif not is_carrying:
+		# Check if target is a DroppedItem
+		if _target_tile.has_method("pick_up"):
+			_pick_up_dropped(_target_tile)
+		elif _target_tile.has_method("is_harvestable") \
+			and _target_tile.is_harvestable():
+			finish_harvest()
 
 
 # ── Internal ─────────────────────────────────────────────
 
+func _pick_up_dropped(dropped: Node2D) -> void:
+	var data: Dictionary = dropped.pick_up()
+	var item = data.get("item_data")
+	if not item:
+		return
+	_target_tile = null
+	_held_item = item
+
+	if data.get("was_growing", false):
+		# Growing crop → hold as seed (can replant)
+		_held_growth_phase = data.get("growth_phase", 0)
+		_is_holding_harvest = false
+		is_carrying = true
+		select_box.set_size(Vector2i(1, 1))
+		player_visual.set_carry_no_tool(false)
+		player_visual.hide_held_item()
+	else:
+		# Harvested crop → hold as harvest (can sell)
+		_is_holding_harvest = true
+		is_carrying = true
+		select_box.set_size(Vector2i(1, 1))
+		player_visual.set_carry_no_tool(true)
+		if item is CropData:
+			player_visual.show_held_item(item.icon)
+
+
 func _clear() -> void:
 	is_carrying = false
 	_held_item = null
+	_held_growth_phase = 0
 	_target_tile = null
 	_is_holding_harvest = false
 	player_visual.set_carry_no_tool(false)

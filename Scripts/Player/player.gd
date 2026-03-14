@@ -13,6 +13,7 @@ var is_running := false
 var is_knocked := false
 var is_rolling := false
 var _roll_velocity := Vector2.ZERO
+var _time_since_last_damage := 0.0
 
 ## Proxied from inventory — select_box reads this
 var is_carrying: bool:
@@ -63,6 +64,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	_update_energy(delta)
+	_update_health(delta)
 	_handle_movement()
 
 	hud.update_bars(
@@ -91,6 +93,12 @@ func _update_energy(delta: float) -> void:
 			is_running = false
 	elif not is_rolling:
 		energy = min(energy + delta * 20.0, max_energy)
+
+
+func _update_health(delta: float) -> void:
+	_time_since_last_damage += delta
+	if _time_since_last_damage >= 5.0 and health_component.current_health < health_component.max_health:
+		health_component.heal(delta * 5.0)
 
 
 func _handle_movement() -> void:
@@ -137,6 +145,7 @@ func hold_item(item: Resource, item_size := Vector2i(1, 1)) -> void:
 
 
 func _on_damaged(_amount: float) -> void:
+	_time_since_last_damage = 0.0
 	if is_knocked:
 		return
 	player_visual.play_hurt()
@@ -145,6 +154,12 @@ func _on_damaged(_amount: float) -> void:
 func _on_died() -> void:
 	is_knocked = true
 	velocity = Vector2.ZERO
+	# Drop 50% gold
+	var gold_to_drop := CurrencyManager.gold / 2
+	if gold_to_drop > 0:
+		CurrencyManager.spend_gold(gold_to_drop)
+	# Drop held item
+	inventory.drop()
 	player_visual.play_death()
 
 
@@ -163,11 +178,11 @@ func _on_anim_state_finished(state) -> void:
 		velocity = Vector2.ZERO
 		set_collision_layer_value(2, true)
 
-	if state == player_visual.AnimState.DIG:
-		inventory.on_dig_finished()
+	if state == player_visual.AnimState.DIG or state == player_visual.AnimState.DOING:
+		inventory.on_interact_anim_finished()
 
 	if state == player_visual.AnimState.DEATH:
-		get_tree().create_timer(2.0).timeout.connect(func():
+		get_tree().create_timer(5.0).timeout.connect(func():
 			health_component.revive()
 		)
 

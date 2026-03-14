@@ -27,7 +27,6 @@ func revive() -> void:
 
 func die() -> void:
 	died.emit()
-	get_parent().get_parent().queue_free()
 
 func is_alive() -> bool:
 	return current_health > 0

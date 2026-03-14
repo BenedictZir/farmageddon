@@ -21,13 +21,23 @@ func update_bars(health_ratio: float, energy_ratio: float) -> void:
 
 
 func _smooth_set(bar: TextureProgressBar, target: float, tween_var: String) -> void:
+	if absf(bar.value - target) < 0.01:
+		bar.value = target
+		return
+
+	# If difference is small (e.g. passive regen) or we're basically keeping up,
+	# don't start a new tween since starting a tween every frame stutters.
+	if absf(bar.value - target) <= 2.0:
+		var existing: Tween = get(tween_var)
+		if existing and existing.is_running():
+			existing.kill()
+		bar.value = target
+		return
+
+	# Large damage/heal: use tween
 	var existing: Tween = get(tween_var)
 	if existing and existing.is_running():
 		existing.kill()
-
-	if absf(bar.value - target) < 0.5:
-		bar.value = target
-		return
 
 	var tw := create_tween()
 	tw.tween_property(bar, "value", target, tween_speed)\

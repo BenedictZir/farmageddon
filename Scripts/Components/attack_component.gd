@@ -9,9 +9,9 @@ extends Area2D
 
 
 func _ready() -> void:
-	monitoring = false
-	monitorable = false
-	$CollisionShape2D.disabled = true
+	set_deferred("monitoring", false)
+	set_deferred("monitorable", false)
+	$CollisionShape2D.set_deferred("disabled", true)
 	body_entered.connect(_on_body_entered)
 
 
@@ -19,16 +19,18 @@ func _ready() -> void:
 func activate(is_facing_left: bool) -> void:
 	position.x = -offset_distance if is_facing_left else offset_distance
 	position.y = 0.0
-	monitoring = true
-	monitorable = true
-	$CollisionShape2D.disabled = false
+	set_deferred("monitoring", true)
+	set_deferred("monitorable", true)
+	await get_tree().create_timer(0.4).timeout
+	if monitoring:
+		$CollisionShape2D.set_deferred("disabled", false)
 
 
 ## Deactivate hitbox
 func deactivate() -> void:
-	monitoring = false
-	monitorable = false
-	$CollisionShape2D.disabled = true
+	set_deferred("monitoring", false)
+	set_deferred("monitorable", false)
+	$CollisionShape2D.set_deferred("disabled", true)
 	position = Vector2.ZERO
 
 

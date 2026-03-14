@@ -31,7 +31,6 @@ func _ready() -> void:
 	_anim_bl.animation_finished.connect(_on_animation_finished)
 	top_level = true
 	SelectBoxAnimations.build(_anim_players, item_size)
-	visible = false
 
 
 func _physics_process(_delta: float) -> void:
