@@ -17,11 +17,14 @@ func enter() -> void:
 func exit() -> void:
 	goblin.interruptible = true
 	goblin.visual.unlock()
+	goblin.set_interact_progress(0, false)
 
 
 func physics_update(delta: float) -> void:
 	goblin.velocity = Vector2.ZERO
 	_steal_timer += delta
+	# Update bar
+	goblin.set_interact_progress(_steal_timer / goblin.steal_duration, true)
 
 	# Ensure doing animation loops if it finishes early
 	if not goblin.visual.is_locked():

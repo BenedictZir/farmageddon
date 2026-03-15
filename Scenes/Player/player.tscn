@@ -34,6 +34,8 @@
 [ext_resource type="Texture2D" uid="uid://bcd5riuha774a" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/ROLL/bowlhair_roll_strip10.png" id="tex_bowlhair_roll"]
 [ext_resource type="Texture2D" uid="uid://ckjp10pqibcpu" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/RUN/bowlhair_run_strip8.png" id="tex_bowlhair_run"]
 [ext_resource type="Texture2D" uid="uid://b7fy7qoik8c4b" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/WALKING/bowlhair_walk_strip8.png" id="tex_bowlhair_walk"]
+[ext_resource type="Texture2D" uid="uid://duhbrsnes27sp" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/progress_green.png" id="tex_green"]
+[ext_resource type="Texture2D" uid="uid://bd563hdiisdmq" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/over.png" id="tex_over"]
 [ext_resource type="Texture2D" uid="uid://dl56k110xegx0" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/ATTACK/tools_attack_strip10.png" id="tex_tools_attack"]
 [ext_resource type="Texture2D" uid="uid://8dwooi6pl7ax" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/CARRY/tools_carry_strip8.png" id="tex_tools_carry"]
 [ext_resource type="Texture2D" uid="uid://dxv3hb06upl5n" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/DEATH/tools_death_strip13.png" id="tex_tools_death"]
@@ -44,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://ormheoryrtre" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/ROLL/tools_roll_strip10.png" id="tex_tools_roll"]
 [ext_resource type="Texture2D" uid="uid://c7ubghoin0xit" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/RUN/tools_run_strip8.png" id="tex_tools_run"]
 [ext_resource type="Texture2D" uid="uid://c02e67somt7ck" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/WALKING/tools_walk_strip8.png" id="tex_tools_walk"]
+[ext_resource type="Texture2D" uid="uid://ba0x1oup484bc" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/under.png" id="tex_under"]
 
 [sub_resource type="RectangleShape2D" id="col_rect"]
 size = Vector2(16, 16)
@@ -2336,6 +2339,15 @@ texture = ExtResource("37_h5u0x")
 
 [node name="SelectBox" parent="." unique_id=1510798765 instance=ExtResource("scn_selectbox")]
 y_sort_enabled = true
+
+[node name="InteractBar" type="TextureProgressBar" parent="." unique_id=1931151670]
+offset_left = -8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 16.0
+texture_under = ExtResource("tex_under")
+texture_over = ExtResource("tex_over")
+texture_progress = ExtResource("tex_green")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1910900308]
 script = ExtResource("scr_hud")

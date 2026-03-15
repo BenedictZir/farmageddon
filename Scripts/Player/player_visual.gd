@@ -34,6 +34,8 @@ const ANIM_NAMES := {
 @onready var tool_sprite: AnimatedSprite2D = $Tool
 @onready var held_item_sprite: Sprite2D = $HeldItemSprite
 
+@onready var interact_bar: TextureProgressBar = $"../InteractBar"
+
 var _sprites: Array[AnimatedSprite2D]
 var _current_state := AnimState.IDLE
 var _facing_direction := Vector2.DOWN
@@ -47,6 +49,21 @@ func _ready() -> void:
 	base.animation_finished.connect(_on_base_animation_finished)
 	play_state(AnimState.IDLE)
 	hide_held_item()
+	if interact_bar:
+		interact_bar.visible = false
+
+
+func _process(_delta: float) -> void:
+	if interact_bar:
+		if _locked and _current_state in [AnimState.DOING, AnimState.DIG]:
+			interact_bar.visible = true
+			var anim_name = ANIM_NAMES[_current_state]
+			if base.sprite_frames and base.sprite_frames.has_animation(anim_name):
+				var total_frames = float(base.sprite_frames.get_frame_count(anim_name))
+				var current_progress = (float(base.frame) + base.frame_progress) / max(1.0, total_frames)
+				interact_bar.value = current_progress * 100.0
+		else:
+			interact_bar.visible = false
 
 
 func get_current_state() -> AnimState:

@@ -5,6 +5,10 @@
 [ext_resource type="Script" uid="uid://biqt6s1fohv56" path="res://Scripts/Components/attack_component.gd" id="3_phgs2"]
 [ext_resource type="Script" uid="uid://cc4enjncjqjyt" path="res://Scripts/Components/movement_component.gd" id="4_phgs2"]
 [ext_resource type="Script" uid="uid://ce7xt68mlqqeg" path="res://Scripts/Enemy/enemy_visual.gd" id="scr_enemy_visual"]
+[ext_resource type="Texture2D" uid="uid://duhbrsnes27sp" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/progress_green.png" id="tex_green"]
+[ext_resource type="Texture2D" uid="uid://bd563hdiisdmq" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/over.png" id="tex_over"]
+[ext_resource type="Texture2D" uid="uid://dglhn7o38ihtm" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/progress_red.png" id="tex_red"]
+[ext_resource type="Texture2D" uid="uid://ba0x1oup484bc" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/under.png" id="tex_under"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ah813"]
 resource_local_to_scene = true
@@ -42,3 +46,24 @@ metadata/_custom_type_script = "uid://cc4enjncjqjyt"
 
 [node name="EnemyVisual" type="AnimatedSprite2D" parent="." unique_id=543429950]
 script = ExtResource("scr_enemy_visual")
+
+[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=1411516709]
+z_index = 15
+offset_left = -8.0
+offset_top = -15.0
+offset_right = 8.0
+offset_bottom = -7.0
+value = 100.0
+texture_under = ExtResource("tex_under")
+texture_over = ExtResource("tex_over")
+texture_progress = ExtResource("tex_red")
+
+[node name="InteractBar" type="TextureProgressBar" parent="." unique_id=321582117]
+z_index = 15
+offset_left = -8.0
+offset_top = 4.0
+offset_right = 8.0
+offset_bottom = 12.0
+texture_under = ExtResource("tex_under")
+texture_over = ExtResource("tex_over")
+texture_progress = ExtResource("tex_green")

@@ -8,6 +8,9 @@ class_name EnemyBase
 @onready var attack_component: Area2D = $Components/AttackComponent
 @onready var visual: EnemyVisual = $EnemyVisual
 
+@onready var health_bar: TextureProgressBar = $HealthBar
+@onready var interact_bar: TextureProgressBar = $InteractBar
+
 ## Held item icon (Sprite2D child added by scene or at runtime)
 @onready var held_item_sprite: Sprite2D = $HeldItemSprite
 
@@ -18,6 +21,15 @@ var interruptible := true
 func _ready() -> void:
 	health_component.died.connect(_on_died)
 	health_component.damaged.connect(_on_damaged)
+	if health_component.has_signal("healed"):
+		health_component.healed.connect(_on_healed)
+		
+	if health_bar:
+		health_bar.max_value = health_component.max_health
+		health_bar.value = health_component.current_health
+	if interact_bar:
+		interact_bar.visible = false
+		
 	# Create held item sprite if it doesn't exist
 	if not has_node("HeldItemSprite"):
 		var spr := Sprite2D.new()
@@ -28,11 +40,20 @@ func _ready() -> void:
 		add_child(spr)
 		held_item_sprite = spr
 
-func _on_damaged(amount:= 0) -> void:
+func _on_damaged(amount:= 0.0) -> void:
+	if health_bar:
+		health_bar.value = health_component.current_health
 	if is_dead or not interruptible:
 		return
 	attack_component.deactivate()
 	visual.play_anim_locked("hurt")
+	
+
+func _on_healed(amount:= 0.0) -> void:
+	if health_bar:
+		health_bar.value = health_component.current_health
+
+
 func _on_died() -> void:
 	if is_dead:
 		return
@@ -42,9 +63,20 @@ func _on_died() -> void:
 
 ## Override in subclasses for custom death behavior
 func _on_death() -> void:
+	if health_bar:
+		health_bar.hide()
+	if interact_bar:
+		interact_bar.hide()
 	visual.play_anim("death")
 	await visual.anim_finished
 	queue_free()
+
+
+func set_interact_progress(progress: float, is_visible := true) -> void:
+	if interact_bar:
+		interact_bar.value = progress * 100.0
+		interact_bar.visible = is_visible
+
 
 
 func show_held_item(icon: Texture2D) -> void:
