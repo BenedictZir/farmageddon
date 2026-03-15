@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://cvb713s5jnxm5"]
+
+[ext_resource type="Script" uid="uid://dxupgrade0001" path="res://Scripts/UI/upgrade_shop.gd" id="1_scr"]
+
+[node name="UpgradeShop" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_scr")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -80.0
+offset_right = 100.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 12
+text = "STAT UPGRADES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 10
+text = "X"
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 28.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="HealthRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="DescLabel" type="Label" parent="Panel/VBox/HealthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 10
+text = "+Max Health & Heal (Lv 1)"
+
+[node name="CostLabel" type="Label" parent="Panel/VBox/HealthRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "50g"
+
+[node name="BuyButton" type="Button" parent="Panel/VBox/HealthRow"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "+"
+
+[node name="SpeedRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="DescLabel" type="Label" parent="Panel/VBox/SpeedRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 10
+text = "+Movement Speed (Lv 1)"
+
+[node name="CostLabel" type="Label" parent="Panel/VBox/SpeedRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "50g"
+
+[node name="BuyButton" type="Button" parent="Panel/VBox/SpeedRow"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "+"
+
+[node name="InteractRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="DescLabel" type="Label" parent="Panel/VBox/InteractRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 10
+text = "+Farming Speed (Lv 1)"
+
+[node name="CostLabel" type="Label" parent="Panel/VBox/InteractRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "50g"
+
+[node name="BuyButton" type="Button" parent="Panel/VBox/InteractRow"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "+"

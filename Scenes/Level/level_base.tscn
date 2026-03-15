@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cw484471wpxix" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Plants/spr_deco_tree_02_strip4.png" id="4_ekdek"]
 [ext_resource type="Texture2D" uid="uid://g34vps1bunb0" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Plants/spr_deco_tree_01_strip4.png" id="5_dlak8"]
 [ext_resource type="Shader" uid="uid://w3mckfty164d" path="res://Shaders/sawit.gdshader" id="5_sj5t6"]
+[ext_resource type="Script" uid="uid://b61cvbsl7u180" path="res://Scripts/Level/forage_spawner.gd" id="7_6fsfs"]
+[ext_resource type="Resource" uid="uid://cjca1yymi58k8" path="res://Resources/Forage/red_mushroom.tres" id="8_g3fov"]
 [ext_resource type="Script" uid="uid://dofyuwdsoybf2" path="res://Scripts/Level/level_base.gd" id="scr_lvl_b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ty4vd"]
@@ -1847,6 +1849,11 @@ region_rect = Rect2(5, 5, 18, 35)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1913896110]
 position = Vector2(0, 3)
 zoom = Vector2(2, 2)
+
+[node name="ForageSpawner" type="Node2D" parent="." unique_id=1796233981]
+script = ExtResource("7_6fsfs")
+spawn_interval = 15.0
+forage_items = Array[Resource]([ExtResource("8_g3fov")])
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1036515668]
 

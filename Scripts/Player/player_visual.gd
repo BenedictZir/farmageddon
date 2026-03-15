@@ -172,9 +172,16 @@ func update_movement_anim(direction: Vector2, is_carrying: bool, is_running: boo
 
 
 func _play_on_all(anim_name: String) -> void:
+	var speed_scale := 1.0
+	
+	if anim_name == "doing" or anim_name == "dig":
+		# Speed up interaction animations based on UpgradeManager
+		var bonus = UpgradeManager.interact_level * UpgradeManager.INTERACT_BONUS_PER_LEVEL
+		speed_scale = 1.0 + bonus
+		
 	for sprite in _sprites:
 		if sprite.sprite_frames and sprite.sprite_frames.has_animation(anim_name):
-			sprite.play(anim_name)
+			sprite.play(anim_name, speed_scale)
 		else:
 			sprite.stop()
 

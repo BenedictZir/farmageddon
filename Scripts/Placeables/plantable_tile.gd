@@ -36,7 +36,7 @@ func plant_crop(crop_data: CropData) -> void:
 	occupied = true
 	var crop_instance := CROP_SCENE.instantiate()
 	add_child(crop_instance)
-	crop_instance.position = Vector2.ZERO - Vector2(0, 1)
+	crop_instance.position = Vector2.ZERO - Vector2(0, 2)
 	crop_instance.setup(crop_data)
 	placed_crop = crop_instance
 

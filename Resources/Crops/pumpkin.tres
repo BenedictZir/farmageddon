@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CropData" format=3 uid="uid://dr1dkhqfc10cg"]
+
+[ext_resource type="Texture2D" uid="uid://dlhdjcwnwjsh3" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/pumpkin_05.png" id="1_5d342"]
+[ext_resource type="Script" uid="uid://bb1016x4g4rpn" path="res://Scripts/Data/crop_data.gd" id="1_61i3c"]
+[ext_resource type="Texture2D" uid="uid://bksw68gmjwvil" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/pumpkin_00.png" id="2_eph37"]
+[ext_resource type="Texture2D" uid="uid://cjko0pn75khl1" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/pumpkin_01.png" id="2_x74cl"]
+[ext_resource type="Texture2D" uid="uid://fdpm4cdnka6q" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/pumpkin_02.png" id="3_eph37"]
+[ext_resource type="Texture2D" uid="uid://vskim1mlhp2c" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/pumpkin_03.png" id="4_cwb4d"]
+[ext_resource type="Texture2D" uid="uid://kepcmqeklt3f" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/pumpkin_04.png" id="5_gd5so"]
+
+[resource]
+script = ExtResource("1_61i3c")
+crop_name = "Pumpkin"
+price = 60
+sell_price = 110
+grow_time = 60.0
+phase_textures = Array[Texture2D]([ExtResource("2_eph37"), ExtResource("2_x74cl"), ExtResource("3_eph37"), ExtResource("4_cwb4d"), ExtResource("5_gd5so")])
+icon = ExtResource("1_5d342")
+metadata/_custom_type_script = "uid://bb1016x4g4rpn"

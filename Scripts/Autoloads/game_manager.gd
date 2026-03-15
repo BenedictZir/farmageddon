@@ -10,6 +10,18 @@ extends CanvasLayer
 
 var map_extents := Vector2(320, 180) # Default size
 var current_level_path := ""
+var current_level_index := 1
+
+var level_goals := {
+	1: {"name": "Unlock Chicken", "price": 500, "icon": null},
+	2: {"name": "Unlock Farmer/Warrior", "price": 1000, "icon": null},
+	3: {"name": "Unlock Farmland", "price": 1500, "icon": null},
+	4: {"name": "Unlock Night", "price": 2500, "icon": null},
+	5: {"name": "Ultimate Crown", "price": 4000, "icon": null}
+}
+
+func get_current_goal_data() -> Dictionary:
+	return level_goals.get(current_level_index, level_goals[1])
 
 var _game_over := false
 var _check_timer := 0.0
@@ -26,6 +38,7 @@ func register_level(extents: Vector2, scene_path: String) -> void:
 	current_level_path = scene_path
 	_game_over = false
 	hide_ui()
+	UpgradeManager.reset_upgrades()
 
 
 func _process(delta: float) -> void:

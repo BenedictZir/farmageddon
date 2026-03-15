@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CropData" format=3 uid="uid://w2i7mdafmltr"]
+
+[ext_resource type="Texture2D" uid="uid://c8xdfop5t86tf" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/parsnip_05.png" id="1_h14p6"]
+[ext_resource type="Texture2D" uid="uid://d2aqowl8pe1f6" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/parsnip_00.png" id="2_5l2w6"]
+[ext_resource type="Texture2D" uid="uid://bb18bdnqftpld" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/parsnip_01.png" id="2_265sp"]
+[ext_resource type="Texture2D" uid="uid://brcpuio6w84af" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/parsnip_02.png" id="3_5l2w6"]
+[ext_resource type="Texture2D" uid="uid://b2us53tn0hqhf" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/parsnip_03.png" id="4_kxd8w"]
+[ext_resource type="Texture2D" uid="uid://dcv72nuamouri" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/parsnip_04.png" id="5_tfxfq"]
+[ext_resource type="Script" uid="uid://bb1016x4g4rpn" path="res://Scripts/Data/crop_data.gd" id="6_56uh1"]
+
+[resource]
+script = ExtResource("6_56uh1")
+crop_name = "Parsnip"
+sell_price = 15
+grow_time = 10.0
+phase_textures = Array[Texture2D]([ExtResource("2_5l2w6"), ExtResource("2_265sp"), ExtResource("3_5l2w6"), ExtResource("4_kxd8w"), ExtResource("5_tfxfq")])
+icon = ExtResource("1_h14p6")

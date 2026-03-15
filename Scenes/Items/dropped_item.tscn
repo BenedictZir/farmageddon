@@ -22,6 +22,7 @@ shader_parameter/sine_amplitude = Vector2(0, 1)
 shader_parameter/sine_speed = Vector2(0, 1)
 
 [node name="DroppedItem" type="Area2D" unique_id=489467237]
+y_sort_enabled = true
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("scr_dropped")
@@ -30,5 +31,6 @@ script = ExtResource("scr_dropped")
 shape = SubResource("RectangleShape2D_3w7xp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=575898322]
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_allw1")
 texture = ExtResource("3_allw1")

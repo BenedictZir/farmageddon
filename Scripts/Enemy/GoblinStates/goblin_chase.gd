@@ -8,13 +8,6 @@ func physics_update(_delta: float) -> void:
 		goblin.velocity = Vector2.ZERO
 		goblin.move_and_slide()
 		return
-	# Priority Focus: Stealable items are more important than chasing player
-	var tile := goblin.find_nearest_stealable()
-	if tile:
-		goblin.target_tile = tile
-		transition.emit("approach")
-		return
-
 	var player := PlayerRef.instance
 	if not player or player.is_knocked:
 		transition.emit("roam")
@@ -22,6 +15,14 @@ func physics_update(_delta: float) -> void:
 
 	var to_player := player.global_position - goblin.global_position
 	var dist := to_player.length()
+
+	# If the player is very close (e.g., < 70px) they are the immediate threat, IGNORE crops!
+	if dist > 70.0:
+		var tile := goblin.find_nearest_stealable()
+		if tile:
+			goblin.target_tile = tile
+			transition.emit("approach")
+			return
 
 	if dist > goblin.player_detect_range * 1.5:
 		transition.emit("roam")

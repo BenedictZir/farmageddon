@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ForageData" format=3 uid="uid://cjca1yymi58k8"]
+
+[ext_resource type="Script" uid="uid://xvahglpa12ve" path="res://Scripts/Resources/forage_data.gd" id="1_05b32"]
+[ext_resource type="Texture2D" uid="uid://c30n4oda2hv6" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Plants/spr_deco_mushroom_red_01_strip4.png" id="1_k7c4c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghk6g"]
+atlas = ExtResource("1_k7c4c")
+region = Rect2(5, 2, 11, 9)
+
+[resource]
+script = ExtResource("1_05b32")
+item_name = "Red Mushroom"
+sell_price = 3
+icon = SubResource("AtlasTexture_ghk6g")

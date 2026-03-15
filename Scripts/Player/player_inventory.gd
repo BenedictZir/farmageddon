@@ -34,7 +34,22 @@ func interact() -> void:
 
 
 func drop() -> void:
-	if is_carrying:
+	if is_carrying and _held_item:
+		var dropped_scene := preload("res://Scenes/Items/dropped_item.tscn")
+		var item := dropped_scene.instantiate()
+		player.get_parent().add_child(item)
+		item.global_position = player.global_position
+		
+		var icon_tex: Texture2D = null
+		if (_held_item is CropData and _is_holding_harvest) or _held_item is ForageData:
+			icon_tex = _held_item.icon
+			
+		item.setup({
+			"item_data": _held_item,
+			"was_growing": not _is_holding_harvest,
+			"growth_phase": _held_growth_phase,
+			"icon": icon_tex
+		})
 		_clear()
 
 
@@ -103,13 +118,13 @@ func finish_harvest() -> void:
 
 func _try_use_harvest() -> void:
 	# Future: check select_box.current_target for feedable animal
-	if _held_item is CropData:
+	if _held_item is CropData or _held_item is ForageData:
 		_sell_held_item()
 
 
 func _sell_held_item() -> void:
-	var crop := _held_item as CropData
-	CurrencyManager.add_gold(crop.sell_price)
+	if _held_item.get("sell_price") != null:
+		CurrencyManager.add_gold(_held_item.sell_price)
 	select_box.play_placing()
 	_clear()
 
@@ -161,7 +176,7 @@ func _pick_up_dropped(dropped: Node2D) -> void:
 		is_carrying = true
 		select_box.set_size(Vector2i(1, 1))
 		player_visual.set_carry_no_tool(true)
-		if item is CropData:
+		if item is CropData or item is ForageData:
 			player_visual.show_held_item(item.icon)
 
 

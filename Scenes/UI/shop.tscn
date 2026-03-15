@@ -11,10 +11,26 @@
 [ext_resource type="Texture2D" uid="uid://dx6dd56mjxbo" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/dt_box_9slice_bl.png" id="9_5oyw6"]
 [ext_resource type="Texture2D" uid="uid://cj8ibqp30cpxs" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_lc.png" id="10_vnhp2"]
 [ext_resource type="Texture2D" uid="uid://c31nitvmxs7rm" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_rc.png" id="11_yse77"]
-[ext_resource type="Resource" uid="uid://w2i7mdafmltr" path="res://Resources/Crops/carrot.tres" id="14_m1un4"]
+[ext_resource type="Texture2D" uid="uid://c8xdfop5t86tf" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/parsnip_05.png" id="14_5oyw6"]
+[ext_resource type="Resource" uid="uid://w2i7mdafmltr" path="res://Resources/Crops/parsnip.tres" id="14_m1un4"]
 [ext_resource type="Resource" uid="uid://5vvc63tcn3mu" path="res://Resources/Crops/cauliflower.tres" id="15_een5p"]
+[ext_resource type="Texture2D" uid="uid://bew1ky6tg7eca" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cauliflower_05.png" id="16_5oyw6"]
+[ext_resource type="Texture2D" uid="uid://cgks5pri7hir2" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Animals/spr_deco_chicken_01_strip4.png" id="18_57cgt"]
+[ext_resource type="Texture2D" uid="uid://dlhdjcwnwjsh3" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/pumpkin_05.png" id="18_vnhp2"]
+[ext_resource type="Resource" uid="uid://dr1dkhqfc10cg" path="res://Resources/Crops/pumpkin.tres" id="19_yse77"]
+[ext_resource type="Texture2D" uid="uid://vpb3qt0tbag5" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Animals/spr_deco_cow_strip4.png" id="21_4e8w0"]
+[ext_resource type="Texture2D" uid="uid://bfau6stdmx0tk" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/shovel.png" id="22_4e8w0"]
+[ext_resource type="Texture2D" uid="uid://5l8mn1e8jkl2" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/sword.png" id="23_dkr68"]
 [ext_resource type="PackedScene" uid="uid://e85sj6jbk2t1" path="res://Scenes/UI/shop_item.tscn" id="scn_shop_item"]
 [ext_resource type="Script" uid="uid://dqkowipwc422o" path="res://Scripts/UI/shop_ui.gd" id="scr_shop_ui"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnhp2"]
+atlas = ExtResource("18_57cgt")
+region = Rect2(7, 7, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkr68"]
+atlas = ExtResource("21_4e8w0")
+region = Rect2(4, 3, 23, 20)
 
 [node name="ShopUI" type="Control" unique_id=1413438752]
 layout_mode = 3
@@ -1329,9 +1345,10 @@ alignment = 1
 [node name="Crops" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=403802816]
 layout_mode = 2
 
-[node name="Carrot" parent="Bar/HBoxContainer/Crops" unique_id=2002373778 instance=ExtResource("scn_shop_item")]
+[node name="Parsnip" parent="Bar/HBoxContainer/Crops" unique_id=2002373778 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
-item_name = "Carrot"
+item_name = "Parsnip"
+icon = ExtResource("14_5oyw6")
 item_data = ExtResource("14_m1un4")
 
 [node name="Cauliflower" parent="Bar/HBoxContainer/Crops" unique_id=462347908 instance=ExtResource("scn_shop_item")]
@@ -1339,19 +1356,24 @@ layout_mode = 2
 item_id = 2
 item_name = "Cauliflower"
 price = 25
+icon = ExtResource("16_5oyw6")
 item_data = ExtResource("15_een5p")
 
-[node name="Crop3" parent="Bar/HBoxContainer/Crops" unique_id=808732040 instance=ExtResource("scn_shop_item")]
+[node name="Pumpkin" parent="Bar/HBoxContainer/Crops" unique_id=808732040 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_id = 3
-item_name = "Potato"
-price = 30
+item_name = "Pumpkin"
+price = 60
+icon = ExtResource("18_vnhp2")
+item_data = ExtResource("19_yse77")
+unlock_level = 2
 
 [node name="Fertilizer" parent="Bar/HBoxContainer/Crops" unique_id=847154558 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_id = 4
 item_name = "Fertilizer"
 price = 1000
+unlock_level = 2
 
 [node name="Animals" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=114398264]
 layout_mode = 2
@@ -1360,13 +1382,17 @@ layout_mode = 2
 layout_mode = 2
 item_id = 5
 item_name = "Chicken"
-price = 100
+price = 200
+icon = SubResource("AtlasTexture_vnhp2")
+unlock_level = 2
 
 [node name="Cow" parent="Bar/HBoxContainer/Animals" unique_id=1377985927 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_id = 6
 item_name = "Cow"
-price = 200
+price = 400
+icon = SubResource("AtlasTexture_dkr68")
+unlock_level = 3
 
 [node name="Helper" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=1101036095]
 layout_mode = 2
@@ -1376,12 +1402,16 @@ layout_mode = 2
 item_id = 7
 item_name = "Farmer"
 price = 50
+icon = ExtResource("22_4e8w0")
+unlock_level = 3
 
 [node name="WarriorHelper" parent="Bar/HBoxContainer/Helper" unique_id=800627408 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_id = 8
 item_name = "Warrior"
 price = 300
+icon = ExtResource("23_dkr68")
+unlock_level = 3
 
 [node name="Goal2" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=1957344051]
 layout_mode = 2

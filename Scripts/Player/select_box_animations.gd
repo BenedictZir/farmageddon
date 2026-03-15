@@ -63,6 +63,12 @@ static func _build_selecting(lib: AnimationLibrary, edge: Vector2, dir: Vector2)
 	anim.track_insert_key(t, 0.2, edge + dir * PULSE_AMOUNT)
 	anim.track_insert_key(t, 0.3, edge + dir * 1.0)
 	anim.track_insert_key(t, 0.4, edge)
+	
+	# Add missing color reset to prevent stuck fade-outs
+	var mt := anim.add_track(Animation.TYPE_VALUE)
+	anim.track_set_path(mt, ".:modulate")
+	anim.track_insert_key(mt, 0.0, Color(1, 1, 1, 1))
+	
 	lib.remove_animation(&"selecting")
 	lib.add_animation(&"selecting", anim)
 

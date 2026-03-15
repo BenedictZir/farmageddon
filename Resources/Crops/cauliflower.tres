@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="CropData" format=3 uid="uid://5vvc63tcn3mu"]
 
 [ext_resource type="Texture2D" uid="uid://bew1ky6tg7eca" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cauliflower_05.png" id="1_cetm5"]
+[ext_resource type="Texture2D" uid="uid://bqm5g4xp08q8l" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cauliflower_00.png" id="2_3kjrr"]
 [ext_resource type="Texture2D" uid="uid://b26wrjr76ejhj" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cauliflower_01.png" id="2_4pbsf"]
 [ext_resource type="Texture2D" uid="uid://hat088gswq45" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cauliflower_02.png" id="3_3kjrr"]
 [ext_resource type="Texture2D" uid="uid://ctw32asjs6tco" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cauliflower_03.png" id="4_74ww8"]
@@ -11,7 +12,7 @@
 script = ExtResource("6_4867q")
 crop_name = "Cauliflower"
 price = 25
-sell_price = 55
+sell_price = 45
 grow_time = 30.0
-phase_textures = Array[Texture2D]([ExtResource("2_4pbsf"), ExtResource("3_3kjrr"), ExtResource("4_74ww8"), ExtResource("5_3kj5g")])
+phase_textures = Array[Texture2D]([ExtResource("2_3kjrr"), ExtResource("2_4pbsf"), ExtResource("3_3kjrr"), ExtResource("4_74ww8"), ExtResource("5_3kj5g")])
 icon = ExtResource("1_cetm5")

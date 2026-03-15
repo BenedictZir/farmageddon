@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b0ce2efau8ksx" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_tr.png" id="17_wjp2m"]
 [ext_resource type="Texture2D" uid="uid://ct15n3ovgbpmb" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_tl.png" id="18_2lsei"]
 [ext_resource type="Texture2D" uid="uid://bmtcpt1rq18pj" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_tc.png" id="19_7mw3m"]
+[ext_resource type="Texture2D" uid="uid://cav12hpt30cr6" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/carrot_05.png" id="20_60m3v"]
 [ext_resource type="Texture2D" uid="uid://c31nitvmxs7rm" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_rc.png" id="20_irqxa"]
 [ext_resource type="Texture2D" uid="uid://cj8ibqp30cpxs" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_lc.png" id="21_15hnh"]
 [ext_resource type="Texture2D" uid="uid://ggyyg1i3l13v" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/9slice_box_white/lt_box_9slice_c.png" id="22_lhrlf"]
@@ -28,9 +29,9 @@ script = ExtResource("scr_shop_item")
 
 [node name="NameLabel" type="Label" parent="." unique_id=864066308]
 layout_mode = 0
-offset_left = -13.0
+offset_left = -16.0
 offset_top = -3.0
-offset_right = 59.0
+offset_right = 56.0
 offset_bottom = 11.0
 theme_override_colors/font_outline_color = Color(0.09411765, 0.078431375, 0.14509805, 1)
 theme_override_constants/outline_size = 5
@@ -39,22 +40,11 @@ text = "Fertilizer"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="IconRect" type="TextureRect" parent="." unique_id=829126252]
-visible = false
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 0
-offset_left = 4.0
-offset_top = 34.0
-offset_right = 76.0
-offset_bottom = 66.0
-expand_mode = 1
-stretch_mode = 5
-
 [node name="PriceLabel" type="Label" parent="." unique_id=233584716]
 layout_mode = 0
-offset_left = -15.0
+offset_left = -16.0
 offset_top = 35.0
-offset_right = 57.0
+offset_right = 56.0
 offset_bottom = 49.0
 theme_override_colors/font_color = Color(1, 1, 0.14509805, 1)
 theme_override_colors/font_outline_color = Color(0.09411765, 0.078431375, 0.14509805, 1)
@@ -270,3 +260,15 @@ texture = ExtResource("9_uf637")
 [node name="DtBox9SliceBc9" type="Sprite2D" parent="BrownBox" unique_id=922316321]
 position = Vector2(6, -5.5)
 texture = ExtResource("10_bjpw8")
+
+[node name="IconRect" type="TextureRect" parent="." unique_id=507298994]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 47.0
+offset_bottom = 48.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("20_60m3v")
+expand_mode = 1
+stretch_mode = 5

@@ -9,6 +9,7 @@ class_name ShopItem
 @export var icon: Texture2D
 @export var item_data: Resource  # CropData, or any placeable data
 @export var is_goal := false
+@export var unlock_level: int = 1
 
 @onready var name_label: Label = $NameLabel
 @onready var icon_rect: TextureRect = $IconRect
@@ -17,13 +18,33 @@ class_name ShopItem
 
 func _ready() -> void:
 	super()
-	name_label.text = item_name
-	price_label.text = str(price) + "g"
-	if icon:
-		icon_rect.texture = icon
+	
+	if is_goal:
+		var goal_data = GameManager.get_current_goal_data()
+		item_name = goal_data.get("name", "Goal")
+		price = goal_data.get("price", 9999)
+		icon = goal_data.get("icon", null)
+		
+	# Apply Locked visual state before initialization so text overriding works
+	var is_locked = GameManager.current_level_index < unlock_level
+	if is_locked:
+		name_label.text = "???"
+		price_label.text = "???"
+		if icon:
+			icon_rect.texture = icon
+			icon_rect.modulate = Color(0, 0, 0, 1) # Solid black silhouette
+		shrink_to_normal()
+		modulate = Color(0.5, 0.5, 0.5, 1.0)
+		disabled = true
+	else:
+		name_label.text = item_name
+		price_label.text = str(price) + "g"
+		if icon:
+			icon_rect.texture = icon
+			icon_rect.modulate = Color.WHITE
 
-	CurrencyManager.gold_changed.connect(_on_gold_changed)
-	_update_affordability()
+		CurrencyManager.gold_changed.connect(_on_gold_changed)
+		_update_affordability()
 
 
 func _on_pressed() -> void:
@@ -45,6 +66,9 @@ func _on_gold_changed(_new_gold: int) -> void:
 
 
 func _update_affordability() -> void:
+	if GameManager.current_level_index < unlock_level:
+		return # Let the _ready pass handle keeping it disabled/dark
+		
 	var can_afford = CurrencyManager.can_afford(price)
 	disabled = not can_afford
 	if not can_afford:
@@ -54,5 +78,8 @@ func _update_affordability() -> void:
 		modulate = Color.WHITE
 
 func _unhandled_input(event: InputEvent) -> void:
+	if GameManager.current_level_index < unlock_level:
+		return
+		
 	if Input.is_action_just_pressed("shop_" + str(item_id)):
 		_on_pressed()

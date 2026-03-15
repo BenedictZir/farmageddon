@@ -17,13 +17,39 @@ func setup(data: Dictionary) -> void:
 	growth_phase = data.get("growth_phase", 0)
 	_icon = data.get("icon")
 
+	var target_tex: Texture2D = null
+
 	# Use icon if provided, otherwise use first phase texture
 	if _icon:
-		sprite.texture = _icon
+		target_tex = _icon
 	elif item_data is CropData and item_data.phase_textures.size() > 0:
 		# Show the seed/growing sprite
 		var phase = min(growth_phase, item_data.phase_textures.size() - 1)
-		sprite.texture = item_data.phase_textures[phase]
+		target_tex = item_data.phase_textures[phase]
+	elif item_data is ForageData:
+		target_tex = item_data.icon
+
+	# Fix shader outline/cropping issues for atlas textures (like sprite strips)
+	if target_tex:
+		if target_tex is AtlasTexture:
+			var img = target_tex.get_image()
+			sprite.texture = ImageTexture.create_from_image(img)
+		else:
+			sprite.texture = target_tex
+
+	# Implement specific visual behaviors
+	if item_data is ForageData:	
+		# 1. Disable outline and floating shader entirely for Forage items
+		sprite.material = null
+			
+		# 2. Grow animation from the bottom center
+		var tex_h = sprite.texture.get_height() if sprite.texture else 16.0
+		sprite.scale = Vector2.ZERO
+		sprite.position.y += tex_h / 2.0 # shift origin to bottom
+		
+		var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tween.tween_property(sprite, "scale", Vector2.ONE, 0.6)
+		tween.parallel().tween_property(sprite, "position:y", 0.0, 0.6)
 
 
 func is_harvestable() -> bool:
