@@ -126,11 +126,17 @@ func _find_best_target(player: Node2D) -> Node2D:
 func set_size(new_size: Vector2i) -> void:
 	item_size = new_size
 	SelectBoxAnimations.build(_anim_players, item_size)
+	_is_placing = false
+	_is_error = false
+	if _error_tween and _error_tween.is_running():
+		_error_tween.kill()
+		for c in _corners: c.modulate = Color.WHITE
 	_play_all("RESET")
 	visible = false
 
 
 func play_selecting() -> void:
+	_is_placing = false
 	visible = true
 	_play_all("selecting")
 
@@ -142,6 +148,7 @@ func play_placing() -> void:
 
 
 func hide_box() -> void:
+	_is_placing = false
 	_play_all("RESET")
 	visible = false
 

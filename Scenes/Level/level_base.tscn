@@ -1,13 +1,11 @@
 [gd_scene format=4 uid="uid://b207knhmejlc2"]
 
 [ext_resource type="PackedScene" uid="uid://dovflfem0i0ky" path="res://Scenes/Player/player.tscn" id="1_kr1g8"]
-[ext_resource type="PackedScene" uid="uid://bgbl2uoj186m7" path="res://Scenes/Crops/plantable_tile.tscn" id="1_ty4vd"]
 [ext_resource type="Texture2D" uid="uid://buflypjynqaia" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Tileset/spr_tileset_sunnysideworld_16px.png" id="2_i1iga"]
 [ext_resource type="PackedScene" uid="uid://dlpj3vchq0is" path="res://Scenes/UI/shop.tscn" id="4_68h7x"]
 [ext_resource type="Texture2D" uid="uid://cw484471wpxix" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Plants/spr_deco_tree_02_strip4.png" id="4_ekdek"]
 [ext_resource type="Texture2D" uid="uid://g34vps1bunb0" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Plants/spr_deco_tree_01_strip4.png" id="5_dlak8"]
 [ext_resource type="Shader" uid="uid://w3mckfty164d" path="res://Shaders/sawit.gdshader" id="5_sj5t6"]
-[ext_resource type="PackedScene" uid="uid://cmgajr2sc2bvt" path="res://Scenes/Enemy/goblin.tscn" id="8_6fsfs"]
 [ext_resource type="Script" uid="uid://dofyuwdsoybf2" path="res://Scripts/Level/level_base.gd" id="scr_lvl_b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ty4vd"]
@@ -1844,78 +1842,6 @@ region_rect = Rect2(5, 5, 18, 35)
 
 [node name="PlantableTiles" type="Node2D" parent="." unique_id=1103730003]
 
-[node name="PlantableTile" parent="PlantableTiles" unique_id=1809472782 instance=ExtResource("1_ty4vd")]
-position = Vector2(-72, -24)
-
-[node name="PlantableTile2" parent="PlantableTiles" unique_id=1019656130 instance=ExtResource("1_ty4vd")]
-position = Vector2(-56, -24)
-
-[node name="PlantableTile3" parent="PlantableTiles" unique_id=809635958 instance=ExtResource("1_ty4vd")]
-position = Vector2(-40, -24)
-
-[node name="PlantableTile4" parent="PlantableTiles" unique_id=454168733 instance=ExtResource("1_ty4vd")]
-position = Vector2(-72, -8)
-
-[node name="PlantableTile5" parent="PlantableTiles" unique_id=895521290 instance=ExtResource("1_ty4vd")]
-position = Vector2(-56, -8)
-
-[node name="PlantableTile6" parent="PlantableTiles" unique_id=810118403 instance=ExtResource("1_ty4vd")]
-position = Vector2(-40, -8)
-
-[node name="PlantableTile7" parent="PlantableTiles" unique_id=2012032462 instance=ExtResource("1_ty4vd")]
-position = Vector2(-72, 8)
-
-[node name="PlantableTile8" parent="PlantableTiles" unique_id=1466283128 instance=ExtResource("1_ty4vd")]
-position = Vector2(-56, 8)
-
-[node name="PlantableTile9" parent="PlantableTiles" unique_id=831936740 instance=ExtResource("1_ty4vd")]
-position = Vector2(-40, 8)
-
-[node name="PlantableTile19" parent="PlantableTiles" unique_id=521248769 instance=ExtResource("1_ty4vd")]
-position = Vector2(-72, 24)
-
-[node name="PlantableTile20" parent="PlantableTiles" unique_id=455208292 instance=ExtResource("1_ty4vd")]
-position = Vector2(-56, 24)
-
-[node name="PlantableTile21" parent="PlantableTiles" unique_id=852240727 instance=ExtResource("1_ty4vd")]
-position = Vector2(-40, 24)
-
-[node name="PlantableTile10" parent="PlantableTiles" unique_id=1247333490 instance=ExtResource("1_ty4vd")]
-position = Vector2(40, -24)
-
-[node name="PlantableTile11" parent="PlantableTiles" unique_id=1644884890 instance=ExtResource("1_ty4vd")]
-position = Vector2(56, -24)
-
-[node name="PlantableTile12" parent="PlantableTiles" unique_id=2071882653 instance=ExtResource("1_ty4vd")]
-position = Vector2(72, -24)
-
-[node name="PlantableTile13" parent="PlantableTiles" unique_id=740185014 instance=ExtResource("1_ty4vd")]
-position = Vector2(40, -8)
-
-[node name="PlantableTile14" parent="PlantableTiles" unique_id=1172695761 instance=ExtResource("1_ty4vd")]
-position = Vector2(56, -8)
-
-[node name="PlantableTile15" parent="PlantableTiles" unique_id=399025040 instance=ExtResource("1_ty4vd")]
-position = Vector2(72, -8)
-
-[node name="PlantableTile16" parent="PlantableTiles" unique_id=843350558 instance=ExtResource("1_ty4vd")]
-position = Vector2(40, 8)
-
-[node name="PlantableTile17" parent="PlantableTiles" unique_id=589133641 instance=ExtResource("1_ty4vd")]
-position = Vector2(56, 8)
-
-[node name="PlantableTile18" parent="PlantableTiles" unique_id=1715371333 instance=ExtResource("1_ty4vd")]
-position = Vector2(72, 8)
-
-[node name="PlantableTile22" parent="PlantableTiles" unique_id=1768077581 instance=ExtResource("1_ty4vd")]
-position = Vector2(40, 24)
-
-[node name="PlantableTile23" parent="PlantableTiles" unique_id=1080125536 instance=ExtResource("1_ty4vd")]
-position = Vector2(56, 24)
-
-[node name="PlantableTile24" parent="PlantableTiles" unique_id=436350706 instance=ExtResource("1_ty4vd")]
-position = Vector2(72, 24)
-
 [node name="Player" parent="." unique_id=949497324 instance=ExtResource("1_kr1g8")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1913896110]
@@ -1927,14 +1853,3 @@ zoom = Vector2(2, 2)
 [node name="ShopUI" parent="UI" unique_id=445589370 instance=ExtResource("4_68h7x")]
 offset_left = 150.0
 offset_right = 15.0
-
-[node name="Goblin" parent="." unique_id=7649292 instance=ExtResource("8_6fsfs")]
-position = Vector2(1047, -23)
-player_detect_range = null
-steal_detect_range = null
-attack_range = null
-attack_stop_range = null
-steal_duration = null
-run_speed = null
-walk_speed = null
-roam_change_interval = null

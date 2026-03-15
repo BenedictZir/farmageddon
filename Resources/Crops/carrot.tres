@@ -10,8 +10,7 @@
 [resource]
 script = ExtResource("1")
 crop_name = "Carrot"
-price = 15
-sell_price = 25
-grow_time = 20.0
+sell_price = 15
+grow_time = 10.0
 phase_textures = Array[Texture2D]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5")])
 icon = ExtResource("6")

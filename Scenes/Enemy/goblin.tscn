@@ -666,7 +666,7 @@ animations = [{
 [node name="Goblin" unique_id=7649292 instance=ExtResource("1_ht57u")]
 script = ExtResource("scr_goblin_ai")
 player_detect_range = 80.0
-steal_detect_range = 120.0
+steal_detect_range = 80.0
 attack_range = 16.0
 attack_stop_range = 20.0
 steal_duration = 3.0

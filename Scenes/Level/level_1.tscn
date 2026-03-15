@@ -1,0 +1,76 @@
+[gd_scene format=4 uid="uid://dq5ncy6q4xe0b"]
+
+[ext_resource type="PackedScene" uid="uid://b207knhmejlc2" path="res://Scenes/Level/level_base.tscn" id="1_k541i"]
+[ext_resource type="Shader" uid="uid://w3mckfty164d" path="res://Shaders/sawit.gdshader" id="2_m5hwo"]
+[ext_resource type="Resource" uid="uid://bbmf2gd48fto6" path="res://Resources/LevelData/level_1.tres" id="2_wtlyx"]
+[ext_resource type="PackedScene" uid="uid://bgbl2uoj186m7" path="res://Scenes/Crops/plantable_tile.tscn" id="4_wtlyx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_knogg"]
+resource_local_to_scene = true
+shader = ExtResource("2_m5hwo")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 0.0
+shader_parameter/heightOffset = 0.0
+shader_parameter/offset = 0.0
+
+[node name="Level1" unique_id=395313815 instance=ExtResource("1_k541i")]
+level_data = ExtResource("2_wtlyx")
+
+[node name="Ground2" parent="." index="1" unique_id=778701774]
+tile_map_data = PackedByteArray("AAD4//3/AAAhAAIAAAD2//3/AAAgAAMAAAD///r/AAAgAAIAAAAGAP7/AAAeAAEAAAD6//v/AAAiAAQAAAD4/wUAAAAhAAEAAAD9/wQAAAAhAAQAAAAEAAYAAAAdAAEAAAD2/wQAAAAhAAMAAAAIAAMAAAAcAAMAAAAGAAMAAAAgAAEAAAAIAAAAAAAhAAQAAAD7/wUAAAAeAAQAAAD6////AAAGAAcAAAD2////AAAxAAgAAAAJAP7/AAAfAAMAAAABAPz/AAAxAAgAAAD+//v/AAAgAAIAAAAGAAQAAAAgAAMAAAADAAYAAAAhAAEAAAAKAAQAAAAiAAEAAAAJAAcAAAAiAAMAAAD4/wEAAAAiAAQAAAD9//z/AAAiAAQAAAD6/wAAAAAGAAcAAAD+////AAADAAgAAAD+/wAAAAADAAgAAAABAP//AAAGAAcAAAABAAAAAAAGAAcAAAAFAP//AAADAAgAAAAFAAAAAAADAAgAAAD8//7/AAAEAAcAAAD9//7/AAAEAAcAAAD+//7/AAAEAAgAAAD7//7/AAAEAAcAAAD6//7/AAAIAAcAAAABAP7/AAAIAAcAAAACAP7/AAAEAAcAAAADAP7/AAAEAAcAAAAEAP7/AAAEAAcAAAAFAP7/AAAEAAgAAAD6/wEAAAAGAAgAAAD7/wEAAAAFAAgAAAD8/wEAAAAFAAgAAAD9/wEAAAAFAAgAAAD+/wEAAAAHAAgAAAABAAEAAAAGAAgAAAACAAEAAAAFAAgAAAADAAEAAAAFAAgAAAAEAAEAAAAFAAgAAAAFAAEAAAAHAAgAAAA=")
+
+[node name="Tree" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="0" unique_id=294457344]
+material = SubResource("ShaderMaterial_knogg")
+
+[node name="Tree2" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="1" unique_id=440742620]
+material = SubResource("ShaderMaterial_knogg")
+
+[node name="Tree3" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="2" unique_id=428025185]
+material = SubResource("ShaderMaterial_knogg")
+
+[node name="Tree4" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="3" unique_id=1107591342]
+material = SubResource("ShaderMaterial_knogg")
+
+[node name="Tree5" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="4" unique_id=1798594926]
+material = SubResource("ShaderMaterial_knogg")
+
+[node name="PlantableTile4" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="0" unique_id=1809472782 instance=ExtResource("4_wtlyx")]
+position = Vector2(-72, -8)
+
+[node name="PlantableTile5" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="1" unique_id=455931473 instance=ExtResource("4_wtlyx")]
+position = Vector2(-56, -8)
+
+[node name="PlantableTile6" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="2" unique_id=1202295801 instance=ExtResource("4_wtlyx")]
+position = Vector2(-40, -8)
+
+[node name="PlantableTile7" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="3" unique_id=592380834 instance=ExtResource("4_wtlyx")]
+position = Vector2(-72, 8)
+
+[node name="PlantableTile8" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="4" unique_id=679774771 instance=ExtResource("4_wtlyx")]
+position = Vector2(-56, 8)
+
+[node name="PlantableTile9" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="5" unique_id=974311789 instance=ExtResource("4_wtlyx")]
+position = Vector2(-40, 8)
+
+[node name="PlantableTile13" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="6" unique_id=1017433389 instance=ExtResource("4_wtlyx")]
+position = Vector2(40, -8)
+
+[node name="PlantableTile14" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="7" unique_id=164988548 instance=ExtResource("4_wtlyx")]
+position = Vector2(56, -8)
+
+[node name="PlantableTile15" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="8" unique_id=338512731 instance=ExtResource("4_wtlyx")]
+position = Vector2(72, -8)
+
+[node name="PlantableTile16" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="9" unique_id=1577571554 instance=ExtResource("4_wtlyx")]
+position = Vector2(40, 8)
+
+[node name="PlantableTile17" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="10" unique_id=1528185130 instance=ExtResource("4_wtlyx")]
+position = Vector2(56, 8)
+
+[node name="PlantableTile18" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="11" unique_id=2022169396 instance=ExtResource("4_wtlyx")]
+position = Vector2(72, 8)

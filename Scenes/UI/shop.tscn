@@ -1331,12 +1331,8 @@ layout_mode = 2
 
 [node name="Carrot" parent="Bar/HBoxContainer/Crops" unique_id=2002373778 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
-item_id = null
 item_name = "Carrot"
-price = 15
 item_data = ExtResource("14_m1un4")
-hover_scale_multiplier = null
-animation_duration = null
 
 [node name="Cauliflower" parent="Bar/HBoxContainer/Crops" unique_id=462347908 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
@@ -1344,24 +1340,18 @@ item_id = 2
 item_name = "Cauliflower"
 price = 25
 item_data = ExtResource("15_een5p")
-hover_scale_multiplier = null
-animation_duration = null
 
 [node name="Crop3" parent="Bar/HBoxContainer/Crops" unique_id=808732040 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_id = 3
 item_name = "Potato"
 price = 30
-hover_scale_multiplier = null
-animation_duration = null
 
 [node name="Fertilizer" parent="Bar/HBoxContainer/Crops" unique_id=847154558 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_id = 4
 item_name = "Fertilizer"
 price = 1000
-hover_scale_multiplier = null
-animation_duration = null
 
 [node name="Animals" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=114398264]
 layout_mode = 2
@@ -1371,16 +1361,12 @@ layout_mode = 2
 item_id = 5
 item_name = "Chicken"
 price = 100
-hover_scale_multiplier = null
-animation_duration = null
 
 [node name="Cow" parent="Bar/HBoxContainer/Animals" unique_id=1377985927 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_id = 6
 item_name = "Cow"
 price = 200
-hover_scale_multiplier = null
-animation_duration = null
 
 [node name="Helper" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=1101036095]
 layout_mode = 2
@@ -1390,16 +1376,12 @@ layout_mode = 2
 item_id = 7
 item_name = "Farmer"
 price = 50
-hover_scale_multiplier = null
-animation_duration = null
 
 [node name="WarriorHelper" parent="Bar/HBoxContainer/Helper" unique_id=800627408 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_id = 8
 item_name = "Warrior"
 price = 300
-hover_scale_multiplier = null
-animation_duration = null
 
 [node name="Goal2" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=1957344051]
 layout_mode = 2
@@ -1409,7 +1391,6 @@ layout_mode = 2
 item_id = 9
 item_name = "Goal"
 price = 400
-hover_scale_multiplier = null
-animation_duration = null
+is_goal = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1027574005]

@@ -5,7 +5,7 @@ extends Node
 
 signal gold_changed(new_amount: int)
 
-var gold: int = 500 : set = set_gold
+var gold: int = 20 : set = set_gold
 
 func set_gold(value: int) -> void:
 	gold = max(0, value)
