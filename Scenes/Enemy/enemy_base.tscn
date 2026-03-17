@@ -47,7 +47,7 @@ metadata/_custom_type_script = "uid://cc4enjncjqjyt"
 [node name="EnemyVisual" type="AnimatedSprite2D" parent="." unique_id=543429950]
 script = ExtResource("scr_enemy_visual")
 
-[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=1411516709]
+[node name="HealthBar" type="TextureProgressBar" parent="EnemyVisual" unique_id=1411516709]
 z_index = 15
 offset_left = -8.0
 offset_top = -15.0

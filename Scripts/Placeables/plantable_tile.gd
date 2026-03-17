@@ -4,7 +4,6 @@ extends Area2D
 
 var occupied := false
 var placed_crop: Node2D = null
-
 const CROP_SCENE := preload("res://Scenes/Crops/crop.tscn")
 
 

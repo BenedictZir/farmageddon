@@ -8,8 +8,8 @@ class_name ForageSpawner
 @export var spawn_variance: float = 5.0 # Randomize interval slightly (+/- 5 seconds)
 @export var forage_items: Array[Resource] = []
 @export var max_forage_on_ground: int = 5
-@export var spawn_chance: float = 0.5 # 50% chance every interval
-@export var max_spawn_per_level: int = 10 # Hard cap on total spawns to avoid infinite gold
+@export var spawn_chance: float = 0.8# 80% chance every interval
+@export var max_spawn_per_level: int = 20 # Hard cap on total spawns to avoid infinite gold
 
 var _timer := 0.0
 var _current_target_time := 0.0

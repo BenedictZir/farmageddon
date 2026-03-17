@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 func _check_lose_condition() -> void:
 	# Lose if: Gold < lowest shop price (assuming 15) AND
 	# No crops planted AND player not holding any seeds/crops.
-	if CurrencyManager.gold >= 15:
+	if CurrencyManager.gold >= 10:
 		return
 	
 	var player = PlayerRef.instance

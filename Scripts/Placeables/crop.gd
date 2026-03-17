@@ -10,7 +10,6 @@ var _growth_timer := 0.0
 var _phase_duration := 0.0
 var fully_grown := false
 
-
 func setup(data: CropData) -> void:
 	crop_data = data
 	growth_phase = 0
@@ -40,3 +39,6 @@ func _process(delta: float) -> void:
 func _update_sprite() -> void:
 	if crop_data and crop_data.phase_textures.size() > growth_phase:
 		sprite.texture = crop_data.phase_textures[growth_phase]
+
+func fertilize() -> void:
+	_phase_duration *= 0.5

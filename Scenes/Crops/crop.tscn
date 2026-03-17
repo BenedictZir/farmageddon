@@ -1,8 +1,8 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://d335ebcepvf8o"]
 
-[ext_resource type="Script" path="res://Scripts/Placeables/crop.gd" id="scr_crop"]
+[ext_resource type="Script" uid="uid://7xwbp1n6wfnb" path="res://Scripts/Placeables/crop.gd" id="scr_crop"]
 
-[node name="Crop" type="Node2D"]
+[node name="Crop" type="Node2D" unique_id=240079015]
 script = ExtResource("scr_crop")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1018210233]

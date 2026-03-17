@@ -40,6 +40,7 @@ func setup(data: Dictionary) -> void:
 	# Implement specific visual behaviors
 	if item_data is ForageData:	
 		# 1. Disable outline and floating shader entirely for Forage items
+		var material = sprite.material
 		sprite.material = null
 			
 		# 2. Grow animation from the bottom center
@@ -50,8 +51,9 @@ func setup(data: Dictionary) -> void:
 		var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		tween.tween_property(sprite, "scale", Vector2.ONE, 0.6)
 		tween.parallel().tween_property(sprite, "position:y", 0.0, 0.6)
-
-
+		await tween.finished
+		sprite.material = material
+		sprite.material.set("shader_parameter/sine_amplitude", Vector2(0, 0))
 func is_harvestable() -> bool:
 	## Select box uses this to show the box on this item.
 	return true

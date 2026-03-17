@@ -1,59 +1,70 @@
 [gd_scene format=3 uid="uid://cdvf752qny4tn"]
 
-[ext_resource type="Script" uid="uid://b1paejs6qyqsg" path="res://Scripts/Enemy/bird.gd" id="1_38h2u"]
-[ext_resource type="Texture2D" uid="uid://cg38fe3dbbilb" path="res://Assets/Pixel Art Bird 16x16/BirdSprite.png" id="1_te4f0"]
-[ext_resource type="Script" uid="uid://4iw2c8bqnaea" path="res://Scripts/Components/health_component.gd" id="3_qe26p"]
+[ext_resource type="PackedScene" uid="uid://dk60tj3da8qop" path="res://Scenes/Enemy/enemy_base.tscn" id="1_base"]
+[ext_resource type="Script" uid="uid://b1paejs6qyqsg" path="res://Scripts/Enemy/bird.gd" id="2_birdscript"]
+[ext_resource type="Texture2D" uid="uid://cg38fe3dbbilb" path="res://Assets/Pixel Art Bird 16x16/BirdSprite.png" id="3_birdtexture"]
+[ext_resource type="Script" uid="uid://b4fdi1j4q3pv4" path="res://Scripts/StateMachine/finite_state_machine.gd" id="scr_fsm"]
+[ext_resource type="Script" path="res://Scripts/Enemy/BirdStates/bird_fly_in.gd" id="scr_bird_fly_in"]
+[ext_resource type="Script" path="res://Scripts/Enemy/BirdStates/bird_eat.gd" id="scr_bird_eat"]
+[ext_resource type="Script" path="res://Scripts/Enemy/BirdStates/bird_fly_out.gd" id="scr_bird_fly_out"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_te4f0"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qe26p"]
+resource_local_to_scene = true
+size = Vector2(16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_38h2u"]
-atlas = ExtResource("1_te4f0")
+atlas = ExtResource("3_birdtexture")
 region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qe26p"]
-atlas = ExtResource("1_te4f0")
+atlas = ExtResource("3_birdtexture")
 region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5brux"]
-atlas = ExtResource("1_te4f0")
+atlas = ExtResource("3_birdtexture")
 region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_01wt2"]
-atlas = ExtResource("1_te4f0")
+atlas = ExtResource("3_birdtexture")
 region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mmy5m"]
-atlas = ExtResource("1_te4f0")
+atlas = ExtResource("3_birdtexture")
 region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6j2c"]
-atlas = ExtResource("1_te4f0")
+atlas = ExtResource("3_birdtexture")
 region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ofsy5"]
-atlas = ExtResource("1_te4f0")
+atlas = ExtResource("3_birdtexture")
 region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2y3r1"]
-atlas = ExtResource("1_te4f0")
+atlas = ExtResource("3_birdtexture")
 region = Rect2(64, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w130g"]
-atlas = ExtResource("1_te4f0")
+atlas = ExtResource("3_birdtexture")
 region = Rect2(80, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6jc7"]
-atlas = ExtResource("1_te4f0")
+atlas = ExtResource("3_birdtexture")
 region = Rect2(96, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5nqld"]
-atlas = ExtResource("1_te4f0")
+atlas = ExtResource("3_birdtexture")
 region = Rect2(112, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u12kb"]
-atlas = ExtResource("1_te4f0")
+atlas = ExtResource("3_birdtexture")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r14ho"]
-atlas = ExtResource("1_te4f0")
+atlas = ExtResource("3_birdtexture")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c0jod"]
@@ -119,26 +130,35 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_te4f0"]
-size = Vector2(16, 16)
-
-[node name="Bird" type="CharacterBody2D" unique_id=1289886827]
-collision_layer = 4
+[node name="Bird" unique_id=1927286370 instance=ExtResource("1_base")]
 collision_mask = 8
-script = ExtResource("1_38h2u")
+script = ExtResource("2_birdscript")
 
-[node name="BirdVisual" type="AnimatedSprite2D" parent="." unique_id=1450046814]
+[node name="CollisionShape2D" parent="." index="0" unique_id=534802735]
+shape = SubResource("RectangleShape2D_te4f0")
+
+[node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1856128264) index="0" unique_id=1089499295]
+max_health = 1.0
+
+[node name="AttackComponent" parent="Components" parent_id_path=PackedInt32Array(1856128264) index="1" unique_id=1460850251]
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="Components/AttackComponent" index="0" unique_id=154781645]
+shape = SubResource("RectangleShape2D_qe26p")
+
+[node name="EnemyVisual" parent="." index="2" unique_id=543429950]
 sprite_frames = SubResource("SpriteFrames_c0jod")
 animation = &"eat"
 autoplay = "eat"
-frame_progress = 0.95522904
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1258468144]
-shape = SubResource("RectangleShape2D_te4f0")
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("scr_fsm")
 
-[node name="Components" type="Node2D" parent="." unique_id=120685001]
+[node name="FlyIn" type="Node" parent="StateMachine"]
+script = ExtResource("scr_bird_fly_in")
 
-[node name="HealthComponent" type="Node2D" parent="Components" unique_id=2013500798]
-script = ExtResource("3_qe26p")
-max_health = 1.0
-metadata/_custom_type_script = "uid://4iw2c8bqnaea"
+[node name="Eat" type="Node" parent="StateMachine"]
+script = ExtResource("scr_bird_eat")
+
+[node name="FlyOut" type="Node" parent="StateMachine"]
+script = ExtResource("scr_bird_fly_out")

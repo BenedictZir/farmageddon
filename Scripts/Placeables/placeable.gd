@@ -5,4 +5,5 @@ enum Type {
 	CROP,
 	HELPER,
 	ANIMAL,
+	FERTILIZER
 }

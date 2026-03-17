@@ -8,17 +8,18 @@ class_name EnemyBase
 @onready var attack_component: Area2D = $Components/AttackComponent
 @onready var visual: EnemyVisual = $EnemyVisual
 
-@onready var health_bar: TextureProgressBar = $HealthBar
 @onready var interact_bar: TextureProgressBar = $InteractBar
+@onready var health_bar: TextureProgressBar = $EnemyVisual/HealthBar
 
-## Held item icon (Sprite2D child added by scene or at runtime)
-@onready var held_item_sprite: Sprite2D = $HeldItemSprite
+var held_item_sprite: Sprite2D 
 
 var is_dead := false
 var interruptible := true
 
 
 func _ready() -> void:
+	if $HeldItemSprite:
+		held_item_sprite = $HeldItemSprite
 	health_component.died.connect(_on_died)
 	health_component.damaged.connect(_on_damaged)
 	if health_component.has_signal("healed"):
@@ -30,15 +31,6 @@ func _ready() -> void:
 	if interact_bar:
 		interact_bar.visible = false
 		
-	# Create held item sprite if it doesn't exist
-	if not has_node("HeldItemSprite"):
-		var spr := Sprite2D.new()
-		spr.name = "HeldItemSprite"
-		spr.visible = false
-		spr.z_index = 10
-		spr.position = Vector2(5, -12)
-		add_child(spr)
-		held_item_sprite = spr
 
 func _on_damaged(amount:= 0.0) -> void:
 	if health_bar:

@@ -55,6 +55,17 @@ func _spawn_enemy() -> void:
 	if not enemy_scene:
 		return
 		
+	# Pre-spawn check: If it's a Bird, don't spawn if there are no crops
+	if enemy_scene.resource_path.ends_with("bird.tscn"):
+		var tiles = get_tree().get_nodes_in_group("plantable_tiles")
+		var has_crops = false
+		for tile in tiles:
+			if tile.get("placed_crop") != null:
+				has_crops = true
+				break
+		if not has_crops:
+			return # Abort spawn, try again next timer tick
+		
 	var extents := GameManager.map_extents
 	var side = randi() % 4
 	var spawn_pos := Vector2.ZERO
