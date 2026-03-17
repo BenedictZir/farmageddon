@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://dq5ncy6q4xe0b"]
+
+[ext_resource type="PackedScene" uid="uid://b207knhmejlc2" path="res://Scenes/Level/level_base.tscn" id="1_k541i"]
+[ext_resource type="Shader" uid="uid://w3mckfty164d" path="res://Shaders/sawit.gdshader" id="2_m5hwo"]
+[ext_resource type="Resource" uid="uid://bbmf2gd48fto6" path="res://Resources/LevelData/level_1.tres" id="2_wtlyx"]
+[ext_resource type="PackedScene" uid="uid://bgbl2uoj186m7" path="res://Scenes/Crops/plantable_tile.tscn" id="4_wtlyx"]
+[ext_resource type="Resource" uid="uid://cjca1yymi58k8" path="res://Resources/Forage/red_mushroom.tres" id="5_uoico"]
+[ext_resource type="Resource" uid="uid://c4owsrle8u5ft" path="res://Resources/Forage/blue_mushroom.tres" id="6_4snqv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uoico"]
+resource_local_to_scene = true
+shader = ExtResource("2_m5hwo")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 0.0
+shader_parameter/heightOffset = 0.0
+shader_parameter/offset = 0.0
+
+[node name="Level1" unique_id=395313815 instance=ExtResource("1_k541i")]
+level_data = ExtResource("2_wtlyx")
+
+[node name="Tree" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="0" unique_id=294457344]
+material = SubResource("ShaderMaterial_uoico")
+
+[node name="Tree2" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="1" unique_id=440742620]
+material = SubResource("ShaderMaterial_uoico")
+
+[node name="Tree3" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="2" unique_id=428025185]
+material = SubResource("ShaderMaterial_uoico")
+
+[node name="Tree4" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="3" unique_id=1107591342]
+material = SubResource("ShaderMaterial_uoico")
+
+[node name="Tree5" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="4" unique_id=1798594926]
+material = SubResource("ShaderMaterial_uoico")
+
+[node name="PlantableTile4" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="0" unique_id=1809472782 instance=ExtResource("4_wtlyx")]
+position = Vector2(-72, -8)
+
+[node name="PlantableTile5" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="1" unique_id=455931473 instance=ExtResource("4_wtlyx")]
+position = Vector2(-56, -8)
+
+[node name="PlantableTile6" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="2" unique_id=1202295801 instance=ExtResource("4_wtlyx")]
+position = Vector2(-40, -8)
+
+[node name="PlantableTile7" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="3" unique_id=592380834 instance=ExtResource("4_wtlyx")]
+position = Vector2(-72, 8)
+
+[node name="PlantableTile8" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="4" unique_id=679774771 instance=ExtResource("4_wtlyx")]
+position = Vector2(-56, 8)
+
+[node name="PlantableTile9" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="5" unique_id=974311789 instance=ExtResource("4_wtlyx")]
+position = Vector2(-40, 8)
+
+[node name="PlantableTile13" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="6" unique_id=1017433389 instance=ExtResource("4_wtlyx")]
+position = Vector2(40, -8)
+
+[node name="PlantableTile14" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="7" unique_id=164988548 instance=ExtResource("4_wtlyx")]
+position = Vector2(56, -8)
+
+[node name="PlantableTile15" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="8" unique_id=338512731 instance=ExtResource("4_wtlyx")]
+position = Vector2(72, -8)
+
+[node name="PlantableTile16" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="9" unique_id=1577571554 instance=ExtResource("4_wtlyx")]
+position = Vector2(40, 8)
+
+[node name="PlantableTile17" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="10" unique_id=1528185130 instance=ExtResource("4_wtlyx")]
+position = Vector2(56, 8)
+
+[node name="PlantableTile18" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="11" unique_id=2022169396 instance=ExtResource("4_wtlyx")]
+position = Vector2(72, 8)
+
+[node name="ForageSpawner" parent="." index="6" unique_id=1796233981]
+forage_items = Array[Resource]([ExtResource("5_uoico"), ExtResource("6_4snqv"), ExtResource("5_uoico")])

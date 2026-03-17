@@ -6,12 +6,11 @@
 [ext_resource type="Script" uid="uid://bwihtd7b3aq3m" path="res://Scripts/Enemy/BirdStates/bird_eat.gd" id="scr_bird_eat"]
 [ext_resource type="Script" uid="uid://ddekxek2brmx8" path="res://Scripts/Enemy/BirdStates/bird_fly_in.gd" id="scr_bird_fly_in"]
 [ext_resource type="Script" uid="uid://bd0oqj84ftctb" path="res://Scripts/Enemy/BirdStates/bird_fly_out.gd" id="scr_bird_fly_out"]
-[ext_resource type="Script" uid="uid://b4fdi1j4q3pv4" path="res://Scripts/StateMachine/finite_state_machine.gd" id="scr_fsm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_te4f0"]
 size = Vector2(16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6j2c"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmy5m"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
@@ -144,15 +143,15 @@ max_health = 1.0
 collision_mask = 0
 
 [node name="CollisionShape2D" parent="Components/AttackComponent" index="0" unique_id=154781645]
-shape = SubResource("RectangleShape2D_y6j2c")
+shape = SubResource("RectangleShape2D_mmy5m")
 
 [node name="EnemyVisual" parent="." index="2" unique_id=543429950]
 sprite_frames = SubResource("SpriteFrames_c0jod")
 animation = &"eat"
 autoplay = "eat"
 
-[node name="StateMachine" type="Node" parent="." index="4" unique_id=1126649512]
-script = ExtResource("scr_fsm")
+[node name="StateMachine" parent="." index="4" unique_id=427268600 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("FlyIn")
 
 [node name="FlyIn" type="Node" parent="StateMachine" index="0" unique_id=1723774980]
 script = ExtResource("scr_bird_fly_in")

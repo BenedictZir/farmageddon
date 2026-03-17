@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://dl6vlpu6ecslo" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Goblin/PNG/spr_jump_strip9.png" id="7_fy1ix"]
 [ext_resource type="Texture2D" uid="uid://cqwuuns5e1ux0" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Goblin/PNG/spr_run_strip8.png" id="9_l8a6r"]
 [ext_resource type="Texture2D" uid="uid://b2ckccl6vche8" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Goblin/PNG/spr_walk_strip8.png" id="10_8twlv"]
-[ext_resource type="Script" uid="uid://b4fdi1j4q3pv4" path="res://Scripts/StateMachine/finite_state_machine.gd" id="scr_fsm"]
 [ext_resource type="Script" uid="uid://caxyqg42ourv2" path="res://Scripts/Enemy/goblin_ai.gd" id="scr_goblin_ai"]
 [ext_resource type="Script" uid="uid://bw7jy4js5snrh" path="res://Scripts/Enemy/goblin_loot.gd" id="scr_goblin_loot"]
 [ext_resource type="Script" uid="uid://twgoqb5fqf2w" path="res://Scripts/Enemy/GoblinStates/goblin_approach.gd" id="scr_state_approach"]
@@ -21,11 +20,11 @@
 [ext_resource type="Script" uid="uid://dkrtlb5ffy43" path="res://Scripts/Enemy/GoblinStates/goblin_roam.gd" id="scr_state_roam"]
 [ext_resource type="Script" uid="uid://c61ht1s3ohoel" path="res://Scripts/Enemy/GoblinStates/goblin_stealing.gd" id="scr_state_stealing"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qndeq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxxwk"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6f76"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qndeq"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
@@ -669,10 +668,10 @@ steal_detect_range = 80.0
 steal_duration = 3.0
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=534802735]
-shape = SubResource("RectangleShape2D_qndeq")
+shape = SubResource("RectangleShape2D_lxxwk")
 
 [node name="CollisionShape2D" parent="Components/AttackComponent" parent_id_path=PackedInt32Array(1460850251) index="0" unique_id=154781645]
-shape = SubResource("RectangleShape2D_b6f76")
+shape = SubResource("RectangleShape2D_qndeq")
 
 [node name="EnemyVisual" parent="." index="2" unique_id=543429950]
 sprite_frames = SubResource("SpriteFrames_ht57u")
@@ -688,8 +687,11 @@ visible = false
 z_index = 10
 position = Vector2(0, -10)
 
-[node name="StateMachine" type="Node" parent="." index="5" unique_id=1753208929 node_paths=PackedStringArray("initial_state")]
-script = ExtResource("scr_fsm")
+[node name="StateMachine2" type="Node" parent="." index="5" unique_id=1753208929]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="6" unique_id=177402404]
+
+[node name="StateMachine" parent="." index="8" unique_id=427268600 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("EnterMap")
 
 [node name="EnterMap" type="Node" parent="StateMachine" index="0" unique_id=1397811236]
@@ -709,7 +711,5 @@ script = ExtResource("scr_state_stealing")
 
 [node name="Flee" type="Node" parent="StateMachine" index="5" unique_id=1804400561]
 script = ExtResource("scr_state_flee")
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="6" unique_id=177402404]
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

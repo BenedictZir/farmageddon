@@ -9,11 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://ygpy2qcj871d" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Skeleton/PNG/skeleton_hurt_strip7.png" id="4_1gxu2"]
 [ext_resource type="Texture2D" uid="uid://dpoyis4ey01v4" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Skeleton/PNG/skeleton_idle_strip6.png" id="5_yubml"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_in0tu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xf65c"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_py7oc"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1gxu2"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
@@ -390,10 +390,10 @@ animations = [{
 script = ExtResource("2_xf65c")
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=534802735]
-shape = SubResource("RectangleShape2D_in0tu")
+shape = SubResource("RectangleShape2D_xf65c")
 
 [node name="CollisionShape2D" parent="Components/AttackComponent" parent_id_path=PackedInt32Array(1460850251) index="0" unique_id=154781645]
-shape = SubResource("RectangleShape2D_py7oc")
+shape = SubResource("RectangleShape2D_1gxu2")
 
 [node name="EnemyVisual" parent="." index="2" unique_id=543429950]
 sprite_frames = SubResource("SpriteFrames_ybtbr")

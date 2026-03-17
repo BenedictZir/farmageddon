@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://4iw2c8bqnaea" path="res://Scripts/Components/health_component.gd" id="2_g4flc"]
 [ext_resource type="Script" uid="uid://biqt6s1fohv56" path="res://Scripts/Components/attack_component.gd" id="3_phgs2"]
 [ext_resource type="Script" uid="uid://cc4enjncjqjyt" path="res://Scripts/Components/movement_component.gd" id="4_phgs2"]
+[ext_resource type="Script" uid="uid://b4fdi1j4q3pv4" path="res://Scripts/StateMachine/finite_state_machine.gd" id="10_yxkbp"]
 [ext_resource type="Script" uid="uid://ce7xt68mlqqeg" path="res://Scripts/Enemy/enemy_visual.gd" id="scr_enemy_visual"]
 [ext_resource type="Texture2D" uid="uid://duhbrsnes27sp" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/progress_green.png" id="tex_green"]
 [ext_resource type="Texture2D" uid="uid://bd563hdiisdmq" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/over.png" id="tex_over"]
@@ -67,3 +68,6 @@ offset_bottom = 12.0
 texture_under = ExtResource("tex_under")
 texture_over = ExtResource("tex_over")
 texture_progress = ExtResource("tex_green")
+
+[node name="StateMachine" type="Node" parent="." unique_id=427268600]
+script = ExtResource("10_yxkbp")

@@ -31,7 +31,7 @@ func steal_crop_from_tile(tile: Node2D) -> bool:
 		return false
 
 	source_tile = tile
-
+	source_tile.fertilized_particle.emitting = false
 	if crop.fully_grown:
 		# Harvestable crop → carry_no_tool + show icon
 		stolen_data = data

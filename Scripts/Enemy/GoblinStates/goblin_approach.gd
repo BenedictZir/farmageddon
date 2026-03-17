@@ -1,25 +1,25 @@
-extends GoblinState
+extends State
 
 ## Approach a stealable crop or animal
 
 
 func physics_update(_delta: float) -> void:
-	if goblin.visual.is_locked():
-		goblin.velocity = Vector2.ZERO
-		goblin.move_and_slide()
+	if entity.visual.is_locked():
+		entity.velocity = Vector2.ZERO
+		entity.move_and_slide()
 		return
 
-	if not goblin.target_tile or not goblin.is_tile_stealable(goblin.target_tile):
-		goblin.target_tile = goblin.find_nearest_stealable()
-		if not goblin.target_tile:
+	if not entity.target_tile or not entity.is_tile_stealable(entity.target_tile):
+		entity.target_tile = entity.find_nearest_stealable()
+		if not entity.target_tile:
 			transition.emit("roam")
 			return
 
-	var dir := (goblin.target_tile.global_position - goblin.global_position).normalized()
-	goblin.movement_component.move(goblin, dir)
-	goblin.visual.play_anim("run")
-	goblin.update_flip(dir)
+	var dir = (entity.target_tile.global_position - entity.global_position).normalized()
+	entity.movement_component.move(entity, dir)
+	entity.visual.play_anim("run")
+	entity.update_flip(dir)
 
-	var dist := goblin.global_position.distance_to(goblin.target_tile.global_position)
+	var dist := entity.global_position.distance_to(entity.target_tile.global_position)
 	if dist < 12.0:
 		transition.emit("stealing")

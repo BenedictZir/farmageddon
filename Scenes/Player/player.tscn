@@ -2364,7 +2364,7 @@ offset_top = 20.0
 offset_right = 76.0
 offset_bottom = 22.0
 scale = Vector2(4, 4)
-step = 0.1
+step = 0.001
 texture_progress = ExtResource("34_2jnj1")
 
 [node name="HealthIcon" type="Sprite2D" parent="HUD/PlayerHP" unique_id=735970345]
@@ -2379,7 +2379,7 @@ offset_top = 44.0
 offset_right = 76.0
 offset_bottom = 46.0
 scale = Vector2(4, 4)
-step = 0.1
+step = 0.001
 texture_progress = ExtResource("34_2jnj1")
 
 [node name="EnergyIcon" type="Sprite2D" parent="HUD/PlayerEnergy" unique_id=841826458]
