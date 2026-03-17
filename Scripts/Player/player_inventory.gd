@@ -24,6 +24,8 @@ func setup(p_player: CharacterBody2D, p_select_box: Node2D, p_visual: Node2D) ->
 # ── Public API ───────────────────────────────────────────
 
 func interact() -> void:
+	if !select_box.current_target: # dont play any anim if no target
+		return
 	if is_carrying and _held_item:
 		if _is_holding_harvest:
 			_try_use_harvest()

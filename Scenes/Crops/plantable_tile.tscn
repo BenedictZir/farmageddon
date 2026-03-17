@@ -34,6 +34,7 @@ region_rect = Rect2(800, 192, 16, 16)
 shape = SubResource("RectangleShape2D_rbyng")
 
 [node name="FertilizedParticle" type="CPUParticles2D" parent="." unique_id=176623858]
+z_index = 1
 position = Vector2(0, 8)
 emitting = false
 lifetime = 0.5

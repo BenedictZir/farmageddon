@@ -49,7 +49,7 @@ func _physics_process(_delta: float) -> void:
 		if is_holding_harvest:
 			# Harvest in hand → snap to player (sell)
 			# Future: snap to feedable animal if nearby
-			current_target = null
+			current_target = player
 			global_position = player.global_position
 			if not visible:
 				play_selecting()

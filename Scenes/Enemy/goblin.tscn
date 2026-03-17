@@ -600,7 +600,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dg2bn")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
 "speed": 12.0
 }, {
@@ -665,14 +665,8 @@ animations = [{
 
 [node name="Goblin" unique_id=7649292 instance=ExtResource("1_ht57u")]
 script = ExtResource("scr_goblin_ai")
-player_detect_range = 80.0
 steal_detect_range = 80.0
-attack_range = 16.0
-attack_stop_range = 20.0
 steal_duration = 3.0
-run_speed = 45.0
-walk_speed = 25.0
-roam_change_interval = 2.0
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=534802735]
 shape = SubResource("RectangleShape2D_qndeq")
@@ -683,7 +677,8 @@ shape = SubResource("RectangleShape2D_b6f76")
 [node name="EnemyVisual" parent="." index="2" unique_id=543429950]
 sprite_frames = SubResource("SpriteFrames_ht57u")
 animation = &"jump"
-frame_progress = 0.11495726
+frame = 8
+frame_progress = 1.0
 
 [node name="Loot" type="Node" parent="." index="3" unique_id=972592425]
 script = ExtResource("scr_goblin_loot")

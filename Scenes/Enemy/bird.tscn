@@ -3,15 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://dk60tj3da8qop" path="res://Scenes/Enemy/enemy_base.tscn" id="1_base"]
 [ext_resource type="Script" uid="uid://b1paejs6qyqsg" path="res://Scripts/Enemy/bird.gd" id="2_birdscript"]
 [ext_resource type="Texture2D" uid="uid://cg38fe3dbbilb" path="res://Assets/Pixel Art Bird 16x16/BirdSprite.png" id="3_birdtexture"]
+[ext_resource type="Script" uid="uid://bwihtd7b3aq3m" path="res://Scripts/Enemy/BirdStates/bird_eat.gd" id="scr_bird_eat"]
+[ext_resource type="Script" uid="uid://ddekxek2brmx8" path="res://Scripts/Enemy/BirdStates/bird_fly_in.gd" id="scr_bird_fly_in"]
+[ext_resource type="Script" uid="uid://bd0oqj84ftctb" path="res://Scripts/Enemy/BirdStates/bird_fly_out.gd" id="scr_bird_fly_out"]
 [ext_resource type="Script" uid="uid://b4fdi1j4q3pv4" path="res://Scripts/StateMachine/finite_state_machine.gd" id="scr_fsm"]
-[ext_resource type="Script" path="res://Scripts/Enemy/BirdStates/bird_fly_in.gd" id="scr_bird_fly_in"]
-[ext_resource type="Script" path="res://Scripts/Enemy/BirdStates/bird_eat.gd" id="scr_bird_eat"]
-[ext_resource type="Script" path="res://Scripts/Enemy/BirdStates/bird_fly_out.gd" id="scr_bird_fly_out"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_te4f0"]
 size = Vector2(16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qe26p"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6j2c"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
@@ -144,21 +144,21 @@ max_health = 1.0
 collision_mask = 0
 
 [node name="CollisionShape2D" parent="Components/AttackComponent" index="0" unique_id=154781645]
-shape = SubResource("RectangleShape2D_qe26p")
+shape = SubResource("RectangleShape2D_y6j2c")
 
 [node name="EnemyVisual" parent="." index="2" unique_id=543429950]
 sprite_frames = SubResource("SpriteFrames_c0jod")
 animation = &"eat"
 autoplay = "eat"
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." index="4" unique_id=1126649512]
 script = ExtResource("scr_fsm")
 
-[node name="FlyIn" type="Node" parent="StateMachine"]
+[node name="FlyIn" type="Node" parent="StateMachine" index="0" unique_id=1723774980]
 script = ExtResource("scr_bird_fly_in")
 
-[node name="Eat" type="Node" parent="StateMachine"]
+[node name="Eat" type="Node" parent="StateMachine" index="1" unique_id=2053656156]
 script = ExtResource("scr_bird_eat")
 
-[node name="FlyOut" type="Node" parent="StateMachine"]
+[node name="FlyOut" type="Node" parent="StateMachine" index="2" unique_id=1931514643]
 script = ExtResource("scr_bird_fly_out")

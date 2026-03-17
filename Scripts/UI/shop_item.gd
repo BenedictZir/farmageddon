@@ -78,8 +78,13 @@ func _update_affordability() -> void:
 		modulate = Color.WHITE
 
 func _unhandled_input(event: InputEvent) -> void:
-	if GameManager.current_level_index < unlock_level:
+	if GameManager.current_level_index < unlock_level or not CurrencyManager.can_afford(price):
 		return
 		
 	if Input.is_action_just_pressed("shop_" + str(item_id)):
-		_on_pressed()
+		_press_with_keyboard()
+func _press_with_keyboard():
+	_on_pressed()
+	if _tween:
+		await _tween.finished
+		shrink_to_normal()

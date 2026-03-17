@@ -7,19 +7,29 @@ class_name EnemyBase
 @onready var health_component: HealthComponent = $Components/HealthComponent
 @onready var attack_component: Area2D = $Components/AttackComponent
 @onready var visual: EnemyVisual = $EnemyVisual
+@onready var fsm: FiniteStateMachine = $StateMachine
 
 @onready var interact_bar: TextureProgressBar = $InteractBar
 @onready var health_bar: TextureProgressBar = $EnemyVisual/HealthBar
 
-var held_item_sprite: Sprite2D 
+@export var player_detect_range := 80.0
+@export var attack_range := 16.0
+@export var attack_stop_range := 20.0
+@export var run_speed := 45.0
+@export var walk_speed := 25.0
+@export var roam_change_interval := 2.0
+var attack_cooldown := 0.0
+
 
 var is_dead := false
 var interruptible := true
 
 
 func _ready() -> void:
-	if $HeldItemSprite:
-		held_item_sprite = $HeldItemSprite
+	fsm.init(self)
+	visual.anim_finished.connect(_on_visual_anim_finished)
+	
+	movement_component.movement_speed = run_speed
 	health_component.died.connect(_on_died)
 	health_component.damaged.connect(_on_damaged)
 	if health_component.has_signal("healed"):
@@ -71,22 +81,11 @@ func set_interact_progress(progress: float, is_visible := true) -> void:
 
 
 
-func show_held_item(icon: Texture2D) -> void:
-	if held_item_sprite:
-		held_item_sprite.texture = icon
-		held_item_sprite.visible = true
 
-
-func hide_held_item() -> void:
-	if held_item_sprite:
-		held_item_sprite.visible = false
-		held_item_sprite.texture = null
 
 
 func update_flip(dir: Vector2) -> void:
 	visual.update_flip(dir)
-	if held_item_sprite and dir.x != 0:
-		held_item_sprite.flip_h = dir.x < 0
 
 
 func start_jump(duration := 1.0, height := 24.0) -> void:
@@ -98,3 +97,24 @@ func start_jump(duration := 1.0, height := 24.0) -> void:
 func _on_jump_finished() -> void:
 	# Re-enable collision mask 1
 	set_collision_mask_value(1, true)
+
+func do_attack() -> void:
+	attack_cooldown = 1.5
+	visual.play_anim_locked("attack")
+	attack_component.activate(visual.flip_h)
+
+func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
+	attack_cooldown -= delta
+	fsm.process_physics(delta)
+
+
+func _process(delta: float) -> void:
+	fsm.process_frame(delta)
+
+func _on_visual_anim_finished(anim_name: String) -> void:
+	if anim_name == "attack":
+		attack_component.deactivate()
+	elif anim_name == "death":
+		queue_free()
