@@ -9,7 +9,7 @@ var player_visual: Node2D
 var player: CharacterBody2D
 
 var is_carrying := false
-var _held_item: Resource = null
+var _held_item: ItemData = null
 var _held_growth_phase := 0
 var _target_tile: Node2D = null
 var _is_holding_harvest := false
@@ -41,7 +41,7 @@ func drop() -> void:
 		item.global_position = player.global_position
 		
 		var icon_tex: Texture2D = null
-		if (_held_item is CropData and _is_holding_harvest) or _held_item is ForageData:
+		if _is_holding_harvest and _held_item.is_holdable_harvest():
 			icon_tex = _held_item.icon
 			
 		item.setup({
@@ -54,7 +54,7 @@ func drop() -> void:
 
 
 func hold_item(item: Resource, item_size := Vector2i(1, 1)) -> void:
-	_held_item = item
+	_held_item = item as ItemData
 	_held_growth_phase = 0
 	_is_holding_harvest = false
 	is_carrying = true
@@ -71,17 +71,21 @@ func is_holding_harvest() -> bool:
 	return _is_holding_harvest
 
 
-# ── Placing (seed → tile) ────────────────────────────────
+# ── Placing (item → tile) ────────────────────────────────
 
 func _try_place_item() -> void:
 	var tile = select_box.current_target
 	if not tile:
 		return
-	if tile.has_method("accepts_type") and _held_item.get("placeable_type") != null \
-		and tile.accepts_type(_held_item.placeable_type):
+	var ptype = _held_item.get_placeable_type()
+	if ptype >= 0 and tile.has_method("accepts_type") and tile.accepts_type(ptype):
 		_target_tile = tile
-		player.velocity = Vector2.ZERO
-		player_visual.play_dig()
+		if ptype == Placeable.Type.CROP:
+			player.velocity = Vector2.ZERO
+			player_visual.play_dig()
+		else:
+			player_visual.play_doing()
+			player.velocity = Vector2.ZERO
 	else:
 		select_box.play_error()
 
@@ -102,47 +106,49 @@ func _try_harvest() -> void:
 func finish_harvest() -> void:
 	if not _target_tile or not _target_tile.has_method("harvest_crop"):
 		return
-	var crop_data: CropData = _target_tile.harvest_crop()
-	if not crop_data:
+	var harvested: ItemData = _target_tile.harvest_crop()
+	if not harvested:
 		return
 	_target_tile = null
-	_held_item = crop_data
+	_held_item = harvested
 	_is_holding_harvest = true
 	is_carrying = true
 	select_box.set_size(Vector2i(1, 1))
 	player_visual.set_carry_no_tool(true)
-	player_visual.show_held_item(crop_data.icon)
+	player_visual.show_held_item(harvested.icon)
 
 
 # ── Using harvest (sell / feed animal) ───────────────────
 
 func _try_use_harvest() -> void:
 	# Future: check select_box.current_target for feedable animal
-	if _held_item is CropData or _held_item is ForageData:
+	if _held_item.is_holdable_harvest():
 		_sell_held_item()
 
 
 func _sell_held_item() -> void:
-	if _held_item.get("sell_price") != null:
+	if _held_item.sell_price > 0:
 		CurrencyManager.add_gold(_held_item.sell_price)
 	select_box.play_placing()
 	_clear()
 
 
-# ── INTERACT animation callback (DIG/DOING) ─────────────
-
 func on_interact_anim_finished() -> void:
 	if not _target_tile:
 		return
 	if _held_item and not _is_holding_harvest:
-		# Was placing a seed (or replanting dropped crop)
-		if _held_item is CropData:
+		# Was placing an item on a tile
+		var ptype = _held_item.get_placeable_type()
+		if ptype == Placeable.Type.CROP:
 			if _held_growth_phase > 0 and _target_tile.has_method("plant_crop_at_phase"):
 				_target_tile.plant_crop_at_phase(_held_item, _held_growth_phase)
 			else:
 				_target_tile.plant_crop(_held_item)
+		if ptype == Placeable.Type.FERTILIZER:
+			_target_tile.fertilize()
 		select_box.play_placing()
 		_clear()
+		
 	elif not is_carrying:
 		# Check if target is a DroppedItem
 		if _target_tile.has_method("pick_up"):
@@ -156,7 +162,7 @@ func on_interact_anim_finished() -> void:
 
 func _pick_up_dropped(dropped: Node2D) -> void:
 	var data: Dictionary = dropped.pick_up()
-	var item = data.get("item_data")
+	var item = data.get("item_data") as ItemData
 	if not item:
 		return
 	_target_tile = null
@@ -171,13 +177,16 @@ func _pick_up_dropped(dropped: Node2D) -> void:
 		player_visual.set_carry_no_tool(false)
 		player_visual.hide_held_item()
 	else:
-		# Harvested crop → hold as harvest (can sell)
+		# Finished item → hold as harvest (can sell)
 		_is_holding_harvest = true
 		is_carrying = true
 		select_box.set_size(Vector2i(1, 1))
-		player_visual.set_carry_no_tool(true)
-		if item is CropData or item is ForageData:
+		if item.is_holdable_harvest():
+			player_visual.set_carry_no_tool(true)
 			player_visual.show_held_item(item.icon)
+		else:
+			player_visual.set_carry_no_tool(false)
+			player_visual.hide_held_item()
 
 
 func _clear() -> void:

@@ -55,9 +55,10 @@ func _physics_process(_delta: float) -> void:
 				play_selecting()
 		elif best:
 			var held_item = player.get("_held_item")
-			if held_item and best.has_method("accepts_type") \
-				and held_item.get("placeable_type") != null \
-				and best.accepts_type(held_item.placeable_type):
+			if held_item and held_item is ItemData \
+				and best.has_method("accepts_type") \
+				and held_item.get_placeable_type() >= 0 \
+				and best.accepts_type(held_item.get_placeable_type()):
 				current_target = best
 				global_position = best.global_position
 				if not visible:

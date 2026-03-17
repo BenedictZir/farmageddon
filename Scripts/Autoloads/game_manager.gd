@@ -60,7 +60,7 @@ func _check_lose_condition() -> void:
 	var player = PlayerRef.instance
 	if player and player.is_carrying:
 		var held = player.get("_held_item")
-		if held is CropData:
+		if held is ItemData and held.get_placeable_type() == Placeable.Type.CROP:
 			return # Still has seeds/crops to plant/sell
 			
 	var planted_crops = get_tree().get_nodes_in_group("plantable_tiles").filter(func(tile): return tile.get("occupied") == true)

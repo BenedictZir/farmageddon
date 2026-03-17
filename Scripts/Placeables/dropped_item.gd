@@ -19,15 +19,11 @@ func setup(data: Dictionary) -> void:
 
 	var target_tex: Texture2D = null
 
-	# Use icon if provided, otherwise use first phase texture
+	# Use icon if provided, otherwise ask the item data for its drop texture
 	if _icon:
 		target_tex = _icon
-	elif item_data is CropData and item_data.phase_textures.size() > 0:
-		# Show the seed/growing sprite
-		var phase = min(growth_phase, item_data.phase_textures.size() - 1)
-		target_tex = item_data.phase_textures[phase]
-	elif item_data is ForageData:
-		target_tex = item_data.icon
+	elif item_data is ItemData:
+		target_tex = item_data.get_drop_texture(growth_phase)
 
 	# Fix shader outline/cropping issues for atlas textures (like sprite strips)
 	if target_tex:

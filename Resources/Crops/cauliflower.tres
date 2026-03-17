@@ -10,9 +10,9 @@
 
 [resource]
 script = ExtResource("6_4867q")
-crop_name = "Cauliflower"
 price = 25
-sell_price = 45
-grow_time = 30.0
+grow_time = 35.0
 phase_textures = Array[Texture2D]([ExtResource("2_3kjrr"), ExtResource("2_4pbsf"), ExtResource("3_3kjrr"), ExtResource("4_74ww8"), ExtResource("5_3kj5g")])
+item_name = "Cauliflower"
+sell_price = 45
 icon = ExtResource("1_cetm5")

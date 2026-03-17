@@ -18,11 +18,18 @@
 [ext_resource type="Texture2D" uid="uid://cgks5pri7hir2" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Animals/spr_deco_chicken_01_strip4.png" id="18_57cgt"]
 [ext_resource type="Texture2D" uid="uid://dlhdjcwnwjsh3" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/pumpkin_05.png" id="18_vnhp2"]
 [ext_resource type="Resource" uid="uid://dr1dkhqfc10cg" path="res://Resources/Crops/pumpkin.tres" id="19_yse77"]
+[ext_resource type="Texture2D" uid="uid://f37eadtqbd3h" path="res://Assets/fertilizer.png" id="20_kig42"]
 [ext_resource type="Texture2D" uid="uid://vpb3qt0tbag5" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Animals/spr_deco_cow_strip4.png" id="21_4e8w0"]
+[ext_resource type="Script" uid="uid://deb8uavawwjtp" path="res://Scripts/Data/fertilizer_data.gd" id="21_k71wr"]
 [ext_resource type="Texture2D" uid="uid://bfau6stdmx0tk" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/shovel.png" id="22_4e8w0"]
 [ext_resource type="Texture2D" uid="uid://5l8mn1e8jkl2" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/sword.png" id="23_dkr68"]
 [ext_resource type="PackedScene" uid="uid://e85sj6jbk2t1" path="res://Scenes/UI/shop_item.tscn" id="scn_shop_item"]
 [ext_resource type="Script" uid="uid://dqkowipwc422o" path="res://Scripts/UI/shop_ui.gd" id="scr_shop_ui"]
+
+[sub_resource type="Resource" id="Resource_237kg"]
+script = ExtResource("21_k71wr")
+price = 15
+item_name = "Fertilizer"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vnhp2"]
 atlas = ExtResource("18_57cgt")
@@ -1372,8 +1379,9 @@ unlock_level = 2
 layout_mode = 2
 item_id = 4
 item_name = "Fertilizer"
-price = 1000
-unlock_level = 2
+price = 15
+icon = ExtResource("20_kig42")
+item_data = SubResource("Resource_237kg")
 
 [node name="Animals" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=114398264]
 layout_mode = 2
@@ -1382,7 +1390,7 @@ layout_mode = 2
 layout_mode = 2
 item_id = 5
 item_name = "Chicken"
-price = 200
+price = 150
 icon = SubResource("AtlasTexture_vnhp2")
 unlock_level = 2
 

@@ -10,8 +10,7 @@
 
 [resource]
 script = ExtResource("6_56uh1")
-crop_name = "Parsnip"
-sell_price = 15
-grow_time = 10.0
 phase_textures = Array[Texture2D]([ExtResource("2_5l2w6"), ExtResource("2_265sp"), ExtResource("3_5l2w6"), ExtResource("4_kxd8w"), ExtResource("5_tfxfq")])
+item_name = "Parsnip"
+sell_price = 15
 icon = ExtResource("1_h14p6")
