@@ -11,13 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://dl6vlpu6ecslo" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Goblin/PNG/spr_jump_strip9.png" id="7_fy1ix"]
 [ext_resource type="Texture2D" uid="uid://cqwuuns5e1ux0" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Goblin/PNG/spr_run_strip8.png" id="9_l8a6r"]
 [ext_resource type="Texture2D" uid="uid://b2ckccl6vche8" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Goblin/PNG/spr_walk_strip8.png" id="10_8twlv"]
-[ext_resource type="Script" uid="uid://caxyqg42ourv2" path="res://Scripts/Enemy/goblin_ai.gd" id="scr_goblin_ai"]
+[ext_resource type="Script" uid="uid://caxyqg42ourv2" path="res://Scripts/Enemy/goblin.gd" id="scr_goblin_ai"]
 [ext_resource type="Script" uid="uid://bw7jy4js5snrh" path="res://Scripts/Enemy/goblin_loot.gd" id="scr_goblin_loot"]
 [ext_resource type="Script" uid="uid://twgoqb5fqf2w" path="res://Scripts/Enemy/GoblinStates/goblin_approach.gd" id="scr_state_approach"]
-[ext_resource type="Script" uid="uid://beb3c8jvgd5l8" path="res://Scripts/Enemy/GoblinStates/goblin_chase.gd" id="scr_state_chase"]
-[ext_resource type="Script" uid="uid://vigv0cbkpka3" path="res://Scripts/Enemy/GoblinStates/goblin_enter_map.gd" id="scr_state_enter"]
+[ext_resource type="Script" uid="uid://c2tsjo0xque2v" path="res://Scripts/Enemy/GenericEnemyStates/chase.gd" id="scr_state_chase"]
+[ext_resource type="Script" uid="uid://b7p5b6gti6413" path="res://Scripts/Enemy/GenericEnemyStates/enter_map.gd" id="scr_state_enter"]
 [ext_resource type="Script" uid="uid://cvgju4j0esvg8" path="res://Scripts/Enemy/GoblinStates/goblin_flee.gd" id="scr_state_flee"]
-[ext_resource type="Script" uid="uid://dkrtlb5ffy43" path="res://Scripts/Enemy/GoblinStates/goblin_roam.gd" id="scr_state_roam"]
+[ext_resource type="Script" uid="uid://cxaeqxtqdvccf" path="res://Scripts/Enemy/GenericEnemyStates/roam.gd" id="scr_state_roam"]
 [ext_resource type="Script" uid="uid://c61ht1s3ohoel" path="res://Scripts/Enemy/GoblinStates/goblin_stealing.gd" id="scr_state_stealing"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lxxwk"]
@@ -670,14 +670,15 @@ steal_duration = 3.0
 [node name="CollisionShape2D" parent="." index="0" unique_id=534802735]
 shape = SubResource("RectangleShape2D_lxxwk")
 
-[node name="CollisionShape2D" parent="Components/AttackComponent" parent_id_path=PackedInt32Array(1460850251) index="0" unique_id=154781645]
+[node name="AttackComponent" parent="Components" parent_id_path=PackedInt32Array(1856128264) index="1" unique_id=1460850251]
+damage = 15.0
+
+[node name="CollisionShape2D" parent="Components/AttackComponent" index="0" unique_id=154781645]
 shape = SubResource("RectangleShape2D_qndeq")
 
 [node name="EnemyVisual" parent="." index="2" unique_id=543429950]
 sprite_frames = SubResource("SpriteFrames_ht57u")
-animation = &"jump"
-frame = 8
-frame_progress = 1.0
+animation = &"walk"
 
 [node name="Loot" type="Node" parent="." index="3" unique_id=972592425]
 script = ExtResource("scr_goblin_loot")

@@ -17,7 +17,7 @@ func physics_update(_delta: float) -> void:
 	var dist := to_player.length()
 
 	# If the player is very close (e.g., < 70px) they are the immediate threat, IGNORE crops!
-	if dist > 70.0:
+	if dist > 70.0 and entity is Goblin:
 		var tile = entity.find_nearest_stealable()
 		if tile:
 			entity.target_tile = tile

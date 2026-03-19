@@ -8,12 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://g4i8ydy4k5nr" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Skeleton/PNG/skeleton_death_strip10.png" id="3_xf65c"]
 [ext_resource type="Texture2D" uid="uid://ygpy2qcj871d" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Skeleton/PNG/skeleton_hurt_strip7.png" id="4_1gxu2"]
 [ext_resource type="Texture2D" uid="uid://dpoyis4ey01v4" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Skeleton/PNG/skeleton_idle_strip6.png" id="5_yubml"]
+[ext_resource type="Script" uid="uid://b7p5b6gti6413" path="res://Scripts/Enemy/GenericEnemyStates/enter_map.gd" id="9_shu7p"]
+[ext_resource type="Script" uid="uid://cxaeqxtqdvccf" path="res://Scripts/Enemy/GenericEnemyStates/roam.gd" id="10_pbxlo"]
+[ext_resource type="Script" uid="uid://c2tsjo0xque2v" path="res://Scripts/Enemy/GenericEnemyStates/chase.gd" id="11_ftjdo"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xf65c"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbxlo"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1gxu2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftjdo"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
@@ -209,6 +212,38 @@ region = Rect2(576, 0, 96, 64)
 atlas = ExtResource("3_7ran8")
 region = Rect2(672, 0, 96, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx1yq"]
+atlas = ExtResource("3_7ran8")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trwuw"]
+atlas = ExtResource("3_7ran8")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yu8yk"]
+atlas = ExtResource("3_7ran8")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ut2u0"]
+atlas = ExtResource("3_7ran8")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iamw0"]
+atlas = ExtResource("3_7ran8")
+region = Rect2(384, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5bkc"]
+atlas = ExtResource("3_7ran8")
+region = Rect2(480, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np1cq"]
+atlas = ExtResource("3_7ran8")
+region = Rect2(576, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ed3ba"]
+atlas = ExtResource("3_7ran8")
+region = Rect2(672, 0, 96, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ybtbr"]
 animations = [{
 "frames": [{
@@ -233,7 +268,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ufp3r")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 10.0
 }, {
@@ -354,7 +389,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump",
-"speed": 12.0
+"speed": 11.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -384,19 +419,60 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jx1yq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trwuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yu8yk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ut2u0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iamw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5bkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np1cq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ed3ba")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 11.0
 }]
 
 [node name="Skeleton" unique_id=7649292 instance=ExtResource("1_1rxu0")]
 script = ExtResource("2_xf65c")
+player_detect_range = 500.0
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=534802735]
-shape = SubResource("RectangleShape2D_xf65c")
+shape = SubResource("RectangleShape2D_pbxlo")
 
 [node name="CollisionShape2D" parent="Components/AttackComponent" parent_id_path=PackedInt32Array(1460850251) index="0" unique_id=154781645]
-shape = SubResource("RectangleShape2D_1gxu2")
+shape = SubResource("RectangleShape2D_ftjdo")
 
 [node name="EnemyVisual" parent="." index="2" unique_id=543429950]
 sprite_frames = SubResource("SpriteFrames_ybtbr")
-animation = &"death"
-frame = 9
+animation = &"jump"
 frame_progress = 1.0
+
+[node name="StateMachine" parent="." index="4" unique_id=427268600 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("EnterMap")
+
+[node name="EnterMap" type="Node" parent="StateMachine" index="0" unique_id=135928779]
+script = ExtResource("9_shu7p")
+
+[node name="Roam" type="Node" parent="StateMachine" index="1" unique_id=1481790083]
+script = ExtResource("10_pbxlo")
+
+[node name="Chase" type="Node" parent="StateMachine" index="2" unique_id=852542960]
+script = ExtResource("11_ftjdo")

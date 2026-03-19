@@ -35,11 +35,12 @@ func physics_update(delta: float) -> void:
 	
 	# Only find crops if player is not strictly in our face
 	if not player_in_aggro or randf() > 0.5: # 50% chance to still prefer crops if player is just "nearby" but not "in face"
-		var tile = entity.find_nearest_stealable()
-		if tile:
-			entity.target_tile = tile
-			transition.emit("approach")
-			return
+		if entity is Goblin:
+			var tile = entity.find_nearest_stealable()
+			if tile:
+				entity.target_tile = tile
+				transition.emit("approach")
+				return
 			
 	if player_in_aggro:
 		transition.emit("chase")

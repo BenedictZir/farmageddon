@@ -1,5 +1,5 @@
 extends EnemyBase
-class_name GoblinAI
+class_name Goblin
 
 ## Goblin enemy core controller. Uses FSM for state management.
 
