@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AnimalProductData" format=3 uid="uid://ccvsw4m0cyq70"]
+
+[ext_resource type="Script" uid="uid://cq37wlimx4qyq" path="res://Scripts/Data/animal_product_data.gd" id="scr_apd"]
+[ext_resource type="Texture2D" uid="uid://dnl87jdn3mbrg" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/egg.png" id="tex_egg"]
+
+[resource]
+script = ExtResource("scr_apd")
+item_name = "Egg"
+sell_price = 30
+icon = ExtResource("tex_egg")

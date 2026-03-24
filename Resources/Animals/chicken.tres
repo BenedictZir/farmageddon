@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="AnimalData" format=3 uid="uid://cjfpqp440iwop"]
+
+[ext_resource type="Texture2D" uid="uid://cgks5pri7hir2" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Animals/spr_deco_chicken_01_strip4.png" id="1_jp8l4"]
+[ext_resource type="Resource" uid="uid://ccvsw4m0cyq70" path="res://Resources/Animals/egg.tres" id="res_egg"]
+[ext_resource type="Script" uid="uid://crw4g3vvkwvbv" path="res://Scripts/Data/animal_data.gd" id="scr_ad"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qacql"]
+atlas = ExtResource("1_jp8l4")
+region = Rect2(39, 7, 16, 16)
+
+[resource]
+script = ExtResource("scr_ad")
+price = 150
+product_data = ExtResource("res_egg")
+sprite_sheet = ExtResource("1_jp8l4")
+hframes = 4
+animation_speed = 5.34
+item_name = "Chicken"
+icon = SubResource("AtlasTexture_qacql")

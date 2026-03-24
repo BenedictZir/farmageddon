@@ -20,8 +20,8 @@ var is_carrying: bool:
 	get: return inventory.is_carrying if inventory else false
 var _held_item: Resource:
 	get: return inventory.get_held_item() if inventory else null
-var _is_holding_harvest: bool:
-	get: return inventory.is_holding_harvest() if inventory else false
+var _is_holding_product: bool:
+	get: return inventory.is_holding_product() if inventory else false
 
 @export var max_energy := 100.0
 var energy := 100.0

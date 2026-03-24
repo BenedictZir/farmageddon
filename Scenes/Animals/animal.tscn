@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bhnuggxau1ew7"]
+
+[ext_resource type="Script" uid="uid://clu4amy7sbf1a" path="res://Scripts/Placeables/animal.gd" id="scr_animal"]
+[ext_resource type="Texture2D" uid="uid://duhbrsnes27sp" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/progress_green.png" id="tex_green"]
+[ext_resource type="Texture2D" uid="uid://bd563hdiisdmq" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/over.png" id="tex_over"]
+[ext_resource type="Texture2D" uid="uid://ba0x1oup484bc" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/under.png" id="tex_under"]
+
+[node name="Animal" type="Node2D" unique_id=667448450]
+script = ExtResource("scr_animal")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1347685544]
+
+[node name="StatusSprite" type="Sprite2D" parent="." unique_id=1594049445]
+position = Vector2(0, -10)
+scale = Vector2(0.7, 0.7)
+
+[node name="ProgressBar" type="TextureProgressBar" parent="." unique_id=1073842199]
+visible = false
+z_index = 15
+offset_left = -8.0
+offset_top = -14.0
+offset_right = 8.0
+offset_bottom = -6.0
+step = 0.001
+texture_under = ExtResource("tex_under")
+texture_over = ExtResource("tex_over")
+texture_progress = ExtResource("tex_green")

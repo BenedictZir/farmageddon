@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bgbl2uoj186m7" path="res://Scenes/Crops/plantable_tile.tscn" id="4_wtlyx"]
 [ext_resource type="Resource" uid="uid://cjca1yymi58k8" path="res://Resources/Forage/red_mushroom.tres" id="5_uoico"]
 [ext_resource type="Resource" uid="uid://c4owsrle8u5ft" path="res://Resources/Forage/blue_mushroom.tres" id="6_4snqv"]
+[ext_resource type="PackedScene" uid="uid://cs8ibw2vulahw" path="res://Scenes/Animals/animal_tile.tscn" id="7_4snqv"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uoico"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4snqv"]
 resource_local_to_scene = true
 shader = ExtResource("2_m5hwo")
 shader_parameter/speed = 1.0
@@ -24,19 +25,19 @@ shader_parameter/offset = 0.0
 level_data = ExtResource("2_wtlyx")
 
 [node name="Tree" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="0" unique_id=294457344]
-material = SubResource("ShaderMaterial_uoico")
+material = SubResource("ShaderMaterial_4snqv")
 
 [node name="Tree2" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="1" unique_id=440742620]
-material = SubResource("ShaderMaterial_uoico")
+material = SubResource("ShaderMaterial_4snqv")
 
 [node name="Tree3" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="2" unique_id=428025185]
-material = SubResource("ShaderMaterial_uoico")
+material = SubResource("ShaderMaterial_4snqv")
 
 [node name="Tree4" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="3" unique_id=1107591342]
-material = SubResource("ShaderMaterial_uoico")
+material = SubResource("ShaderMaterial_4snqv")
 
 [node name="Tree5" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="4" unique_id=1798594926]
-material = SubResource("ShaderMaterial_uoico")
+material = SubResource("ShaderMaterial_4snqv")
 
 [node name="PlantableTile4" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="0" unique_id=1809472782 instance=ExtResource("4_wtlyx")]
 position = Vector2(-72, -8)
@@ -76,3 +77,7 @@ position = Vector2(72, 8)
 
 [node name="ForageSpawner" parent="." index="6" unique_id=1796233981]
 forage_items = Array[Resource]([ExtResource("5_uoico"), ExtResource("6_4snqv"), ExtResource("5_uoico")])
+
+[node name="AnimalTile" parent="." index="8" unique_id=809792012 instance=ExtResource("7_4snqv")]
+z_index = 0
+position = Vector2(24, -24)

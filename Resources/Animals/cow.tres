@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="AnimalData" format=3 uid="uid://blrvjyh5dtjd0"]
+
+[ext_resource type="Texture2D" uid="uid://vpb3qt0tbag5" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Animals/spr_deco_cow_strip4.png" id="1_a5p22"]
+[ext_resource type="Resource" path="res://Resources/Animals/milk.tres" id="res_milk"]
+[ext_resource type="Script" uid="uid://crw4g3vvkwvbv" path="res://Scripts/Data/animal_data.gd" id="scr_ad"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsmm5"]
+atlas = ExtResource("1_a5p22")
+region = Rect2(4, 3, 23, 19)
+
+[resource]
+script = ExtResource("scr_ad")
+price = 400
+production_time = 60.0
+product_data = ExtResource("res_milk")
+sprite_sheet = ExtResource("1_a5p22")
+hframes = 4
+animation_speed = 5.34
+item_name = "Cow"
+icon = SubResource("AtlasTexture_jsmm5")

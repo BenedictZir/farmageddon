@@ -42,17 +42,24 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	var is_carrying: bool = player.get("is_carrying")
-	var is_holding_harvest: bool = player.get("_is_holding_harvest")
+	var is_holding_product: bool = player.get("_is_holding_product")
 	var best := _find_best_target(player)
 
 	if is_carrying:
-		if is_holding_harvest:
-			# Harvest in hand → snap to player (sell)
-			# Future: snap to feedable animal if nearby
-			current_target = player
-			global_position = player.global_position
-			if not visible:
-				play_selecting()
+		if is_holding_product:
+			# Product in hand → check for feedable animal first
+			var held_item = player.get("_held_item")
+			if best and best.has_method("is_feedable") and best.is_feedable() and held_item and held_item.has_method("is_animal_feed") and held_item.is_animal_feed():
+				current_target = best
+				global_position = best.global_position
+				if not visible:
+					play_selecting()
+			else:
+				# No feedable animal nearby → snap to player (sell)
+				current_target = player
+				global_position = player.global_position
+				if not visible:
+					play_selecting()
 		elif best:
 			var held_item = player.get("_held_item")
 			if held_item and held_item is ItemData \

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AnimalProductData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Data/animal_product_data.gd" id="scr_apd"]
+[ext_resource type="Texture2D" uid="uid://bx7xgfqpj2nwi" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/milk.png" id="tex_milk"]
+
+[resource]
+script = ExtResource("scr_apd")
+item_name = "Milk"
+sell_price = 120
+icon = ExtResource("tex_milk")

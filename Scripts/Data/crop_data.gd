@@ -12,7 +12,7 @@ func get_placeable_type() -> int:
 	return Placeable.Type.CROP
 
 
-func is_holdable_harvest() -> bool:
+func is_sellable_product() -> bool:
 	return true
 
 
@@ -21,3 +21,7 @@ func get_drop_texture(growth_phase: int = 0) -> Texture2D:
 		var phase = min(growth_phase, phase_textures.size() - 1)
 		return phase_textures[phase]
 	return icon
+
+
+func is_animal_feed() -> bool:
+	return true
