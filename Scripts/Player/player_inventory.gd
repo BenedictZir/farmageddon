@@ -4,6 +4,8 @@ class_name PlayerInventory
 ## Manages what the player carries: seeds, harvested crops, items.
 ## Handles placing, harvesting, selling, and dropping.
 
+const FLOATING_TEXT_SCENE := preload("res://Scenes/UI/floating_text.tscn")
+
 var select_box: Node2D
 var player_visual: Node2D
 var player: CharacterBody2D
@@ -141,8 +143,16 @@ func _try_use_product() -> void:
 func _sell_held_item() -> void:
 	if _held_item.sell_price > 0:
 		CurrencyManager.add_gold(_held_item.sell_price)
+		_spawn_floating_text("+%d" % _held_item.sell_price, Color.GOLD)
 	select_box.play_placing()
 	_clear()
+
+
+func _spawn_floating_text(text: String, color: Color) -> void:
+	var ft = FLOATING_TEXT_SCENE.instantiate()
+	player.get_parent().add_child(ft)
+	ft.global_position = player.global_position + Vector2(0, -16)
+	ft.setup(text, color)
 
 
 func on_interact_anim_finished() -> void:
