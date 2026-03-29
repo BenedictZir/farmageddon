@@ -11,5 +11,6 @@ signal stopped_running
 func move(character: CharacterBody2D, direction := Vector2.ZERO, running := false) -> void:
 	is_running = running and direction != Vector2.ZERO
 	var speed := run_speed if is_running else movement_speed
-	character.velocity = direction * speed
+	var target_velocity = direction * speed
+	character.velocity = character.velocity.lerp(target_velocity, 0.25)
 	character.move_and_slide()

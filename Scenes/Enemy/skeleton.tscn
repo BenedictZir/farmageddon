@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b7p5b6gti6413" path="res://Scripts/Enemy/GenericEnemyStates/enter_map.gd" id="9_shu7p"]
 [ext_resource type="Script" uid="uid://cxaeqxtqdvccf" path="res://Scripts/Enemy/GenericEnemyStates/roam.gd" id="10_pbxlo"]
 [ext_resource type="Script" uid="uid://c2tsjo0xque2v" path="res://Scripts/Enemy/GenericEnemyStates/chase.gd" id="11_ftjdo"]
+[ext_resource type="Script" path="res://Scripts/Enemy/GenericEnemyStates/death.gd" id="12_death"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pbxlo"]
 resource_local_to_scene = true
@@ -476,3 +477,6 @@ script = ExtResource("10_pbxlo")
 
 [node name="Chase" type="Node" parent="StateMachine" index="2" unique_id=852542960]
 script = ExtResource("11_ftjdo")
+
+[node name="Death" type="Node" parent="StateMachine" index="3"]
+script = ExtResource("12_death")

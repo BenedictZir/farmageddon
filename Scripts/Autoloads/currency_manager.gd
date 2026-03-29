@@ -4,6 +4,7 @@ extends Node
 ## Keeps track of player's gold and emits signal when it changes.
 
 signal gold_changed(new_amount: int)
+signal gold_spent(amount: int)
 
 var gold: int = 2000 : set = set_gold
 
@@ -12,11 +13,16 @@ func set_gold(value: int) -> void:
 	gold_changed.emit(gold)
 
 func add_gold(amount: int) -> void:
+	if amount <= 0:
+		return
 	gold += amount
 
 func spend_gold(amount: int) -> bool:
+	if amount <= 0:
+		return true
 	if gold >= amount:
 		gold -= amount
+		gold_spent.emit(amount)
 		return true
 	return false
 

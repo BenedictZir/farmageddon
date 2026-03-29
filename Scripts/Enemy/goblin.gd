@@ -37,7 +37,7 @@ func _on_death() -> void:
 		_drop_loot()
 		held_item_sprite.hide()
 
-	visual.play_anim_locked("death")
+	super._on_death()
 
 
 func _drop_loot() -> void:

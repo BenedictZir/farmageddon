@@ -20,6 +20,18 @@ func is_harvestable() -> bool:
 	return occupied and placed_crop and placed_crop.fully_grown
 
 
+func is_fertilizable() -> bool:
+	return occupied and placed_crop and not placed_crop.fully_grown and not placed_crop.fertilized
+
+
+func get_fertilize_score() -> float:
+	if not is_fertilizable():
+		return -1.0
+	# Score = price * 1000 - growth_phase
+	# (Prioritizes highest value crop first, and among ties, the youngest crop)
+	return (placed_crop.crop_data.sell_price * 1000.0) - placed_crop.growth_phase
+
+
 func harvest_crop() -> CropData:
 	fertilized_particle.emitting = false
 	if not is_harvestable():

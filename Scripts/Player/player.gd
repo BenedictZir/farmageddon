@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const FLOATING_TEXT_SCENE := preload("res://Scenes/UI/floating_text.tscn")
+
 @onready var movement_component: Node2D = $Components/MovementComponent
 @onready var health_component: Node2D = $Components/HealthComponent
 @onready var player_visual: Node2D = $PlayerVisual
@@ -33,6 +35,7 @@ var _sprint_locked_out := false
 
 
 func _ready() -> void:
+	add_to_group("hud_occluders")
 	PlayerRef.register(self)
 	tree_exiting.connect(func(): PlayerRef.unregister(self))
 	inventory.setup(self, select_box, player_visual)
@@ -40,6 +43,8 @@ func _ready() -> void:
 	health_component.died.connect(_on_died)
 	health_component.revived.connect(_on_revived)
 	player_visual.animation_state_finished.connect(_on_anim_state_finished)
+	if CurrencyManager.has_signal("gold_spent") and not CurrencyManager.gold_spent.is_connected(_on_gold_spent):
+		CurrencyManager.gold_spent.connect(_on_gold_spent)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -148,11 +153,16 @@ func _on_damaged(_amount: float) -> void:
 	_time_since_last_damage = 0.0
 	if is_knocked:
 		return
-	player_visual.play_hurt()
+	var camera = get_viewport().get_camera_2d()
+	HitEffects.play_hit(player_visual._sprites, camera)
 
 
 func _on_died() -> void:
 	is_knocked = true
+	is_rolling = false
+	_roll_velocity = Vector2.ZERO
+	set_collision_layer_value(2, true)
+	attack_component.deactivate()
 	velocity = Vector2.ZERO
 	# Drop 50% gold
 	var gold_to_drop := CurrencyManager.gold / 2
@@ -185,6 +195,21 @@ func _on_anim_state_finished(state) -> void:
 		get_tree().create_timer(5.0).timeout.connect(func():
 			health_component.revive()
 		)
+
+
+func _on_gold_spent(amount: int) -> void:
+	if amount <= 0:
+		return
+	_spawn_currency_text("-%d" % amount, Color(1.0, 0.234, 0.271, 1.0))
+
+
+func _spawn_currency_text(text: String, color: Color) -> void:
+	if not is_inside_tree() or not get_parent():
+		return
+	var ft = FLOATING_TEXT_SCENE.instantiate()
+	get_parent().add_child(ft)
+	ft.global_position = global_position + Vector2(0, -18)
+	ft.setup(text, color)
 
 
 func _is_mouse_over_ui() -> bool:

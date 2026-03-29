@@ -23,6 +23,7 @@ AudioGlobal="*uid://durhrt4ebmvf1"
 PlayerRef="*res://Scripts/Autoloads/player_ref.gd"
 GameManager="*res://Scenes/Autoloads/game_manager.tscn"
 UpgradeManager="*res://Scripts/Autoloads/upgrade_manager.gd"
+HitEffects="*res://Scripts/Autoloads/hit_effects.gd"
 
 [display]
 

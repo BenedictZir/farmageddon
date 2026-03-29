@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://dpxmxy3y4n0t2"]
 
-[ext_resource type="Script" uid="uid://b0t4t2b2qy54k" path="res://Scripts/UI/floating_text.gd" id="scr_ftext"]
+[ext_resource type="Script" uid="uid://bckjnywmt70xj" path="res://Scripts/UI/floating_text.gd" id="scr_ftext"]
 
-[node name="FloatingText" type="Node2D"]
+[node name="FloatingText" type="Node2D" unique_id=1479006550]
 z_index = 50
 script = ExtResource("scr_ftext")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1860333603]
 offset_left = -20.0
 offset_top = -8.0
 offset_right = 20.0
 offset_bottom = 8.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 16
 text = "+10"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -51,6 +51,51 @@ func _on_pressed() -> void:
 	super()
 	if not item_data:
 		return
+
+	# Helper instant-buy logic
+	if item_data.has_method("is_helper") and item_data.is_helper():
+		if not CurrencyManager.spend_gold(price):
+			return
+		var helper = item_data.helper_scene.instantiate()
+		var extents := GameManager.map_extents
+		var spawn_pos := Vector2.ZERO
+		
+		# Pick a random edge to spawn on
+		var edge = randi() % 4
+		match edge:
+			0: spawn_pos = Vector2(randf_range(-extents.x, extents.x), -extents.y - 20) # Top
+			1: spawn_pos = Vector2(randf_range(-extents.x, extents.x), extents.y + 20) # Bottom
+			2: spawn_pos = Vector2(-extents.x - 20, randf_range(-extents.y, extents.y)) # Left
+			3: spawn_pos = Vector2(extents.x + 20, randf_range(-extents.y, extents.y)) # Right
+			
+		helper.global_position = spawn_pos
+		get_tree().current_scene.add_child(helper)
+		
+		# If this helper was the goal, trigger win
+		if is_goal:
+			GameManager.win()
+		return
+
+	# Interception logic — give to ANY farmer whose queue is completely empty
+	var farmers = get_tree().get_nodes_in_group("farmer_helpers")
+	var available_farmer: FarmerHelper = null
+	for f in farmers:
+		if f.seed_queue.size() + f.fertilizer_queue.size() == 0:
+			available_farmer = f
+			break
+	
+	if available_farmer:
+		var type = item_data.get_placeable_type()
+		if type == Placeable.Type.CROP:
+			if CurrencyManager.spend_gold(price):
+				available_farmer.add_seed_to_queue(item_data)
+			return
+		elif type == Placeable.Type.FERTILIZER:
+			if CurrencyManager.spend_gold(price):
+				available_farmer.add_fertilizer(item_data)
+			return
+
+	# Normal behavior (player holds item, must not have full hands)
 	var player := PlayerRef.instance
 	if not player or player.is_carrying:
 		return

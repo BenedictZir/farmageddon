@@ -1,4 +1,5 @@
 extends EnemyBase
+class_name Bird
 
 ## An enemy that ignores the player, flies towards a random planted crop, 
 ## eats it, and flies away. It is invincible while flying and has 1 HP.

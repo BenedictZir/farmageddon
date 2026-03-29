@@ -26,6 +26,7 @@ var interruptible := true
 
 
 func _ready() -> void:
+	add_to_group("hud_occluders")
 	fsm.init(self)
 	visual.anim_finished.connect(_on_visual_anim_finished)
 	
@@ -45,10 +46,16 @@ func _ready() -> void:
 func _on_damaged(amount:= 0.0) -> void:
 	if health_bar:
 		health_bar.value = health_component.current_health
-	if is_dead or not interruptible:
+	if is_dead:
+		return
+	# Flash should still play even in non-interruptible states (e.g. goblin stealing).
+	HitEffects.play_hit([visual])
+	if not interruptible:
+		return
+	# If attack animation is already locked, keep the hitbox active so the swing can still land.
+	if visual and visual.is_locked():
 		return
 	attack_component.deactivate()
-	visual.play_anim_locked("hurt")
 	
 
 func _on_healed(amount:= 0.0) -> void:
@@ -69,9 +76,12 @@ func _on_death() -> void:
 		health_bar.hide()
 	if interact_bar:
 		interact_bar.hide()
-	visual.play_anim("death")
-	await visual.anim_finished
-	queue_free()
+	velocity = Vector2.ZERO
+	attack_component.deactivate()
+	if fsm and fsm.states.has("death"):
+		fsm.change_state("Death")
+	else:
+		HitEffects.play_death(self, func(): queue_free())
 
 
 func set_interact_progress(progress: float, is_visible := true) -> void:
@@ -116,5 +126,3 @@ func _process(delta: float) -> void:
 func _on_visual_anim_finished(anim_name: String) -> void:
 	if anim_name == "attack":
 		attack_component.deactivate()
-	elif anim_name == "death":
-		queue_free()

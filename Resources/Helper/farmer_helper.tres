@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="HelperData" format=3 uid="uid://d0kwnjx4eek7s"]
+
+[ext_resource type="PackedScene" uid="uid://bgtku7ptaha7v" path="res://Scenes/Helpers/farmer_helper.tscn" id="1_22xk6"]
+[ext_resource type="Script" uid="uid://u1mo85nwl44t" path="res://Scripts/Data/helper_data.gd" id="1_o84gm"]
+[ext_resource type="Texture2D" uid="uid://bfau6stdmx0tk" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/shovel.png" id="2_n4ri8"]
+
+[resource]
+script = ExtResource("1_o84gm")
+helper_scene = ExtResource("1_22xk6")
+item_name = "Farmer"
+icon = ExtResource("2_n4ri8")

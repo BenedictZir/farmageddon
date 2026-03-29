@@ -36,9 +36,25 @@ func physics_update(_delta: float) -> void:
 			return
 
 	var player := PlayerRef.instance
+	var helpers = get_tree().get_nodes_in_group("helpers")
+
+	var targets = []
 	if player and not player.is_knocked:
-		var dist := entity.global_position.distance_to(player.global_position)
-		if dist < entity.player_detect_range:
+		targets.append(player)
+	for h in helpers:
+		targets.append(h)
+
+	# Find closest valid target
+	if not targets.is_empty():
+		var target = targets[0]
+		var min_dist := entity.global_position.distance_to(target.global_position)
+		for t in targets:
+			var d = entity.global_position.distance_to(t.global_position)
+			if d < min_dist:
+				target = t
+				min_dist = d
+				
+		if min_dist < entity.player_detect_range:
 			transition.emit("chase")
 			return
 

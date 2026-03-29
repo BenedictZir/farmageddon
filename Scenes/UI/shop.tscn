@@ -25,6 +25,8 @@
 [ext_resource type="Texture2D" uid="uid://5l8mn1e8jkl2" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/sword.png" id="23_dkr68"]
 [ext_resource type="Resource" uid="uid://cjfpqp440iwop" path="res://Resources/Animals/chicken.tres" id="23_uexpf"]
 [ext_resource type="Resource" uid="uid://blrvjyh5dtjd0" path="res://Resources/Animals/cow.tres" id="24_237kg"]
+[ext_resource type="Resource" uid="uid://d0kwnjx4eek7s" path="res://Resources/Helper/farmer_helper.tres" id="27_ns75m"]
+[ext_resource type="Resource" uid="uid://jtxphovrsyai" path="res://Resources/Helper/warrior_helper.tres" id="29_4itre"]
 [ext_resource type="PackedScene" uid="uid://e85sj6jbk2t1" path="res://Scenes/UI/shop_item.tscn" id="scn_shop_item"]
 [ext_resource type="Script" uid="uid://dqkowipwc422o" path="res://Scripts/UI/shop_ui.gd" id="scr_shop_ui"]
 
@@ -1412,17 +1414,17 @@ layout_mode = 2
 layout_mode = 2
 item_id = 7
 item_name = "Farmer"
-price = 50
+price = 100
 icon = ExtResource("22_4e8w0")
-unlock_level = 3
+item_data = ExtResource("27_ns75m")
 
 [node name="WarriorHelper" parent="Bar/HBoxContainer/Helper" unique_id=800627408 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
 item_id = 8
 item_name = "Warrior"
-price = 300
+price = 100
 icon = ExtResource("23_dkr68")
-unlock_level = 3
+item_data = ExtResource("29_4itre")
 
 [node name="Goal2" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=1957344051]
 layout_mode = 2

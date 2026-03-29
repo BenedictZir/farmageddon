@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HelperData" format=3 uid="uid://jtxphovrsyai"]
+
+[ext_resource type="Script" uid="uid://u1mo85nwl44t" path="res://Scripts/Data/helper_data.gd" id="1_6wort"]
+[ext_resource type="PackedScene" uid="uid://bbu8qaxi1pt45" path="res://Scenes/Helpers/warrior_helper.tscn" id="1_46ysh"]
+[ext_resource type="Texture2D" uid="uid://5l8mn1e8jkl2" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/sword.png" id="2_tsnh7"]
+
+[resource]
+script = ExtResource("1_6wort")
+helper_scene = ExtResource("1_46ysh")
+icon = ExtResource("2_tsnh7")

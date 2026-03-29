@@ -4,6 +4,13 @@
 [ext_resource type="Script" uid="uid://bh5kpg023y3k" path="res://Scripts/Resources/wave_data.gd" id="2_da61g"]
 [ext_resource type="PackedScene" uid="uid://cmgajr2sc2bvt" path="res://Scenes/Enemy/goblin.tscn" id="3_urr3m"]
 
+[sub_resource type="Resource" id="Resource_j7wcg"]
+script = ExtResource("2_da61g")
+start_time_seconds = 1
+spawn_interval = 5.0
+allowed_enemies = Array[PackedScene]([ExtResource("3_urr3m")])
+metadata/_custom_type_script = "uid://bh5kpg023y3k"
+
 [sub_resource type="Resource" id="Resource_c458c"]
 script = ExtResource("2_da61g")
 start_time_seconds = 20
@@ -20,5 +27,5 @@ metadata/_custom_type_script = "uid://bh5kpg023y3k"
 
 [resource]
 script = ExtResource("1_j7wcg")
-waves = Array[ExtResource("2_da61g")]([SubResource("Resource_c458c"), SubResource("Resource_pvlc2")])
+waves = Array[ExtResource("2_da61g")]([SubResource("Resource_j7wcg"), SubResource("Resource_c458c"), SubResource("Resource_pvlc2")])
 metadata/_custom_type_script = "uid://b7nmigdg50ql8"

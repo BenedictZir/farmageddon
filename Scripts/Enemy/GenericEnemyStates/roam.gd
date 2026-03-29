@@ -22,19 +22,34 @@ func physics_update(delta: float) -> void:
 
 	# Check for targets
 	var player := PlayerRef.instance
-	var player_in_aggro := false
-	
+	var helpers = get_tree().get_nodes_in_group("helpers")
+
+	var targets = []
 	if player and not player.is_knocked:
-		var dist := entity.global_position.distance_to(player.global_position)
-		if dist < 70.0:
-			player_in_aggro = true
+		targets.append(player)
+	for h in helpers:
+		targets.append(h)
+
+	var target_in_aggro := false
+	
+	if not targets.is_empty():
+		var target = targets[0]
+		var min_dist := entity.global_position.distance_to(target.global_position)
+		for t in targets:
+			var d = entity.global_position.distance_to(t.global_position)
+			if d < min_dist:
+				target = t
+				min_dist = d
+				
+		if min_dist < 70.0:
+			target_in_aggro = true
 			transition.emit("chase")
 			return
-		elif dist < entity.player_detect_range:
-			player_in_aggro = true # we will prioritize player if there's no crop, but if there's a crop we might still go for it later
+		elif min_dist < entity.player_detect_range:
+			target_in_aggro = true
 	
-	# Only find crops if player is not strictly in our face
-	if not player_in_aggro or randf() > 0.5: # 50% chance to still prefer crops if player is just "nearby" but not "in face"
+	# Only find crops if player/helper is not strictly in our face
+	if not target_in_aggro or randf() > 0.5:
 		if entity is Goblin:
 			var tile = entity.find_nearest_stealable()
 			if tile:
@@ -42,7 +57,7 @@ func physics_update(delta: float) -> void:
 				transition.emit("approach")
 				return
 			
-	if player_in_aggro:
+	if target_in_aggro:
 		transition.emit("chase")
 
 

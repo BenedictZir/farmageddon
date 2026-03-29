@@ -2276,6 +2276,7 @@ region = Rect2(44, 24, 9, 10)
 [node name="Player" type="CharacterBody2D" unique_id=949497324]
 y_sort_enabled = true
 collision_layer = 2
+groups = ["hud_occluders"]
 script = ExtResource("scr_player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=649593810]
@@ -2329,10 +2330,9 @@ frame_progress = 0.59723324
 [node name="Tool" type="AnimatedSprite2D" parent="PlayerVisual" unique_id=869108250]
 y_sort_enabled = true
 sprite_frames = SubResource("sf_tools")
-animation = &"carry"
+animation = &"death"
 
 [node name="HeldItemSprite" type="Sprite2D" parent="PlayerVisual" unique_id=965775748]
-visible = false
 z_index = 10
 position = Vector2(0, -10)
 texture = ExtResource("37_h5u0x")

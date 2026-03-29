@@ -1,9 +1,16 @@
 [gd_scene format=3 uid="uid://bbu8qaxi1pt45"]
 
+[ext_resource type="Texture2D" uid="uid://bbbitjyosvfou" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/CARRY/notools_carry_strip8.png" id="28_slbi0"]
+[ext_resource type="Script" uid="uid://b4fdi1j4q3pv4" path="res://Scripts/StateMachine/finite_state_machine.gd" id="scr_fsm"]
+[ext_resource type="Script" uid="uid://cymoaxgbclvqv" path="res://Scripts/Helpers/States/helper_enter.gd" id="scr_helper_enter"]
 [ext_resource type="Script" uid="uid://4iw2c8bqnaea" path="res://Scripts/Components/health_component.gd" id="scr_hp"]
 [ext_resource type="Script" uid="uid://cc4enjncjqjyt" path="res://Scripts/Components/movement_component.gd" id="scr_mov"]
 [ext_resource type="Script" uid="uid://c8ovf4morcxi8" path="res://Scripts/Helpers/warrior_helper.gd" id="scr_root"]
 [ext_resource type="Script" uid="uid://spgs4v7l45n6" path="res://Scripts/Helpers/helper_visual.gd" id="scr_vis"]
+[ext_resource type="Script" uid="uid://dta2kuvv1srba" path="res://Scripts/Helpers/WarriorStates/warrior_attack.gd" id="scr_war_attack"]
+[ext_resource type="Script" uid="uid://01ms1bj1wd15" path="res://Scripts/Helpers/WarriorStates/warrior_chase.gd" id="scr_war_chase"]
+[ext_resource type="Script" uid="uid://ce5s26sioepvj" path="res://Scripts/Helpers/WarriorStates/warrior_roam.gd" id="scr_war_roam"]
+[ext_resource type="Script" path="res://Scripts/Helpers/States/helper_death.gd" id="scr_helper_death"]
 [ext_resource type="Texture2D" uid="uid://ctvubqa5ow664" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/ATTACK/base_attack_strip10.png" id="tex_base_attack"]
 [ext_resource type="Texture2D" uid="uid://bv6cveki8iyj8" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/CARRY/base_carry_strip8.png" id="tex_base_carry"]
 [ext_resource type="Texture2D" uid="uid://cvpi7c2vuq0pm" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/DEATH/base_death_strip13.png" id="tex_base_death"]
@@ -13,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://bub1wmx7p4jyj" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/IDLE/base_idle_strip9.png" id="tex_base_idle"]
 [ext_resource type="Texture2D" uid="uid://b473npnja5q3" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/RUN/base_run_strip8.png" id="tex_base_run"]
 [ext_resource type="Texture2D" uid="uid://bjnw4jcjt82tx" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/WALKING/base_walk_strip8.png" id="tex_base_walk"]
+[ext_resource type="Texture2D" uid="uid://bd563hdiisdmq" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/over.png" id="tex_over"]
+[ext_resource type="Texture2D" uid="uid://dglhn7o38ihtm" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/progress_red.png" id="tex_red"]
 [ext_resource type="Texture2D" uid="uid://cj6f07nlu0dwj" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/ATTACK/spikeyhair_attack_strip10.png" id="tex_spikeyhair_attack"]
 [ext_resource type="Texture2D" uid="uid://cwcrlby305gaf" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/CARRY/spikeyhair_carry_strip8.png" id="tex_spikeyhair_carry"]
 [ext_resource type="Texture2D" uid="uid://u5oop66bsfqx" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/DEATH/spikeyhair_death_strip13.png" id="tex_spikeyhair_death"]
@@ -31,6 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://bmwtjhd3uws0o" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/IDLE/tools_idle_strip9.png" id="tex_tools_idle"]
 [ext_resource type="Texture2D" uid="uid://c7ubghoin0xit" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/RUN/tools_run_strip8.png" id="tex_tools_run"]
 [ext_resource type="Texture2D" uid="uid://c02e67somt7ck" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/WALKING/tools_walk_strip8.png" id="tex_tools_walk"]
+[ext_resource type="Texture2D" uid="uid://ba0x1oup484bc" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/under.png" id="tex_under"]
 
 [sub_resource type="RectangleShape2D" id="col_rect"]
 size = Vector2(16, 16)
@@ -1393,6 +1403,38 @@ region = Rect2(576, 0, 96, 64)
 atlas = ExtResource("tex_tools_carry")
 region = Rect2(672, 0, 96, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcew7"]
+atlas = ExtResource("28_slbi0")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ud7s"]
+atlas = ExtResource("28_slbi0")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k0u7"]
+atlas = ExtResource("28_slbi0")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7it01"]
+atlas = ExtResource("28_slbi0")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tera"]
+atlas = ExtResource("28_slbi0")
+region = Rect2(384, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6o56"]
+atlas = ExtResource("28_slbi0")
+region = Rect2(480, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbpwr"]
+atlas = ExtResource("28_slbi0")
+region = Rect2(576, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0axbe"]
+atlas = ExtResource("28_slbi0")
+region = Rect2(672, 0, 96, 64)
+
 [sub_resource type="AtlasTexture" id="at_tools_death_0"]
 atlas = ExtResource("tex_tools_death")
 region = Rect2(0, 0, 96, 64)
@@ -1729,6 +1771,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jcew7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ud7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k0u7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7it01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tera")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6o56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbpwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0axbe")
+}],
+"loop": true,
+"name": &"carry_no_tool",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("at_tools_death_0")
 }, {
 "duration": 1.0,
@@ -1965,16 +2036,19 @@ animations = [{
 }]
 
 [node name="WarriorHelper" type="CharacterBody2D" unique_id=665274838]
+collision_layer = 2
 script = ExtResource("scr_root")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=545110832]
+position = Vector2(0, -1)
 shape = SubResource("col_rect")
 
 [node name="Components" type="Node2D" parent="." unique_id=970182797]
 
 [node name="MovementComponent" type="Node2D" parent="Components" unique_id=413371804]
 script = ExtResource("scr_mov")
-movement_speed = 80.0
+movement_speed = 50.0
+run_speed = 80.0
 
 [node name="HealthComponent" type="Node2D" parent="Components" unique_id=1631081430]
 script = ExtResource("scr_hp")
@@ -1994,6 +2068,37 @@ sprite_frames = SubResource("sf_spikeyhair")
 animation = &"idle"
 
 [node name="Tool" type="AnimatedSprite2D" parent="HelperVisual" unique_id=265275444]
-visible = false
 sprite_frames = SubResource("sf_tools")
-animation = &"idle"
+animation = &"carry_no_tool"
+
+[node name="HealthBar" type="TextureProgressBar" parent="HelperVisual" unique_id=1702724476]
+z_index = 15
+offset_left = -8.0
+offset_top = -17.0
+offset_right = 8.0
+offset_bottom = -9.0
+value = 100.0
+texture_under = ExtResource("tex_under")
+texture_over = ExtResource("tex_over")
+texture_progress = ExtResource("tex_red")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="StateMachine" type="Node" parent="." unique_id=845008785 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("scr_fsm")
+initial_state = NodePath("HelperEnter")
+
+[node name="HelperEnter" type="Node" parent="StateMachine" unique_id=122779655]
+script = ExtResource("scr_helper_enter")
+
+[node name="Roam" type="Node" parent="StateMachine" unique_id=1250206059]
+script = ExtResource("scr_war_roam")
+
+[node name="Chase" type="Node" parent="StateMachine" unique_id=1605289744]
+script = ExtResource("scr_war_chase")
+
+[node name="Attack" type="Node" parent="StateMachine" unique_id=912499207]
+script = ExtResource("scr_war_attack")
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("scr_helper_death")

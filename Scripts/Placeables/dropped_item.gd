@@ -11,6 +11,10 @@ var growth_phase := 0
 var _icon: Texture2D = null
 
 
+func _ready() -> void:
+	add_to_group("hud_occluders")
+
+
 func setup(data: Dictionary) -> void:
 	item_data = data.get("item_data")
 	was_growing = data.get("was_growing", false)

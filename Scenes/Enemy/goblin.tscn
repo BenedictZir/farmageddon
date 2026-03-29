@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://cvgju4j0esvg8" path="res://Scripts/Enemy/GoblinStates/goblin_flee.gd" id="scr_state_flee"]
 [ext_resource type="Script" uid="uid://cxaeqxtqdvccf" path="res://Scripts/Enemy/GenericEnemyStates/roam.gd" id="scr_state_roam"]
 [ext_resource type="Script" uid="uid://c61ht1s3ohoel" path="res://Scripts/Enemy/GoblinStates/goblin_stealing.gd" id="scr_state_stealing"]
+[ext_resource type="Script" path="res://Scripts/Enemy/GenericEnemyStates/death.gd" id="scr_state_death"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lxxwk"]
 resource_local_to_scene = true
@@ -712,5 +713,8 @@ script = ExtResource("scr_state_stealing")
 
 [node name="Flee" type="Node" parent="StateMachine" index="5" unique_id=1804400561]
 script = ExtResource("scr_state_flee")
+
+[node name="Death" type="Node" parent="StateMachine" index="6"]
+script = ExtResource("scr_state_death")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

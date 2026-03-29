@@ -51,9 +51,9 @@ script = ExtResource("scr_enemy_visual")
 [node name="HealthBar" type="TextureProgressBar" parent="EnemyVisual" unique_id=1411516709]
 z_index = 15
 offset_left = -8.0
-offset_top = -15.0
+offset_top = -16.0
 offset_right = 8.0
-offset_bottom = -7.0
+offset_bottom = -8.0
 value = 100.0
 texture_under = ExtResource("tex_under")
 texture_over = ExtResource("tex_over")
@@ -62,9 +62,9 @@ texture_progress = ExtResource("tex_red")
 [node name="InteractBar" type="TextureProgressBar" parent="." unique_id=321582117]
 z_index = 15
 offset_left = -8.0
-offset_top = 4.0
+offset_top = 9.0
 offset_right = 8.0
-offset_bottom = 12.0
+offset_bottom = 17.0
 texture_under = ExtResource("tex_under")
 texture_over = ExtResource("tex_over")
 texture_progress = ExtResource("tex_green")

@@ -141,14 +141,11 @@ func play_dig() -> void:
 func play_run() -> void:
 	play_state(AnimState.RUN)
 
-func play_death() -> void:
-	play_state(AnimState.DEATH)
-
-func play_hurt() -> void:
-	play_state(AnimState.HURT)
-
 func play_attack() -> void:
 	play_state(AnimState.ATTACK)
+
+func play_death() -> void:
+	play_state(AnimState.DEATH)
 
 func play_roll() -> void:
 	play_state(AnimState.ROLL)
@@ -214,7 +211,7 @@ func _update_flip() -> void:
 
 
 func _is_oneshot_state(state: AnimState) -> bool:
-	return state in [AnimState.DOING, AnimState.DIG, AnimState.HURT, AnimState.DEATH, AnimState.ATTACK, AnimState.ROLL]
+	return state in [AnimState.DOING, AnimState.DIG, AnimState.DEATH, AnimState.ATTACK, AnimState.ROLL]
 
 
 func _on_base_animation_finished() -> void:
@@ -225,7 +222,6 @@ func _on_base_animation_finished() -> void:
 	_locked = false
 	animation_state_finished.emit(finished_state)
 	
-	# Auto-return after one-shot anims (except death)
 	if finished_state != AnimState.DEATH:
 		var player := get_parent()
 		if player and player.get("is_carrying"):

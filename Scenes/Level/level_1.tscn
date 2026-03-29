@@ -75,6 +75,9 @@ position = Vector2(56, 8)
 [node name="PlantableTile18" parent="PlantableTiles" parent_id_path=PackedInt32Array(1103730003) index="11" unique_id=2022169396 instance=ExtResource("4_wtlyx")]
 position = Vector2(72, 8)
 
+[node name="Camera2D" parent="." index="5" unique_id=1913896110]
+editor_description = ""
+
 [node name="ForageSpawner" parent="." index="6" unique_id=1796233981]
 forage_items = Array[Resource]([ExtResource("5_uoico"), ExtResource("6_4snqv"), ExtResource("5_uoico")])
 

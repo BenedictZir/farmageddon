@@ -3605,6 +3605,9 @@ region_rect = Rect2(5, 5, 18, 35)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1913896110]
 position = Vector2(0, 3)
 zoom = Vector2(2, 2)
+script_class_name = &""
+editor_description = &""
+groups = ["cameras"]
 
 [node name="ForageSpawner" type="Node2D" parent="." unique_id=1796233981]
 script = ExtResource("7_6fsfs")
