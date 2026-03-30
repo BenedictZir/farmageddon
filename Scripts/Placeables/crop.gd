@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 	if fully_grown or not crop_data:
 		return
 
-	_growth_timer += delta
+	_growth_timer += delta * GameManager.get_crop_growth_rate_multiplier()
 	if _growth_timer >= _phase_duration:
 		_growth_timer -= _phase_duration
 		growth_phase += 1

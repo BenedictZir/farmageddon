@@ -38,8 +38,10 @@ func _process(delta: float) -> void:
 			
 	# Process Spawning
 	if _current_wave and not _current_wave.allowed_enemies.is_empty():
-		if _spawn_timer >= _current_wave.spawn_interval:
-			_spawn_timer -= _current_wave.spawn_interval
+		var spawn_interval := _current_wave.spawn_interval * GameManager.get_enemy_spawn_interval_multiplier()
+		spawn_interval = maxf(0.05, spawn_interval)
+		while _spawn_timer >= spawn_interval:
+			_spawn_timer -= spawn_interval
 			_spawn_enemy()
 
 

@@ -15,6 +15,12 @@ func play_hit(sprites: Array, camera: Camera2D = null) -> void:
 		_apply_screen_shake(camera)
 
 
+func play_camera_shake(camera: Camera2D, magnitude := 2.0, duration := 0.25) -> void:
+	if not camera:
+		return
+	_apply_screen_shake(camera, magnitude, duration)
+
+
 ## Classic arcade death: flip, short arc, then fall off-screen.
 ## body is the root CharacterBody2D (enemy/helper).
 ## on_done is called when the animation finishes (for queue_free).

@@ -454,6 +454,8 @@ animations = [{
 [node name="Skeleton" unique_id=7649292 instance=ExtResource("1_1rxu0")]
 script = ExtResource("2_xf65c")
 player_detect_range = 500.0
+gold_drop_min = 20
+gold_drop_max = 35
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=534802735]
 shape = SubResource("RectangleShape2D_pbxlo")

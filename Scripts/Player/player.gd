@@ -32,6 +32,8 @@ var _sprint_locked_out := false
 @export var roll_energy_cost := 20.0
 @export var roll_distance := 32.0
 @export var roll_duration := 0.3
+@export var attack_hit_shake_magnitude := 1.4
+@export var attack_hit_shake_duration := 0.12
 
 
 func _ready() -> void:
@@ -43,6 +45,8 @@ func _ready() -> void:
 	health_component.died.connect(_on_died)
 	health_component.revived.connect(_on_revived)
 	player_visual.animation_state_finished.connect(_on_anim_state_finished)
+	if attack_component.has_signal("hit_landed") and not attack_component.hit_landed.is_connected(_on_attack_hit_landed):
+		attack_component.hit_landed.connect(_on_attack_hit_landed)
 	if CurrencyManager.has_signal("gold_spent") and not CurrencyManager.gold_spent.is_connected(_on_gold_spent):
 		CurrencyManager.gold_spent.connect(_on_gold_spent)
 
@@ -155,6 +159,13 @@ func _on_damaged(_amount: float) -> void:
 		return
 	var camera = get_viewport().get_camera_2d()
 	HitEffects.play_hit(player_visual._sprites, camera)
+
+
+func _on_attack_hit_landed(_target: Node2D) -> void:
+	if is_knocked:
+		return
+	var camera := get_viewport().get_camera_2d()
+	HitEffects.play_camera_shake(camera, attack_hit_shake_magnitude, attack_hit_shake_duration)
 
 
 func _on_died() -> void:

@@ -3,6 +3,8 @@ class_name EnemyBase
 
 ## Base class for enemies. Provides shared references and death logic.
 
+const FLOATING_TEXT_SCENE := preload("res://Scenes/UI/floating_text.tscn")
+
 @onready var movement_component: MovementComponent = $Components/MovementComponent
 @onready var health_component: HealthComponent = $Components/HealthComponent
 @onready var attack_component: Area2D = $Components/AttackComponent
@@ -18,6 +20,8 @@ class_name EnemyBase
 @export var run_speed := 45.0
 @export var walk_speed := 25.0
 @export var roam_change_interval := 2.0
+@export var gold_drop_min := 0
+@export var gold_drop_max := 0
 var attack_cooldown := 0.0
 
 
@@ -78,10 +82,35 @@ func _on_death() -> void:
 		interact_bar.hide()
 	velocity = Vector2.ZERO
 	attack_component.deactivate()
+	_drop_gold_on_death()
 	if fsm and fsm.states.has("death"):
 		fsm.change_state("Death")
 	else:
 		HitEffects.play_death(self, func(): queue_free())
+
+
+func _drop_gold_on_death() -> void:
+	if gold_drop_max <= 0:
+		return
+
+	var min_drop := clampi(gold_drop_min, 0, gold_drop_max)
+	var amount := randi_range(min_drop, gold_drop_max)
+	if amount <= 0:
+		return
+
+	CurrencyManager.add_gold(amount)
+	_show_gold_popup(amount)
+
+
+func _show_gold_popup(amount: int) -> void:
+	var root := get_tree().current_scene
+	if not root:
+		return
+
+	var popup = FLOATING_TEXT_SCENE.instantiate()
+	root.add_child(popup)
+	popup.global_position = global_position + Vector2(0, -14)
+	popup.setup("+%dg" % amount, Color.GOLD)
 
 
 func set_interact_progress(progress: float, is_visible := true) -> void:

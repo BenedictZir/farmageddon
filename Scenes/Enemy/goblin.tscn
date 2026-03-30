@@ -667,6 +667,8 @@ animations = [{
 script = ExtResource("scr_goblin_ai")
 steal_detect_range = 80.0
 steal_duration = 3.0
+gold_drop_min = 15
+gold_drop_max = 25
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=534802735]
 shape = SubResource("RectangleShape2D_lxxwk")

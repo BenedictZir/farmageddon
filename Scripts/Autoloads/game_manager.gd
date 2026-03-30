@@ -2,6 +2,9 @@ extends CanvasLayer
 
 ## Autoload that manages cross-level data, win/lose conditions, and the Game Loop UI.
 
+signal level_timer_changed(remaining_seconds: float, total_seconds: float)
+signal day_night_changed(is_night: bool)
+
 @onready var color_rect: ColorRect = $ColorRect
 @onready var title_label: Label = $VBoxContainer/TitleLabel
 @onready var retry_button: Button = $VBoxContainer/HBoxContainer/RetryButton
@@ -24,7 +27,13 @@ func get_current_goal_data() -> Dictionary:
 	return level_goals.get(current_level_index, level_goals[1])
 
 var _game_over := false
-var _check_timer := 0.0
+var _level_elapsed_seconds := 0.0
+var _level_time_limit_seconds := 300.0
+var _time_limit_checked := false
+
+var _enemy_spawn_interval_multiplier := 1.0
+var _crop_growth_rate_multiplier := 1.0
+var _is_night := false
 
 
 func _ready() -> void:
@@ -33,10 +42,15 @@ func _ready() -> void:
 	next_button.pressed.connect(_on_next_pressed)
 
 
-func register_level(extents: Vector2, scene_path: String) -> void:
+func register_level(extents: Vector2, scene_path: String, config: Dictionary = {}) -> void:
 	map_extents = extents
 	current_level_path = scene_path
 	_game_over = false
+	_level_elapsed_seconds = 0.0
+	_level_time_limit_seconds = maxf(1.0, float(config.get("time_limit_seconds", 300.0)))
+	_time_limit_checked = false
+	set_day_night_modifiers(false, 1.0, 1.0)
+	level_timer_changed.emit(_level_time_limit_seconds, _level_time_limit_seconds)
 	hide_ui()
 	UpgradeManager.reset_upgrades()
 
@@ -44,31 +58,41 @@ func register_level(extents: Vector2, scene_path: String) -> void:
 func _process(delta: float) -> void:
 	if _game_over:
 		return
-	
-	_check_timer += delta
-	if _check_timer >= 1.0:
-		_check_timer = 0.0
-		_check_lose_condition()
 
+	_level_elapsed_seconds += delta
+	var remaining := get_remaining_time_seconds()
+	level_timer_changed.emit(remaining, _level_time_limit_seconds)
 
-func _check_lose_condition() -> void:
-	# Lose if: Gold < lowest shop price (assuming 15) AND
-	# No crops planted AND player not holding any seeds/crops.
-	if CurrencyManager.gold >= 10:
+	if _time_limit_checked:
 		return
-	
-	var player = PlayerRef.instance
-	if player and player.is_carrying:
-		var held = player.get("_held_item")
-		if held is ItemData and held.get_placeable_type() == Placeable.Type.CROP:
-			return # Still has seeds/crops to plant/sell
-			
-	var planted_crops = get_tree().get_nodes_in_group("plantable_tiles").filter(func(tile): return tile.get("occupied") == true)
-	if planted_crops.size() > 0:
-		return # Crops are growing
-		
-	# No money, no seeds, no crops growing = softlock
+	if remaining > 0.0:
+		return
+
+	_time_limit_checked = true
 	lose()
+
+
+func get_remaining_time_seconds() -> float:
+	return maxf(0.0, _level_time_limit_seconds - _level_elapsed_seconds)
+
+
+func get_enemy_spawn_interval_multiplier() -> float:
+	return _enemy_spawn_interval_multiplier
+
+
+func get_crop_growth_rate_multiplier() -> float:
+	return _crop_growth_rate_multiplier
+
+
+func is_night_time() -> bool:
+	return _is_night
+
+
+func set_day_night_modifiers(is_night: bool, enemy_spawn_interval_multiplier: float = 1.0, crop_growth_rate_multiplier: float = 1.0) -> void:
+	_is_night = is_night
+	_enemy_spawn_interval_multiplier = maxf(0.05, enemy_spawn_interval_multiplier)
+	_crop_growth_rate_multiplier = maxf(0.05, crop_growth_rate_multiplier)
+	day_night_changed.emit(_is_night)
 
 
 func win() -> void:
@@ -77,6 +101,7 @@ func win() -> void:
 	_game_over = true
 	get_tree().paused = true
 	title_label.text = "LEVEL COMPLETE!"
+	title_label.modulate = Color.WHITE
 	color_rect.color = Color(0, 0, 0, 0.7)
 	next_button.show()
 	show_ui()

@@ -28,4 +28,5 @@ metadata/_custom_type_script = "uid://bh5kpg023y3k"
 [resource]
 script = ExtResource("1_j7wcg")
 waves = Array[ExtResource("2_da61g")]([SubResource("Resource_j7wcg"), SubResource("Resource_c458c"), SubResource("Resource_pvlc2")])
+has_day_night_cycle = true
 metadata/_custom_type_script = "uid://b7nmigdg50ql8"

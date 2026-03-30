@@ -7,6 +7,8 @@ extends Area2D
 @export var damage := 25.0
 @export var offset_distance := 20.0  # how far in front of attacker
 
+signal hit_landed(target: Node2D)
+
 
 func _ready() -> void:
 	set_deferred("monitoring", false)
@@ -37,7 +39,13 @@ func deactivate() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body == get_parent():
 		return
+	var did_hit := false
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
+		did_hit = true
 	elif body.has_node("Components/HealthComponent"):
 		body.get_node("Components/HealthComponent").take_damage(damage)
+		did_hit = true
+
+	if did_hit:
+		hit_landed.emit(body)

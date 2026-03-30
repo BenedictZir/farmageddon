@@ -3605,9 +3605,9 @@ region_rect = Rect2(5, 5, 18, 35)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1913896110]
 position = Vector2(0, 3)
 zoom = Vector2(2, 2)
-script_class_name = &""
-editor_description = &""
-groups = ["cameras"]
+
+[node name="DayNightModulate" type="CanvasModulate" parent="." unique_id=274776593]
+color = Color(0.56, 0.62, 0.78, 1)
 
 [node name="ForageSpawner" type="Node2D" parent="." unique_id=1796233981]
 script = ExtResource("7_6fsfs")
@@ -3618,3 +3618,24 @@ forage_items = Array[Resource]([ExtResource("8_g3fov")])
 [node name="ShopUI" parent="UI" unique_id=445589370 instance=ExtResource("4_68h7x")]
 offset_left = 150.0
 offset_right = 15.0
+
+[node name="TimerLabel" type="Label" parent="UI" unique_id=1972601186]
+offset_left = 10.0
+offset_top = 69.0
+offset_right = 136.0
+offset_bottom = 91.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 18
+text = "05:00"
+
+[node name="GoldLabel" type="Label" parent="UI" unique_id=811284521]
+offset_left = 10.0
+offset_top = 91.0
+offset_right = 154.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(1, 0.9, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "Gold: 0g"
