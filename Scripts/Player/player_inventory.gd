@@ -150,9 +150,9 @@ func _sell_held_item() -> void:
 
 func _spawn_floating_text(text: String, color: Color) -> void:
 	var ft = FLOATING_TEXT_SCENE.instantiate()
+	ft.setup(text, color)
 	player.get_parent().add_child(ft)
 	ft.global_position = player.global_position + Vector2(0, -16)
-	ft.setup(text, color)
 
 
 func on_interact_anim_finished() -> void:

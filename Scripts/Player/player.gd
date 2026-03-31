@@ -218,9 +218,9 @@ func _spawn_currency_text(text: String, color: Color) -> void:
 	if not is_inside_tree() or not get_parent():
 		return
 	var ft = FLOATING_TEXT_SCENE.instantiate()
+	ft.setup(text, color)
 	get_parent().add_child(ft)
 	ft.global_position = global_position + Vector2(0, -18)
-	ft.setup(text, color)
 
 
 func _is_mouse_over_ui() -> bool:

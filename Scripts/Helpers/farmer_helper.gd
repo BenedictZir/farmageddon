@@ -58,7 +58,9 @@ func _find_nearest_empty_tile() -> Node2D:
 	var best: Node2D = null
 	var best_dist = INF
 	for tile in get_tree().get_nodes_in_group("plantable_tiles"):
-		if not tile.occupied and not _is_tile_targeted(tile):
+		if tile.has_method("accepts_type") \
+			and tile.accepts_type(Placeable.Type.CROP) \
+			and not _is_tile_targeted(tile):
 			var dist = global_position.distance_to(tile.global_position)
 			if dist < best_dist:
 				best_dist = dist

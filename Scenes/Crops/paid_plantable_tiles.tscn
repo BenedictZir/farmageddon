@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dy4v3kfk8hfjf"]
+
+[ext_resource type="Script" path="res://Scripts/Placeables/paid_plantable_tiles.gd" id="1_paid_patch"]
+
+[node name="PaidPlantableTiles" type="Node2D"]
+script = ExtResource("1_paid_patch")
+
+[node name="LockUi" type="Node2D" parent="."]
+z_index = 20
+
+[node name="IconLabel" type="Label" parent="LockUi"]
+offset_left = -24.0
+offset_top = -18.0
+offset_right = 24.0
+offset_bottom = -2.0
+theme_override_colors/font_color = Color(1, 0.92, 0.5, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 13
+text = "LOCK"
+horizontal_alignment = 1
+
+[node name="PriceLabel" type="Label" parent="LockUi"]
+offset_left = -20.0
+offset_top = -2.0
+offset_right = 20.0
+offset_bottom = 14.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+text = "15G"
+horizontal_alignment = 1

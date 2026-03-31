@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://bbu8qaxi1pt45"]
 
 [ext_resource type="Texture2D" uid="uid://bbbitjyosvfou" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/CARRY/notools_carry_strip8.png" id="28_slbi0"]
+[ext_resource type="Texture2D" uid="uid://5l8mn1e8jkl2" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/sword.png" id="36_7ud7s"]
 [ext_resource type="Script" uid="uid://b4fdi1j4q3pv4" path="res://Scripts/StateMachine/finite_state_machine.gd" id="scr_fsm"]
+[ext_resource type="Script" uid="uid://crwwootjyt62n" path="res://Scripts/Helpers/States/helper_death.gd" id="scr_helper_death"]
 [ext_resource type="Script" uid="uid://cymoaxgbclvqv" path="res://Scripts/Helpers/States/helper_enter.gd" id="scr_helper_enter"]
 [ext_resource type="Script" uid="uid://4iw2c8bqnaea" path="res://Scripts/Components/health_component.gd" id="scr_hp"]
 [ext_resource type="Script" uid="uid://cc4enjncjqjyt" path="res://Scripts/Components/movement_component.gd" id="scr_mov"]
@@ -10,7 +12,6 @@
 [ext_resource type="Script" uid="uid://dta2kuvv1srba" path="res://Scripts/Helpers/WarriorStates/warrior_attack.gd" id="scr_war_attack"]
 [ext_resource type="Script" uid="uid://01ms1bj1wd15" path="res://Scripts/Helpers/WarriorStates/warrior_chase.gd" id="scr_war_chase"]
 [ext_resource type="Script" uid="uid://ce5s26sioepvj" path="res://Scripts/Helpers/WarriorStates/warrior_roam.gd" id="scr_war_roam"]
-[ext_resource type="Script" path="res://Scripts/Helpers/States/helper_death.gd" id="scr_helper_death"]
 [ext_resource type="Texture2D" uid="uid://ctvubqa5ow664" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/ATTACK/base_attack_strip10.png" id="tex_base_attack"]
 [ext_resource type="Texture2D" uid="uid://bv6cveki8iyj8" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/CARRY/base_carry_strip8.png" id="tex_base_carry"]
 [ext_resource type="Texture2D" uid="uid://cvpi7c2vuq0pm" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/DEATH/base_death_strip13.png" id="tex_base_death"]
@@ -2082,7 +2083,12 @@ texture_under = ExtResource("tex_under")
 texture_over = ExtResource("tex_over")
 texture_progress = ExtResource("tex_red")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="Sword" type="Sprite2D" parent="HelperVisual/HealthBar" unique_id=1043739848]
+position = Vector2(1, 3)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("36_7ud7s")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=275052862]
 
 [node name="StateMachine" type="Node" parent="." unique_id=845008785 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("scr_fsm")
@@ -2100,5 +2106,5 @@ script = ExtResource("scr_war_chase")
 [node name="Attack" type="Node" parent="StateMachine" unique_id=912499207]
 script = ExtResource("scr_war_attack")
 
-[node name="Death" type="Node" parent="StateMachine"]
+[node name="Death" type="Node" parent="StateMachine" unique_id=1572881338]
 script = ExtResource("scr_helper_death")

@@ -108,9 +108,9 @@ func _show_gold_popup(amount: int) -> void:
 		return
 
 	var popup = FLOATING_TEXT_SCENE.instantiate()
+	popup.setup("+%dg" % amount, Color.GOLD)
 	root.add_child(popup)
 	popup.global_position = global_position + Vector2(0, -14)
-	popup.setup("+%dg" % amount, Color.GOLD)
 
 
 func set_interact_progress(progress: float, is_visible := true) -> void:

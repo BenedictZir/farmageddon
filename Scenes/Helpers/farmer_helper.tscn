@@ -4,18 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://p78vk580bxr6" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/JUMP/longhair_jump_strip9.png" id="22_a40b7"]
 [ext_resource type="Texture2D" uid="uid://bbbitjyosvfou" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/CARRY/notools_carry_strip8.png" id="28_3ieme"]
 [ext_resource type="Texture2D" uid="uid://sarslm365sbp" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/JUMP/tools_jump_strip9.png" id="31_sq344"]
+[ext_resource type="Texture2D" uid="uid://bfau6stdmx0tk" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/shovel.png" id="39_l27ri"]
 [ext_resource type="Script" uid="uid://bq4ao8tyykqdc" path="res://Scripts/Helpers/FarmerStates/farmer_feed.gd" id="scr_farmer_feed"]
 [ext_resource type="Script" uid="uid://cfp37rjd0d28l" path="res://Scripts/Helpers/FarmerStates/farmer_fertilize.gd" id="scr_farmer_fertilize"]
 [ext_resource type="Script" uid="uid://dbi6ng7avlu3y" path="res://Scripts/Helpers/FarmerStates/farmer_harvest.gd" id="scr_farmer_harvest"]
 [ext_resource type="Script" uid="uid://drxask4lcp11m" path="res://Scripts/Helpers/FarmerStates/farmer_idle.gd" id="scr_farmer_idle"]
 [ext_resource type="Script" uid="uid://dqojn3qaienrt" path="res://Scripts/Helpers/FarmerStates/farmer_plant.gd" id="scr_farmer_plant"]
 [ext_resource type="Script" uid="uid://b4fdi1j4q3pv4" path="res://Scripts/StateMachine/finite_state_machine.gd" id="scr_fsm"]
+[ext_resource type="Script" uid="uid://crwwootjyt62n" path="res://Scripts/Helpers/States/helper_death.gd" id="scr_helper_death"]
 [ext_resource type="Script" uid="uid://cymoaxgbclvqv" path="res://Scripts/Helpers/States/helper_enter.gd" id="scr_helper_enter"]
 [ext_resource type="Script" uid="uid://4iw2c8bqnaea" path="res://Scripts/Components/health_component.gd" id="scr_hp"]
 [ext_resource type="Script" uid="uid://cc4enjncjqjyt" path="res://Scripts/Components/movement_component.gd" id="scr_mov"]
 [ext_resource type="Script" uid="uid://b3i7m3klume05" path="res://Scripts/Helpers/farmer_helper.gd" id="scr_root"]
 [ext_resource type="Script" uid="uid://spgs4v7l45n6" path="res://Scripts/Helpers/helper_visual.gd" id="scr_vis"]
-[ext_resource type="Script" path="res://Scripts/Helpers/States/helper_death.gd" id="scr_helper_death"]
 [ext_resource type="Texture2D" uid="uid://ctvubqa5ow664" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/ATTACK/base_attack_strip10.png" id="tex_base_attack"]
 [ext_resource type="Texture2D" uid="uid://bv6cveki8iyj8" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/CARRY/base_carry_strip8.png" id="tex_base_carry"]
 [ext_resource type="Texture2D" uid="uid://cvpi7c2vuq0pm" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Characters/Human/DEATH/base_death_strip13.png" id="tex_base_death"]
@@ -2783,6 +2784,11 @@ texture_under = ExtResource("tex_under")
 texture_over = ExtResource("tex_over")
 texture_progress = ExtResource("tex_red")
 
+[node name="Sword" type="Sprite2D" parent="HelperVisual/HealthBar" unique_id=917299018]
+position = Vector2(1, 3)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("39_l27ri")
+
 [node name="InteractBar" type="TextureProgressBar" parent="HelperVisual" unique_id=544270140]
 z_index = 16
 offset_left = -8.0
@@ -2796,7 +2802,7 @@ texture_progress = ExtResource("tex_green")
 [node name="HeldItemSprite" type="Sprite2D" parent="HelperVisual" unique_id=648210459]
 position = Vector2(0, -10)
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=607483864]
 
 [node name="StateMachine" type="Node" parent="." unique_id=417689644 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("scr_fsm")
@@ -2820,5 +2826,5 @@ script = ExtResource("scr_farmer_harvest")
 [node name="Feed" type="Node" parent="StateMachine" unique_id=375519435]
 script = ExtResource("scr_farmer_feed")
 
-[node name="Death" type="Node" parent="StateMachine"]
+[node name="Death" type="Node" parent="StateMachine" unique_id=946415423]
 script = ExtResource("scr_helper_death")
