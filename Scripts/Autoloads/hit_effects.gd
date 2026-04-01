@@ -6,6 +6,8 @@ extends Node
 
 const FLASH_SHADER := preload("res://Shaders/hit_flash.gdshader")
 
+var _hitstop_active := false
+
 ## Apply hit flash + sprite shake to an array of CanvasItems.
 ## Optionally pass a Camera2D for screen shake (player only).
 func play_hit(sprites: Array, camera: Camera2D = null) -> void:
@@ -19,6 +21,23 @@ func play_camera_shake(camera: Camera2D, magnitude := 2.0, duration := 0.25) -> 
 	if not camera:
 		return
 	_apply_screen_shake(camera, magnitude, duration)
+
+
+func play_hit_stop(duration := 0.045, slowed_time_scale := 0.08) -> void:
+	if _hitstop_active:
+		return
+	if duration <= 0.0:
+		return
+
+	var previous_time_scale := Engine.time_scale
+	Engine.time_scale = clampf(slowed_time_scale, 0.01, 1.0)
+	_hitstop_active = true
+
+	var timer := get_tree().create_timer(duration, true, false, true)
+	timer.timeout.connect(func():
+		Engine.time_scale = previous_time_scale
+		_hitstop_active = false
+	, CONNECT_ONE_SHOT)
 
 
 ## Classic arcade death: flip, short arc, then fall off-screen.

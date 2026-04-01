@@ -44,6 +44,10 @@ func is_fertilizable() -> bool:
 	return occupied and placed_crop and not placed_crop.fully_grown and not placed_crop.fertilized
 
 
+func has_planted_crop() -> bool:
+	return occupied and placed_crop != null
+
+
 func get_fertilize_score() -> float:
 	if not is_fertilizable():
 		return -1.0

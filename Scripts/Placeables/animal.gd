@@ -12,6 +12,8 @@ var animal_data: AnimalData
 var state: AnimalState = AnimalState.HUNGRY
 var _production_timer := 0.0
 var _anim_timer := 0.0
+var _ready_bounce_tween: Tween
+var _status_base_pos := Vector2.ZERO
 
 
 func setup(data: AnimalData) -> void:
@@ -19,12 +21,15 @@ func setup(data: AnimalData) -> void:
 	state = AnimalState.HUNGRY
 	_production_timer = 0.0
 	_anim_timer = 0.0
+	_stop_ready_bounce()
 	
 	if animal_data.sprite_sheet:
 		sprite.texture = animal_data.sprite_sheet
 		sprite.hframes = animal_data.hframes
 		sprite.vframes = animal_data.vframes
 		sprite.frame = 0
+	if status_sprite:
+		_status_base_pos = status_sprite.position
 		
 	_update_visuals()
 
@@ -84,6 +89,7 @@ func _update_visuals() -> void:
 		return
 	match state:
 		AnimalState.HUNGRY:
+			_stop_ready_bounce()
 			# Show hunger indicator
 			status_sprite.visible = true
 			if animal_data and animal_data.product_data and animal_data.product_data.icon:
@@ -91,11 +97,13 @@ func _update_visuals() -> void:
 			status_sprite.modulate = Color(1, 1, 1, 0.0)
 			if progress_bar: progress_bar.visible = false
 		AnimalState.PROCESSING:
+			_stop_ready_bounce()
 			# Show processing (progress bar)
 			status_sprite.visible = false
 			status_sprite.modulate = Color(1, 1, 1, 0.0)
 			if progress_bar: progress_bar.visible = true
 		AnimalState.READY:
+			_stop_ready_bounce()
 			# Show product ready (bright icon + bounce)
 			status_sprite.visible = true
 			if animal_data and animal_data.product_data and animal_data.product_data.icon:
@@ -108,6 +116,22 @@ func _update_visuals() -> void:
 func _play_ready_bounce() -> void:
 	if not status_sprite:
 		return
-	var tween = create_tween().set_loops()
-	tween.tween_property(status_sprite, "position:y", -14.0, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(status_sprite, "position:y", -10.0, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	if _ready_bounce_tween and _ready_bounce_tween.is_running():
+		return
+
+	status_sprite.position = _status_base_pos + Vector2(0.0, -10.0)
+	_ready_bounce_tween = create_tween().set_loops()
+	_ready_bounce_tween.tween_property(status_sprite, "position:y", _status_base_pos.y - 14.0, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_ready_bounce_tween.tween_property(status_sprite, "position:y", _status_base_pos.y - 10.0, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+
+func _stop_ready_bounce() -> void:
+	if _ready_bounce_tween and _ready_bounce_tween.is_running():
+		_ready_bounce_tween.kill()
+	_ready_bounce_tween = null
+	if status_sprite:
+		status_sprite.position = _status_base_pos
+
+
+func _exit_tree() -> void:
+	_stop_ready_bounce()

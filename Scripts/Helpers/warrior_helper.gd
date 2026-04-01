@@ -20,11 +20,14 @@ func _ready() -> void:
 
 func _find_enemy() -> bool:
 	# First try the group — if enemies register themselves there
-	var enemies: Array = get_tree().get_nodes_in_group("enemies")
+	var enemies: Array[Node2D] = []
+	for node in get_tree().get_nodes_in_group("enemies"):
+		if node is Node2D:
+			enemies.append(node)
 	
 	# Fallback: recursively scan the scene for all EnemyBase instances
 	if enemies.is_empty():
-		enemies = []
+		enemies.clear()
 		_collect_enemies(get_tree().current_scene, enemies)
 	
 	if enemies.is_empty():
@@ -57,8 +60,8 @@ func _is_enemy_attackable(enemy: Node2D) -> bool:
 		return false
 	return true
 
-func _collect_enemies(node: Node, result: Array) -> void:
+func _collect_enemies(node: Node, result: Array[Node2D]) -> void:
 	if node is EnemyBase:
-		result.append(node)
+		result.append(node as Node2D)
 	for child in node.get_children():
 		_collect_enemies(child, result)

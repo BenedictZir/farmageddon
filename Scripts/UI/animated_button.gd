@@ -12,6 +12,7 @@ func _ready() -> void:
 	# Store the original scale from scene
 	_base_scale = scale
 	_hover_scale = _base_scale * hover_scale_multiplier
+	scale = _base_scale
 	
 	pivot_offset = size / 2.0
 	
@@ -22,6 +23,8 @@ func _ready() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_RESIZED:
 		pivot_offset = size / 2.0
+	elif what == NOTIFICATION_DISABLED:
+		_animate_scale(_base_scale)
 
 func _on_mouse_entered() -> void:
 	if disabled:
@@ -32,6 +35,7 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	if disabled:
+		scale = _base_scale
 		return
 	CursorManager.set_default()
 	_animate_scale(_base_scale)
@@ -54,4 +58,4 @@ func _animate_scale(target_scale: Vector2) -> void:
 	_tween.tween_property(self, "scale", target_scale, animation_duration)
 	
 func shrink_to_normal() -> void:
-	_animate_scale(Vector2.ONE)
+	_animate_scale(_base_scale)

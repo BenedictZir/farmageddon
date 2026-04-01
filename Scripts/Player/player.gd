@@ -34,6 +34,8 @@ var _sprint_locked_out := false
 @export var roll_duration := 0.3
 @export var attack_hit_shake_magnitude := 1.4
 @export var attack_hit_shake_duration := 0.12
+@export var attack_hitstop_duration := 0.045
+@export var attack_hitstop_scale := 0.08
 
 
 func _ready() -> void:
@@ -164,6 +166,7 @@ func _on_damaged(_amount: float) -> void:
 func _on_attack_hit_landed(_target: Node2D) -> void:
 	if is_knocked:
 		return
+	HitEffects.play_hit_stop(attack_hitstop_duration, attack_hitstop_scale)
 	var camera := get_viewport().get_camera_2d()
 	HitEffects.play_camera_shake(camera, attack_hit_shake_magnitude, attack_hit_shake_duration)
 

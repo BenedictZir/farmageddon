@@ -3,6 +3,7 @@ extends Node2D
 @export var item_size := Vector2i(1, 1)
 
 const SCAN_RADIUS := 16.0  # 1 tile
+const SCAN_RESULT_LIMIT := 16
 
 @onready var bottom_left: Sprite2D = $BottomLeft
 @onready var bottom_right: Sprite2D = $BottomRight
@@ -19,6 +20,12 @@ var _anim_players: Array[AnimationPlayer]
 var _error_tween: Tween
 var _is_placing := false
 var _is_error := false
+var _scan_timer := 0.0
+var _cached_best_target: Node2D
+var _scan_query := PhysicsShapeQueryParameters2D.new()
+var _scan_shape := CircleShape2D.new()
+
+@export var scan_interval := 0.08
 
 var current_target: Node2D = null
 
@@ -31,6 +38,11 @@ func _ready() -> void:
 	_anim_bl.animation_finished.connect(_on_animation_finished)
 	top_level = true
 	SelectBoxAnimations.build(_anim_players, item_size)
+	_scan_shape.radius = SCAN_RADIUS
+	_scan_query.shape = _scan_shape
+	_scan_query.collision_mask = 8 # layer 4 = Interactable
+	_scan_query.collide_with_areas = true
+	_scan_query.collide_with_bodies = false
 
 
 func _physics_process(_delta: float) -> void:
@@ -41,14 +53,22 @@ func _physics_process(_delta: float) -> void:
 	if _is_placing or _is_error:
 		return
 
-	var is_carrying: bool = player.get("is_carrying")
-	var is_holding_product: bool = player.get("_is_holding_product")
-	var best := _find_best_target(player)
+	_scan_timer -= _delta
+	if _scan_timer <= 0.0:
+		_scan_timer = maxf(0.01, scan_interval)
+		_cached_best_target = _find_best_target(player)
+	elif _cached_best_target and not is_instance_valid(_cached_best_target):
+		_cached_best_target = null
+
+	var inventory := player.get("inventory") as PlayerInventory
+	var is_carrying := inventory.is_carrying if inventory else bool(player.get("is_carrying"))
+	var is_holding_product := inventory.is_holding_product() if inventory else bool(player.get("_is_holding_product"))
+	var held_item: ItemData = inventory.get_held_item() if inventory else player.get("_held_item")
+	var best := _cached_best_target
 
 	if is_carrying:
 		if is_holding_product:
 			# Product in hand → check for feedable animal first
-			var held_item = player.get("_held_item")
 			if best and best.has_method("is_feedable") and best.is_feedable() and held_item and held_item.has_method("is_animal_feed") and held_item.is_animal_feed():
 				current_target = best
 				global_position = best.global_position
@@ -61,7 +81,6 @@ func _physics_process(_delta: float) -> void:
 				if not visible:
 					play_selecting()
 		elif best:
-			var held_item = player.get("_held_item")
 			if held_item and held_item is ItemData \
 				and best.has_method("accepts_type") \
 				and held_item.get_placeable_type() >= 0 \
@@ -92,16 +111,9 @@ func _physics_process(_delta: float) -> void:
 
 func _find_best_target(player: Node2D) -> Node2D:
 	var space := player.get_world_2d().direct_space_state
-	var query := PhysicsShapeQueryParameters2D.new()
-	var shape := CircleShape2D.new()
-	shape.radius = SCAN_RADIUS
-	query.shape = shape
-	query.transform = Transform2D(0, player.global_position)
-	query.collision_mask = 8  # layer 4 = Interactable
-	query.collide_with_areas = true
-	query.collide_with_bodies = false
+	_scan_query.transform = Transform2D(0, player.global_position)
 
-	var results := space.intersect_shape(query, 16)
+	var results := space.intersect_shape(_scan_query, SCAN_RESULT_LIMIT)
 	if results.is_empty():
 		return null
 

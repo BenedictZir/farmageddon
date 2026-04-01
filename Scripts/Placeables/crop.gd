@@ -10,6 +10,8 @@ var _growth_timer := 0.0
 var _phase_duration := 0.0
 var fully_grown := false
 var fertilized := false
+
+
 func setup(data: CropData) -> void:
 	crop_data = data
 	growth_phase = 0
@@ -44,4 +46,4 @@ func fertilize() -> void:
 	if fertilized:
 		return
 	fertilized = true
-	_phase_duration *= 0.75 
+	_phase_duration *= 0.75

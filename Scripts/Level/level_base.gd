@@ -9,7 +9,7 @@ class_name LevelBase
 
 @onready var day_night_modulate: CanvasModulate = $DayNightModulate
 @onready var timer_label: Label = $UI/TimerLabel
-@onready var gold_label: Label = $UI/GoldLabel
+@onready var gold_label: GoldCounterLabel = $UI/GoldLabel
 
 const ENEMY_SPAWNER_SCRIPT := preload("res://Scripts/Level/enemy_spawner.gd")
 const DAY_NIGHT_CONTROLLER_SCRIPT := preload("res://Scripts/Level/day_night_controller.gd")
@@ -19,12 +19,15 @@ var _remaining_time_seconds := 300.0
 
 func _ready() -> void:
 	var level_time_limit := 300.0
+	var level_starting_gold := CurrencyManager.gold
 	if level_data:
 		level_time_limit = level_data.time_limit_seconds
+		level_starting_gold = maxi(0, level_data.starting_gold)
 
 	# Register the current boundaries so Goblin AI and game systems know
 	GameManager.register_level(map_extents, scene_file_path, {
 		"time_limit_seconds": level_time_limit,
+		"starting_gold": level_starting_gold,
 	})
 	
 	# Instantiate EnemySpawner if map is configured with Waves
@@ -58,7 +61,7 @@ func _setup_day_night_cycle() -> void:
 	add_child(controller)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if not timer_label:
 		return
 
@@ -77,7 +80,7 @@ func _on_level_timer_changed(remaining_seconds: float, _total_seconds: float) ->
 
 func _on_gold_changed(amount: int) -> void:
 	if gold_label:
-		gold_label.text = "Gold: %dg" % amount
+		gold_label.set_gold_value(amount)
 
 
 func _format_mmss(seconds: float) -> String:

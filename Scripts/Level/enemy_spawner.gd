@@ -4,13 +4,30 @@ class_name EnemySpawner
 ## Spawns enemies from the edges of the map based on LevelData waves over time.
 
 @export var level_data: LevelData
+@export var warning_inset := 6.0
+@export var warning_screen_margin := 16.0
+@export var warning_fade_in := 0.16
+@export var warning_hold := 0.5
+@export var warning_fade_out := 0.2
+@export var warning_peak_alpha := 0.95
+@export var warning_base_scale := Vector2(0.72, 0.72)
+@export var warning_peak_scale := Vector2(2.0, 2.0)
+
+const WARNING_TEXTURE_PATH := "res://Assets/Violating.png"
+const WARNING_LAYER_NAME := "SpawnWarningOverlay"
+const WARNING_LAYER_INDEX := 95
 
 var _level_timer := 0.0
 var _spawn_timer := 0.0
 var _current_wave: WaveData = null
 var _wave_index := -1
+var _warning_texture: Texture2D
+var _warning_layer: CanvasLayer
 
 func _ready() -> void:
+	_warning_texture = load(WARNING_TEXTURE_PATH) as Texture2D
+	_warning_layer = _get_or_create_warning_layer()
+
 	if not level_data or level_data.waves.is_empty():
 		set_process(false)
 		return
@@ -56,17 +73,15 @@ func _spawn_enemy() -> void:
 	var enemy_scene: PackedScene = _current_wave.allowed_enemies.pick_random()
 	if not enemy_scene:
 		return
+
+	var enemy_instance := enemy_scene.instantiate() as Node2D
+	if not enemy_instance:
+		return
 		
-	# Pre-spawn check: If it's a Bird, don't spawn if there are no crops
-	if enemy_scene.resource_path.ends_with("bird.tscn"):
-		var tiles = get_tree().get_nodes_in_group("plantable_tiles")
-		var has_crops = false
-		for tile in tiles:
-			if tile.get("placed_crop") != null:
-				has_crops = true
-				break
-		if not has_crops:
-			return # Abort spawn, try again next timer tick
+	# Pre-spawn check: Birds need at least one planted crop target.
+	if enemy_instance is Bird and not _has_any_planted_crop():
+		enemy_instance.queue_free()
+		return
 		
 	var extents := GameManager.map_extents
 	var side = randi() % 4
@@ -81,7 +96,131 @@ func _spawn_enemy() -> void:
 			spawn_pos = Vector2(-extents.x - 20, randf_range(-extents.y, extents.y))
 		3: # Right
 			spawn_pos = Vector2(extents.x + 20, randf_range(-extents.y, extents.y))
-			
-	var enemy_instance = enemy_scene.instantiate() as Node2D
+
+	_show_spawn_warning(side, extents, spawn_pos)
+
 	get_parent().add_child(enemy_instance) # Add to the Level root
 	enemy_instance.global_position = spawn_pos
+
+
+func _has_any_planted_crop() -> bool:
+	for tile in get_tree().get_nodes_in_group("plantable_tiles"):
+		if tile.has_method("has_planted_crop") and tile.has_planted_crop():
+			return true
+
+	# Fallback for older tile implementations.
+	for tile in get_tree().get_nodes_in_group("plantable_tiles"):
+		if tile.get("placed_crop") != null:
+			return true
+
+	return false
+
+
+func _show_spawn_warning(side: int, extents: Vector2, spawn_pos: Vector2) -> void:
+	if not _warning_texture:
+		return
+	if not _warning_layer or not is_instance_valid(_warning_layer):
+		_warning_layer = _get_or_create_warning_layer()
+	if not _warning_layer:
+		return
+
+	var warning := Sprite2D.new()
+	warning.texture = _warning_texture
+	warning.z_index = 1
+	warning.scale = warning_base_scale
+	warning.modulate = Color(1.0, 1.0, 1.0, 0.0)
+	warning.position = _get_warning_screen_position(side, extents, spawn_pos)
+
+	_warning_layer.add_child(warning)
+
+	var tween := create_tween()
+	tween.tween_property(warning, "modulate:a", warning_peak_alpha, warning_fade_in).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(warning, "scale", warning_peak_scale, warning_fade_in).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_interval(warning_hold)
+	tween.tween_property(warning, "modulate:a", 0.0, warning_fade_out).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tween.parallel().tween_property(warning, "scale", warning_base_scale * 0.9, warning_fade_out).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tween.tween_callback(warning.queue_free)
+
+
+func _get_warning_screen_position(side: int, extents: Vector2, spawn_pos: Vector2) -> Vector2:
+	var viewport := get_viewport()
+	if not viewport:
+		return _get_warning_world_position_fallback(side, extents, spawn_pos)
+
+	var screen_rect := viewport.get_visible_rect()
+	if screen_rect.size.x <= 0.0 or screen_rect.size.y <= 0.0:
+		return _get_warning_world_position_fallback(side, extents, spawn_pos)
+
+	var screen_pos := viewport.get_canvas_transform() * spawn_pos
+	var margin := maxf(10.0, warning_screen_margin)
+	var min_x := margin
+	var max_x := screen_rect.size.x - margin
+	var min_y := margin
+	var max_y := screen_rect.size.y - margin
+
+	if max_x <= min_x:
+		min_x = 0.0
+		max_x = screen_rect.size.x
+	if max_y <= min_y:
+		min_y = 0.0
+		max_y = screen_rect.size.y
+
+	match side:
+		0: # Top
+			return Vector2(clampf(screen_pos.x, min_x, max_x), min_y)
+		1: # Bottom
+			return Vector2(clampf(screen_pos.x, min_x, max_x), max_y)
+		2: # Left
+			return Vector2(min_x, clampf(screen_pos.y, min_y, max_y))
+		3: # Right
+			return Vector2(max_x, clampf(screen_pos.y, min_y, max_y))
+
+	return Vector2(clampf(screen_pos.x, min_x, max_x), clampf(screen_pos.y, min_y, max_y))
+
+
+func _get_warning_world_position_fallback(side: int, extents: Vector2, spawn_pos: Vector2) -> Vector2:
+	var camera := get_viewport().get_camera_2d()
+	if camera and camera.is_inside_tree():
+		var visible_size := get_viewport().get_visible_rect().size * camera.zoom
+		var top_left := camera.get_screen_center_position() - (visible_size * 0.5)
+		var bottom_right := top_left + visible_size
+		var margin := maxf(2.0, warning_screen_margin)
+
+		match side:
+			0: # Top
+				return Vector2(clampf(spawn_pos.x, top_left.x + margin, bottom_right.x - margin), top_left.y + margin)
+			1: # Bottom
+				return Vector2(clampf(spawn_pos.x, top_left.x + margin, bottom_right.x - margin), bottom_right.y - margin)
+			2: # Left
+				return Vector2(top_left.x + margin, clampf(spawn_pos.y, top_left.y + margin, bottom_right.y - margin))
+			3: # Right
+				return Vector2(bottom_right.x - margin, clampf(spawn_pos.y, top_left.y + margin, bottom_right.y - margin))
+
+	# Fallback if camera is unavailable.
+	match side:
+		0: # Top
+			return Vector2(clampf(spawn_pos.x, -extents.x, extents.x), -extents.y + warning_inset)
+		1: # Bottom
+			return Vector2(clampf(spawn_pos.x, -extents.x, extents.x), extents.y - warning_inset)
+		2: # Left
+			return Vector2(-extents.x + warning_inset, clampf(spawn_pos.y, -extents.y, extents.y))
+		3: # Right
+			return Vector2(extents.x - warning_inset, clampf(spawn_pos.y, -extents.y, extents.y))
+
+	return spawn_pos
+
+
+func _get_or_create_warning_layer() -> CanvasLayer:
+	var root := get_tree().current_scene
+	if not root:
+		return null
+
+	var existing := root.get_node_or_null(WARNING_LAYER_NAME) as CanvasLayer
+	if existing:
+		return existing
+
+	var layer := CanvasLayer.new()
+	layer.name = WARNING_LAYER_NAME
+	layer.layer = WARNING_LAYER_INDEX
+	root.add_child(layer)
+	return layer

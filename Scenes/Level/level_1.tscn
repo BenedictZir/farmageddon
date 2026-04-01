@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://cjca1yymi58k8" path="res://Resources/Forage/red_mushroom.tres" id="5_uoico"]
 [ext_resource type="Resource" uid="uid://c4owsrle8u5ft" path="res://Resources/Forage/blue_mushroom.tres" id="6_4snqv"]
 [ext_resource type="PackedScene" uid="uid://cs8ibw2vulahw" path="res://Scenes/Animals/animal_tile.tscn" id="7_4snqv"]
-[ext_resource type="PackedScene" path="res://Scenes/Crops/paid_plantable_tiles.tscn" id="8_paid_patch"]
+[ext_resource type="PackedScene" uid="uid://dy4v3kfk8hfjf" path="res://Scenes/Crops/paid_plantable_tiles.tscn" id="8_paid_patch"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c458c"]
 resource_local_to_scene = true
@@ -23,7 +23,12 @@ shader_parameter/heightOffset = 0.0
 shader_parameter/offset = 0.0
 
 [node name="Level1" unique_id=395313815 instance=ExtResource("1_k541i")]
+map_extents = null
 level_data = ExtResource("2_wtlyx")
+gold_count_speed = null
+gold_flash_time = null
+gold_tween_min_duration = null
+gold_tween_max_duration = null
 
 [node name="Tree" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="0" unique_id=294457344]
 material = SubResource("ShaderMaterial_c458c")

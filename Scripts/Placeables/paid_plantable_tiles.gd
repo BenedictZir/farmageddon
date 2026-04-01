@@ -7,6 +7,7 @@ class_name PaidPlantableTiles
 @export var unlock_price := 15
 @export var starts_unlocked := false
 @export var interaction_radius := 22.0
+@export var proximity_check_interval := 0.1
 @export var ui_offset := Vector2(0, -22)
 
 @export var locked_tint := Color(0.45, 0.45, 0.45, 1.0)
@@ -23,6 +24,8 @@ var _tiles: Array[Node2D] = []
 var _is_unlocked := false
 var _ui_visible := false
 var _ui_tween: Tween
+var _proximity_timer := 0.0
+var _is_player_near := false
 
 
 func _ready() -> void:
@@ -45,11 +48,18 @@ func _process(_delta: float) -> void:
 
 	var player := PlayerRef.instance
 	if not player or not player.is_inside_tree():
+		_is_player_near = false
 		_hide_ui_smooth()
 		return
 
-	if _is_player_near_any_tile(player):
-		_refresh_price_color()
+	_proximity_timer -= _delta
+	if _proximity_timer <= 0.0:
+		_proximity_timer = maxf(0.03, proximity_check_interval)
+		_is_player_near = _is_player_near_any_tile(player)
+		if _is_player_near:
+			_refresh_price_color()
+
+	if _is_player_near:
 		_show_ui_smooth()
 		if Input.is_action_just_pressed("interact") and _can_consume_interact(player):
 			_try_unlock()
@@ -81,6 +91,7 @@ func _update_ui_anchor() -> void:
 
 func _set_unlocked(unlocked: bool, smooth_unlock := false) -> void:
 	_is_unlocked = unlocked
+	set_process(not _is_unlocked)
 	for i in range(_tiles.size()):
 		var t := _tiles[i]
 		if not t.has_method("set_locked"):
@@ -91,6 +102,7 @@ func _set_unlocked(unlocked: bool, smooth_unlock := false) -> void:
 		_set_tile_locked_with_delay(t, not unlocked, visual_duration, delay)
 
 	if _is_unlocked:
+		_is_player_near = false
 		if smooth_unlock:
 			_hide_ui_smooth()
 		else:
@@ -185,7 +197,10 @@ func _bump_ui_error() -> void:
 
 
 func _on_gold_changed(_new_gold: int) -> void:
-	_refresh_price_color()
+	if _is_unlocked:
+		return
+	if _is_player_near:
+		_refresh_price_color()
 
 
 func _set_tile_locked_with_delay(tile: Node2D, locked: bool, smooth_duration: float, delay: float) -> void:

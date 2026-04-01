@@ -35,14 +35,7 @@ func physics_update(_delta: float) -> void:
 			transition.emit("approach")
 			return
 
-	var player := PlayerRef.instance
-	var helpers = get_tree().get_nodes_in_group("helpers")
-
-	var targets = []
-	if player and not player.is_knocked:
-		targets.append(player)
-	for h in helpers:
-		targets.append(h)
+	var targets = entity.get_combat_targets()
 
 	# Find closest valid target
 	if not targets.is_empty():

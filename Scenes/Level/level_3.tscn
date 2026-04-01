@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Level/level_1.tscn" id="1_base"]
+[ext_resource type="Resource" path="res://Resources/LevelData/level_3.tres" id="2_data"]
+
+[node name="Level3" instance=ExtResource("1_base")]
+level_data = ExtResource("2_data")

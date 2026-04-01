@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="LevelData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/level_data.gd" id="1_level_data"]
+[ext_resource type="Script" path="res://Scripts/Resources/wave_data.gd" id="2_wave_data"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemy/goblin.tscn" id="3_goblin"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemy/skeleton.tscn" id="4_skeleton"]
+
+[sub_resource type="Resource" id="Wave_1"]
+script = ExtResource("2_wave_data")
+start_time_seconds = 1
+spawn_interval = 4.0
+allowed_enemies = Array[PackedScene]([ExtResource("3_goblin")])
+
+[sub_resource type="Resource" id="Wave_2"]
+script = ExtResource("2_wave_data")
+start_time_seconds = 40
+spawn_interval = 9.0
+allowed_enemies = Array[PackedScene]([ExtResource("3_goblin"), ExtResource("4_skeleton")])
+
+[sub_resource type="Resource" id="Wave_3"]
+script = ExtResource("2_wave_data")
+start_time_seconds = 100
+spawn_interval = 8.0
+allowed_enemies = Array[PackedScene]([ExtResource("4_skeleton")])
+
+[resource]
+script = ExtResource("1_level_data")
+waves = Array[ExtResource("2_wave_data")]([SubResource("Wave_1"), SubResource("Wave_2"), SubResource("Wave_3")])
+time_limit_seconds = 300.0
+starting_gold = 2000
+has_day_night_cycle = false
+metadata/_custom_type_script = "res://Scripts/Resources/level_data.gd"

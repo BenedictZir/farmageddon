@@ -11,15 +11,18 @@ var _tween: Tween
 var toggled_by_tab := false
 @export var bar_height := 72.0  # how far to slide up when hiding
 @export var hover_margin := 20.0  # extra pixels below bar that still count as "in shop"
-
-const SHOW_DURATION := 0.35
-const HIDE_DURATION := 0.25
-
+@export var show_duration := 0.24
+@export var hide_duration := 0.2
+@export var closed_alpha := 0.35
+@export var closed_scale := Vector2(0.985, 0.985)
+@export var opened_scale := Vector2.ONE
 
 func _ready() -> void:
 	# Start hidden
 	_is_visible = false
 	bar.position.y = -bar_height
+	bar.modulate.a = closed_alpha
+	bar.scale = closed_scale
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -53,19 +56,20 @@ func slide_in() -> void:
 	if _is_visible:
 		return
 	_is_visible = true
-	_animate_bar(0.0, SHOW_DURATION, Tween.EASE_OUT, Tween.TRANS_BACK)
+	_animate_bar(0.0, show_duration, Tween.EASE_OUT, Tween.TRANS_BACK, 1.0, opened_scale)
 
 
 func slide_out() -> void:
 	if not _is_visible:
 		return
 	_is_visible = false
-	_animate_bar(-bar_height, HIDE_DURATION, Tween.EASE_IN, Tween.TRANS_CUBIC)
+	_animate_bar(-bar_height, hide_duration, Tween.EASE_IN, Tween.TRANS_CUBIC, closed_alpha, closed_scale)
 
 
-func _animate_bar(target_y: float, duration: float, ease: Tween.EaseType, trans: Tween.TransitionType) -> void:
+func _animate_bar(target_y: float, duration: float, ease: Tween.EaseType, trans: Tween.TransitionType, target_alpha: float, target_scale: Vector2) -> void:
 	if _tween and _tween.is_running():
 		_tween.kill()
 	_tween = create_tween()
-	_tween.tween_property(bar, "position:y", target_y, duration)\
-		.set_ease(ease).set_trans(trans)
+	_tween.tween_property(bar, "position:y", target_y, duration).set_ease(ease).set_trans(trans)
+	_tween.parallel().tween_property(bar, "modulate:a", target_alpha, duration).set_ease(ease).set_trans(Tween.TRANS_QUAD)
+	_tween.parallel().tween_property(bar, "scale", target_scale, duration).set_ease(ease).set_trans(Tween.TRANS_QUAD)

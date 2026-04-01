@@ -8,14 +8,7 @@ func physics_update(_delta: float) -> void:
 		entity.velocity = Vector2.ZERO
 		entity.move_and_slide()
 		return
-	var player := PlayerRef.instance
-	var helpers = get_tree().get_nodes_in_group("helpers")
-
-	var targets = []
-	if player and not player.is_knocked:
-		targets.append(player)
-	for h in helpers:
-		targets.append(h)
+	var targets = entity.get_combat_targets()
 
 	if targets.is_empty():
 		transition.emit("roam")

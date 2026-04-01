@@ -10,10 +10,18 @@ class_name ShopItem
 @export var item_data: Resource  # CropData, or any placeable data
 @export var is_goal := false
 @export var unlock_level: int = 1
+@export var locked_button_modulate := Color(0.5, 0.5, 0.5, 1.0)
+@export var affordable_button_modulate := Color.WHITE
+@export var unaffordable_button_modulate := Color(0.62, 0.62, 0.62, 1.0)
+@export var affordable_price_color := Color(1.0, 0.95, 0.58, 1.0)
+@export var unaffordable_price_color := Color(0.95, 0.56, 0.56, 1.0)
+@export var affordability_tween_duration := 0.16
 
 @onready var name_label: Label = $NameLabel
 @onready var icon_rect: TextureRect = $IconRect
 @onready var price_label: Label = $PriceLabel
+
+var _afford_tween: Tween
 
 
 func _ready() -> void:
@@ -34,7 +42,8 @@ func _ready() -> void:
 			icon_rect.texture = icon
 			icon_rect.modulate = Color(0, 0, 0, 1) # Solid black silhouette
 		shrink_to_normal()
-		modulate = Color(0.5, 0.5, 0.5, 1.0)
+		modulate = locked_button_modulate
+		price_label.self_modulate = Color.WHITE
 		disabled = true
 	else:
 		name_label.text = item_name
@@ -43,7 +52,8 @@ func _ready() -> void:
 			icon_rect.texture = icon
 			icon_rect.modulate = Color.WHITE
 
-		CurrencyManager.gold_changed.connect(_on_gold_changed)
+		if CurrencyManager.has_signal("gold_changed") and not CurrencyManager.gold_changed.is_connected(_on_gold_changed):
+			CurrencyManager.gold_changed.connect(_on_gold_changed)
 		_update_affordability()
 
 
@@ -73,7 +83,7 @@ func _on_pressed() -> void:
 		
 		# If this helper was the goal, trigger win
 		if is_goal:
-			GameManager.win()
+			GameManager.complete_current_level()
 		return
 
 	# Interception logic — give to ANY farmer whose queue is completely empty
@@ -103,7 +113,7 @@ func _on_pressed() -> void:
 		return
 	player.hold_item(item_data)
 	if is_goal:
-		GameManager.win()
+		GameManager.complete_current_level()
 
 
 func _on_gold_changed(_new_gold: int) -> void:
@@ -116,11 +126,12 @@ func _update_affordability() -> void:
 		
 	var can_afford = CurrencyManager.can_afford(price)
 	disabled = not can_afford
+	var target_button := affordable_button_modulate if can_afford else unaffordable_button_modulate
+	var target_price := affordable_price_color if can_afford else unaffordable_price_color
+	_animate_affordability(target_button, target_price)
+
 	if not can_afford:
 		shrink_to_normal()
-		modulate = Color(0.5, 0.5, 0.5, 1.0)
-	else:
-		modulate = Color.WHITE
 
 func _unhandled_input(event: InputEvent) -> void:
 	if GameManager.current_level_index < unlock_level or not CurrencyManager.can_afford(price):
@@ -133,3 +144,13 @@ func _press_with_keyboard():
 	if _tween:
 		await _tween.finished
 		shrink_to_normal()
+
+
+func _animate_affordability(target_button: Color, target_price: Color) -> void:
+	if _afford_tween and _afford_tween.is_running():
+		_afford_tween.kill()
+
+	_afford_tween = create_tween()
+	_afford_tween.tween_property(self, "modulate", target_button, affordability_tween_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	if price_label:
+		_afford_tween.parallel().tween_property(price_label, "self_modulate", target_price, affordability_tween_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)

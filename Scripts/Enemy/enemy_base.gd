@@ -25,6 +25,7 @@ const FLOATING_TEXT_SCENE := preload("res://Scenes/UI/floating_text.tscn")
 @export var health_main_speed := 220.0
 @export var health_trail_speed := 100.0
 @export var health_trail_delay := 0.14
+@export var target_scan_interval := 0.18
 var attack_cooldown := 0.0
 
 
@@ -35,6 +36,8 @@ var _health_target := 100.0
 var _health_trail_delay_timer := 0.0
 var _health_base_modulate := Color.WHITE
 var _health_flash_tween: Tween
+var _target_scan_timer := 0.0
+var _cached_helpers: Array[Node2D] = []
 
 
 func _ready() -> void:
@@ -162,6 +165,7 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
 	_update_health_bar_state(delta)
+	_update_target_cache(delta)
 	attack_cooldown -= delta
 	fsm.process_physics(delta)
 
@@ -239,3 +243,32 @@ func _create_delayed_bar(main_bar: TextureProgressBar, tint: Color) -> TexturePr
 	parent.add_child(delayed)
 	parent.move_child(delayed, main_bar.get_index())
 	return delayed
+
+
+func get_combat_targets() -> Array[Node2D]:
+	var targets: Array[Node2D] = []
+	var player := PlayerRef.instance
+	if player and not player.is_knocked:
+		targets.append(player as Node2D)
+
+	for helper in _cached_helpers:
+		if not is_instance_valid(helper):
+			continue
+		if bool(helper.get("is_dead")):
+			continue
+		targets.append(helper)
+
+	return targets
+
+
+func _update_target_cache(delta: float) -> void:
+	_target_scan_timer -= delta
+	if _target_scan_timer > 0.0:
+		return
+
+	_target_scan_timer = maxf(0.05, target_scan_interval)
+	_cached_helpers.clear()
+
+	for node in get_tree().get_nodes_in_group("helpers"):
+		if node is Node2D:
+			_cached_helpers.append(node)

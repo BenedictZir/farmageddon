@@ -21,10 +21,10 @@ func _ready() -> void:
 		fsm.change_state("FlyOut")
 
 func _find_target_crop() -> void:
-	var tiles = get_tree().get_nodes_in_group("plantable_tiles")
-	var valid_targets = []
+	var tiles := get_tree().get_nodes_in_group("plantable_tiles")
+	var valid_targets: Array[Node2D] = []
 	for tile in tiles:
-		if tile.placed_crop != null:
+		if tile is Node2D and tile.has_method("has_planted_crop") and tile.has_planted_crop():
 			valid_targets.append(tile)
 	
 	if valid_targets.size() > 0:

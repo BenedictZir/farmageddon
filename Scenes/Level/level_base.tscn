@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://b61cvbsl7u180" path="res://Scripts/Level/forage_spawner.gd" id="7_6fsfs"]
 [ext_resource type="Resource" uid="uid://cjca1yymi58k8" path="res://Resources/Forage/red_mushroom.tres" id="8_g3fov"]
 [ext_resource type="Script" uid="uid://dofyuwdsoybf2" path="res://Scripts/Level/level_base.gd" id="scr_lvl_b"]
+[ext_resource type="Script" path="res://Scripts/UI/gold_counter_label.gd" id="scr_gold_lbl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08udf"]
 texture = ExtResource("2_i1iga")
@@ -3634,6 +3635,7 @@ offset_left = 10.0
 offset_top = 91.0
 offset_right = 154.0
 offset_bottom = 113.0
+script = ExtResource("scr_gold_lbl")
 theme_override_colors/font_color = Color(1, 0.9, 0.2, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
