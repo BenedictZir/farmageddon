@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Farmageddon"
-run/main_scene="uid://b207knhmejlc2"
+run/main_scene="res://Scenes/UI/level_selector.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,7 @@ PlayerRef="*res://Scripts/Autoloads/player_ref.gd"
 GameManager="*res://Scenes/Autoloads/game_manager.tscn"
 UpgradeManager="*res://Scripts/Autoloads/upgrade_manager.gd"
 HitEffects="*res://Scripts/Autoloads/hit_effects.gd"
+SceneTransition="*uid://cswqq0kihfbuy"
 
 [display]
 

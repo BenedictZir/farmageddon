@@ -3,6 +3,8 @@ class_name EnemySpawner
 
 ## Spawns enemies from the edges of the map based on LevelData waves over time.
 
+signal enemy_spawned(enemy: Node2D)
+
 @export var level_data: LevelData
 @export var warning_inset := 6.0
 @export var warning_screen_margin := 16.0
@@ -15,7 +17,7 @@ class_name EnemySpawner
 
 const WARNING_TEXTURE_PATH := "res://Assets/Violating.png"
 const WARNING_LAYER_NAME := "SpawnWarningOverlay"
-const WARNING_LAYER_INDEX := 95
+const WARNING_LAYER_INDEX := 80
 
 var _level_timer := 0.0
 var _spawn_timer := 0.0
@@ -38,6 +40,26 @@ func _ready() -> void:
 	)
 	
 	_advance_wave()
+	call_deferred("_apply_tutorial_process_gate")
+
+
+func _apply_tutorial_process_gate() -> void:
+	if GameManager.tutorial_active:
+		set_process(false)
+
+
+func start_from_tutorial() -> void:
+	set_process(true)
+	if not _current_wave or _current_wave.allowed_enemies.is_empty():
+		return
+
+	var spawn_interval := _current_wave.spawn_interval * GameManager.get_enemy_spawn_interval_multiplier()
+	spawn_interval = maxf(0.05, spawn_interval)
+	_spawn_timer = maxf(0.0, spawn_interval - 2.0) # Spawn 2 seconds after the tutorial calls start
+
+
+func pause_from_tutorial() -> void:
+	set_process(false)
 
 
 func _process(delta: float) -> void:
@@ -101,6 +123,7 @@ func _spawn_enemy() -> void:
 
 	get_parent().add_child(enemy_instance) # Add to the Level root
 	enemy_instance.global_position = spawn_pos
+	enemy_spawned.emit(enemy_instance)
 
 
 func _has_any_planted_crop() -> bool:

@@ -31,11 +31,11 @@ var max_unlocked_level := 1
 var last_level_index := 1
 
 var level_goals := {
-	1: {"name": "Unlock Chicken", "price": 500, "icon": null},
-	2: {"name": "Unlock Farmer/Warrior", "price": 1000, "icon": null},
-	3: {"name": "Unlock Farmland", "price": 1500, "icon": null},
-	4: {"name": "Unlock Night", "price": 2500, "icon": null},
-	5: {"name": "Ultimate Crown", "price": 4000, "icon": null}
+	1: {"name": "???", "price": 500, "icon": load("res://Assets/animal_and_fertilizer_icon.png")},
+	2: {"name": "???", "price": 1000, "icon":  load("res://Assets/animal_and_fertilizer_icon.png")},
+	3: {"name": "???", "price": 1500, "icon":  load("res://Assets/animal_and_fertilizer_icon.png")},
+	4: {"name": "???", "price": 2500, "icon":  load("res://Assets/animal_and_fertilizer_icon.png")},
+	5: {"name": "???", "price": 4000, "icon":  load("res://Assets/animal_and_fertilizer_icon.png")}
 }
 
 func get_current_goal_data() -> Dictionary:
@@ -49,6 +49,40 @@ var _time_limit_checked := false
 var _enemy_spawn_interval_multiplier := 1.0
 var _crop_growth_rate_multiplier := 1.0
 var _is_night := false
+
+# ── Tutorial Input Locking ───────────────────────────────────────────
+var tutorial_active := false
+var _tutorial_unlocked_inputs: Dictionary = {}  # { "move_up": true, "interact": true, ... }
+
+
+## Check if an input action is allowed (returns true if no tutorial or if unlocked)
+func is_input_unlocked(action: String) -> bool:
+	if not tutorial_active:
+		return true
+	return _tutorial_unlocked_inputs.get(action, false)
+
+
+## Unlock specific input actions during tutorial
+func unlock_input(action: String) -> void:
+	# Expand shorthand groups
+	if action == "move":
+		_tutorial_unlocked_inputs["move"] = true
+		for a in ["move_up", "move_down", "move_left", "move_right"]:
+			_tutorial_unlocked_inputs[a] = true
+		return
+	_tutorial_unlocked_inputs[action] = true
+
+
+## Unlock multiple inputs at once
+func unlock_inputs(actions: Array) -> void:
+	for a in actions:
+		unlock_input(a)
+
+
+## Unlock all inputs (called when tutorial ends)
+func unlock_all_inputs() -> void:
+	tutorial_active = false
+	_tutorial_unlocked_inputs.clear()
 
 
 func _ready() -> void:
@@ -78,6 +112,9 @@ func register_level(extents: Vector2, scene_path: String, config: Dictionary = {
 
 func _process(delta: float) -> void:
 	if _game_over:
+		return
+	# Don't tick the timer while the tree is paused (pause screen)
+	if get_tree().paused:
 		return
 
 	_level_elapsed_seconds += delta
@@ -153,7 +190,7 @@ func hide_ui() -> void:
 func _on_retry_pressed() -> void:
 	get_tree().paused = false
 	if current_level_path != "":
-		get_tree().change_scene_to_file(current_level_path)
+		SceneTransition.change_scene(current_level_path)
 	else:
 		get_tree().reload_current_scene()
 
@@ -167,16 +204,12 @@ func _on_next_pressed() -> void:
 
 
 func complete_current_level() -> void:
+	_game_over = true
 	var next_level := current_level_index + 1
 	if next_level > max_unlocked_level:
 		max_unlocked_level = min(next_level, LEVEL_SCENES.size())
 		_save_progress()
-
-	if current_level_index < LEVEL_SCENES.size():
-		go_to_level(current_level_index + 1)
-		return
-
-	win()
+	go_to_level_selector()
 
 
 func go_to_level(level_index: int) -> void:
@@ -190,13 +223,13 @@ func go_to_level(level_index: int) -> void:
 	_save_progress()
 	hide_ui()
 	get_tree().paused = false
-	get_tree().change_scene_to_file(LEVEL_SCENES[level_index - 1])
+	SceneTransition.change_scene(LEVEL_SCENES[level_index - 1])
 
 
 func go_to_level_selector() -> void:
 	hide_ui()
 	get_tree().paused = false
-	get_tree().change_scene_to_file(LEVEL_SELECTOR_SCENE)
+	SceneTransition.change_scene(LEVEL_SELECTOR_SCENE)
 
 
 func is_level_unlocked(level_index: int) -> bool:

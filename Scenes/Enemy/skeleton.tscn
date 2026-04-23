@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://b7p5b6gti6413" path="res://Scripts/Enemy/GenericEnemyStates/enter_map.gd" id="9_shu7p"]
 [ext_resource type="Script" uid="uid://cxaeqxtqdvccf" path="res://Scripts/Enemy/GenericEnemyStates/roam.gd" id="10_pbxlo"]
 [ext_resource type="Script" uid="uid://c2tsjo0xque2v" path="res://Scripts/Enemy/GenericEnemyStates/chase.gd" id="11_ftjdo"]
-[ext_resource type="Script" path="res://Scripts/Enemy/GenericEnemyStates/death.gd" id="12_death"]
+[ext_resource type="Script" uid="uid://cerf7xyfl0rtw" path="res://Scripts/Enemy/GenericEnemyStates/death.gd" id="12_death"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pbxlo"]
 resource_local_to_scene = true
@@ -452,6 +452,7 @@ animations = [{
 }]
 
 [node name="Skeleton" unique_id=7649292 instance=ExtResource("1_1rxu0")]
+y_sort_enabled = true
 script = ExtResource("2_xf65c")
 player_detect_range = 500.0
 gold_drop_min = 20
@@ -464,6 +465,7 @@ shape = SubResource("RectangleShape2D_pbxlo")
 shape = SubResource("RectangleShape2D_ftjdo")
 
 [node name="EnemyVisual" parent="." index="2" unique_id=543429950]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_ybtbr")
 animation = &"jump"
 frame_progress = 1.0
@@ -480,5 +482,5 @@ script = ExtResource("10_pbxlo")
 [node name="Chase" type="Node" parent="StateMachine" index="2" unique_id=852542960]
 script = ExtResource("11_ftjdo")
 
-[node name="Death" type="Node" parent="StateMachine" index="3"]
+[node name="Death" type="Node" parent="StateMachine" index="3" unique_id=42428853]
 script = ExtResource("12_death")

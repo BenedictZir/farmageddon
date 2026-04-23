@@ -240,6 +240,7 @@ func _apply_shake(sprites: Array) -> void:
 func _apply_screen_shake(camera: Camera2D, magnitude := 2.0, duration := 0.25) -> void:
 	var origin := camera.offset
 	var tw := camera.create_tween()
+	tw.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	var steps := 6
 	for i in range(steps):
 		var t := duration / steps

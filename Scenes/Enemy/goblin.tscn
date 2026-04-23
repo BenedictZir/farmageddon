@@ -15,17 +15,17 @@
 [ext_resource type="Script" uid="uid://bw7jy4js5snrh" path="res://Scripts/Enemy/goblin_loot.gd" id="scr_goblin_loot"]
 [ext_resource type="Script" uid="uid://twgoqb5fqf2w" path="res://Scripts/Enemy/GoblinStates/goblin_approach.gd" id="scr_state_approach"]
 [ext_resource type="Script" uid="uid://c2tsjo0xque2v" path="res://Scripts/Enemy/GenericEnemyStates/chase.gd" id="scr_state_chase"]
+[ext_resource type="Script" uid="uid://cerf7xyfl0rtw" path="res://Scripts/Enemy/GenericEnemyStates/death.gd" id="scr_state_death"]
 [ext_resource type="Script" uid="uid://b7p5b6gti6413" path="res://Scripts/Enemy/GenericEnemyStates/enter_map.gd" id="scr_state_enter"]
 [ext_resource type="Script" uid="uid://cvgju4j0esvg8" path="res://Scripts/Enemy/GoblinStates/goblin_flee.gd" id="scr_state_flee"]
 [ext_resource type="Script" uid="uid://cxaeqxtqdvccf" path="res://Scripts/Enemy/GenericEnemyStates/roam.gd" id="scr_state_roam"]
 [ext_resource type="Script" uid="uid://c61ht1s3ohoel" path="res://Scripts/Enemy/GoblinStates/goblin_stealing.gd" id="scr_state_stealing"]
-[ext_resource type="Script" path="res://Scripts/Enemy/GenericEnemyStates/death.gd" id="scr_state_death"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxxwk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qndeq"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qndeq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6f76"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
@@ -664,6 +664,7 @@ animations = [{
 }]
 
 [node name="Goblin" unique_id=7649292 instance=ExtResource("1_ht57u")]
+y_sort_enabled = true
 script = ExtResource("scr_goblin_ai")
 steal_detect_range = 80.0
 steal_duration = 3.0
@@ -671,15 +672,16 @@ gold_drop_min = 15
 gold_drop_max = 25
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=534802735]
-shape = SubResource("RectangleShape2D_lxxwk")
+shape = SubResource("RectangleShape2D_qndeq")
 
 [node name="AttackComponent" parent="Components" parent_id_path=PackedInt32Array(1856128264) index="1" unique_id=1460850251]
 damage = 15.0
 
 [node name="CollisionShape2D" parent="Components/AttackComponent" index="0" unique_id=154781645]
-shape = SubResource("RectangleShape2D_qndeq")
+shape = SubResource("RectangleShape2D_b6f76")
 
 [node name="EnemyVisual" parent="." index="2" unique_id=543429950]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_ht57u")
 animation = &"walk"
 
@@ -716,7 +718,7 @@ script = ExtResource("scr_state_stealing")
 [node name="Flee" type="Node" parent="StateMachine" index="5" unique_id=1804400561]
 script = ExtResource("scr_state_flee")
 
-[node name="Death" type="Node" parent="StateMachine" index="6"]
+[node name="Death" type="Node" parent="StateMachine" index="6" unique_id=668191617]
 script = ExtResource("scr_state_death")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

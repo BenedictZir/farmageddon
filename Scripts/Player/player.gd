@@ -36,6 +36,10 @@ var _sprint_locked_out := false
 @export var attack_hit_shake_duration := 0.12
 @export var attack_hitstop_duration := 0.045
 @export var attack_hitstop_scale := 0.08
+@export var respawn_duration := 5.0
+
+var _respawn_elapsed := 0.0
+var _respawn_active := false
 
 
 func _ready() -> void:
@@ -60,18 +64,23 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and _is_mouse_over_ui():
 		return
 
-	if event.is_action_pressed("attack"):
+	if event.is_action_pressed("attack") and GameManager.is_input_unlocked("attack"):
 		_do_attack()
-	elif event.is_action_pressed("roll"):
+	elif event.is_action_pressed("roll") and GameManager.is_input_unlocked("roll"):
 		_do_roll()
-	elif event.is_action_pressed("interact"):
+	elif event.is_action_pressed("interact") and GameManager.is_input_unlocked("interact"):
 		inventory.interact()
-	elif event.is_action_pressed("drop"):
+	elif event.is_action_pressed("drop") and GameManager.is_input_unlocked("drop"):
 		inventory.drop()
 
 
 func _physics_process(delta: float) -> void:
 	if is_knocked:
+		_update_respawn_progress(delta)
+		hud.update_bars(
+			_get_respawn_health_ratio(),
+			energy / max_energy
+		)
 		return
 
 	_update_energy(delta)
@@ -85,7 +94,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _update_energy(delta: float) -> void:
-	var shift_held := Input.is_action_pressed("run")
+	var shift_held := Input.is_action_pressed("run") and GameManager.is_input_unlocked("run")
 	if not shift_held:
 		_sprint_locked_out = false
 
@@ -123,6 +132,8 @@ func _handle_movement() -> void:
 		return
 
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	if not GameManager.is_input_unlocked("move"):
+		direction = Vector2.ZERO
 	movement_component.move(self, direction, is_running)
 	player_visual.update_movement_anim(direction, is_carrying, is_running)
 
@@ -173,6 +184,8 @@ func _on_attack_hit_landed(_target: Node2D) -> void:
 
 func _on_died() -> void:
 	is_knocked = true
+	_respawn_elapsed = 0.0
+	_respawn_active = true
 	is_rolling = false
 	_roll_velocity = Vector2.ZERO
 	set_collision_layer_value(2, true)
@@ -188,6 +201,8 @@ func _on_died() -> void:
 
 
 func _on_revived() -> void:
+	_respawn_active = false
+	_respawn_elapsed = 0.0
 	is_knocked = false
 	player_visual.play_idle()
 
@@ -204,11 +219,6 @@ func _on_anim_state_finished(state) -> void:
 
 	if state == player_visual.AnimState.DIG or state == player_visual.AnimState.DOING:
 		inventory.on_interact_anim_finished()
-
-	if state == player_visual.AnimState.DEATH:
-		get_tree().create_timer(5.0).timeout.connect(func():
-			health_component.revive()
-		)
 
 
 func _on_gold_spent(amount: int) -> void:
@@ -229,3 +239,21 @@ func _spawn_currency_text(text: String, color: Color) -> void:
 func _is_mouse_over_ui() -> bool:
 	var viewport := get_viewport()
 	return viewport.gui_get_hovered_control() != null
+
+
+func _update_respawn_progress(delta: float) -> void:
+	if not _respawn_active:
+		return
+
+	_respawn_elapsed = minf(respawn_duration, _respawn_elapsed + delta)
+	if _respawn_elapsed >= respawn_duration:
+		_respawn_active = false
+		health_component.revive()
+
+
+func _get_respawn_health_ratio() -> float:
+	if not _respawn_active:
+		return health_component.current_health / health_component.max_health
+
+	var duration := maxf(0.01, respawn_duration)
+	return clampf(_respawn_elapsed / duration, 0.0, 1.0)

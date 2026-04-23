@@ -2056,19 +2056,23 @@ script = ExtResource("scr_hp")
 max_health = 60.0
 
 [node name="HelperVisual" type="Node2D" parent="." unique_id=1517861904]
+y_sort_enabled = true
 script = ExtResource("scr_vis")
 
 [node name="Base" type="AnimatedSprite2D" parent="HelperVisual" unique_id=2144386578]
+y_sort_enabled = true
 sprite_frames = SubResource("sf_base")
 animation = &"doing"
 frame = 7
 frame_progress = 1.0
 
 [node name="Hair" type="AnimatedSprite2D" parent="HelperVisual" unique_id=271950755]
+y_sort_enabled = true
 sprite_frames = SubResource("sf_spikeyhair")
 animation = &"idle"
 
 [node name="Tool" type="AnimatedSprite2D" parent="HelperVisual" unique_id=265275444]
+y_sort_enabled = true
 sprite_frames = SubResource("sf_tools")
 animation = &"carry_no_tool"
 

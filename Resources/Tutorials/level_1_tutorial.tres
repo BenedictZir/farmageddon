@@ -1,0 +1,145 @@
+[gd_resource type="Resource" script_class="TutorialSequence" format=3 uid="uid://dmm3vx0np3ufm"]
+
+[ext_resource type="Script" uid="uid://3qmcmvfny6xd" path="res://Scripts/Resources/tutorial_sequence.gd" id="1_seq"]
+[ext_resource type="Script" uid="uid://qaq4uqtyi58h" path="res://Scripts/Resources/tutorial_step.gd" id="2_step"]
+
+[sub_resource type="Resource" id="step_01_intro"]
+script = ExtResource("2_step")
+lines = Array[String](["Hello hellooo, who's there?", "Hm? You must be the new farmer, right?", "Nice to meet yaaa, I'm Chicky, the smartest chick on this farm.", "You could say I'm the one in charge here, mwehehehe."])
+pause_game = false
+unlock_inputs = Array[String](["move"])
+
+[sub_resource type="Resource" id="step_02_wasd"]
+script = ExtResource("2_step")
+lines = Array[String](["Looks like you're still not familiar with this place. Try walking around for a bit."])
+pause_game = false
+hold_duration = 3.0
+hold_actions = Array[String](["move_up", "move_down", "move_left", "move_right"])
+key_prompt = "WASD"
+
+[sub_resource type="Resource" id="step_03_sprint"]
+script = ExtResource("2_step")
+lines = Array[String](["Hoho, nice moves! Let me see you move again, but more energetic this time.", "Awesome! Looks like you're full of energy and spirit."])
+pause_game = false
+hold_duration = 2.5
+hold_actions = Array[String](["run"])
+unlock_inputs = Array[String](["run"])
+key_prompt = "SHIFT"
+
+[sub_resource type="Resource" id="step_04_open_shop"]
+script = ExtResource("2_step")
+type = 1
+lines = Array[String](["Okay, enough wandering around. I'll quickly tell you what you need to do."])
+pause_game = false
+unlock_inputs = Array[String](["shop_toggle"])
+key_prompt = "TAB"
+action_input_name = "shop_toggle"
+
+[sub_resource type="Resource" id="step_05_shop_explain"]
+script = ExtResource("2_step")
+lines = Array[String](["Look at what I just highlighted. On the left, there's a timer that keeps ticking down every second... even while we're talking right now.", "Up top is the shop where you can buy things with the money you make."])
+spotlight_shape = 1
+spotlight_size = Vector2(300, 60)
+spotlight_node_path = "UI/ShopUI"
+spotlight_secondary_node_path = "UI/TimerLabel"
+spotlight_padding = Vector2(10, 10)
+pause_game = false
+on_start_actions = Array[String](["show_timer"])
+
+[sub_resource type="Resource" id="step_05b_loan"]
+script = ExtResource("2_step")
+lines = Array[String](["I'll give you a loan (but pay me back later, okay?). You have to manage this money until you can buy the mysterious item on the far right before the timer hits 0.", "Hmm, 'why', you ask? I don't know, the developer didn't think that far.", "Ah, don't overthink it. Just follow my orders, otherwise something bad might happen (probably)."])
+spotlight_shape = 1
+spotlight_size = Vector2(300, 60)
+spotlight_node_path = "UI/ShopUI"
+spotlight_secondary_node_path = "UI/TimerLabel"
+spotlight_padding = Vector2(10, 10)
+pause_game = false
+on_start_actions = Array[String](["grant_tutorial_loan"])
+
+[sub_resource type="Resource" id="step_06_buy_parsnip"]
+script = ExtResource("2_step")
+type = 1
+lines = Array[String](["Now, try buying 1 parsnip seed."])
+spotlight_shape = 1
+spotlight_size = Vector2(300, 60)
+spotlight_node_path = "UI/ShopUI"
+spotlight_padding = Vector2(10, 10)
+pause_game = false
+unlock_inputs = Array[String](["shop_1"])
+key_prompt = "1"
+action_signal_name = "gold_changed"
+action_source_autoload = "CurrencyManager"
+
+[sub_resource type="Resource" id="step_07_explain_holding"]
+script = ExtResource("2_step")
+lines = Array[String](["Okay nice, now you're holding that parsnip. You can plant it on those dirt tiles."])
+pause_game = false
+
+[sub_resource type="Resource" id="step_08_show_plantable"]
+script = ExtResource("2_step")
+lines = Array[String](["Yep, those are your planting spots."])
+spotlight_shape = 1
+spotlight_size = Vector2(120, 120)
+spotlight_node_path = "PlantableTiles"
+pause_game = false
+
+[sub_resource type="Resource" id="step_09_plant"]
+script = ExtResource("2_step")
+type = 1
+lines = Array[String](["Go on, plant it there."])
+pause_game = false
+unlock_inputs = Array[String](["interact"])
+key_prompt = "E"
+action_input_name = "interact"
+
+[sub_resource type="Resource" id="step_09b_wait_text"]
+script = ExtResource("2_step")
+lines = Array[String](["Later, you can sell the crop to make tons of money.", "Now we just waaiiitt......"])
+pause_game = false
+
+[sub_resource type="Resource" id="step_10_wait_grow"]
+script = ExtResource("2_step")
+pause_game = false
+hold_duration = 15.0
+wait_silent = true
+
+[sub_resource type="Resource" id="step_11_harvest"]
+script = ExtResource("2_step")
+lines = Array[String](["Nice, it's ready. Try harvesting it."])
+pause_game = false
+key_prompt = "E"
+
+[sub_resource type="Resource" id="step_12_sell_explain"]
+script = ExtResource("2_step")
+lines = Array[String](["You can sell it for money, or you can drop it.", "Though I don't know why you'd drop such a tasty vegetable.", "If you don't want it, just give it to me."])
+pause_game = false
+unlock_inputs = Array[String](["drop"])
+key_prompt = "Q+E"
+
+[sub_resource type="Resource" id="step_13_keep_going"]
+script = ExtResource("2_step")
+lines = Array[String](["Okay awesome, you're a pro farmer now.", "If you forget something, you can always press ESC to see the keys. You should be thankful the dev is very kind yes yes.", "I'm gonna head out, bye-bye!"])
+pause_game = false
+unlock_inputs = Array[String](["shop_2", "shop_3", "shop_4", "shop_5", "shop_6", "shop_7", "shop_8", "shop_9"])
+key_prompt = "ESC"
+
+[sub_resource type="Resource" id="step_14_combat"]
+script = ExtResource("2_step")
+type = 1
+lines = Array[String](["Oh my gosh, I forgooott! There's a reason why this farm keeps changing farmers (which is now you).", "This farm is full of chaos, an armageddon... this is a Farmageddon.", "These naughty monsters will try to bother you and steal your harvest.", "Defeat them quickly, rookie farmer!"])
+spotlight_shape = 2
+spotlight_size = Vector2(90, 90)
+unlock_inputs = Array[String](["attack", "roll"])
+on_start_actions = Array[String](["start_spawner"])
+key_prompt = "J+K"
+camera_shake = true
+action_signal_name = "enemy_spawned"
+action_source_node_path = "EnemySpawner"
+wait_silent = true
+signal_delay = 3.0
+spotlight_signal_target = true
+
+[resource]
+script = ExtResource("1_seq")
+steps = Array[ExtResource("2_step")]([SubResource("step_01_intro"), SubResource("step_02_wasd"), SubResource("step_03_sprint"), SubResource("step_04_open_shop"), SubResource("step_05_shop_explain"), SubResource("step_05b_loan"), SubResource("step_06_buy_parsnip"), SubResource("step_07_explain_holding"), SubResource("step_08_show_plantable"), SubResource("step_09_plant"), SubResource("step_09b_wait_text"), SubResource("step_10_wait_grow"), SubResource("step_11_harvest"), SubResource("step_12_sell_explain"), SubResource("step_13_keep_going"), SubResource("step_14_combat")])

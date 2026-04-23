@@ -2736,6 +2736,7 @@ animations = [{
 }]
 
 [node name="FarmerHelper" type="CharacterBody2D" unique_id=535161563]
+y_sort_enabled = true
 collision_layer = 2
 script = ExtResource("scr_root")
 
@@ -2755,19 +2756,23 @@ script = ExtResource("scr_hp")
 max_health = 60.0
 
 [node name="HelperVisual" type="Node2D" parent="." unique_id=1257757007]
+y_sort_enabled = true
 script = ExtResource("scr_vis")
 
 [node name="Base" type="AnimatedSprite2D" parent="HelperVisual" unique_id=916080617]
+y_sort_enabled = true
 sprite_frames = SubResource("sf_base")
 animation = &"jump"
 
 [node name="Hair" type="AnimatedSprite2D" parent="HelperVisual" unique_id=459312861]
+y_sort_enabled = true
 sprite_frames = SubResource("sf_longhair")
 animation = &"jump"
 frame = 8
 frame_progress = 1.0
 
 [node name="Tool" type="AnimatedSprite2D" parent="HelperVisual" unique_id=682687280]
+y_sort_enabled = true
 sprite_frames = SubResource("sf_tools")
 animation = &"jump"
 frame = 8

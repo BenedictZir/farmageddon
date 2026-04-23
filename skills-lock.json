@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "skills": {
+    "game-design-theory": {
+      "source": "pluginagentmarketplace/custom-plugin-game-developer",
+      "sourceType": "github",
+      "computedHash": "60a7ad8dd95255ed22840e03d44fdee8be919a19471f723d509da7c43b7bf21b"
+    },
+    "game-ui-design": {
+      "source": "omer-metin/skills-for-antigravity",
+      "sourceType": "github",
+      "computedHash": "cff8acaf58f3f4255f76fb962775fb1a2fec1fce49a54a50bde2c1efd5eb33ec"
+    },
+    "godot-development": {
+      "source": "zate/cc-godot",
+      "sourceType": "github",
+      "computedHash": "36ff87f70db9fe7e4b83be711696dcc027febc310d4938a4b71bb592d2bf3b51"
+    },
+    "godot-gdscript-patterns": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "computedHash": "700c3e7696790ece30d0f7f48245386493a8857da592d191356211c2b843fdbf"
+    },
+    "godot-ui": {
+      "source": "zate/cc-godot",
+      "sourceType": "github",
+      "computedHash": "0ed46667be618a59b0f0072f2a6ed98cbe439c71eb300156ad4158b11a5b2c2d"
+    }
+  }
+}

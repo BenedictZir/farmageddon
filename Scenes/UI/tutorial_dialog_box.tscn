@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://brh1a68hkadbg"]
+
+[ext_resource type="Script" uid="uid://0880xnhl4imq" path="res://Scripts/UI/tutorial_dialog_box.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://dwtf8x3d22yem" path="res://Assets/Fonts/BoldPixels.ttf" id="2_font"]
+[ext_resource type="PackedScene" uid="uid://f2uyd7q61vsd" path="res://Scenes/UI/chicky.tscn" id="3_chicky"]
+[ext_resource type="Texture2D" uid="uid://wikcu4yaxh3q" path="res://Assets/DialogueBox/DialogueTail.png" id="5_tail"]
+[ext_resource type="AudioStream" uid="uid://cibiy35m8tou4" path="res://Assets/SFX/bleep021.ogg" id="5_v1xki"]
+
+[node name="TutorialDialogBox" type="Control" unique_id=1461734331]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -151.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_script")
+max_bubble_width = 300.0
+min_bubble_height = 30.0
+max_bubble_height = 70.0
+bubble_left_margin = 60.0
+bubble_bottom_margin = 50.0
+tail_left_offset = 0.0
+chicky_offset_from_tail = Vector2(-10, 10)
+
+[node name="Chicky" parent="." unique_id=1881249762 instance=ExtResource("3_chicky")]
+scale = Vector2(4, 4)
+frame_progress = 0.5740371
+
+[node name="Bubble" type="NinePatchRect" parent="." unique_id=846302469]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 28.0
+offset_right = 390.0
+offset_bottom = 118.0
+
+[node name="Tail" type="TextureRect" parent="Bubble" unique_id=289296694]
+layout_mode = 0
+offset_right = 18.0
+offset_bottom = 16.0
+texture = ExtResource("5_tail")
+
+[node name="Margin" type="MarginContainer" parent="Bubble" unique_id=1813976928]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="Bubble/Margin" unique_id=2134277206]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Bubble/Margin/VBox" unique_id=928215049]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 14
+text = "Chicky"
+
+[node name="DialogLabel" type="RichTextLabel" parent="Bubble/Margin/VBox" unique_id=1003961367]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_font")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="ContinueArrow" type="Label" parent="." unique_id=823868546]
+layout_mode = 0
+offset_left = 297.0
+offset_top = 96.0
+offset_right = 309.0
+offset_bottom = 108.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 10
+text = ">"
+horizontal_alignment = 1
+
+[node name="SkipButton" type="Button" parent="." unique_id=1565127863]
+visible = false
+layout_mode = 0
+offset_left = 230.0
+offset_top = 34.0
+offset_right = 294.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 7
+text = "Skip >"
+
+[node name="DialogBleep" type="AudioStreamPlayer" parent="." unique_id=536964696]
+stream = ExtResource("5_v1xki")
+pitch_scale = 1.5

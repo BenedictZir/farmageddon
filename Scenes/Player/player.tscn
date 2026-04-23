@@ -2276,7 +2276,6 @@ region = Rect2(44, 24, 9, 10)
 [node name="Player" type="CharacterBody2D" unique_id=949497324]
 y_sort_enabled = true
 collision_layer = 2
-groups = ["hud_occluders"]
 script = ExtResource("scr_player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=649593810]

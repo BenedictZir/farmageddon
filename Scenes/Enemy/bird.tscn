@@ -130,6 +130,7 @@ animations = [{
 }]
 
 [node name="Bird" unique_id=1927286370 instance=ExtResource("1_base")]
+y_sort_enabled = true
 collision_mask = 8
 script = ExtResource("2_birdscript")
 
@@ -146,6 +147,7 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_mmy5m")
 
 [node name="EnemyVisual" parent="." index="2" unique_id=543429950]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_c0jod")
 animation = &"eat"
 autoplay = "eat"

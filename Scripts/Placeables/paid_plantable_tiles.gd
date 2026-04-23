@@ -61,7 +61,9 @@ func _process(_delta: float) -> void:
 
 	if _is_player_near:
 		_show_ui_smooth()
-		if Input.is_action_just_pressed("interact") and _can_consume_interact(player):
+		if Input.is_action_just_pressed("interact") \
+				and GameManager.is_input_unlocked("interact") \
+				and _can_consume_interact(player):
 			_try_unlock()
 	else:
 		_hide_ui_smooth()

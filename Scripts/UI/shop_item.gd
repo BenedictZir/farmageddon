@@ -50,7 +50,8 @@ func _ready() -> void:
 		price_label.text = str(price) + "g"
 		if icon:
 			icon_rect.texture = icon
-			icon_rect.modulate = Color.WHITE
+			# Goal icons stay as black silhouette (mystery reveal)
+			icon_rect.modulate = Color(0, 0, 0, 1) if is_goal else Color.WHITE
 
 		if CurrencyManager.has_signal("gold_changed") and not CurrencyManager.gold_changed.is_connected(_on_gold_changed):
 			CurrencyManager.gold_changed.connect(_on_gold_changed)
@@ -58,7 +59,19 @@ func _ready() -> void:
 
 
 func _on_pressed() -> void:
+	var action_name := "shop_" + str(item_id)
+	if not GameManager.is_input_unlocked(action_name):
+		return
+
 	super()
+
+	# Goal items don't need item_data — just spend gold and celebrate
+	if is_goal:
+		if not CurrencyManager.spend_gold(price):
+			return
+		_play_goal_animation()
+		return
+
 	if not item_data:
 		return
 
@@ -81,9 +94,9 @@ func _on_pressed() -> void:
 		helper.global_position = spawn_pos
 		get_tree().current_scene.add_child(helper)
 		
-		# If this helper was the goal, trigger win
+		# If this helper was the goal, play dramatic animation then win
 		if is_goal:
-			GameManager.complete_current_level()
+			_play_goal_animation()
 		return
 
 	# Interception logic — give to ANY farmer whose queue is completely empty
@@ -113,7 +126,7 @@ func _on_pressed() -> void:
 		return
 	player.hold_item(item_data)
 	if is_goal:
-		GameManager.complete_current_level()
+		_play_goal_animation()
 
 
 func _on_gold_changed(_new_gold: int) -> void:
@@ -136,9 +149,13 @@ func _update_affordability() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if GameManager.current_level_index < unlock_level or not CurrencyManager.can_afford(price):
 		return
-		
-	if Input.is_action_just_pressed("shop_" + str(item_id)):
+	
+	var action_name := "shop_" + str(item_id)
+	if Input.is_action_just_pressed(action_name):
+		if not GameManager.is_input_unlocked(action_name):
+			return
 		_press_with_keyboard()
+
 func _press_with_keyboard():
 	_on_pressed()
 	if _tween:
@@ -154,3 +171,13 @@ func _animate_affordability(target_button: Color, target_price: Color) -> void:
 	_afford_tween.tween_property(self, "modulate", target_button, affordability_tween_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	if price_label:
 		_afford_tween.parallel().tween_property(price_label, "self_modulate", target_price, affordability_tween_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+
+func _play_goal_animation() -> void:
+	var anim := GoalPurchaseAnimation.new()
+	anim.goal_icon = icon
+	anim.goal_name = item_name
+	anim.start_screen_position = icon_rect.get_global_rect().get_center()
+	anim.source_icon_rect = icon_rect  # Pass actual node to reparent
+	get_tree().root.add_child(anim)
+	anim.animation_finished.connect(GameManager.complete_current_level)

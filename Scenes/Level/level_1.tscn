@@ -23,12 +23,7 @@ shader_parameter/heightOffset = 0.0
 shader_parameter/offset = 0.0
 
 [node name="Level1" unique_id=395313815 instance=ExtResource("1_k541i")]
-map_extents = null
 level_data = ExtResource("2_wtlyx")
-gold_count_speed = null
-gold_flash_time = null
-gold_tween_min_duration = null
-gold_tween_max_duration = null
 
 [node name="Tree" parent="ForeGround" parent_id_path=PackedInt32Array(2106120448) index="0" unique_id=294457344]
 material = SubResource("ShaderMaterial_c458c")
@@ -84,9 +79,10 @@ position = Vector2(0, 8)
 [node name="PlantableTile18" parent="PlantableTiles/PaidPatchRight" index="5" unique_id=2022169396 instance=ExtResource("4_wtlyx")]
 position = Vector2(16, 8)
 
-[node name="ForageSpawner" parent="." index="7" unique_id=1796233981]
-forage_items = Array[Resource]([ExtResource("5_uoico"), ExtResource("6_4snqv"), ExtResource("5_uoico")])
-
 [node name="AnimalTile" parent="." index="8" unique_id=809792012 instance=ExtResource("7_4snqv")]
 z_index = 0
 position = Vector2(24, -24)
+
+[node name="ForageSpawner" parent="." index="9" unique_id=1796233981]
+forage_items = Array[Resource]([ExtResource("5_uoico"), ExtResource("6_4snqv"), ExtResource("5_uoico")])
+spawn_chance = 0.0

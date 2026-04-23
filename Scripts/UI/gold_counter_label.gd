@@ -3,7 +3,7 @@ class_name GoldCounterLabel
 
 @export var count_speed := 130.0
 @export var min_tween_duration := 0.32
-@export var max_tween_duration := 1.1
+@export var max_tween_duration := 1.1	
 @export var flash_duration := 0.22
 @export var gain_flash_color := Color(1.0, 0.96, 0.68, 1.0)
 @export var spend_flash_color := Color(1.0, 0.74, 0.74, 1.0)

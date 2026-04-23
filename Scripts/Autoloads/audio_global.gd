@@ -1,6 +1,7 @@
 extends Node
-
+#script by viscasa.itch.io
 const DEFAULT_BUS := &"SFX"
+
 
 
 func start_sfx(sfx_position: Node, sfx_path: String, pitch_randomizer: Array = [1.0, 1.0], volume: float = 0.0, start_at: float = 0.0) -> void:

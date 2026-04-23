@@ -8,8 +8,13 @@
 [ext_resource type="Shader" uid="uid://w3mckfty164d" path="res://Shaders/sawit.gdshader" id="5_sj5t6"]
 [ext_resource type="Script" uid="uid://b61cvbsl7u180" path="res://Scripts/Level/forage_spawner.gd" id="7_6fsfs"]
 [ext_resource type="Resource" uid="uid://cjca1yymi58k8" path="res://Resources/Forage/red_mushroom.tres" id="8_g3fov"]
+[ext_resource type="Resource" uid="uid://dmm3vx0np3ufm" path="res://Resources/Tutorials/level_1_tutorial.tres" id="res_tut_l1"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/pause_screen.tscn" id="scn_pause"]
+[ext_resource type="PackedScene" uid="uid://brh1a68hkadbg" path="res://Scenes/UI/tutorial_dialog_box.tscn" id="scn_tut_dialog"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/tutorial_spotlight.tscn" id="scn_tut_spot"]
+[ext_resource type="Script" uid="uid://b3xavj6qtq4cr" path="res://Scripts/UI/gold_counter_label.gd" id="scr_gold_lbl"]
 [ext_resource type="Script" uid="uid://dofyuwdsoybf2" path="res://Scripts/Level/level_base.gd" id="scr_lvl_b"]
-[ext_resource type="Script" path="res://Scripts/UI/gold_counter_label.gd" id="scr_gold_lbl"]
+[ext_resource type="Script" uid="uid://c475nctl2be0t" path="res://Scripts/UI/tutorial_controller.gd" id="scr_tut_ctrl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08udf"]
 texture = ExtResource("2_i1iga")
@@ -3551,7 +3556,7 @@ tile_set = SubResource("TileSet_kfxem")
 
 [node name="ForeGround" type="TileMapLayer" parent="." unique_id=2106120448]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAJAP//AAAoAAMAAAAJAPz/AAAoAAMAAAAJAP3/AAAoAAMAAAAJAP7/AAAoAAMAAAAJAPv/AAAoAAMAAAAJAPr/AAApAAEAAAD4//r/AAAnAAIAAAD5//r/AAAnAAIAAAD6//r/AAAnAAIAAAAIAPr/AAAnAAIAAAAHAPr/AAAnAAIAAAAGAPr/AAAnAAIAAAAFAPr/AAAnAAIAAAAEAPr/AAAnAAIAAAADAPr/AAAnAAIAAAACAPr/AAAnAAIAAAABAPr/AAAnAAIAAAAAAPr/AAAnAAIAAAD///r/AAAnAAIAAAD+//r/AAAnAAIAAAD9//r/AAAnAAIAAAD8//r/AAAnAAIAAAD7//r/AAAnAAIAAAD2//r/AAAqAAEAAAD2/wIAAAAoAAMAAAD2/wUAAAAnAAEAAAD2//v/AAAoAAMAAAD2//z/AAAoAAMAAAD2//3/AAAoAAMAAAD2//7/AAAoAAMAAAD2////AAAoAAMAAAD2/wAAAAAoAAMAAAD2/wEAAAAoAAMAAAD2/wMAAAAoAAMAAAD2/wQAAAAoAAMAAAD3//r/AAAnAAIAAAD3/wUAAAAnAAIAAAD4/wUAAAAnAAIAAAD5/wUAAAAnAAIAAAD6/wUAAAAnAAIAAAD7/wUAAAAnAAIAAAD8/wUAAAAnAAIAAAD9/wUAAAAnAAIAAAD+/wUAAAAnAAIAAAD//wUAAAAnAAIAAAAAAAUAAAAnAAIAAAABAAUAAAAnAAIAAAACAAUAAAAnAAIAAAADAAUAAAAnAAIAAAAEAAUAAAAnAAIAAAAFAAUAAAAnAAIAAAAGAAUAAAAnAAIAAAAHAAUAAAAnAAIAAAAIAAUAAAAnAAIAAAAJAAAAAAAoAAMAAAAJAAEAAAAoAAMAAAAJAAIAAAAoAAMAAAAJAAMAAAAoAAMAAAAJAAQAAAAoAAMAAAAJAAUAAAAmAAEAAAAHAPz/AAAxAAUAAAAFAAQAAAAzAAQAAAD7/wQAAAAgAAUAAAA=")
+tile_map_data = PackedByteArray("AAAHAPz/AAAxAAUAAAAFAAQAAAAzAAQAAAD7/wQAAAAgAAUAAAA=")
 tile_set = SubResource("TileSet_68h7x")
 
 [node name="Tree" type="Sprite2D" parent="ForeGround" unique_id=294457344]
@@ -3599,6 +3604,11 @@ offset = Vector2(0, -6)
 region_enabled = true
 region_rect = Rect2(5, 5, 18, 35)
 
+[node name="Fences" type="TileMapLayer" parent="." unique_id=1982642731]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAJAP//AAAoAAMAAAAJAPz/AAAoAAMAAAAJAP3/AAAoAAMAAAAJAP7/AAAoAAMAAAAJAPv/AAAoAAMAAAAJAPr/AAApAAEAAAD4//r/AAAnAAIAAAD5//r/AAAnAAIAAAD6//r/AAAnAAIAAAAIAPr/AAAnAAIAAAAHAPr/AAAnAAIAAAAGAPr/AAAnAAIAAAAFAPr/AAAnAAIAAAAEAPr/AAAnAAIAAAADAPr/AAAnAAIAAAACAPr/AAAnAAIAAAABAPr/AAAnAAIAAAAAAPr/AAAnAAIAAAD///r/AAAnAAIAAAD+//r/AAAnAAIAAAD9//r/AAAnAAIAAAD8//r/AAAnAAIAAAD7//r/AAAnAAIAAAD2//r/AAAqAAEAAAD2/wIAAAAoAAMAAAD2/wUAAAAnAAEAAAD2//v/AAAoAAMAAAD2//z/AAAoAAMAAAD2//3/AAAoAAMAAAD2//7/AAAoAAMAAAD2////AAAoAAMAAAD2/wAAAAAoAAMAAAD2/wEAAAAoAAMAAAD2/wMAAAAoAAMAAAD2/wQAAAAoAAMAAAD3//r/AAAnAAIAAAD3/wUAAAAnAAIAAAD4/wUAAAAnAAIAAAD5/wUAAAAnAAIAAAD6/wUAAAAnAAIAAAD7/wUAAAAnAAIAAAD8/wUAAAAnAAIAAAD9/wUAAAAnAAIAAAD+/wUAAAAnAAIAAAD//wUAAAAnAAIAAAAAAAUAAAAnAAIAAAABAAUAAAAnAAIAAAACAAUAAAAnAAIAAAADAAUAAAAnAAIAAAAEAAUAAAAnAAIAAAAFAAUAAAAnAAIAAAAGAAUAAAAnAAIAAAAHAAUAAAAnAAIAAAAIAAUAAAAnAAIAAAAJAAAAAAAoAAMAAAAJAAEAAAAoAAMAAAAJAAIAAAAoAAMAAAAJAAMAAAAoAAMAAAAJAAQAAAAoAAMAAAAJAAUAAAAmAAEAAAA=")
+tile_set = SubResource("TileSet_68h7x")
+
 [node name="PlantableTiles" type="Node2D" parent="." unique_id=1103730003]
 
 [node name="Player" parent="." unique_id=949497324 instance=ExtResource("1_kr1g8")]
@@ -3635,9 +3645,29 @@ offset_left = 10.0
 offset_top = 91.0
 offset_right = 154.0
 offset_bottom = 113.0
-script = ExtResource("scr_gold_lbl")
 theme_override_colors/font_color = Color(1, 0.9, 0.2, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
 text = "Gold: 0g"
+script = ExtResource("scr_gold_lbl")
+
+[node name="PauseScreen" parent="." unique_id=1737449322 instance=ExtResource("scn_pause")]
+
+[node name="TutorialSpotlight" parent="." unique_id=1046064974 instance=ExtResource("scn_tut_spot")]
+
+[node name="TutorialDialogLayer" type="CanvasLayer" parent="." unique_id=732548503]
+process_mode = 3
+layer = 86
+
+[node name="TutorialDialogBox" parent="TutorialDialogLayer" unique_id=39337284 instance=ExtResource("scn_tut_dialog")]
+
+[node name="TutorialController" type="Node" parent="." unique_id=1801837630]
+process_mode = 3
+script = ExtResource("scr_tut_ctrl")
+tutorial_data = ExtResource("res_tut_l1")
+spotlight_path = NodePath("../TutorialSpotlight")
+dialog_box_path = NodePath("../TutorialDialogLayer/TutorialDialogBox")
+timer_label_path = NodePath("../UI/TimerLabel")
+enemy_spawner_path = NodePath("../EnemySpawner")
+hide_timer_initially = true

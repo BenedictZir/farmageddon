@@ -26,7 +26,7 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("shop_toggle"):
+	if event.is_action_pressed("shop_toggle") and GameManager.is_input_unlocked("shop_toggle"):
 		toggle()
 
 
@@ -37,7 +37,9 @@ func _process(_delta: float) -> void:
 		if mouse_y > bar_height + hover_margin:
 			slide_out()
 	else:
-		# Auto-show when mouse enters top area
+		# Auto-show when mouse enters top area (blocked during tutorial)
+		if not GameManager.is_input_unlocked("shop_toggle"):
+			return
 		var mouse_y := get_global_mouse_position().y
 		if mouse_y < hover_margin:
 			slide_in()
