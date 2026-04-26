@@ -1391,6 +1391,7 @@ item_name = "Fertilizer"
 price = 15
 icon = ExtResource("20_kig42")
 item_data = SubResource("Resource_237kg")
+unlock_level = 2
 
 [node name="Animals" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=114398264]
 layout_mode = 2
@@ -1403,6 +1404,7 @@ item_name = "Chicken"
 price = 150
 icon = SubResource("AtlasTexture_vnhp2")
 item_data = ExtResource("23_uexpf")
+unlock_level = 2
 
 [node name="Cow" parent="Bar/HBoxContainer/Animals" unique_id=1377985927 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
@@ -1412,6 +1414,7 @@ item_name = "Cow"
 price = 400
 icon = SubResource("AtlasTexture_dkr68")
 item_data = ExtResource("24_237kg")
+unlock_level = 2
 
 [node name="Helper" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=1101036095]
 layout_mode = 2
@@ -1424,6 +1427,7 @@ item_name = "Farmer"
 price = 100
 icon = ExtResource("22_4e8w0")
 item_data = ExtResource("27_ns75m")
+unlock_level = 3
 
 [node name="WarriorHelper" parent="Bar/HBoxContainer/Helper" unique_id=800627408 instance=ExtResource("scn_shop_item")]
 layout_mode = 2
@@ -1433,6 +1437,7 @@ item_name = "Warrior"
 price = 100
 icon = ExtResource("23_dkr68")
 item_data = ExtResource("29_4itre")
+unlock_level = 3
 
 [node name="Goal2" type="HBoxContainer" parent="Bar/HBoxContainer" unique_id=1957344051]
 layout_mode = 2

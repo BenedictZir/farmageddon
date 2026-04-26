@@ -28,5 +28,3 @@ allowed_enemies = Array[PackedScene]([ExtResource("4_skeleton"), ExtResource("5_
 script = ExtResource("1_level_data")
 waves = Array[ExtResource("2_wave_data")]([SubResource("Wave_1"), SubResource("Wave_2"), SubResource("Wave_3")])
 has_day_night_cycle = true
-night_crop_growth_rate_multiplier = 0.55
-metadata/_custom_type_script = "res://Scripts/Resources/level_data.gd"

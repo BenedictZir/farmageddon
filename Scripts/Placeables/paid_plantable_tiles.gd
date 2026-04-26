@@ -9,21 +9,27 @@ class_name PaidPlantableTiles
 @export var interaction_radius := 22.0
 @export var proximity_check_interval := 0.1
 @export var ui_offset := Vector2(0, -22)
+@export var sign_offset := Vector2.ZERO
 
 @export var locked_tint := Color(0.45, 0.45, 0.45, 1.0)
 @export var affordable_color := Color(0.55, 1.0, 0.55, 1.0)
 @export var unaffordable_color := Color(1.0, 0.45, 0.45, 1.0)
 @export var unlock_visual_duration := 0.28
 @export var unlock_stagger := 0.03
+@export var sign_unlock_duration := 0.22
+@export var sign_unlock_drop := 10.0
+@export_range(0.01, 1.0, 0.01) var sign_unlock_scale := 0.08
 
 @onready var lock_ui: Node2D = $LockUi
 @onready var icon_label: Label = $LockUi/IconLabel
 @onready var price_label: Label = $LockUi/PriceLabel
+@onready var sign_sprite: Sprite2D = get_node_or_null("SignSprite") as Sprite2D
 
 var _tiles: Array[Node2D] = []
 var _is_unlocked := false
 var _ui_visible := false
 var _ui_tween: Tween
+var _sign_tween: Tween
 var _proximity_timer := 0.0
 var _is_player_near := false
 
@@ -31,8 +37,8 @@ var _is_player_near := false
 func _ready() -> void:
 	_collect_tiles(self)
 	_update_ui_anchor()
-	icon_label.text = "[LOCK]"
-	price_label.text = "%dG" % unlock_price
+	icon_label.text = "[LOCKED]"
+	price_label.text = "%d G" % unlock_price
 
 	if CurrencyManager.has_signal("gold_changed") and not CurrencyManager.gold_changed.is_connected(_on_gold_changed):
 		CurrencyManager.gold_changed.connect(_on_gold_changed)
@@ -82,13 +88,32 @@ func _collect_tiles(node: Node) -> void:
 func _update_ui_anchor() -> void:
 	if _tiles.is_empty():
 		lock_ui.position = ui_offset
+		if sign_sprite:
+			sign_sprite.position = sign_offset
 		return
 
-	var center := Vector2.ZERO
-	for t in _tiles:
-		center += t.position
-	center /= float(_tiles.size())
+	var center := _get_tiles_center_local()
 	lock_ui.position = center + ui_offset
+	if sign_sprite:
+		sign_sprite.position = center + sign_offset
+
+
+func _get_tiles_center_local() -> Vector2:
+	if _tiles.is_empty():
+		return Vector2.ZERO
+
+	var center := Vector2.ZERO
+	var count := 0
+	for t in _tiles:
+		if not is_instance_valid(t) or not t.is_inside_tree():
+			continue
+		center += to_local(t.global_position)
+		count += 1
+
+	if count <= 0:
+		return Vector2.ZERO
+
+	return center / float(count)
 
 
 func _set_unlocked(unlocked: bool, smooth_unlock := false) -> void:
@@ -106,9 +131,15 @@ func _set_unlocked(unlocked: bool, smooth_unlock := false) -> void:
 	if _is_unlocked:
 		_is_player_near = false
 		if smooth_unlock:
+			_play_sign_unlock_animation()
+		else:
+			_hide_sign_immediate()
+		if smooth_unlock:
 			_hide_ui_smooth()
 		else:
 			_hide_ui_immediate()
+	else:
+		_show_sign_immediate()
 
 
 func _try_unlock() -> void:
@@ -186,6 +217,51 @@ func _hide_ui_immediate() -> void:
 	lock_ui.visible = false
 	lock_ui.modulate.a = 0.0
 	lock_ui.scale = Vector2(0.9, 0.9)
+
+
+func _show_sign_immediate() -> void:
+	if not sign_sprite:
+		return
+	if _sign_tween and _sign_tween.is_running():
+		_sign_tween.kill()
+	sign_sprite.visible = true
+	sign_sprite.modulate.a = 1.0
+	sign_sprite.scale = Vector2.ONE
+
+
+func _hide_sign_immediate() -> void:
+	if not sign_sprite:
+		return
+	if _sign_tween and _sign_tween.is_running():
+		_sign_tween.kill()
+	sign_sprite.visible = false
+	sign_sprite.modulate.a = 0.0
+	sign_sprite.scale = Vector2.ONE
+
+
+func _play_sign_unlock_animation() -> void:
+	if not sign_sprite:
+		return
+	if _sign_tween and _sign_tween.is_running():
+		_sign_tween.kill()
+
+	sign_sprite.visible = true
+	sign_sprite.modulate.a = 1.0
+	sign_sprite.scale = Vector2.ONE
+
+	var base_pos := sign_sprite.position
+	var duration := clampf(sign_unlock_duration, 0.05, 1.0)
+	var target_scale := Vector2(sign_unlock_scale, sign_unlock_scale)
+	_sign_tween = create_tween()
+	_sign_tween.tween_property(sign_sprite, "position:y", base_pos.y + absf(sign_unlock_drop), duration)\
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	_sign_tween.parallel().tween_property(sign_sprite, "scale", target_scale, duration)\
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	_sign_tween.parallel().tween_property(sign_sprite, "modulate:a", 0.0, duration * 0.9)\
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	_sign_tween.tween_callback(func():
+		sign_sprite.visible = false
+	)
 
 
 func _bump_ui_error() -> void:

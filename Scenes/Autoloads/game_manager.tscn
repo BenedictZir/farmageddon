@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c5pv7eckwm1au" path="res://Scripts/Autoloads/game_manager.gd" id="1_manager"]
 [ext_resource type="FontFile" uid="uid://dwtf8x3d22yem" path="res://Assets/Fonts/BoldPixels.ttf" id="2_font"]
+[ext_resource type="Script" uid="uid://bsumvka8pfl01" path="res://Scripts/UI/animated_button.gd" id="3_0bwh0"]
 
 [node name="GameManager" type="CanvasLayer" unique_id=198126639]
 process_mode = 3
@@ -48,9 +49,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 16
 text = " Retry "
+script = ExtResource("3_0bwh0")
 
 [node name="NextButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1816213682]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 16
 text = " Next Level "
+script = ExtResource("3_0bwh0")

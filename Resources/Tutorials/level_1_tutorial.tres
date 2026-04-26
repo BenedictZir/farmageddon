@@ -122,7 +122,6 @@ script = ExtResource("2_step")
 lines = Array[String](["Okay awesome, you're a pro farmer now.", "If you forget something, you can always press ESC to see the keys. You should be thankful the dev is very kind yes yes.", "I'm gonna head out, bye-bye!"])
 pause_game = false
 unlock_inputs = Array[String](["shop_2", "shop_3", "shop_4", "shop_5", "shop_6", "shop_7", "shop_8", "shop_9"])
-key_prompt = "ESC"
 
 [sub_resource type="Resource" id="step_14_combat"]
 script = ExtResource("2_step")

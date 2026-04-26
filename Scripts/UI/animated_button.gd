@@ -29,7 +29,7 @@ func _notification(what: int) -> void:
 func _on_mouse_entered() -> void:
 	if disabled:
 		return
-	#AudioGlobal.start_ui_sfx("res://Assets/SFX/button_hover.wav", [0.97, 1.05])
+	_play_hover_sfx()
 	CursorManager.set_pointer()
 	_animate_scale(_hover_scale)
 
@@ -41,8 +41,7 @@ func _on_mouse_exited() -> void:
 	_animate_scale(_base_scale)
 
 func _on_pressed() -> void:
-	#AudioGlobal.start_ui_sfx("res://Assets/SFX/button_click.wav", [0.97, 1.05], 2)
-
+	_play_press_sfx()
 	if _tween: _tween.kill()
 	
 	_tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
@@ -59,3 +58,10 @@ func _animate_scale(target_scale: Vector2) -> void:
 	
 func shrink_to_normal() -> void:
 	_animate_scale(_base_scale)
+	
+func _play_hover_sfx():
+	AudioGlobal.start_ui_sfx("res://Assets/SFX/button_hover.wav", [0.97, 1.05], -5)
+
+func _play_press_sfx():
+	AudioGlobal.start_ui_sfx("res://Assets/SFX/button_click.wav", [0.97, 1.05], -5)
+	

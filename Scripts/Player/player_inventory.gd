@@ -33,11 +33,24 @@ func interact() -> void:
 			_try_use_product()
 		else:
 			_try_place_item()
+			AudioGlobal.start_ui_sfx("res://Assets/SFX/interact.wav", [1.2, 1.22], 3)
+			await get_tree().create_timer(0.6).timeout
+			AudioGlobal.start_ui_sfx("res://Assets/SFX/interact.wav", [1.2, 1.22], 3)	
 	else:
 		_try_harvest()
+		AudioGlobal.start_ui_sfx("res://Assets/SFX/interact.wav", [1.2, 1.22], 3)
+		await get_tree().create_timer(0.6).timeout
+		AudioGlobal.start_ui_sfx("res://Assets/SFX/interact.wav", [1.2, 1.22], 3)	
+
 
 
 func drop() -> void:
+	# drop() can be called from damage/collision callbacks while physics is flushing.
+	# Defer actual spawn to avoid 'Can't change this state while flushing queries'.
+	call_deferred("_drop_deferred")
+
+
+func _drop_deferred() -> void:
 	if is_carrying and _held_item:
 		var dropped_scene := preload("res://Scenes/Items/dropped_item.tscn")
 		var item := dropped_scene.instantiate()
@@ -138,6 +151,7 @@ func _try_use_product() -> void:
 	# Otherwise sell
 	if _held_item.has_method("is_sellable_product") and _held_item.is_sellable_product():
 		_sell_held_item()
+		
 
 
 func _sell_held_item() -> void:
@@ -184,9 +198,11 @@ func on_interact_anim_finished() -> void:
 		# Check if target is a DroppedItem
 		if _target_tile.has_method("pick_up"):
 			_pick_up_dropped(_target_tile)
+			AudioGlobal.start_ui_sfx("res://Assets/SFX/pickup.wav", [0.97, 1.02], -10)
 		elif _target_tile.has_method("is_harvestable") \
 			and _target_tile.is_harvestable():
 			finish_harvest()
+			AudioGlobal.start_ui_sfx("res://Assets/SFX/pickup.wav", [0.97, 1.02], -10)
 
 
 # ── Internal ─────────────────────────────────────────────

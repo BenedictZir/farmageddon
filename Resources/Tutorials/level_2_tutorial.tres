@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="TutorialSequence" format=3 uid="uid://b1cx0uy5np8x6"]
+
+[ext_resource type="Script" uid="uid://3qmcmvfny6xd" path="res://Scripts/Resources/tutorial_sequence.gd" id="1_seq"]
+[ext_resource type="Script" uid="uid://qaq4uqtyi58h" path="res://Scripts/Resources/tutorial_step.gd" id="2_step"]
+
+[sub_resource type="Resource" id="step_01_intro"]
+script = ExtResource("2_step")
+lines = Array[String](["Wow, I didn't expect you to clear level 1!", "...Well, makes sense though, the developer purposely made the first level super easy."])
+
+[sub_resource type="Resource" id="step_02_livestock"]
+script = ExtResource("2_step")
+lines = Array[String](["Since you're getting like, a pro at farming now, we can start raising livestock!", "You can place them on empty dirt tiles and feed them the crops you harvest."])
+
+[sub_resource type="Resource" id="step_03_foraging"]
+script = ExtResource("2_step")
+lines = Array[String](["Also, if you have some free time, try exploring around the farm.", "Who knows, you might find some valuable wild mushrooms you can sell for extra cash!"])
+
+[sub_resource type="Resource" id="step_04_crow"]
+script = ExtResource("2_step")
+lines = Array[String](["Anyway, have fun farm-- wait... Eeek! What is that up there?!", "It's a crow! Ruuuunnn!!!"])
+on_start_actions = Array[String](["start_spawner"])
+camera_shake = true
+
+[resource]
+script = ExtResource("1_seq")
+save_key = "level_2"
+steps = Array[ExtResource("2_step")]([SubResource("step_01_intro"), SubResource("step_02_livestock"), SubResource("step_03_foraging"), SubResource("step_04_crow")])

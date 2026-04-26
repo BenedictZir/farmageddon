@@ -6,7 +6,7 @@ extends Area2D
 
 @export var damage := 25.0
 @export var offset_distance := 20.0  # how far in front of attacker
-
+@export var is_player_attack := false
 signal hit_landed(target: Node2D)
 
 
@@ -44,7 +44,7 @@ func _on_body_entered(body: Node2D) -> void:
 		body.take_damage(damage)
 		did_hit = true
 	elif body.has_node("Components/HealthComponent"):
-		body.get_node("Components/HealthComponent").take_damage(damage)
+		body.get_node("Components/HealthComponent").take_damage(damage, is_player_attack)
 		did_hit = true
 
 	if did_hit:

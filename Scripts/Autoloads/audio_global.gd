@@ -1,9 +1,13 @@
 extends Node
 #script by viscasa.itch.io
 const DEFAULT_BUS := &"SFX"
+var bgm: AudioStreamPlayer
 
-
-
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	bgm = AudioStreamPlayer.new()
+	add_child(bgm)
+	bgm.volume_db = -10.0
 func start_sfx(sfx_position: Node, sfx_path: String, pitch_randomizer: Array = [1.0, 1.0], volume: float = 0.0, start_at: float = 0.0) -> void:
 	if not sfx_position or not is_instance_valid(sfx_position):
 		return
@@ -87,4 +91,11 @@ func _pick_pitch(pitch_randomizer: Array) -> float:
 	if pitch_randomizer.size() < 2:
 		return 1.0
 	return randf_range(float(pitch_randomizer[0]), float(pitch_randomizer[1]))
-	
+
+func play_music(path:String, volume: float = 0.0):
+	bgm.stream = load(path)
+	bgm.volume_db =volume
+	bgm.play()
+
+func stop_music():
+	bgm.stop()

@@ -5,7 +5,7 @@ class_name LevelData
 
 @export var waves: Array[WaveData] = []
 @export var time_limit_seconds := 300.0
-@export var starting_gold := 2000
+@export var starting_gold := 30
 
 # Enabled for level 4+ to drive visual cycle and gameplay modifiers.
 @export var has_day_night_cycle := false

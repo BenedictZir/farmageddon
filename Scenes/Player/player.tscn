@@ -2295,6 +2295,7 @@ run_speed = 80.0
 [node name="HealthComponent" type="Node2D" parent="Components" unique_id=1512771122]
 y_sort_enabled = true
 script = ExtResource("scr_health")
+hit_sfx_volume = -5
 
 [node name="AttackComponent" type="Area2D" parent="Components" unique_id=1211925053]
 collision_layer = 0
@@ -2302,6 +2303,7 @@ collision_mask = 4
 monitoring = false
 monitorable = false
 script = ExtResource("scr_attack_hitbox")
+is_player_attack = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components/AttackComponent" unique_id=2063992744]
 shape = SubResource("attack_shape")

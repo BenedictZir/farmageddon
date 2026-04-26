@@ -22,10 +22,12 @@ class_name TutorialController
 @export var auto_start := true
 @export var start_delay := 0.5
 @export var hide_timer_initially := false
-@export var tutorial_loan_amount := 2000
+@export var tutorial_loan_amount := 30
 
 var _runner: TutorialRunner
 var _tutorial_loan_given := false
+var _timer_started_during_tutorial := false
+var _gold_revealed_during_tutorial := false
 
 
 func _ready() -> void:
@@ -39,7 +41,14 @@ func _ready() -> void:
 		return
 
 	GameManager.tutorial_active = true
+	GameManager.pause_level_timer()
 	_tutorial_loan_given = false
+	_timer_started_during_tutorial = false
+	_gold_revealed_during_tutorial = false
+
+	var gold_lbl := get_node_or_null("../UI/GoldLabel") as GoldCounterLabel
+	if gold_lbl:
+		gold_lbl.lock_display()
 
 	if hide_timer_initially:
 		var timer_lbl := get_node_or_null(timer_label_path) as Control
@@ -76,6 +85,11 @@ func _on_custom_action(action_name: String) -> void:
 			var timer_lbl := get_node_or_null(timer_label_path) as Control
 			if timer_lbl:
 				timer_lbl.visible = true
+			if not _timer_started_during_tutorial:
+				GameManager.start_level_timer_from_full()
+				_timer_started_during_tutorial = true
+			else:
+				GameManager.resume_level_timer()
 		"hide_timer":
 			var timer_lbl := get_node_or_null(timer_label_path) as Control
 			if timer_lbl:
@@ -99,12 +113,25 @@ func _on_custom_action(action_name: String) -> void:
 				return
 			_tutorial_loan_given = true
 			CurrencyManager.add_gold(maxi(0, tutorial_loan_amount))
+			var gold_lbl := get_node_or_null("../UI/GoldLabel") as GoldCounterLabel
+			if gold_lbl:
+				gold_lbl.unlock_display(true)
+				_gold_revealed_during_tutorial = true
 		_:
 			push_warning("[TutorialController] Unknown custom action: %s" % action_name)
 
 
 func _on_completed() -> void:
 	_save_done(tutorial_data.save_key)
+	if _timer_started_during_tutorial:
+		GameManager.resume_level_timer()
+	else:
+		GameManager.start_level_timer_from_full()
+
+	if not _gold_revealed_during_tutorial:
+		var gold_lbl := get_node_or_null("../UI/GoldLabel") as GoldCounterLabel
+		if gold_lbl:
+			gold_lbl.unlock_display(true)
 
 	var timer_lbl := get_node_or_null(timer_label_path) as Control
 	if timer_lbl:

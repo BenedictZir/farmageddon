@@ -34,3 +34,4 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_chicky")
 animation = &"talking"
 autoplay = "talking"
+frame_progress = 0.122533865

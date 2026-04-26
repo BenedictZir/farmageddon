@@ -13,7 +13,7 @@ class_name DayNightController
 @export var night_color := Color(0.56, 0.62, 0.78, 1.0)
 
 var _phase_timer := 0.0
-var _is_night := false
+var _is_night := true
 var _transition_started := false
 var _modulate: CanvasModulate
 var _fade_tween: Tween
@@ -27,8 +27,12 @@ func _ready() -> void:
 		return
 
 	night_color = _modulate.color
-	_modulate.color = day_color
-	GameManager.set_day_night_modifiers(false, 1.0, 1.0)
+	if _is_night:
+		_modulate.color = night_color
+		_apply_phase_modifiers()
+	else:
+		_modulate.color = day_color
+		GameManager.set_day_night_modifiers(false, 1.0, 1.0)
 
 
 func _process(delta: float) -> void:

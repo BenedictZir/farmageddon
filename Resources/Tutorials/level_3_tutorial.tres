@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="TutorialSequence" format=3 uid="uid://cxab3xqxadf20"]
+
+[ext_resource type="Script" uid="uid://3qmcmvfny6xd" path="res://Scripts/Resources/tutorial_sequence.gd" id="1_seq"]
+[ext_resource type="Script" uid="uid://qaq4uqtyi58h" path="res://Scripts/Resources/tutorial_step.gd" id="2_step"]
+
+[sub_resource type="Resource" id="step_01_intro"]
+script = ExtResource("2_step")
+lines = Array[String](["Wow, you made it to level 3! You're actually pretty good at this!", "But things are getting more chaotic, and you look completely overwhelmed."])
+
+[sub_resource type="Resource" id="step_02_helpers"]
+script = ExtResource("2_step")
+lines = Array[String](["It's time to level up your farming game! You can now hire Helpers.", "The Farmer Helper will assist you with farming, while the Warrior Helper will fight off monsters."])
+
+[sub_resource type="Resource" id="step_03_shop"]
+script = ExtResource("2_step")
+lines = Array[String](["You can hire them from the shop up top. Easy, right?", "Wait... hold on a second."])
+
+[sub_resource type="Resource" id="step_04_twist"]
+script = ExtResource("2_step")
+lines = Array[String](["What is this?! Why do we have to pay gold just to plant seeds on our own farm now?!", "Ugh, the developer is truly evil for adding this mechanic. Well, good luck paying your bills!"])
+on_start_actions = Array[String](["start_spawner"])
+camera_shake = true
+
+[resource]
+script = ExtResource("1_seq")
+save_key = "level_3"
+steps = Array[ExtResource("2_step")]([SubResource("step_01_intro"), SubResource("step_02_helpers"), SubResource("step_03_shop"), SubResource("step_04_twist")])

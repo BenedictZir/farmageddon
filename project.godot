@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Farmageddon"
-run/main_scene="res://Scenes/UI/level_selector.tscn"
+run/main_scene="uid://l2w1p3m7pvll"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

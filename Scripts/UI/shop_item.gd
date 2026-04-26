@@ -68,6 +68,7 @@ func _on_pressed() -> void:
 	# Goal items don't need item_data — just spend gold and celebrate
 	if is_goal:
 		if not CurrencyManager.spend_gold(price):
+			AudioGlobal.start_ui_sfx("res://Assets/SFX/Cancel.wav", [0.97, 1.02], -5)
 			return
 		_play_goal_animation()
 		return
@@ -78,6 +79,7 @@ func _on_pressed() -> void:
 	# Helper instant-buy logic
 	if item_data.has_method("is_helper") and item_data.is_helper():
 		if not CurrencyManager.spend_gold(price):
+			AudioGlobal.start_ui_sfx("res://Assets/SFX/Cancel.wav", [0.97, 1.02], -5)
 			return
 		var helper = item_data.helper_scene.instantiate()
 		var extents := GameManager.map_extents
@@ -112,10 +114,15 @@ func _on_pressed() -> void:
 		if type == Placeable.Type.CROP:
 			if CurrencyManager.spend_gold(price):
 				available_farmer.add_seed_to_queue(item_data)
+			else:
+				AudioGlobal.start_ui_sfx("res://Assets/SFX/Cancel.wav", [0.97, 1.02], -5)
+				
 			return
 		elif type == Placeable.Type.FERTILIZER:
 			if CurrencyManager.spend_gold(price):
 				available_farmer.add_fertilizer(item_data)
+			else:
+				AudioGlobal.start_ui_sfx("res://Assets/SFX/Cancel.wav", [0.97, 1.02], -5)
 			return
 
 	# Normal behavior (player holds item, must not have full hands)
@@ -123,6 +130,7 @@ func _on_pressed() -> void:
 	if not player or player.is_carrying:
 		return
 	if not CurrencyManager.spend_gold(price):
+		AudioGlobal.start_ui_sfx("res://Assets/SFX/Cancel.wav", [0.97, 1.02], -5)
 		return
 	player.hold_item(item_data)
 	if is_goal:
@@ -174,10 +182,15 @@ func _animate_affordability(target_button: Color, target_price: Color) -> void:
 
 
 func _play_goal_animation() -> void:
+	AudioGlobal.stop_music()
 	var anim := GoalPurchaseAnimation.new()
 	anim.goal_icon = icon
 	anim.goal_name = item_name
 	anim.start_screen_position = icon_rect.get_global_rect().get_center()
 	anim.source_icon_rect = icon_rect  # Pass actual node to reparent
 	get_tree().root.add_child(anim)
+	AudioGlobal.start_ui_sfx("res://Assets/SFX/level_complete.wav", [0.97, 1.02], -5)
 	anim.animation_finished.connect(GameManager.complete_current_level)
+
+func _play_press_sfx():
+	pass # dont play press sfx for shop item button because spend gold already have sfx

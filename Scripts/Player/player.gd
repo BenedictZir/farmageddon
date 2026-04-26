@@ -16,7 +16,6 @@ var is_knocked := false
 var is_rolling := false
 var _roll_velocity := Vector2.ZERO
 var _time_since_last_damage := 0.0
-
 ## Proxied from inventory — select_box reads this
 var is_carrying: bool:
 	get: return inventory.is_carrying if inventory else false
@@ -141,6 +140,7 @@ func _handle_movement() -> void:
 func _do_attack() -> void:
 	velocity = Vector2.ZERO
 	player_visual.play_attack()
+	AudioGlobal.start_ui_sfx("res://Assets/SFX/attack.wav", [0.97, 1.02], -4)
 	attack_component.activate(player_visual.base.flip_h)
 
 
@@ -151,6 +151,7 @@ func _do_roll() -> void:
 	is_rolling = true
 	set_collision_layer_value(2, false)
 	player_visual.play_roll()
+	AudioGlobal.start_ui_sfx("res://Assets/SFX/roll.wav", [1.2, 1.22], -4)
 	var roll_dir := direction.normalized() if direction != Vector2.ZERO \
 		else (Vector2.LEFT if player_visual.base.flip_h else Vector2.RIGHT)
 	_roll_velocity = roll_dir * (roll_distance / roll_duration)
@@ -191,6 +192,7 @@ func _on_died() -> void:
 	set_collision_layer_value(2, true)
 	attack_component.deactivate()
 	velocity = Vector2.ZERO
+	AudioGlobal.start_ui_sfx("res://Assets/SFX/player_death.wav", [0.97, 1.02])
 	# Drop 50% gold
 	var gold_to_drop := CurrencyManager.gold / 2
 	if gold_to_drop > 0:
@@ -204,6 +206,7 @@ func _on_revived() -> void:
 	_respawn_active = false
 	_respawn_elapsed = 0.0
 	is_knocked = false
+	AudioGlobal.start_ui_sfx("res://Assets/SFX/player_spawn.wav", [0.97, 1.02], -4)
 	player_visual.play_idle()
 
 

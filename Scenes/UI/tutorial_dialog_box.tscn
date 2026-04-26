@@ -21,8 +21,8 @@ script = ExtResource("1_script")
 max_bubble_width = 300.0
 min_bubble_height = 30.0
 max_bubble_height = 70.0
-bubble_left_margin = 60.0
-bubble_bottom_margin = 50.0
+bubble_left_margin = 100.0
+bubble_bottom_margin = 70.0
 tail_left_offset = 0.0
 chicky_offset_from_tail = Vector2(-10, 10)
 
@@ -32,10 +32,10 @@ frame_progress = 0.5740371
 
 [node name="Bubble" type="NinePatchRect" parent="." unique_id=846302469]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 28.0
-offset_right = 390.0
-offset_bottom = 118.0
+offset_left = 105.0
+offset_top = 18.0
+offset_right = 405.0
+offset_bottom = 108.0
 
 [node name="Tail" type="TextureRect" parent="Bubble" unique_id=289296694]
 layout_mode = 0

@@ -16,13 +16,15 @@ func add_gold(amount: int) -> void:
 	if amount <= 0:
 		return
 	gold += amount
-
+	
 func spend_gold(amount: int) -> bool:
 	if amount <= 0:
+		AudioGlobal.start_ui_sfx("res://Assets/SFX/buy_item.wav", [0.97, 1.02], -5)
 		return true
 	if gold >= amount:
 		gold -= amount
 		gold_spent.emit(amount)
+		AudioGlobal.start_ui_sfx("res://Assets/SFX/buy_item.wav", [0.97, 1.02], -5)
 		return true
 	return false
 

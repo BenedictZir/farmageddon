@@ -11,6 +11,7 @@ func physics_update(_delta: float) -> void:
 	var is_colliding := entity.get_slide_collision_count() > 0
 	if is_colliding and not _has_jumped:
 		entity.start_jump(0.8, 30.0)
+		AudioGlobal.start_ui_sfx("res://Assets/SFX/Jump.wav", [0.97, 1.02], -10)
 		_has_jumped = true
 		await get_tree().create_timer(0.8).timeout
 		_jump_anim_finished = true

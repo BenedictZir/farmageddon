@@ -34,6 +34,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _pause() -> void:
 	if GameManager._game_over:
 		return
+	AudioGlobal.start_ui_sfx("res://Assets/SFX/Pause.wav", [0.97, 1.02], -2)
 	_is_paused = true
 	visible = true
 	get_tree().paused = true
@@ -76,4 +77,5 @@ func _get_all_children(node: Node) -> Array[Node]:
 
 
 func _on_level_button_pressed() -> void:
+	_unpause()
 	SceneTransition.change_scene("res://Scenes/UI/level_selector.tscn")

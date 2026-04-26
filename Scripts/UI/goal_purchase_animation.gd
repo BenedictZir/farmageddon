@@ -213,7 +213,9 @@ func _run_animation() -> void:
 
 	# Done
 	tw.tween_callback(_on_done)
-
+	await get_tree().create_timer(1.4).timeout
+	AudioGlobal.start_ui_sfx("res://Assets/SFX/level_complete_2.wav")
+	
 
 func _on_done() -> void:
 	_active = false

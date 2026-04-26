@@ -30,6 +30,7 @@ var _transitioning := false
 var _scene_root: Node
 var _key_prompt_container: Node2D
 var _tutorial_start_gold := -1
+var _line_shown_time := 0.0
 
 @export_group("Key Prompt Layout")
 @export var key_prompt_side_gap := 18.0
@@ -83,7 +84,7 @@ func start(sequence: TutorialSequence, spot: TutorialSpotlight, dialog: Tutorial
 	_tutorial_start_gold = CurrencyManager.gold if CurrencyManager else -1
 
 	GameManager.tutorial_active = true
-
+	AudioGlobal.play_music("res://Assets/Music/tutorial_music.ogg", -15)
 	if dialog_box:
 		dialog_box.set_npc_name(sequence.npc_name)
 		if not dialog_box.skip_pressed.is_connected(_on_skip):
@@ -135,7 +136,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		if dialog_box and dialog_box.is_typing():
 			dialog_box.complete_typing()
 		else:
-			_advance_line()
+			var current_time := Time.get_ticks_msec() / 1000.0
+			if current_time - _line_shown_time >= 0.5:
+				_advance_line()
 
 
 # ── Step flow ────────────────────────────────────────────────────────
@@ -189,6 +192,7 @@ func _advance_step() -> void:
 			if camera and HitEffects:
 				HitEffects.play_camera_shake(camera, 3.5, 0.4)
 		dialog_box.show_text(step.lines[0])
+		_line_shown_time = Time.get_ticks_msec() / 1000.0
 		_update_key_prompt_position()
 		_transitioning = false
 	elif dialog_box:
@@ -273,6 +277,7 @@ func _advance_line() -> void:
 	_current_line += 1
 	if _current_line < step.lines.size():
 		dialog_box.show_text(step.lines[_current_line])
+		_line_shown_time = Time.get_ticks_msec() / 1000.0
 		_update_key_prompt_position()
 	else:
 		_complete_step()
@@ -316,6 +321,7 @@ func _on_action_done(_a = null, _b = null, _c = null, _d = null) -> void:
 	if _current_line < step.lines.size():
 		get_tree().paused = true
 		dialog_box.show_text(step.lines[_current_line])
+		_line_shown_time = Time.get_ticks_msec() / 1000.0
 		_update_key_prompt_position()
 	else:
 		_complete_step()
@@ -352,6 +358,7 @@ func _on_signal_action_done(_a = null, _b = null, _c = null, _d = null) -> void:
 			if camera and HitEffects:
 				HitEffects.play_camera_shake(camera, 3.5, 0.4)
 		dialog_box.show_text(step.lines[0])
+		_line_shown_time = Time.get_ticks_msec() / 1000.0
 		_update_key_prompt_position()
 
 
@@ -685,3 +692,4 @@ func _finish() -> void:
 
 	get_tree().paused = false
 	tutorial_completed.emit()
+	AudioGlobal.play_music("res://Assets/Music/menu_music.wav", -12)

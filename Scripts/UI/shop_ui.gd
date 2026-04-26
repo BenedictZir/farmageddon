@@ -48,10 +48,12 @@ func _process(_delta: float) -> void:
 func toggle() -> void:
 	if _is_visible:
 		toggled_by_tab = false
+		AudioGlobal.start_ui_sfx("res://Assets/SFX/shop_open.wav", [0.97, 1.02], -10)
 		slide_out()
 	else:
 		toggled_by_tab = true
 		slide_in()
+		AudioGlobal.start_ui_sfx("res://Assets/SFX/shop_close.wav", [0.97, 1.02], -10)
 
 
 func slide_in() -> void:

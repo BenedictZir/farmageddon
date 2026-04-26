@@ -31,11 +31,10 @@ var max_unlocked_level := 1
 var last_level_index := 1
 
 var level_goals := {
-	1: {"name": "???", "price": 500, "icon": load("res://Assets/animal_and_fertilizer_icon.png")},
+	1: {"name": "???", "price": 5, "icon": load("res://Assets/animal_and_fertilizer_icon.png")},
 	2: {"name": "???", "price": 1000, "icon":  load("res://Assets/animal_and_fertilizer_icon.png")},
 	3: {"name": "???", "price": 1500, "icon":  load("res://Assets/animal_and_fertilizer_icon.png")},
-	4: {"name": "???", "price": 2500, "icon":  load("res://Assets/animal_and_fertilizer_icon.png")},
-	5: {"name": "???", "price": 4000, "icon":  load("res://Assets/animal_and_fertilizer_icon.png")}
+	4: {"name": "???", "price": 25, "icon":  load("res://Assets/animal_and_fertilizer_icon.png")},
 }
 
 func get_current_goal_data() -> Dictionary:
@@ -45,6 +44,7 @@ var _game_over := false
 var _level_elapsed_seconds := 0.0
 var _level_time_limit_seconds := 300.0
 var _time_limit_checked := false
+var _level_timer_paused := false
 
 var _enemy_spawn_interval_multiplier := 1.0
 var _crop_growth_rate_multiplier := 1.0
@@ -101,6 +101,7 @@ func register_level(extents: Vector2, scene_path: String, config: Dictionary = {
 	_game_over = false
 	_level_elapsed_seconds = 0.0
 	_level_time_limit_seconds = maxf(1.0, float(config.get("time_limit_seconds", 300.0)))
+	_level_timer_paused = false
 	var level_starting_gold := maxi(0, int(config.get("starting_gold", CurrencyManager.gold)))
 	CurrencyManager.set_gold(level_starting_gold)
 	_time_limit_checked = false
@@ -114,7 +115,7 @@ func _process(delta: float) -> void:
 	if _game_over:
 		return
 	# Don't tick the timer while the tree is paused (pause screen)
-	if get_tree().paused:
+	if get_tree().paused or _level_timer_paused:
 		return
 
 	_level_elapsed_seconds += delta
@@ -153,6 +154,29 @@ func set_day_night_modifiers(is_night: bool, enemy_spawn_interval_multiplier: fl
 	day_night_changed.emit(_is_night)
 
 
+func pause_level_timer() -> void:
+	_level_timer_paused = true
+
+
+func resume_level_timer() -> void:
+	_level_timer_paused = false
+
+
+func is_level_timer_paused() -> bool:
+	return _level_timer_paused
+
+
+func reset_level_timer_to_full() -> void:
+	_level_elapsed_seconds = 0.0
+	_time_limit_checked = false
+	level_timer_changed.emit(_level_time_limit_seconds, _level_time_limit_seconds)
+
+
+func start_level_timer_from_full() -> void:
+	reset_level_timer_to_full()
+	resume_level_timer()
+
+
 func win() -> void:
 	if _game_over:
 		return
@@ -169,6 +193,9 @@ func win() -> void:
 func lose() -> void:
 	if _game_over:
 		return
+	
+	AudioGlobal.stop_music()
+	AudioGlobal.start_ui_sfx("res://Assets/SFX/Lose.wav", [0.97, 1.02])
 	_game_over = true
 	get_tree().paused = true
 	title_label.text = "TRY AGAIN"

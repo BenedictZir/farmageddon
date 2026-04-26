@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="TutorialSequence" format=3 uid="uid://do2xccfhupc6"]
+
+[ext_resource type="Script" uid="uid://3qmcmvfny6xd" path="res://Scripts/Resources/tutorial_sequence.gd" id="1_seq"]
+[ext_resource type="Script" uid="uid://qaq4uqtyi58h" path="res://Scripts/Resources/tutorial_step.gd" id="2_step"]
+
+[sub_resource type="Resource" id="step_01_intro"]
+script = ExtResource("2_step")
+lines = Array[String](["Alright rookie, welcome to level 4. Now we're going to...", "Wait, why is it so dark? Did someone turn off the lights?"])
+
+[sub_resource type="Resource" id="step_02_kidnap"]
+script = ExtResource("2_step")
+lines = Array[String](["Hellooo?", "Wait, what's grabbing me?! Let go of me you foul beast! HEEEEEELP!!!"])
+on_start_actions = Array[String](["start_spawner"])
+camera_shake = true
+
+[resource]
+script = ExtResource("1_seq")
+save_key = "level_4"
+steps = Array[ExtResource("2_step")]([SubResource("step_01_intro"), SubResource("step_02_kidnap")])
