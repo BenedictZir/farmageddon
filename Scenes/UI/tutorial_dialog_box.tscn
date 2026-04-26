@@ -103,4 +103,5 @@ text = "Skip >"
 
 [node name="DialogBleep" type="AudioStreamPlayer" parent="." unique_id=536964696]
 stream = ExtResource("5_v1xki")
+volume_db = 6.0
 pitch_scale = 1.5

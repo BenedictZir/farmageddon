@@ -140,7 +140,7 @@ func _handle_movement() -> void:
 func _do_attack() -> void:
 	velocity = Vector2.ZERO
 	player_visual.play_attack()
-	AudioGlobal.start_ui_sfx("res://Assets/SFX/attack.wav", [0.97, 1.02], -4)
+	AudioGlobal.start_ui_sfx("res://Assets/SFX/attack.wav", [1.22, 1.22], 2)
 	attack_component.activate(player_visual.base.flip_h)
 
 
@@ -151,7 +151,7 @@ func _do_roll() -> void:
 	is_rolling = true
 	set_collision_layer_value(2, false)
 	player_visual.play_roll()
-	AudioGlobal.start_ui_sfx("res://Assets/SFX/roll.wav", [1.2, 1.22], -4)
+	AudioGlobal.start_ui_sfx("res://Assets/SFX/roll.wav", [1.2, 1.22], 4)
 	var roll_dir := direction.normalized() if direction != Vector2.ZERO \
 		else (Vector2.LEFT if player_visual.base.flip_h else Vector2.RIGHT)
 	_roll_velocity = roll_dir * (roll_distance / roll_duration)

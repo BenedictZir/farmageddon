@@ -80,7 +80,7 @@ pause_game = false
 script = ExtResource("2_step")
 lines = Array[String](["Yep, those are your planting spots."])
 spotlight_shape = 1
-spotlight_size = Vector2(120, 120)
+spotlight_size = Vector2(128, 90)
 spotlight_node_path = "PlantableTiles"
 pause_game = false
 

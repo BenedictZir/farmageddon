@@ -53,19 +53,8 @@ func _play_all_previews() -> void:
 	for node in _get_all_children(panel):
 		if node is AnimatedSprite2D and node.name.begins_with("PlayerPreview"):
 			node.play()
-		if node is AnimatedSprite2D and node.name.begins_with("KeySprite"):
-			_play_key_bounce(node)
 
 
-func _play_key_bounce(key_sprite: AnimatedSprite2D) -> void:
-	# Loop: show normal frame, then pressed frame
-	if key_sprite.sprite_frames and key_sprite.sprite_frames.get_frame_count("default") >= 2:
-		var tw := key_sprite.create_tween().set_loops()
-		tw.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-		tw.tween_callback(func(): key_sprite.frame = 0)
-		tw.tween_interval(0.6)
-		tw.tween_callback(func(): key_sprite.frame = 1)
-		tw.tween_interval(0.3)
 
 
 func _get_all_children(node: Node) -> Array[Node]:

@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bhhnurqifld4k" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/hud.png" id="36_mwii3"]
 [ext_resource type="Texture2D" uid="uid://b72k0xir82vae" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/expression_working.png" id="37_2aanf"]
 [ext_resource type="Texture2D" uid="uid://cav12hpt30cr6" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/carrot_05.png" id="37_h5u0x"]
+[ext_resource type="Texture2D" uid="uid://gvnbn8uuqn86" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/arrow_up-1.png" id="39_qflxp"]
+[ext_resource type="Script" uid="uid://cdablu4brw2si" path="res://Scripts/UI/float.gd" id="40_0pk7v"]
 [ext_resource type="PackedScene" uid="uid://c6bn0o60aqgi8" path="res://Scenes/Player/select_box.tscn" id="scn_selectbox"]
 [ext_resource type="Script" uid="uid://biqt6s1fohv56" path="res://Scripts/Components/attack_component.gd" id="scr_attack_hitbox"]
 [ext_resource type="Script" uid="uid://4iw2c8bqnaea" path="res://Scripts/Components/health_component.gd" id="scr_health"]
@@ -2334,9 +2336,17 @@ sprite_frames = SubResource("sf_tools")
 animation = &"death"
 
 [node name="HeldItemSprite" type="Sprite2D" parent="PlayerVisual" unique_id=965775748]
-z_index = 10
+z_index = 1
 position = Vector2(0, -10)
 texture = ExtResource("37_h5u0x")
+
+[node name="ArrowUp" type="Sprite2D" parent="PlayerVisual" unique_id=1197457053]
+z_index = 2
+position = Vector2(0, -19)
+texture = ExtResource("39_qflxp")
+script = ExtResource("40_0pk7v")
+amplitude = 1.0
+speed = 10.0
 
 [node name="SelectBox" parent="." unique_id=1510798765 instance=ExtResource("scn_selectbox")]
 y_sort_enabled = true

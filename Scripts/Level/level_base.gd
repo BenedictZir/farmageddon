@@ -12,7 +12,8 @@ class_name LevelBase
 @export var intro_camera_path: NodePath = NodePath("Camera2D")
 @export var intro_zoom_start := Vector2(2.6, 2.6)
 @export var intro_zoom_end := Vector2(2.0, 2.0)
-@export var intro_zoom_duration := 1.2
+@export var intro_zoom_duration := 0.85
+@export_range(0.02, 0.35, 0.01) var intro_zoom_bounce_strength := 0.12
 
 @export_group("Fence Build")
 @export var animate_fence_build := true
@@ -22,6 +23,9 @@ class_name LevelBase
 @export var fence_drop_height := 26.0
 @export var fence_drop_time := 0.45
 @export_range(0.05, 0.95, 0.05) var fence_wave_interval_ratio := 0.4
+@export var fence_loop_sfx_path := "res://Assets/SFX/fence.wav"
+@export var fence_loop_sfx_volume := 5
+@export_range(0.0, 1.0, 0.01) var fence_loop_sfx_tail_delay := 0.18
 
 @onready var day_night_modulate: CanvasModulate = $DayNightModulate
 @onready var timer_label: Label = $UI/TimerLabel
@@ -32,6 +36,7 @@ const ENEMY_SPAWNER_SCRIPT := preload("res://Scripts/Level/enemy_spawner.gd")
 const DAY_NIGHT_CONTROLLER_SCRIPT := preload("res://Scripts/Level/day_night_controller.gd")
 
 var _remaining_time_seconds := 300.0
+var _fence_loop_sfx_player: AudioStreamPlayer
 
 
 func _ready() -> void:
@@ -121,20 +126,24 @@ func _play_level_intro_sequence() -> void:
 	var old_layer := _resolve_fence_layer(old_fence_layer_path)
 	var new_layer := _resolve_fence_layer(new_fence_layer_path)
 	var has_transition_layers := old_layer and new_layer and old_layer != new_layer
-	var zoom_tween: Tween = null
-
-	if play_level_intro_transition:
-		zoom_tween = _start_intro_zoom_tween()
 
 	if has_transition_layers:
-		await _play_fence_clear_animation(old_layer)
+		await _play_fence_animation_with_sfx(old_layer, true)
+		if play_level_intro_transition:
+			var transition_zoom_tween := _start_intro_zoom_tween()
+			if transition_zoom_tween:
+				await transition_zoom_tween.finished
 		new_layer.visible = true
-		await _play_fence_build_animation(new_layer)
-	elif animate_fence_build and new_layer:
-		await _play_fence_build_animation(new_layer)
+		await _play_fence_animation_with_sfx(new_layer, false)
+		return
 
-	if zoom_tween:
-		await zoom_tween.finished
+	if play_level_intro_transition:
+		var zoom_tween := _start_intro_zoom_tween()
+		if zoom_tween:
+			await zoom_tween.finished
+
+	if animate_fence_build and new_layer:
+		await _play_fence_animation_with_sfx(new_layer, false)
 
 
 func _start_intro_zoom_tween() -> Tween:
@@ -142,11 +151,28 @@ func _start_intro_zoom_tween() -> Tween:
 		return null
 
 	level_camera.zoom = intro_zoom_start
+	var duration := clampf(intro_zoom_duration, 0.2, 2.0)
+	var overshoot_factor := 1.0 + clampf(intro_zoom_bounce_strength, 0.02, 0.35)
+	var overshoot_zoom := intro_zoom_end + ((intro_zoom_end - intro_zoom_start) * overshoot_factor)
 	var tween := create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	tween.tween_property(level_camera, "zoom", intro_zoom_end, clampf(intro_zoom_duration, 0.1, 3.0))\
+	tween.tween_property(level_camera, "zoom", overshoot_zoom, duration * 0.72)\
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(level_camera, "zoom", intro_zoom_end, duration * 0.28)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	AudioGlobal.start_ui_sfx("res://Assets/SFX/camera_zoom.wav", [0.97, 1.02])
 	return tween
+
+
+func _play_fence_animation_with_sfx(layer: TileMapLayer, reverse_order: bool) -> void:
+	if not layer:
+		return
+
+	_start_fence_loop_sfx()
+	await _play_fence_layer_animation(layer, reverse_order)
+	if fence_loop_sfx_tail_delay > 0.0:
+		await get_tree().create_timer(fence_loop_sfx_tail_delay).timeout
+	_stop_fence_loop_sfx()
 
 
 func _resolve_fence_layer(path: NodePath) -> TileMapLayer:
@@ -365,3 +391,15 @@ func _create_temp_fence_layer(layer: TileMapLayer) -> TileMapLayer:
 	temp_layer.z_index = layer.z_index + 1
 	layer.add_child(temp_layer)
 	return temp_layer
+
+
+func _start_fence_loop_sfx() -> void:
+	_stop_fence_loop_sfx()
+	_fence_loop_sfx_player = AudioGlobal.start_loop_sfx(fence_loop_sfx_path, [0.8, 0.82], fence_loop_sfx_volume)
+
+
+func _stop_fence_loop_sfx() -> void:
+	if _fence_loop_sfx_player and is_instance_valid(_fence_loop_sfx_player):
+		_fence_loop_sfx_player.stop()
+		_fence_loop_sfx_player.queue_free()
+	_fence_loop_sfx_player = null

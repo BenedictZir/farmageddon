@@ -49,6 +49,10 @@ func _process(delta: float) -> void:
 	if has_key_prompt:
 		_update_key_prompt_position()
 
+	if _waiting_for_action and _is_waiting_for_crop_ready_step() and _is_crop_ready_for_current_step():
+		_on_action_done()
+		return
+
 	if _holding and not _hold_actions_active.is_empty():
 		var any_pressed := false
 		for action in _hold_actions_active:
@@ -234,6 +238,17 @@ func _advance_step() -> void:
 			await get_tree().create_timer(0.05).timeout
 			if _is_running:
 				_complete_step()
+			return
+
+		if step.action_signal_name == "crop_ready":
+			_waiting_for_action = true
+			get_tree().paused = false
+			_update_process_state()
+
+			if _is_crop_ready_for_current_step():
+				await get_tree().create_timer(0.05).timeout
+				if _is_running:
+					_on_action_done()
 			return
 
 		if step.action_input_name != "":
@@ -594,7 +609,44 @@ func _get_key_prompt_half_size() -> Vector2:
 func _update_process_state() -> void:
 	var has_key_prompt := _key_prompt_container and is_instance_valid(_key_prompt_container)
 	var needs_hold_input := _holding and not _hold_actions_active.is_empty()
-	set_process(has_key_prompt or needs_hold_input)
+	var needs_crop_ready_poll := _waiting_for_action and _is_waiting_for_crop_ready_step()
+	set_process(has_key_prompt or needs_hold_input or needs_crop_ready_poll)
+
+
+func _is_waiting_for_crop_ready_step() -> bool:
+	if _current_step < 0 or _current_step >= _steps.size():
+		return false
+	var step: TutorialStep = _steps[_current_step]
+	return step.type == TutorialStep.StepType.ACTION and step.action_signal_name == "crop_ready"
+
+
+func _is_crop_ready_for_current_step() -> bool:
+	if _current_step < 0 or _current_step >= _steps.size():
+		return false
+
+	var step: TutorialStep = _steps[_current_step]
+	var source: Node = null
+	if step.action_source_node_path != "" and _scene_root:
+		source = _scene_root.get_node_or_null(step.action_source_node_path)
+
+	if not source:
+		return _is_crop_ready_in_node(_scene_root)
+
+	return _is_crop_ready_in_node(source)
+
+
+func _is_crop_ready_in_node(node: Node) -> bool:
+	if not node:
+		return false
+
+	if node.has_method("is_harvestable") and node.call("is_harvestable"):
+		return true
+
+	for child in node.get_children():
+		if _is_crop_ready_in_node(child):
+			return true
+
+	return false
 
 
 func _parse_key_prompt_tokens(raw_prompt: String) -> Array[String]:

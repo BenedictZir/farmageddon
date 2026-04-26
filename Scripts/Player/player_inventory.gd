@@ -34,12 +34,12 @@ func interact() -> void:
 		else:
 			_try_place_item()
 			AudioGlobal.start_ui_sfx("res://Assets/SFX/interact.wav", [1.2, 1.22], 3)
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(0.5).timeout
 			AudioGlobal.start_ui_sfx("res://Assets/SFX/interact.wav", [1.2, 1.22], 3)	
 	else:
 		_try_harvest()
 		AudioGlobal.start_ui_sfx("res://Assets/SFX/interact.wav", [1.2, 1.22], 3)
-		await get_tree().create_timer(0.6).timeout
+		await get_tree().create_timer(0.5).timeout
 		AudioGlobal.start_ui_sfx("res://Assets/SFX/interact.wav", [1.2, 1.22], 3)	
 
 
@@ -67,6 +67,7 @@ func _drop_deferred() -> void:
 			"growth_phase": _held_growth_phase,
 			"icon": icon_tex
 		})
+		AudioGlobal.start_ui_sfx_reversed("res://Assets/SFX/pickup.wav", [0.97, 1.02], -5)
 		_clear()
 
 

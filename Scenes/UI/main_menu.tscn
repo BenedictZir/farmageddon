@@ -10,8 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://bgtku7ptaha7v" path="res://Scenes/Helpers/farmer_helper.tscn" id="7_gih0s"]
 [ext_resource type="PackedScene" uid="uid://bbu8qaxi1pt45" path="res://Scenes/Helpers/warrior_helper.tscn" id="8_k33u3"]
 [ext_resource type="PackedScene" uid="uid://dovflfem0i0ky" path="res://Scenes/Player/player.tscn" id="9_lrjdf"]
-[ext_resource type="Texture2D" uid="uid://gvnbn8uuqn86" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/arrow_up-1.png" id="10_wqme5"]
-[ext_resource type="Script" uid="uid://cdablu4brw2si" path="res://Scripts/UI/float.gd" id="11_jewm6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wqme5"]
 texture = ExtResource("2_4pqbp")
@@ -3537,6 +3535,14 @@ shader_parameter/distortion = 0.0
 shader_parameter/heightOffset = 0.0
 shader_parameter/offset = 0.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqme5"]
+resource_local_to_scene = true
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jewm6"]
+resource_local_to_scene = true
+size = Vector2(16, 16)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cejvf"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
@@ -3550,14 +3556,6 @@ resource_local_to_scene = true
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xp0kt"]
-resource_local_to_scene = true
-size = Vector2(16, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1yfdm"]
-resource_local_to_scene = true
-size = Vector2(16, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3h8o7"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
@@ -3688,13 +3686,13 @@ script = ExtResource("1_mrfpk")
 position = Vector2(67, -34)
 
 [node name="CollisionShape2D" parent="Goblin" index="0" unique_id=534802735]
-shape = SubResource("RectangleShape2D_cejvf")
+shape = SubResource("RectangleShape2D_wqme5")
 
 [node name="HealthComponent" parent="Goblin/Components" parent_id_path=PackedInt32Array(7649292, 1856128264) index="0" unique_id=1089499295]
 max_health = 1000000.0
 
 [node name="CollisionShape2D" parent="Goblin/Components/AttackComponent" parent_id_path=PackedInt32Array(7649292, 1460850251) index="0" unique_id=154781645]
-shape = SubResource("RectangleShape2D_ru8vt")
+shape = SubResource("RectangleShape2D_jewm6")
 
 [node name="StateMachine" parent="Goblin" index="8" unique_id=427268600 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("Roam")
@@ -3703,13 +3701,13 @@ initial_state = NodePath("Roam")
 position = Vector2(-65, 45)
 
 [node name="CollisionShape2D" parent="Goblin2" index="0" unique_id=534802735]
-shape = SubResource("RectangleShape2D_ypsd1")
+shape = SubResource("RectangleShape2D_cejvf")
 
 [node name="HealthComponent" parent="Goblin2/Components" parent_id_path=PackedInt32Array(1262703026, 1856128264) index="0" unique_id=1089499295]
 max_health = 1000000.0
 
 [node name="CollisionShape2D" parent="Goblin2/Components/AttackComponent" parent_id_path=PackedInt32Array(1262703026, 1460850251) index="0" unique_id=154781645]
-shape = SubResource("RectangleShape2D_xp0kt")
+shape = SubResource("RectangleShape2D_ru8vt")
 
 [node name="StateMachine" parent="Goblin2" index="8" unique_id=427268600 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("Roam")
@@ -3718,13 +3716,13 @@ initial_state = NodePath("Roam")
 position = Vector2(54, 74)
 
 [node name="CollisionShape2D" parent="Goblin3" index="0" unique_id=534802735]
-shape = SubResource("RectangleShape2D_1yfdm")
+shape = SubResource("RectangleShape2D_ypsd1")
 
 [node name="HealthComponent" parent="Goblin3/Components" parent_id_path=PackedInt32Array(780465477, 1856128264) index="0" unique_id=1089499295]
 max_health = 1000000.0
 
 [node name="CollisionShape2D" parent="Goblin3/Components/AttackComponent" parent_id_path=PackedInt32Array(780465477, 1460850251) index="0" unique_id=154781645]
-shape = SubResource("RectangleShape2D_3h8o7")
+shape = SubResource("RectangleShape2D_xp0kt")
 
 [node name="StateMachine" parent="Goblin3" index="8" unique_id=427268600 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("Roam")
@@ -3776,13 +3774,6 @@ initial_state = NodePath("Idle")
 
 [node name="Player" parent="." unique_id=949497324 instance=ExtResource("9_lrjdf")]
 position = Vector2(0, -2)
-
-[node name="ArrowUp1" type="Sprite2D" parent="Player/PlayerVisual" parent_id_path=PackedInt32Array(949497324, 1170814840) index="0" unique_id=1485389215]
-position = Vector2(0, -19)
-texture = ExtResource("10_wqme5")
-script = ExtResource("11_jewm6")
-amplitude = 1.0
-speed = 10.0
 
 [node name="HUD" parent="Player" index="5" unique_id=1910900308]
 visible = false

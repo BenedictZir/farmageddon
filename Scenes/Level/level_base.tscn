@@ -3537,6 +3537,7 @@ shader_parameter/offset = 0.0
 [node name="LevelBase" type="Node2D" unique_id=395313815]
 y_sort_enabled = true
 script = ExtResource("scr_lvl_b")
+fence_loop_sfx_path = "res://Assets/SFX/fence2.wav"
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=1670514207]
 z_index = -1

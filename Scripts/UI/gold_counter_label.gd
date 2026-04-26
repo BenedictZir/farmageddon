@@ -10,7 +10,7 @@ class_name GoldCounterLabel
 @export var text_prefix := "Gold: "
 @export var text_suffix := "g"
 @export var counter_sfx_path := "res://Assets/SFX/coin_counter.wav"
-@export var counter_sfx_volume := -10.0
+@export var counter_sfx_volume := -12.0
 
 var _displayed_value := 0.0
 var _target_value := 0

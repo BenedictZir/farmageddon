@@ -4,9 +4,16 @@ extends Placeable
 
 enum AnimalState { HUNGRY, PROCESSING, READY }
 
+const ANIMAL_SFX_BY_KEY := {
+	"cow": "res://Assets/SFX/cowmoo.wav",
+	"chicken": "res://Assets/SFX/chicken.wav",
+}
+
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var status_sprite: Sprite2D = $StatusSprite
 @onready var progress_bar: TextureProgressBar = $ProgressBar
+
+@export var animal_sfx_volume := -6.0
 
 var animal_data: AnimalData
 var state: AnimalState = AnimalState.HUNGRY
@@ -32,6 +39,7 @@ func setup(data: AnimalData) -> void:
 		_status_base_pos = status_sprite.position
 		
 	_update_visuals()
+	_play_animal_sfx()
 
 
 func _process(delta: float) -> void:
@@ -58,6 +66,7 @@ func feed() -> void:
 	state = AnimalState.PROCESSING
 	_production_timer = 0.0
 	_update_visuals()
+	_play_animal_sfx()
 
 
 func harvest_product() -> AnimalProductData:
@@ -67,6 +76,7 @@ func harvest_product() -> AnimalProductData:
 	state = AnimalState.HUNGRY
 	_production_timer = 0.0
 	_update_visuals()
+	_play_animal_sfx()
 	return product
 
 
@@ -135,3 +145,20 @@ func _stop_ready_bounce() -> void:
 
 func _exit_tree() -> void:
 	_stop_ready_bounce()
+
+
+func _play_animal_sfx() -> void:
+	if not animal_data:
+		return
+
+	var item_name := String(animal_data.item_name).to_lower()
+	var sfx_path := ""
+	for key in ANIMAL_SFX_BY_KEY.keys():
+		if item_name.find(key) != -1:
+			sfx_path = String(ANIMAL_SFX_BY_KEY[key])
+			break
+
+	if sfx_path == "":
+		return
+
+	AudioGlobal.start_ui_sfx(sfx_path, [0.97, 1.03], animal_sfx_volume)
