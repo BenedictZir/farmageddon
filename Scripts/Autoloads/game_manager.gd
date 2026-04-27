@@ -31,10 +31,10 @@ var max_unlocked_level := 1
 var last_level_index := 1
 
 var level_goals := {
-	1: {"name": "???", "price": 5, "icon": load("res://Assets/animal_and_fertilizer_icon.png")},
+	1: {"name": "???", "price": 300, "icon": load("res://Assets/animal_and_fertilizer_icon.png")},
 	2: {"name": "???", "price": 1000, "icon":  load("res://Assets/animal_and_fertilizer_icon.png")},
 	3: {"name": "???", "price": 1500, "icon":  load("res://Assets/animal_and_fertilizer_icon.png")},
-	4: {"name": "???", "price": 25, "icon":  load("res://Assets/animal_and_fertilizer_icon.png")},
+	4: {"name": "???", "price": 2000, "icon":  load("res://Assets/animal_and_fertilizer_icon.png")},
 }
 
 func get_current_goal_data() -> Dictionary:

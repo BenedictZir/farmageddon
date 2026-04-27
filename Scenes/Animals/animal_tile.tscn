@@ -17,10 +17,5 @@ texture = ExtResource("1_tileset")
 region_enabled = true
 region_rect = Rect2(144, 112, 16, 16)
 
-[node name="Fence" type="Sprite2D" parent="." unique_id=762916995]
-texture = ExtResource("1_tileset")
-region_enabled = true
-region_rect = Rect2(784, 192, 16, 16)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1978042737]
 shape = SubResource("RectangleShape2D_atile")

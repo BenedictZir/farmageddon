@@ -100,15 +100,20 @@ pause_game = false
 
 [sub_resource type="Resource" id="step_10_wait_grow"]
 script = ExtResource("2_step")
+type = 1
 pause_game = false
-hold_duration = 15.0
+action_signal_name = "crop_ready"
+action_source_node_path = "PlantableTiles"
 wait_silent = true
 
 [sub_resource type="Resource" id="step_11_harvest"]
 script = ExtResource("2_step")
+type = 1
 lines = Array[String](["Nice, it's ready. Try harvesting it."])
 pause_game = false
 key_prompt = "E"
+action_signal_name = "crop_harvested"
+action_source_node_path = "PlantableTiles"
 
 [sub_resource type="Resource" id="step_12_sell_explain"]
 script = ExtResource("2_step")
@@ -121,7 +126,7 @@ key_prompt = "Q+E"
 script = ExtResource("2_step")
 lines = Array[String](["Okay awesome, you're a pro farmer now.", "If you forget something, you can always press ESC to see the keys. You should be thankful the dev is very kind yes yes.", "I'm gonna head out, bye-bye!"])
 pause_game = false
-unlock_inputs = Array[String](["shop_2", "shop_3", "shop_4", "shop_5", "shop_6", "shop_7", "shop_8", "shop_9"])
+unlock_inputs = Array[String](["ui_cancel", "shop_2", "shop_3", "shop_4", "shop_5", "shop_6", "shop_7", "shop_8", "shop_9"])
 
 [sub_resource type="Resource" id="step_14_combat"]
 script = ExtResource("2_step")

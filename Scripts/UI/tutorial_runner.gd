@@ -31,6 +31,7 @@ var _scene_root: Node
 var _key_prompt_container: Node2D
 var _tutorial_start_gold := -1
 var _line_shown_time := 0.0
+var _crop_harvest_wait_started_ready := false
 
 @export_group("Key Prompt Layout")
 @export var key_prompt_side_gap := 18.0
@@ -50,7 +51,11 @@ func _process(delta: float) -> void:
 		_update_key_prompt_position()
 
 	if _waiting_for_action and _is_waiting_for_crop_ready_step() and _is_crop_ready_for_current_step():
-		_on_action_done()
+		_on_action_done(null, null, null, null, _current_step)
+		return
+
+	if _waiting_for_action and _is_waiting_for_crop_harvest_step() and _is_crop_harvested_for_current_step():
+		_on_action_done(null, null, null, null, _current_step)
 		return
 
 	if _holding and not _hold_actions_active.is_empty():
@@ -67,8 +72,10 @@ func _process(delta: float) -> void:
 				_hold_actions_active.clear()
 				_update_process_state()
 				_complete_step()
-	elif not has_key_prompt:
-		set_process(false)
+
+	# Re-evaluate process state each frame so crop-ready / crop-harvest polling
+	# is not accidentally disabled when no key prompt is shown.
+	_update_process_state()
 
 
 ## Start playing a TutorialSequence.
@@ -153,6 +160,7 @@ func _advance_step() -> void:
 	_waiting_for_action = false
 	_waiting_for_input = false
 	_holding = false
+	_crop_harvest_wait_started_ready = false
 	_transitioning = true
 
 	if _current_step >= _steps.size():
@@ -248,7 +256,19 @@ func _advance_step() -> void:
 			if _is_crop_ready_for_current_step():
 				await get_tree().create_timer(0.05).timeout
 				if _is_running:
-					_on_action_done()
+					_on_action_done(null, null, null, null, _current_step)
+			return
+
+		if step.action_signal_name == "crop_harvested":
+			_waiting_for_action = true
+			_crop_harvest_wait_started_ready = _is_crop_ready_for_current_step()
+			get_tree().paused = false
+			_update_process_state()
+
+			if _is_crop_harvested_for_current_step():
+				await get_tree().create_timer(0.05).timeout
+				if _is_running:
+					_on_action_done(null, null, null, null, _current_step)
 			return
 
 		if step.action_input_name != "":
@@ -261,6 +281,7 @@ func _advance_step() -> void:
 		if source and step.action_signal_name != "" and source.has_signal(step.action_signal_name):
 			_waiting_for_action = true
 			get_tree().paused = false
+			var step_guard := _current_step
 
 			if step.wait_silent:
 				if dialog_box:
@@ -268,9 +289,9 @@ func _advance_step() -> void:
 				if spotlight:
 					spotlight.hide_spotlight(false)
 				_hide_key_prompt()
-				source.connect(step.action_signal_name, _on_signal_action_done, CONNECT_ONE_SHOT)
+				source.connect(step.action_signal_name, Callable(self, "_on_signal_action_done").bind(step_guard), CONNECT_ONE_SHOT)
 			else:
-				source.connect(step.action_signal_name, _on_action_done, CONNECT_ONE_SHOT)
+				source.connect(step.action_signal_name, Callable(self, "_on_action_done").bind(step_guard), CONNECT_ONE_SHOT)
 			return
 
 
@@ -325,11 +346,14 @@ func _complete_step() -> void:
 	_advance_step()
 
 
-func _on_action_done(_a = null, _b = null, _c = null, _d = null) -> void:
+func _on_action_done(_a = null, _b = null, _c = null, _d = null, expected_step := -1) -> void:
+	if expected_step != -1 and expected_step != _current_step:
+		return
 	if not _waiting_for_action and not _waiting_for_input:
 		return
 	_waiting_for_action = false
 	_waiting_for_input = false
+	_crop_harvest_wait_started_ready = false
 
 	var step: TutorialStep = _steps[_current_step]
 	_current_line += 1
@@ -343,10 +367,13 @@ func _on_action_done(_a = null, _b = null, _c = null, _d = null) -> void:
 
 
 ## Signal-based action done — shows dialog from line 0 since it was hidden.
-func _on_signal_action_done(_a = null, _b = null, _c = null, _d = null) -> void:
+func _on_signal_action_done(_a = null, _b = null, _c = null, _d = null, expected_step := -1) -> void:
+	if expected_step != -1 and expected_step != _current_step:
+		return
 	if not _waiting_for_action:
 		return
 	_waiting_for_action = false
+	_crop_harvest_wait_started_ready = false
 
 	var step: TutorialStep = _steps[_current_step]
 
@@ -609,7 +636,7 @@ func _get_key_prompt_half_size() -> Vector2:
 func _update_process_state() -> void:
 	var has_key_prompt := _key_prompt_container and is_instance_valid(_key_prompt_container)
 	var needs_hold_input := _holding and not _hold_actions_active.is_empty()
-	var needs_crop_ready_poll := _waiting_for_action and _is_waiting_for_crop_ready_step()
+	var needs_crop_ready_poll := _waiting_for_action and (_is_waiting_for_crop_ready_step() or _is_waiting_for_crop_harvest_step())
 	set_process(has_key_prompt or needs_hold_input or needs_crop_ready_poll)
 
 
@@ -618,6 +645,13 @@ func _is_waiting_for_crop_ready_step() -> bool:
 		return false
 	var step: TutorialStep = _steps[_current_step]
 	return step.type == TutorialStep.StepType.ACTION and step.action_signal_name == "crop_ready"
+
+
+func _is_waiting_for_crop_harvest_step() -> bool:
+	if _current_step < 0 or _current_step >= _steps.size():
+		return false
+	var step: TutorialStep = _steps[_current_step]
+	return step.type == TutorialStep.StepType.ACTION and step.action_signal_name == "crop_harvested"
 
 
 func _is_crop_ready_for_current_step() -> bool:
@@ -633,6 +667,12 @@ func _is_crop_ready_for_current_step() -> bool:
 		return _is_crop_ready_in_node(_scene_root)
 
 	return _is_crop_ready_in_node(source)
+
+
+func _is_crop_harvested_for_current_step() -> bool:
+	if not _crop_harvest_wait_started_ready:
+		return false
+	return not _is_crop_ready_for_current_step()
 
 
 func _is_crop_ready_in_node(node: Node) -> bool:
