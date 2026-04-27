@@ -3,7 +3,7 @@ class_name FertilizerData
 
 ## Data resource for fertilizer items.
 
-@export var price := 5
+@export var price := 10
 
 
 func get_placeable_type() -> int:

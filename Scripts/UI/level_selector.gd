@@ -1,10 +1,10 @@
 extends Control
 class_name LevelSelector
 
-@onready var level_1_button: Button = $CenterContainer/VBoxContainer/ButtonsContainer/Level1Button
-@onready var level_2_button: Button = $CenterContainer/VBoxContainer/ButtonsContainer/Level2Button
-@onready var level_3_button: Button = $CenterContainer/VBoxContainer/ButtonsContainer/Level3Button
-@onready var level_4_button: Button = $CenterContainer/VBoxContainer/ButtonsContainer/Level4Button
+@onready var level_1_button: Button = $CanvasLayer/CenterContainer/VBoxContainer/ButtonsContainer/Level1Button
+@onready var level_2_button: Button = $CanvasLayer/CenterContainer/VBoxContainer/ButtonsContainer/Level2Button
+@onready var level_3_button: Button = $CanvasLayer/CenterContainer/VBoxContainer/ButtonsContainer/Level3Button
+@onready var level_4_button: Button = $CanvasLayer/CenterContainer/VBoxContainer/ButtonsContainer/Level4Button
 
 var _buttons: Array[Button] = []
 

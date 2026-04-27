@@ -32,7 +32,6 @@
 
 [sub_resource type="Resource" id="Resource_237kg"]
 script = ExtResource("21_k71wr")
-price = 15
 item_name = "Fertilizer"
 icon = ExtResource("20_kig42")
 
@@ -1388,7 +1387,6 @@ layout_mode = 2
 focus_mode = 0
 item_id = 4
 item_name = "Fertilizer"
-price = 15
 icon = ExtResource("20_kig42")
 item_data = SubResource("Resource_237kg")
 unlock_level = 2
@@ -1401,7 +1399,7 @@ layout_mode = 2
 focus_mode = 0
 item_id = 5
 item_name = "Chicken"
-price = 150
+price = 120
 icon = SubResource("AtlasTexture_vnhp2")
 item_data = ExtResource("23_uexpf")
 unlock_level = 2
@@ -1411,7 +1409,7 @@ layout_mode = 2
 focus_mode = 0
 item_id = 6
 item_name = "Cow"
-price = 400
+price = 240
 icon = SubResource("AtlasTexture_dkr68")
 item_data = ExtResource("24_237kg")
 unlock_level = 2

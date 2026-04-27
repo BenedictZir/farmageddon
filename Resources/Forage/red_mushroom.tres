@@ -10,5 +10,5 @@ region = Rect2(5, 2, 10, 9)
 [resource]
 script = ExtResource("1_05b32")
 item_name = "Red Mushroom"
-sell_price = 3
+sell_price = 5
 icon = SubResource("AtlasTexture_ghk6g")

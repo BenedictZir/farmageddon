@@ -21,6 +21,7 @@ func _ready() -> void:
 		fsm.change_state("FlyOut")
 
 func _find_target_crop() -> void:
+	target_tile = null
 	var tiles := get_tree().get_nodes_in_group("plantable_tiles")
 	var valid_targets: Array[Node2D] = []
 	for tile in tiles:
@@ -30,9 +31,14 @@ func _find_target_crop() -> void:
 	if valid_targets.size() > 0:
 		target_tile = valid_targets.pick_random()
 
+
+func retarget_crop() -> bool:
+	_find_target_crop()
+	return target_tile != null
+
 ## Override: Birds die instantly and drop nothing
 func _on_death() -> void:
-	if health_bar: health_bar.hide()
+	health_bar.value = 0
 	if interact_bar: interact_bar.hide()
 	fsm.current_state.transition.emit("FlyOut")
 	

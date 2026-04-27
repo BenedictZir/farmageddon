@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://dofyuwdsoybf2" path="res://Scripts/Level/level_base.gd" id="scr_lvl_b"]
 [ext_resource type="Script" uid="uid://c475nctl2be0t" path="res://Scripts/UI/tutorial_controller.gd" id="scr_tut_ctrl"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08udf"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vttlm"]
 texture = ExtResource("2_i1iga")
 12:0/0 = 0
 13:0/0 = 0
@@ -168,8 +168,6 @@ texture = ExtResource("2_i1iga")
 46:3/0 = 0
 47:3/0 = 0
 48:3/0 = 0
-49:3/0 = 0
-50:3/0 = 0
 53:3/0 = 0
 54:3/0 = 0
 55:3/0 = 0
@@ -214,8 +212,6 @@ texture = ExtResource("2_i1iga")
 46:4/0 = 0
 47:4/0 = 0
 48:4/0 = 0
-49:4/0 = 0
-50:4/0 = 0
 51:4/0 = 0
 51:4/0/y_sort_origin = 2
 53:4/0 = 0
@@ -1761,12 +1757,14 @@ texture = ExtResource("2_i1iga")
 44:18/size_in_atlas = Vector2i(2, 4)
 44:18/0 = 0
 44:18/0/y_sort_origin = 24
+49:3/size_in_atlas = Vector2i(2, 2)
+49:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_68h7x"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_08udf")
+sources/0 = SubResource("TileSetAtlasSource_vttlm")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g3fov"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pore5"]
 texture = ExtResource("2_i1iga")
 12:0/0 = 0
 13:0/0 = 0
@@ -3519,7 +3517,7 @@ texture = ExtResource("2_i1iga")
 
 [sub_resource type="TileSet" id="TileSet_kfxem"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_g3fov")
+sources/0 = SubResource("TileSetAtlasSource_pore5")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ekdek"]
 resource_local_to_scene = true
@@ -3546,12 +3544,12 @@ tile_set = SubResource("TileSet_68h7x")
 
 [node name="Ground2" type="TileMapLayer" parent="." unique_id=1324315675]
 z_index = -1
-tile_map_data = PackedByteArray("AAD4//3/AAAhAAIAAAD2//3/AAAgAAMAAAD///r/AAAgAAIAAAAGAP7/AAAeAAEAAAD6//v/AAAiAAQAAAD4/wUAAAAhAAEAAAD9/wQAAAAhAAQAAAAEAAYAAAAdAAEAAAD2/wQAAAAhAAMAAAAIAAMAAAAcAAMAAAAGAAMAAAAgAAEAAAAIAAAAAAAhAAQAAAD7/wUAAAAeAAQAAAD2////AAAgAAIAAAAJAP7/AAAfAAMAAAD+//v/AAAgAAIAAAAGAAQAAAAgAAMAAAADAAYAAAAhAAEAAAAKAAQAAAAiAAEAAAAJAAcAAAAiAAMAAAD4/wEAAAAiAAQAAAD9//z/AAAiAAQAAAD7//3/AAAhAAQAAAD7/wIAAAAhAAEAAAAEAP3/AAAhAAQAAAADAPr/AAAhAAQAAAAIAPv/AAAfAAMAAAAJAP3/AAAgAAQAAAD//wMAAAAfAAEAAAD///3/AAAgAAIAAAD5/wMAAAAfAAEAAAADAPz/AAAgAAQAAAAIAAEAAAAgAAEAAAAIAAQAAAAgAAEAAAABAPf/AAAzACAAAAAMAPz/AAA2ACAAAADz/wMAAAAzACAAAAD3/wYAAAA2ACAAAAD0//z/AAAfAAIAAADz/wgAAAAhAAEAAAD6//b/AAAiAAMAAADy//n/AAAeAAQAAAAJAPb/AAAgAAMAAAAMAPn/AAAdAAIAAAD+/wgAAAAeAAEAAAAHAAcAAAAhAAEAAAAMAAMAAAAbAAQAAAAMAP//AAAiAAMAAADz////AAAdAAQAAAAJAPr/AAAcAAQAAAAHAPj/AAAiAAEAAAA=")
+tile_map_data = PackedByteArray("AAD4//3/AAAhAAIAAAD2//3/AAAgAAMAAAD///r/AAAgAAIAAAAGAP7/AAAeAAEAAAD6//v/AAAiAAQAAAD4/wUAAAAhAAEAAAD9/wQAAAAhAAQAAAAEAAYAAAAdAAEAAAD2/wQAAAAhAAMAAAAIAAMAAAAcAAMAAAAGAAMAAAAgAAEAAAAIAAAAAAAhAAQAAAD7/wUAAAAeAAQAAAD2////AAAgAAIAAAAJAP7/AAAfAAMAAAD+//v/AAAgAAIAAAAGAAQAAAAgAAMAAAADAAYAAAAhAAEAAAAKAAQAAAAiAAEAAAAJAAcAAAAiAAMAAAD4/wEAAAAiAAQAAAD9//z/AAAiAAQAAAD7//3/AAAhAAQAAAD7/wIAAAAhAAEAAAAEAP3/AAAhAAQAAAADAPr/AAAhAAQAAAAIAPv/AAAfAAMAAAAJAP3/AAAgAAQAAAD//wMAAAAfAAEAAAD///3/AAAgAAIAAAD5/wMAAAAfAAEAAAADAPz/AAAgAAQAAAAIAAEAAAAgAAEAAAAIAAQAAAAgAAEAAAAMAPz/AAA2ACAAAADz/wMAAAAzACAAAAD3/wYAAAA2ACAAAAD0//z/AAAfAAIAAADz/wgAAAAhAAEAAAD6//b/AAAiAAMAAADy//n/AAAeAAQAAAAJAPb/AAAgAAMAAAAMAPn/AAAdAAIAAAD+/wgAAAAeAAEAAAAHAAcAAAAhAAEAAAAMAAMAAAAbAAQAAAAMAP//AAAiAAMAAADz////AAAdAAQAAAAJAPr/AAAcAAQAAAAHAPj/AAAiAAEAAAAMAAEAAAAwAAMAAAD0//r/AAAwAAUAAADz//v/AAAwAAQAAAABAPn/AAAzACAAAAA=")
 tile_set = SubResource("TileSet_kfxem")
 
 [node name="ForeGround" type="TileMapLayer" parent="." unique_id=2106120448]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAHAPz/AAAxAAUAAAAFAAQAAAAzAAQAAAD7/wQAAAAgAAUAAAD7//j/AAAfAAUAAAAOAPj/AAAgAAUAAADy/wcAAAAgAAUAAAAKAAcAAAAgAAUAAADx/wEAAAAoABMAAADy/wEAAAAnABQAAAANAAYAAAAsABIAAAA=")
+tile_map_data = PackedByteArray("AAAHAPz/AAAxAAUAAAAFAAQAAAAzAAQAAAD7/wQAAAAgAAUAAAAOAPj/AAAgAAUAAADx/wEAAAAoABMAAADw/wEAAAAnABQAAAAOAAMAAAAgAAUAAAAMAAcAAAAsABIAAAALAAEAAAAxAAMAAADz//r/AAAxAAUAAADy/wgAAAAgAAUAAAD8//n/AAAfAAUAAAA=")
 tile_set = SubResource("TileSet_68h7x")
 
 [node name="Tree" type="Sprite2D" parent="ForeGround" unique_id=294457344]
@@ -3566,7 +3564,7 @@ region_rect = Rect2(35, 0, 26, 34)
 [node name="Tree6" type="Sprite2D" parent="ForeGround" unique_id=1681833095]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_ekdek")
-position = Vector2(-164, -120)
+position = Vector2(-174, -129)
 texture = ExtResource("5_dlak8")
 offset = Vector2(0, -6)
 region_enabled = true
@@ -3611,7 +3609,7 @@ region_rect = Rect2(5, 5, 18, 35)
 [node name="Tree9" type="Sprite2D" parent="ForeGround" unique_id=1727914007]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_ekdek")
-position = Vector2(182, 131)
+position = Vector2(163, 130)
 texture = ExtResource("4_ekdek")
 offset = Vector2(0, -6)
 region_enabled = true
@@ -3629,7 +3627,7 @@ region_rect = Rect2(5, 5, 18, 35)
 [node name="Tree8" type="Sprite2D" parent="ForeGround" unique_id=417691354]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_ekdek")
-position = Vector2(77, -123)
+position = Vector2(127, -112)
 texture = ExtResource("4_ekdek")
 offset = Vector2(0, -6)
 region_enabled = true
@@ -3651,6 +3649,8 @@ tile_set = SubResource("TileSet_68h7x")
 
 [node name="PlantableTiles" type="Node2D" parent="." unique_id=1103730003]
 
+[node name="AnimalTiles" type="Node2D" parent="." unique_id=1688119977]
+
 [node name="Player" parent="." unique_id=949497324 instance=ExtResource("1_kr1g8")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1913896110]
@@ -3665,6 +3665,7 @@ script = ExtResource("7_6fsfs")
 forage_items = Array[Resource]([ExtResource("8_g3fov")])
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1036515668]
+visible = false
 
 [node name="ShopUI" parent="UI" unique_id=445589370 instance=ExtResource("4_68h7x")]
 offset_left = 150.0
@@ -3693,12 +3694,15 @@ text = "Gold: 0g"
 script = ExtResource("scr_gold_lbl")
 
 [node name="PauseScreen" parent="." unique_id=1737449322 instance=ExtResource("scn_pause")]
+visible = false
 
 [node name="TutorialSpotlight" parent="." unique_id=1046064974 instance=ExtResource("scn_tut_spot")]
+visible = false
 
 [node name="TutorialDialogLayer" type="CanvasLayer" parent="." unique_id=732548503]
 process_mode = 3
 layer = 86
+visible = false
 
 [node name="TutorialDialogBox" parent="TutorialDialogLayer" unique_id=39337284 instance=ExtResource("scn_tut_dialog")]
 

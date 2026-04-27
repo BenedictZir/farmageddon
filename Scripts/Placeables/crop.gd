@@ -46,4 +46,4 @@ func fertilize() -> void:
 	if fertilized:
 		return
 	fertilized = true
-	_phase_duration *= 0.75
+	_phase_duration *= 0.5

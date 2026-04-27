@@ -1,7 +1,7 @@
 extends State
 class_name BirdFlyInState
 
-var fly_speed := 60.0
+var fly_speed := 72.0
 
 func enter() -> void:
 	super()
@@ -14,7 +14,9 @@ func enter() -> void:
 
 func physics_update(delta: float) -> void:
 	if not is_instance_valid(entity.target_tile) or entity.target_tile.placed_crop == null:
-		# Crop was harvested or destroyed while we were flying to it
+		# Retarget while flying; only flee if no planted crop remains.
+		if entity.has_method("retarget_crop") and entity.retarget_crop():
+			return
 		transition.emit("FlyOut")
 		return
 		

@@ -10,6 +10,6 @@ region = Rect2(1, 4, 10, 9)
 [resource]
 script = ExtResource("1_uhsia")
 item_name = "Blue Mushroom"
-sell_price = 5
+sell_price = 10
 icon = SubResource("AtlasTexture_cgsvh")
 metadata/_custom_type_script = "uid://xvahglpa12ve"

@@ -17,6 +17,20 @@ var _total_spawned_this_level := 0
 
 func _ready() -> void:
 	_reset_timer()
+	call_deferred("_apply_tutorial_process_gate")
+
+
+func _apply_tutorial_process_gate() -> void:
+	if GameManager.tutorial_active:
+		set_process(false)
+
+
+func start_from_tutorial() -> void:
+	set_process(true)
+
+
+func pause_from_tutorial() -> void:
+	set_process(false)
 
 func _reset_timer() -> void:
 	_timer = 0.0

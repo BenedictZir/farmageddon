@@ -1,7 +1,7 @@
 extends State
 class_name BirdFlyOutState
 
-var fly_speed := 80.0
+var fly_speed := 92.0
 var fly_dir: Vector2
 
 func enter() -> void:

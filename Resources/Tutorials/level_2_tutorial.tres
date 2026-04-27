@@ -6,22 +6,31 @@
 [sub_resource type="Resource" id="step_01_intro"]
 script = ExtResource("2_step")
 lines = Array[String](["Wow, I didn't expect you to clear level 1!", "...Well, makes sense though, the developer purposely made the first level super easy."])
+pause_game = false
 
 [sub_resource type="Resource" id="step_02_livestock"]
 script = ExtResource("2_step")
 lines = Array[String](["Since you're getting like, a pro at farming now, we can start raising livestock!", "You can place them on empty dirt tiles and feed them the crops you harvest."])
+pause_game = false
+
+[sub_resource type="Resource" id="step_02b_fertilizer"]
+script = ExtResource("2_step")
+lines = Array[String](["Oh, and if you want those crops to grow a little faster, you can buy fertilizer now.", "It costs 10 gold, so be smart and use it on the good stuff that takes its sweet time, okay?"])
+pause_game = false
 
 [sub_resource type="Resource" id="step_03_foraging"]
 script = ExtResource("2_step")
 lines = Array[String](["Also, if you have some free time, try exploring around the farm.", "Who knows, you might find some valuable wild mushrooms you can sell for extra cash!"])
+pause_game = false
 
 [sub_resource type="Resource" id="step_04_crow"]
 script = ExtResource("2_step")
 lines = Array[String](["Anyway, have fun farm-- wait... Eeek! What is that up there?!", "It's a crow! Ruuuunnn!!!"])
+pause_game = false
 on_start_actions = Array[String](["start_spawner"])
 camera_shake = true
 
 [resource]
 script = ExtResource("1_seq")
 save_key = "level_2"
-steps = Array[ExtResource("2_step")]([SubResource("step_01_intro"), SubResource("step_02_livestock"), SubResource("step_03_foraging"), SubResource("step_04_crow")])
+steps = Array[ExtResource("2_step")]([SubResource("step_01_intro"), SubResource("step_02_livestock"), SubResource("step_02b_fertilizer"), SubResource("step_03_foraging"), SubResource("step_04_crow")])

@@ -17,6 +17,7 @@ class_name TutorialController
 @export_group("Game Node References (for custom actions)")
 @export var timer_label_path: NodePath
 @export var enemy_spawner_path: NodePath
+@export var forage_spawner_path: NodePath = NodePath("../ForageSpawner")
 
 @export_group("Settings")
 @export var auto_start := true
@@ -127,6 +128,13 @@ func _on_completed() -> void:
 		GameManager.resume_level_timer()
 	else:
 		GameManager.start_level_timer_from_full()
+	
+	var forage_spawner := get_node_or_null(forage_spawner_path)
+	if forage_spawner:
+		if forage_spawner.has_method("start_from_tutorial"):
+			forage_spawner.start_from_tutorial()
+		else:
+			forage_spawner.set_process(true)
 
 	if not _gold_revealed_during_tutorial:
 		var gold_lbl := get_node_or_null("../UI/GoldLabel") as GoldCounterLabel
