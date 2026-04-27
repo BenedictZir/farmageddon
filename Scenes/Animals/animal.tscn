@@ -6,9 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://ba0x1oup484bc" path="res://Assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/under.png" id="tex_under"]
 
 [node name="Animal" type="Node2D" unique_id=667448450]
+y_sort_enabled = true
 script = ExtResource("scr_animal")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1347685544]
+y_sort_enabled = true
 
 [node name="StatusSprite" type="Sprite2D" parent="." unique_id=1594049445]
 position = Vector2(0, -10)
