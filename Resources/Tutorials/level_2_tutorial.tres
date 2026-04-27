@@ -27,6 +27,7 @@ pause_game = false
 script = ExtResource("2_step")
 lines = Array[String](["Anyway, have fun farm-- wait... Eeek! What is that up there?!", "It's a crow! Ruuuunnn!!!"])
 pause_game = false
+on_start_actions = Array[String](["start_spawner"])
 camera_shake = true
 
 [resource]

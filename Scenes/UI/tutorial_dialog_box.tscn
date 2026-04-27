@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://dwtf8x3d22yem" path="res://Assets/Fonts/BoldPixels.ttf" id="2_font"]
 [ext_resource type="PackedScene" uid="uid://f2uyd7q61vsd" path="res://Scenes/UI/chicky.tscn" id="3_chicky"]
 [ext_resource type="Texture2D" uid="uid://wikcu4yaxh3q" path="res://Assets/DialogueBox/DialogueTail.png" id="5_tail"]
-[ext_resource type="AudioStream" uid="uid://cibiy35m8tou4" path="res://Assets/SFX/bleep021.ogg" id="5_v1xki"]
+[ext_resource type="AudioStream" uid="uid://dy30uumj8e4i5" path="res://Assets/SFX/bleep021.wav" id="5_v1xki"]
 
 [node name="TutorialDialogBox" type="Control" unique_id=1461734331]
 process_mode = 3

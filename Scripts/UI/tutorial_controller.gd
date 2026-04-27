@@ -22,6 +22,7 @@ class_name TutorialController
 @export_group("Settings")
 @export var auto_start := true
 @export var start_delay := 0.5
+@export var repeat_each_run := true
 @export var hide_timer_initially := false
 @export var tutorial_loan_amount := 30
 
@@ -37,7 +38,7 @@ func _ready() -> void:
 	if not tutorial_data:
 		return
 
-	if _is_done(tutorial_data.save_key):
+	if not repeat_each_run and _is_done(tutorial_data.save_key):
 		queue_free()
 		return
 
