@@ -2053,7 +2053,7 @@ run_speed = 80.0
 
 [node name="HealthComponent" type="Node2D" parent="Components" unique_id=1631081430]
 script = ExtResource("scr_hp")
-max_health = 60.0
+max_health = 150.0
 
 [node name="HelperVisual" type="Node2D" parent="." unique_id=1517861904]
 y_sort_enabled = true

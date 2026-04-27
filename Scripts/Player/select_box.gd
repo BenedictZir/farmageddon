@@ -53,17 +53,18 @@ func _physics_process(_delta: float) -> void:
 	if _is_placing or _is_error:
 		return
 
-	_scan_timer -= _delta
-	if _scan_timer <= 0.0:
-		_scan_timer = maxf(0.01, scan_interval)
-		_cached_best_target = _find_best_target(player)
-	elif _cached_best_target and not is_instance_valid(_cached_best_target):
-		_cached_best_target = null
-
 	var inventory := player.get("inventory") as PlayerInventory
 	var is_carrying := inventory.is_carrying if inventory else bool(player.get("is_carrying"))
 	var is_holding_product := inventory.is_holding_product() if inventory else bool(player.get("_is_holding_product"))
 	var held_item: ItemData = inventory.get_held_item() if inventory else player.get("_held_item")
+
+	_scan_timer -= _delta
+	if _scan_timer <= 0.0:
+		_scan_timer = maxf(0.01, scan_interval)
+		_cached_best_target = _find_best_target(player, is_carrying, is_holding_product, held_item)
+	elif _cached_best_target and not is_instance_valid(_cached_best_target):
+		_cached_best_target = null
+
 	var best := _cached_best_target
 
 	if is_carrying:
@@ -109,7 +110,7 @@ func _physics_process(_delta: float) -> void:
 				hide_box()
 
 
-func _find_best_target(player: Node2D) -> Node2D:
+func _find_best_target(player: Node2D, is_carrying: bool, is_holding_product: bool, held_item: ItemData) -> Node2D:
 	var space := player.get_world_2d().direct_space_state
 	_scan_query.transform = Transform2D(0, player.global_position)
 
@@ -127,18 +128,47 @@ func _find_best_target(player: Node2D) -> Node2D:
 	var best_score := -INF
 
 	for result in results:
-		var collider: Node2D = result.collider
+		var collider: Node2D = result.collider as Node2D
+		if not collider:
+			continue
 		var to_target := collider.global_position - player.global_position
 		var dist := to_target.length()
 		if dist < 0.01:
 			dist = 0.01
 		var facing_bonus := to_target.normalized().dot(facing_dir)
-		var score := facing_bonus * 10.0 - dist
+		var context_bonus := _get_context_priority_bonus(collider, is_carrying, is_holding_product, held_item)
+		var score := context_bonus + (facing_bonus * 10.0) - dist
 		if score > best_score:
 			best_score = score
 			best_node = collider
 
 	return best_node
+
+
+func _get_context_priority_bonus(collider: Node2D, is_carrying: bool, is_holding_product: bool, held_item: ItemData) -> float:
+	if collider.has_method("pick_up"):
+		return 30.0 if not is_carrying else -8.0
+
+	if not is_carrying:
+		if collider.has_method("is_harvestable") and collider.is_harvestable():
+			return 6.0
+		return -4.0
+
+	if is_holding_product:
+		var can_feed = held_item \
+			and held_item.has_method("is_animal_feed") \
+			and held_item.is_animal_feed() \
+			and collider.has_method("is_feedable") \
+			and collider.is_feedable()
+		return 8.0 if can_feed else -4.0
+
+	if held_item \
+		and collider.has_method("accepts_type") \
+		and held_item.get_placeable_type() >= 0 \
+		and collider.accepts_type(held_item.get_placeable_type()):
+		return 8.0
+
+	return -6.0
 
 
 # ── Animation API ────────────────────────────────────────

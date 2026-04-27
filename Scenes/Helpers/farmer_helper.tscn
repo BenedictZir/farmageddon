@@ -616,138 +616,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("at_base_dig_12")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_5")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_6")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_7")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_8")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_9")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_10")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_11")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_12")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_5")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_6")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_7")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_8")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_9")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_10")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_11")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_dig_12")
 }],
 "loop": false,
 "name": &"dig",
 "speed": 12.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("at_base_doing_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_doing_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_doing_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_doing_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_doing_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_doing_5")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_doing_6")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_doing_7")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_doing_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_doing_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_doing_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_doing_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_doing_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_doing_5")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_doing_6")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_base_doing_7")
-}, {
 "duration": 1.0,
 "texture": SubResource("at_base_doing_0")
 }, {
@@ -1522,54 +1396,6 @@ animations = [{
 "speed": 12.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_5")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_6")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_7")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_5")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_6")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_longhair_doing_7")
-}, {
 "duration": 1.0,
 "texture": SubResource("at_longhair_doing_0")
 }, {
@@ -2399,138 +2225,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("at_tools_dig_12")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_5")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_6")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_7")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_8")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_9")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_10")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_11")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_12")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_5")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_6")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_7")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_8")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_9")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_10")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_11")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_dig_12")
 }],
 "loop": false,
 "name": &"dig",
 "speed": 12.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_5")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_6")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_7")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_0")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_1")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_2")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_3")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_4")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_5")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_6")
-}, {
-"duration": 1.0,
-"texture": SubResource("at_tools_doing_7")
-}, {
 "duration": 1.0,
 "texture": SubResource("at_tools_doing_0")
 }, {
@@ -2753,7 +2453,6 @@ run_speed = 80.0
 
 [node name="HealthComponent" type="Node2D" parent="Components" unique_id=428587582]
 script = ExtResource("scr_hp")
-max_health = 60.0
 
 [node name="HelperVisual" type="Node2D" parent="." unique_id=1257757007]
 y_sort_enabled = true
@@ -2762,21 +2461,17 @@ script = ExtResource("scr_vis")
 [node name="Base" type="AnimatedSprite2D" parent="HelperVisual" unique_id=916080617]
 y_sort_enabled = true
 sprite_frames = SubResource("sf_base")
-animation = &"jump"
+animation = &"dig"
 
 [node name="Hair" type="AnimatedSprite2D" parent="HelperVisual" unique_id=459312861]
 y_sort_enabled = true
 sprite_frames = SubResource("sf_longhair")
-animation = &"jump"
-frame = 8
-frame_progress = 1.0
+animation = &"dig"
 
 [node name="Tool" type="AnimatedSprite2D" parent="HelperVisual" unique_id=682687280]
 y_sort_enabled = true
 sprite_frames = SubResource("sf_tools")
-animation = &"jump"
-frame = 8
-frame_progress = 1.0
+animation = &"doing"
 
 [node name="HealthBar" type="TextureProgressBar" parent="HelperVisual" unique_id=1363480692]
 z_index = 15
@@ -2805,6 +2500,7 @@ texture_over = ExtResource("tex_over")
 texture_progress = ExtResource("tex_green")
 
 [node name="HeldItemSprite" type="Sprite2D" parent="HelperVisual" unique_id=648210459]
+z_index = 1
 position = Vector2(0, -10)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=607483864]

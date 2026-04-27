@@ -1,7 +1,7 @@
 extends State
 class_name BirdFlyInState
 
-var fly_speed := 72.0
+var fly_speed := 100.0
 
 func enter() -> void:
 	super()

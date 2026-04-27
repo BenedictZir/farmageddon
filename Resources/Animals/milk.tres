@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("scr_apd")
 item_name = "Milk"
-sell_price = 100
+sell_price = 110
 icon = ExtResource("tex_milk")

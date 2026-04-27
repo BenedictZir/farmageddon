@@ -2,7 +2,7 @@ extends State
 class_name BirdEatState
 
 var eat_timer := 0.0
-var eat_duration := 3.0
+var eat_duration := 2.5
 
 func enter() -> void:
 	super()

@@ -3,12 +3,14 @@ extends State
 ## WarriorChase: Constantly move toward the enemy. If close enough, attack.
 
 func physics_update(_delta: float) -> void:
-	if not entity._is_enemy_attackable(entity._target_enemy):
+	var target = entity._target_enemy
+	if not entity._is_enemy_attackable(target):
 		entity._target_enemy = null
 		transition.emit("roam")
 		return
+	var enemy := target as Node2D
 
-	var target_pos = entity._target_enemy.global_position
+	var target_pos = enemy.global_position
 	var to_enemy = target_pos - entity.global_position
 	var dist = to_enemy.length()
 

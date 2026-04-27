@@ -8,7 +8,7 @@ func enter() -> void:
 	super()
 	_is_fertilizing = false
 	if not entity.fertilizer_queue.is_empty():
-		entity._is_holding_product = true 
+		entity._is_holding_product = false
 		entity.held_item = entity.fertilizer_queue[0]
 
 func physics_update(_delta: float) -> void:

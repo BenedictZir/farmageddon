@@ -2279,6 +2279,7 @@ region = Rect2(44, 24, 9, 10)
 y_sort_enabled = true
 collision_layer = 2
 script = ExtResource("scr_player")
+max_energy = 150.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=649593810]
 y_sort_enabled = true

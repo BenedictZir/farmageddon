@@ -37,8 +37,17 @@ var level_goals := {
 	4: {"name": "???", "price": 1500, "icon":  load("res://Assets/trophy.png")},
 }
 
+func get_current_level_index() -> int:
+	var scene_root := get_tree().current_scene
+	if scene_root and scene_root.scene_file_path != "":
+		var resolved_index := _find_level_index_by_scene(scene_root.scene_file_path)
+		if resolved_index >= 1 and resolved_index <= LEVEL_SCENES.size():
+			current_level_index = resolved_index
+	return current_level_index
+
+
 func get_current_goal_data() -> Dictionary:
-	return level_goals.get(current_level_index, level_goals[1])
+	return level_goals.get(get_current_level_index(), level_goals[1])
 
 var _game_over := false
 var _level_elapsed_seconds := 0.0
@@ -94,8 +103,13 @@ func _ready() -> void:
 
 func register_level(extents: Vector2, scene_path: String, config: Dictionary = {}) -> void:
 	map_extents = extents
-	current_level_path = scene_path
-	current_level_index = _find_level_index_by_scene(scene_path)
+	var resolved_scene_path := scene_path
+	var scene_root := get_tree().current_scene
+	if scene_root and scene_root.scene_file_path != "":
+		resolved_scene_path = scene_root.scene_file_path
+
+	current_level_path = resolved_scene_path
+	current_level_index = _find_level_index_by_scene(resolved_scene_path)
 	last_level_index = current_level_index
 	_save_progress()
 	_game_over = false
@@ -272,9 +286,21 @@ func get_last_level_index() -> int:
 
 
 func _find_level_index_by_scene(scene_path: String) -> int:
+	if scene_path == "":
+		return current_level_index
+
 	for i in range(LEVEL_SCENES.size()):
 		if LEVEL_SCENES[i] == scene_path:
 			return i + 1
+
+	var file_name := scene_path.get_file().to_lower()
+	if file_name.begins_with("level_") and file_name.ends_with(".tscn"):
+		var index_text := file_name.trim_prefix("level_").trim_suffix(".tscn")
+		if index_text.is_valid_int():
+			var parsed_index := int(index_text)
+			if parsed_index >= 1 and parsed_index <= LEVEL_SCENES.size():
+				return parsed_index
+
 	return current_level_index
 
 

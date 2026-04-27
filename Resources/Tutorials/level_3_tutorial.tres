@@ -6,18 +6,22 @@
 [sub_resource type="Resource" id="step_01_intro"]
 script = ExtResource("2_step")
 lines = Array[String](["Wow, you made it to level 3! You're actually pretty good at this!", "But things are getting more chaotic, and you look completely overwhelmed."])
+pause_game = false
 
 [sub_resource type="Resource" id="step_02_helpers"]
 script = ExtResource("2_step")
 lines = Array[String](["It's time to level up your farming game! You can now hire Helpers.", "The Farmer Helper will assist you with farming, while the Warrior Helper will fight off monsters."])
+pause_game = false
 
 [sub_resource type="Resource" id="step_03_shop"]
 script = ExtResource("2_step")
 lines = Array[String](["You can hire them from the shop up top. Easy, right?", "Wait... hold on a second."])
+pause_game = false
 
 [sub_resource type="Resource" id="step_04_twist"]
 script = ExtResource("2_step")
 lines = Array[String](["What is this?! Why do we have to pay gold just to plant seeds on our own farm now?!", "Ugh, the developer is truly evil for adding this mechanic. Well, good luck paying your bills!"])
+pause_game = false
 on_start_actions = Array[String](["start_spawner"])
 camera_shake = true
 

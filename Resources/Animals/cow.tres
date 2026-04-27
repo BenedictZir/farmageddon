@@ -11,6 +11,7 @@ region = Rect2(4, 3, 23, 19)
 [resource]
 script = ExtResource("scr_ad")
 price = 300
+production_time = 20.0
 product_data = ExtResource("res_milk")
 sprite_sheet = ExtResource("1_a5p22")
 hframes = 4

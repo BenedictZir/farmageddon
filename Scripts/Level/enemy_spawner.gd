@@ -92,17 +92,28 @@ func _advance_wave() -> void:
 
 
 func _spawn_enemy() -> void:
-	var enemy_scene: PackedScene = _current_wave.allowed_enemies.pick_random()
-	if not enemy_scene:
-		return
+	var enemy_instance: Node2D = null
+	var has_planted_crop := _has_any_planted_crop()
+	var candidates: Array[PackedScene] = _current_wave.allowed_enemies.duplicate()
+	candidates.shuffle()
 
-	var enemy_instance := enemy_scene.instantiate() as Node2D
+	for enemy_scene in candidates:
+		if not enemy_scene:
+			continue
+
+		var candidate := enemy_scene.instantiate() as Node2D
+		if not candidate:
+			continue
+
+		# If Bird is selected with no crop available, try another enemy in this wave.
+		if candidate is Bird and not has_planted_crop:
+			candidate.queue_free()
+			continue
+
+		enemy_instance = candidate
+		break
+
 	if not enemy_instance:
-		return
-		
-	# Pre-spawn check: Birds need at least one planted crop target.
-	if enemy_instance is Bird and not _has_any_planted_crop():
-		enemy_instance.queue_free()
 		return
 		
 	var extents := GameManager.map_extents

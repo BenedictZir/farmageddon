@@ -37,10 +37,26 @@ func interact() -> void:
 			await get_tree().create_timer(0.5).timeout
 			AudioGlobal.start_ui_sfx("res://Assets/SFX/interact.wav", [1.2, 1.22], 3)	
 	else:
+		if _try_pick_up_dropped_instant():
+			return
 		_try_harvest()
 		AudioGlobal.start_ui_sfx("res://Assets/SFX/interact.wav", [1.2, 1.22], 3)
 		await get_tree().create_timer(0.5).timeout
 		AudioGlobal.start_ui_sfx("res://Assets/SFX/interact.wav", [1.2, 1.22], 3)	
+
+
+func _try_pick_up_dropped_instant() -> bool:
+	var target = select_box.current_target
+	if not target:
+		return false
+	if not target.has_method("pick_up"):
+		return false
+	if target.is_in_group("forage_items"):
+		return false
+
+	_pick_up_dropped(target)
+	AudioGlobal.start_ui_sfx("res://Assets/SFX/pickup.wav", [0.97, 1.02], -10)
+	return true
 
 
 
@@ -176,6 +192,11 @@ func on_interact_anim_finished() -> void:
 	if _held_item and not _is_holding_product:
 		# Was placing an item on a tile
 		var ptype = _held_item.get_placeable_type()
+		if _target_tile.has_method("accepts_type") and not _target_tile.accepts_type(ptype):
+			# Target changed while the animation was playing (e.g. another planter got there first).
+			select_box.play_error()
+			_target_tile = null
+			return
 		if ptype == Placeable.Type.CROP:
 			if _held_growth_phase > 0 and _target_tile.has_method("plant_crop_at_phase"):
 				_target_tile.plant_crop_at_phase(_held_item, _held_growth_phase)

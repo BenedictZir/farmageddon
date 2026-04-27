@@ -10,10 +10,10 @@
 
 [resource]
 script = ExtResource("1_61i3c")
-price = 60
+price = 55
 grow_time = 70.0
 phase_textures = Array[Texture2D]([ExtResource("2_eph37"), ExtResource("2_x74cl"), ExtResource("3_eph37"), ExtResource("4_cwb4d"), ExtResource("5_gd5so")])
 item_name = "Pumpkin"
-sell_price = 130
+sell_price = 120
 icon = ExtResource("1_5d342")
 metadata/_custom_type_script = "uid://bb1016x4g4rpn"

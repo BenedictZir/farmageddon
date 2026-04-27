@@ -50,13 +50,16 @@ func _find_enemy() -> bool:
 	return false
 
 
-func _is_enemy_attackable(enemy: Node2D) -> bool:
+func _is_enemy_attackable(enemy) -> bool:
 	if not is_instance_valid(enemy):
 		return false
-	if enemy is EnemyBase and enemy.is_dead:
+	if not (enemy is Node2D):
+		return false
+	var enemy_node := enemy as Node2D
+	if enemy_node is EnemyBase and enemy_node.is_dead:
 		return false
 	# Bird is only hittable when it has landed to eat.
-	if enemy is Bird and not enemy.is_eating:
+	if enemy_node is Bird and not enemy_node.is_eating:
 		return false
 	return true
 

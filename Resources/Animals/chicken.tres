@@ -11,7 +11,7 @@ region = Rect2(39, 7, 16, 16)
 [resource]
 script = ExtResource("scr_ad")
 price = 120
-production_time = 15.0
+production_time = 12.0
 product_data = ExtResource("res_egg")
 sprite_sheet = ExtResource("1_jp8l4")
 hframes = 4
