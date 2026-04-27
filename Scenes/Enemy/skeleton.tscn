@@ -461,7 +461,13 @@ gold_drop_max = 10
 [node name="CollisionShape2D" parent="." index="0" unique_id=534802735]
 shape = SubResource("RectangleShape2D_pbxlo")
 
-[node name="CollisionShape2D" parent="Components/AttackComponent" parent_id_path=PackedInt32Array(1460850251) index="0" unique_id=154781645]
+[node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1856128264) index="0" unique_id=1089499295]
+max_health = 120.0
+
+[node name="AttackComponent" parent="Components" parent_id_path=PackedInt32Array(1856128264) index="1" unique_id=1460850251]
+damage = 20.0
+
+[node name="CollisionShape2D" parent="Components/AttackComponent" index="0" unique_id=154781645]
 shape = SubResource("RectangleShape2D_ftjdo")
 
 [node name="EnemyVisual" parent="." index="2" unique_id=543429950]

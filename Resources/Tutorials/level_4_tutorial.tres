@@ -6,10 +6,12 @@
 [sub_resource type="Resource" id="step_01_intro"]
 script = ExtResource("2_step")
 lines = Array[String](["Alright rookie, welcome to level 4. Now we're going to...", "Wait, why is it so dark? Did someone turn off the lights?"])
+pause_game = false
 
 [sub_resource type="Resource" id="step_02_kidnap"]
 script = ExtResource("2_step")
 lines = Array[String](["Hellooo?", "Wait, what's grabbing me?! Let go of me you foul beast! HEEEEEELP!!!"])
+pause_game = false
 on_start_actions = Array[String](["start_spawner"])
 camera_shake = true
 

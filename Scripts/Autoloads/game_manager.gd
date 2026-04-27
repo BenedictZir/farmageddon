@@ -33,8 +33,8 @@ var last_level_index := 1
 var level_goals := {
 	1: {"name": "???", "price": 300, "icon": load("res://Assets/animal_and_fertilizer_icon.png")},
 	2: {"name": "???", "price": 600, "icon":  load("res://Assets/shovel_and_sword_icon.png")},
-	3: {"name": "???", "price": 1000, "icon":  load("res://Assets/moon.png")},
-	4: {"name": "???", "price": 1500, "icon":  load("res://Assets/trophy.png")},
+	3: {"name": "???", "price": 950, "icon":  load("res://Assets/moon.png")},
+	4: {"name": "???", "price": 1300, "icon":  load("res://Assets/trophy.png")},
 }
 
 func get_current_level_index() -> int:

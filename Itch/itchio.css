@@ -1,0 +1,202 @@
+/* Itch.io custom CSS for Farmageddon
+   Style: simple, tasteful, farm-themed (earthy greens, warm beige, soft yellow)
+   Usage: paste into itch.io "Project CSS" box. Adjust variables below to taste.
+*/
+
+:root{
+  --bg:#f7f2ea;           /* warm parchment */
+  --panel:#ffffff;        /* panel background */
+  --muted:#8b8b7a;        /* muted text */
+  --accent:#7aa26b;       /* soft farm-green */
+  --accent-2:#f0c67a;     /* warm accent (harvest) */
+  --shadow: 0 6px 18px rgba(23,23,23,0.08);
+  --radius:10px;
+  --max-width:980px;
+}
+
+/* Page base */
+body,
+body.project,
+body.project_page,
+body.game_page {
+  background: linear-gradient(180deg, var(--bg) 0%, #fbfaf7 100%) !important;
+  color: #222;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  line-height:1.45;
+}
+
+/* Links */
+a {
+  color: #2f6d3b;
+}
+a:hover {
+  color: #1f4a2a;
+}
+
+/* Main container */
+.project_content {
+  max-width: var(--max-width);
+  margin: 28px auto;
+  padding: 26px;
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(30,30,30,0.03);
+}
+
+/* Game page container (fallback selectors) */
+.game_page #page,
+.game_page .game_layout,
+.game_page .inner_column {
+  max-width: var(--max-width);
+  margin: 28px auto;
+  padding: 26px;
+  background: var(--panel) !important;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(30,30,30,0.03);
+}
+
+/* Header / title area */
+.project_title {
+  display:flex;
+  align-items:center;
+  gap:18px;
+  margin-bottom:12px;
+}
+.project_title .cover_image {
+  width:108px;
+  height:108px;
+  object-fit:cover;
+  border-radius:8px;
+  box-shadow: 0 8px 24px rgba(30,30,30,0.08);
+}
+.project_title h1,
+.game_title,
+.page_header h1,
+h1 {
+  font-size:30px;
+  margin:0;
+  color: #1d3524; /* dark olive */
+}
+.project_metadata {
+  color: var(--muted);
+  margin-top:6px;
+}
+
+/* Action buttons */
+.project_buttons .button,
+.project_buttons a,
+.game_page .button,
+.game_page a.button,
+.buy_row .button,
+.download_btn {
+  background: linear-gradient(180deg, var(--accent) 0%, #6b9958 100%);
+  color:#fff;
+  padding:10px 14px;
+  border-radius:8px;
+  text-decoration:none;
+  display:inline-block;
+  box-shadow: 0 6px 18px rgba(30,80,40,0.12);
+  transition: transform .12s ease, box-shadow .12s ease;
+  border: none;
+  font-weight:600;
+}
+.project_buttons .button:hover, .project_buttons a:hover{ transform: translateY(-2px); }
+.project_buttons .secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba(122,162,107,0.14);
+  box-shadow: none;
+}
+
+/* Description */
+.project_description,
+.game_page .game_description,
+.game_page .formatted_description,
+.game_page .game_info_panel,
+.game_page .game_text {
+  margin-top:18px;
+  font-size:15px;
+  color:#2b2b2b;
+}
+.project_description p { margin:0 0 10px 0; }
+
+/* Screenshots / gallery */
+.screenshots,
+.game_page .screenshot_list,
+.game_page .gallery,
+.game_page .game_screenshots {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:16px;
+}
+.screenshots img,
+.game_page .screenshot_list img,
+.game_page .gallery img,
+.game_page .game_screenshots img {
+  border-radius:8px;
+  width: calc(50% - 6px);
+  height: auto;
+  object-fit:cover;
+  box-shadow: 0 10px 30px rgba(20,20,20,0.06);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+/* Tags / badges */
+.tags .tag,
+.game_page .tag {
+  display:inline-block;
+  margin-right:8px;
+  margin-bottom:8px;
+  padding:6px 10px;
+  background: rgba(122,162,107,0.12);
+  color: #3b4f35;
+  border-radius: 999px;
+  font-size:13px;
+}
+
+/* Small info boxes */
+.notice_box {
+  padding:12px 14px;
+  border-radius:8px;
+  background: linear-gradient(180deg, rgba(240,198,122,0.08), rgba(240,198,122,0.04));
+  border: 1px solid rgba(240,198,122,0.06);
+  color:#4a3a24;
+  margin-top:14px;
+}
+
+/* Divider */
+.hr_farm{ height:1px; background: linear-gradient(90deg, transparent, rgba(20,20,20,0.03), transparent); margin:16px 0; border-radius:2px; }
+
+/* Credits / footer */
+.project_credits,
+.game_page .game_footer,
+.game_page .footer {
+  margin-top:18px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* Blockquotes */
+.project_description blockquote {
+  border-left:4px solid var(--accent-2);
+  padding:10px 14px;
+  background: rgba(240,198,122,0.03);
+  margin:12px 0;
+  color:#3b3b3b;
+  border-radius:6px;
+}
+
+/* Responsive tweaks */
+@media (max-width:720px){
+  .project_title { flex-direction:row; }
+  .screenshots img { width:100%; }
+  :root{ --max-width: 96%; }
+}
+
+/* Small accessibility / focus styles */
+a:focus, button:focus{ outline:3px solid rgba(122,162,107,0.14); outline-offset:2px; }
+
+/* End of file */

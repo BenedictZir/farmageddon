@@ -13,10 +13,13 @@ extends CharacterBody2D
 @export var health_main_speed := 210.0
 @export var health_trail_speed := 95.0
 @export var health_trail_delay := 0.14
+@export var health_regen_delay := 5.0
+@export var health_regen_amount_per_second := 1.0
 
 var _health_delayed_bar: TextureProgressBar
 var _health_target := 100.0
 var _health_trail_delay_timer := 0.0
+var _health_regen_delay_timer := 0.0
 var _health_base_modulate := Color.WHITE
 var _health_flash_tween: Tween
 
@@ -38,6 +41,7 @@ func _ready() -> void:
 		_health_delayed_bar.value = health_component.current_health
 	_health_base_modulate = health_bar.modulate
 	health_bar.visible = false
+	_health_regen_delay_timer = maxf(0.0, health_regen_delay)
 	
 	if state_machine:
 		state_machine.init(self)
@@ -60,10 +64,11 @@ func _physics_process(delta: float) -> void:
 
 	if state_machine:
 		state_machine.process_physics(delta)
-		
-	# Heal passive regen (1 HP per second)
-	if health_component.current_health < health_component.max_health:
-		health_component.heal(1.0 * delta)
+
+	if _health_regen_delay_timer > 0.0:
+		_health_regen_delay_timer = maxf(0.0, _health_regen_delay_timer - delta)
+	elif health_component.current_health < health_component.max_health:
+		health_component.heal(health_regen_amount_per_second * delta)
 
 func _process(delta: float) -> void:
 	if is_dead:
@@ -79,6 +84,7 @@ func _on_damaged(_amount: float) -> void:
 	if is_dead or not health_component.is_alive():
 		return
 	_health_trail_delay_timer = health_trail_delay
+	_health_regen_delay_timer = maxf(0.0, health_regen_delay)
 	_flash_health_bar()
 	HitEffects.play_hit(helper_visual._sprites)
 

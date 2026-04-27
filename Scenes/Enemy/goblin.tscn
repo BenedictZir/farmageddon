@@ -675,6 +675,9 @@ gold_drop_max = 8
 [node name="CollisionShape2D" parent="." index="0" unique_id=534802735]
 shape = SubResource("RectangleShape2D_qndeq")
 
+[node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1856128264) index="0" unique_id=1089499295]
+max_health = 90.0
+
 [node name="AttackComponent" parent="Components" parent_id_path=PackedInt32Array(1856128264) index="1" unique_id=1460850251]
 damage = 15.0
 
