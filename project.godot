@@ -13,7 +13,13 @@ config_version=5
 config/name="Farmageddon"
 run/main_scene="uid://l2w1p3m7pvll"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/image="uid://45q7kff7vde3"
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=3000
+
+[audio]
+
+buses/default_bus_layout="uid://uuqqwss0a12c"
 
 [autoload]
 
